@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  /* Oyster & Indigo — Luxury Light Enterprise */
+  --color-brand-bg:      #F8F8FA;
+  --color-brand-surface: #FFFFFF;
+  --color-brand-primary: #4F46E5;
+  --color-brand-accent:  #059669;
+  --color-brand-border:  #E4E4E7;
+  --color-brand-text:    #09090B;
+  --color-brand-muted:   #71717A;
+}
+
+:root {
+  background-color: #F8F8FA;
+  color: #09090B;
+  color-scheme: light;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  /* Plus Jakarta Sans: humanist sans used in premium SaaS + mobile UI (Linear, Vercel, Arc) */
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif;
+  /* Slight tightening — industry standard for premium typographic feel */
+  letter-spacing: -0.012em;
+  line-height: 1.5;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at top, rgba(79, 70, 229, 0.08), transparent 30%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.75), rgba(248, 248, 250, 0.96));
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid rgba(79, 70, 229, 0.35);
+  outline-offset: 2px;
+}
+
+/*
+  Override Tailwind's most aggressive weight utilities.
+  Unlayered CSS outranks @layer utilities — no !important needed.
+  Maps 900→700 and 800→700 so "font-black" / "font-extrabold"
+  render at Bold (700) rather than Ultra-Black (900/800).
+*/
+.font-black     { font-weight: 700; }
+.font-extrabold { font-weight: 700; }

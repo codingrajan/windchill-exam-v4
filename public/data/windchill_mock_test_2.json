@@ -1,0 +1,1011 @@
+[
+  {
+    "id": 101,
+    "topic": "PLM Foundations",
+    "difficulty": "easy",
+    "question": "Which two business values are primary benefits of implementing Windchill as a PLM solution? (Choose 2)",
+    "options": [
+      "Providing a single source of truth for all enterprise product data",
+      "Replacing the company's enterprise resource planning (ERP) system for financial accounting",
+      "Managing real-time machine telemetry on the factory floor",
+      "Reducing time-to-market by enabling concurrent engineering"
+    ],
+    "correctAnswer": [
+      0,
+      3
+    ],
+    "explanation": "The Technical Essentials manual defines Windchill's primary PLM benefits as providing a single source of truth for product data and enabling concurrent engineering to reduce time-to-market. ERP and HR functions are outside its core scope.",
+    "objective": "Describe product lifecycle management (PLM) and how Windchill works as a PLM solution",
+    "domain": "PLM Foundations",
+    "type": "multiple"
+  },
+  {
+    "id": 102,
+    "topic": "PLM Foundations",
+    "difficulty": "easy",
+    "question": "Which two enterprise systems are most commonly integrated with Windchill to extend the engineering-to-manufacturing digital thread? (Choose 2)",
+    "options": [
+      "Enterprise Resource Planning (ERP)",
+      "Manufacturing Execution Systems (MES)",
+      "Supply Chain Management (SCM)",
+      "Application Lifecycle Management (ALM)"
+    ],
+    "correctAnswer": [
+      0,
+      1
+    ],
+    "explanation": "Within a Windchill implementation, ERP and MES integrations are the most common systems used to carry engineering definitions into planning and execution. CRM, SCM, and ALM may integrate in broader enterprise architectures, but they are not the primary pair for the engineering-to-manufacturing digital thread described in the course material.",
+    "objective": "Describe product lifecycle management (PLM) and how Windchill works as a PLM solution",
+    "domain": "PLM Foundations",
+    "type": "multiple"
+  },
+  {
+    "id": 103,
+    "topic": "PLM Foundations",
+    "difficulty": "medium",
+    "question": "What are two key capabilities of the Windchill part-centric product development approach? (Choose 2)",
+    "options": [
+      "The CAD document is the primary object that drives the Bill of Materials",
+      "The WTPart acts as the central container for all related product information",
+      "WTParts can structurally link to multiple CAD documents, drawings, and specifications",
+      "It restricts parts from having downstream manufacturing equivalents"
+    ],
+    "correctAnswer": [
+      1,
+      2
+    ],
+    "explanation": "The part-centric approach uses the WTPart to represent the physical component, acting as a central hub that links to CAD models, drawings, and documents, allowing a comprehensive view of the product.",
+    "objective": "Describe product lifecycle management (PLM) and how Windchill works as a PLM solution",
+    "domain": "PLM Foundations",
+    "type": "multiple"
+  },
+  {
+    "id": 104,
+    "topic": "PLM Foundations",
+    "difficulty": "medium",
+    "question": "Which three statements accurately describe the Windchill client environment? (Choose 3)",
+    "options": [
+      "It requires a heavy Java applet installation on all client machines",
+      "It is primarily accessed via a standard web browser",
+      "It offers an embedded browser within Creo Parametric",
+      "It supports interactions via the Microsoft Office suite using DTI"
+    ],
+    "correctAnswer": [
+      1,
+      2,
+      3
+    ],
+    "explanation": "The Advanced Configuration manual identifies web browsers, the Creo embedded browser, and Microsoft Office (via Desktop Integration) as the primary client interfaces. Direct SQL access is never permitted for end users.",
+    "objective": "Describe product lifecycle management (PLM) and how Windchill works as a PLM solution",
+    "domain": "PLM Foundations",
+    "type": "multiple"
+  },
+  {
+    "id": 105,
+    "topic": "PLM Foundations",
+    "difficulty": "hard",
+    "question": "When defining closed-loop quality in Windchill, which two modules are typically utilized to capture and correct field issues? (Choose 2)",
+    "options": [
+      "Windchill Nonconformance (NC)",
+      "Windchill Customer Experience Management (CEM)",
+      "Windchill PartsLink",
+      "Windchill Requirements management"
+    ],
+    "correctAnswer": [
+      0,
+      1
+    ],
+    "explanation": "The Technical Essentials manual's quality management section highlights Nonconformance (NC) and Customer Experience Management (CEM) as the core tools for capturing field issues and feeding them back into the engineering change process.",
+    "objective": "Describe product lifecycle management (PLM) and how Windchill works as a PLM solution",
+    "domain": "PLM Foundations",
+    "type": "multiple"
+  },
+  {
+    "id": 106,
+    "topic": "PLM Foundations",
+    "difficulty": "hard",
+    "question": "Which two statements reflect PTC's recommended best practices for managing legacy data during a Windchill PLM implementation? (Choose 2)",
+    "options": [
+      "Migrate all legacy data regardless of age or business value",
+      "Cleanse and validate legacy data before migration",
+      "Use a structured migration utility such as Windchill Bulk Migrator (WBM) for large migration programs",
+      "Load legacy design data directly into the site context for easier administration"
+    ],
+    "correctAnswer": [
+      1,
+      2
+    ],
+    "explanation": "A disciplined migration approach starts with cleansing and validating legacy data, then using an appropriate migration toolset for controlled bulk loading. Site context is not the target for design data, and indiscriminate or manual recreation strategies are not recommended best practice.",
+    "objective": "Describe product lifecycle management (PLM) and how Windchill works as a PLM solution",
+    "domain": "PLM Foundations",
+    "type": "multiple"
+  },
+  {
+    "id": 107,
+    "topic": "Object Model & Attributes",
+    "difficulty": "easy",
+    "question": "Which two object types inherit directly from the WTObject class in Windchill? (Choose 2)",
+    "options": [
+      "wt.doc.WTDocument",
+      "wt.fc.PersistInfo",
+      "wt.part.WTPart",
+      "wt.util.WTProperties"
+    ],
+    "correctAnswer": [
+      0,
+      2
+    ],
+    "explanation": "WTDocument and WTPart are both business objects that inherit from WTObject, which represents all persistable data types in the Windchill foundation.",
+    "objective": "Describe the PLM foundational object model and relationships (parts, CAD, documents, etc.)",
+    "domain": "Object Model & Attributes",
+    "type": "multiple"
+  },
+  {
+    "id": 108,
+    "topic": "Object Model & Attributes",
+    "difficulty": "easy",
+    "question": "What are two distinct characteristics of an EPMDocument in Windchill? (Choose 2)",
+    "options": [
+      "It represents a CAD file generated by an authoring application",
+      "It can only be created by an administrator in the Site context",
+      "It manages the dependencies and references between CAD models",
+      "It cannot be associated with a WTPart"
+    ],
+    "correctAnswer": [
+      0,
+      2
+    ],
+    "explanation": "EPMDocuments represent CAD files and are designed specifically to understand and manage complex CAD-to-CAD reference dependencies.",
+    "objective": "Describe the PLM foundational object model and relationships (parts, CAD, documents, etc.)",
+    "domain": "Object Model & Attributes",
+    "type": "multiple"
+  },
+  {
+    "id": 109,
+    "topic": "Object Model & Attributes",
+    "difficulty": "medium",
+    "question": "Which three link types are commonly used to associate documents to a WTPart? (Choose 3)",
+    "options": [
+      "Described By",
+      "Calculated Reference",
+      "Reference",
+      "Build Rule"
+    ],
+    "correctAnswer": [
+      0,
+      2,
+      3
+    ],
+    "explanation": "A WTPart can be associated with documents via 'Described By' or 'Reference' links, and associated with EPMDocuments (CAD) via a 'Build Rule' (Owner/Image link).",
+    "objective": "Describe the PLM foundational object model and relationships (parts, CAD, documents, etc.)",
+    "domain": "Object Model & Attributes",
+    "type": "multiple"
+  },
+  {
+    "id": 110,
+    "topic": "Object Model & Attributes",
+    "difficulty": "medium",
+    "question": "When configuring an Owner association between an EPMDocument and a WTPart, which two behaviors occur? (Choose 2)",
+    "options": [
+      "The CAD document structure drives the WTPart BOM structure",
+      "The WTPart automatically adopts the CAD document's life cycle state",
+      "Attributes can be mapped and synchronized between the two objects",
+      "The EPMDocument becomes read-only permanently"
+    ],
+    "correctAnswer": [
+      0,
+      2
+    ],
+    "explanation": "An Owner link allows the CAD structure to build the WTPart BOM (Build Rule) and facilitates bi-directional attribute synchronization between the CAD parameter and Windchill attribute.",
+    "objective": "Describe the PLM foundational object model and relationships (parts, CAD, documents, etc.)",
+    "domain": "Object Model & Attributes",
+    "type": "multiple"
+  },
+  {
+    "id": 111,
+    "topic": "Object Model & Attributes",
+    "difficulty": "hard",
+    "question": "Which two statements accurately describe the difference between WTDocument and WTDocumentMaster? (Choose 2)",
+    "options": [
+      "WTDocumentMaster holds iteration-specific data like the life cycle state",
+      "WTDocumentMaster holds attributes that remain constant across all versions, such as the Number",
+      "WTDocument represents a specific iteration of the document",
+      "Only the WTDocumentMaster can be checked out"
+    ],
+    "correctAnswer": [
+      1,
+      2
+    ],
+    "explanation": "The Master object holds constant data (Name, Number) across all versions, while the WTDocument object holds version/iteration-specific data (State, Version ID, Content).",
+    "objective": "Describe the PLM foundational object model and relationships (parts, CAD, documents, etc.)",
+    "domain": "Object Model & Attributes",
+    "type": "multiple"
+  },
+  {
+    "id": 112,
+    "topic": "Object Model & Attributes",
+    "difficulty": "hard",
+    "question": "When dealing with Windchill content management, what are two valid ways primary content differs from secondary content? (Choose 2)",
+    "options": [
+      "An object can have only one primary content file",
+      "Primary content cannot be downloaded by a user",
+      "Secondary content is typically used for attachments like PDFs or reference images",
+      "Primary content is stored in the database, secondary content in the vault"
+    ],
+    "correctAnswer": [
+      0,
+      2
+    ],
+    "explanation": "Windchill objects (like WTDocument) can have exactly one primary content file representing the main file, and multiple secondary content files representing attachments or renditions.",
+    "objective": "Describe the PLM foundational object model and relationships (parts, CAD, documents, etc.)",
+    "domain": "Object Model & Attributes",
+    "type": "multiple"
+  },
+  {
+    "id": 113,
+    "topic": "Object Model & Attributes",
+    "difficulty": "hard",
+    "question": "Which three association types exist between an EPMDocument and a WTPart? (Choose 3)",
+    "options": [
+      "Owner",
+      "Image",
+      "Contributing Image",
+      "Calculated"
+    ],
+    "correctAnswer": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "The PTC standard associations between EPMDocuments and WTParts are Owner (driving), Image (non-driving), and Contributing Image (partially driving). Calculated and Derived are not standard association link types.",
+    "objective": "Describe the PLM foundational object model and relationships (parts, CAD, documents, etc.)",
+    "domain": "Object Model & Attributes",
+    "type": "multiple"
+  },
+  {
+    "id": 114,
+    "topic": "Business Administration & Contexts",
+    "difficulty": "easy",
+    "question": "Which two application context types are most commonly used to store collaborative design data in Windchill? (Choose 2)",
+    "options": [
+      "Site Context",
+      "Product Context",
+      "Organization Context",
+      "Project Context"
+    ],
+    "correctAnswer": [
+      1,
+      3
+    ],
+    "explanation": "Product contexts are the standard managed containers for product design data, while Project contexts are used for collaborative design work, schedules, deliverables, and controlled information sharing before data is sent back to PDM. Site and Organization contexts are administrative, and Program contexts are for grouping projects rather than serving as the main design-data container.",
+    "objective": "Identify Windchill capabilities (the use of contexts, libraries, etc.)",
+    "domain": "Business Administration & Contexts",
+    "type": "multiple"
+  },
+  {
+    "id": 115,
+    "topic": "Business Administration & Contexts",
+    "difficulty": "medium",
+    "question": "What are two defining characteristics of a Windchill Library context? (Choose 2)",
+    "options": [
+      "It is used to store standard parts and enterprise-wide reference documents",
+      "Objects inside it cannot be checked out or revised",
+      "It is typically managed by a librarian or a small group of highly trusted administrators",
+      "It sits above the Site context in the hierarchy"
+    ],
+    "correctAnswer": [
+      0,
+      2
+    ],
+    "explanation": "Libraries are used for shared, standardized components (like fasteners) and company policies, and are tightly controlled by a librarian role to prevent unauthorized changes to enterprise standards.",
+    "objective": "Identify Windchill capabilities (the use of contexts, libraries, etc.)",
+    "domain": "Business Administration & Contexts",
+    "type": "multiple"
+  },
+  {
+    "id": 116,
+    "topic": "Business Administration & Contexts",
+    "difficulty": "medium",
+    "question": "Which two features are unique to a Project context compared to a Product context? (Choose 2)",
+    "options": [
+      "The ability to manage tasks, milestones, and project plans",
+      "The ability to collaborate with external participants in an isolated project space before sending data to PDM",
+      "The ability to store WTParts",
+      "The ability to define organization templates"
+    ],
+    "correctAnswer": [
+      0,
+      1
+    ],
+    "explanation": "Project contexts are differentiated by project-management capabilities and by their collaborative model, which is often used to work with external participants in a controlled space before using Send to PDM. Folders and WTParts are not unique to projects, and organization templates are configured elsewhere.",
+    "objective": "Identify Windchill capabilities (the use of contexts, libraries, etc.)",
+    "domain": "Business Administration & Contexts",
+    "type": "multiple"
+  },
+  {
+    "id": 117,
+    "topic": "Business Administration & Contexts",
+    "difficulty": "hard",
+    "question": "When moving an object from a Project context to a Product context (Send to PDM), which two actions occur? (Choose 2)",
+    "options": [
+      "The object is copied into the target Product context",
+      "The object remains in the Project only and is merely exposed in the Product through a lightweight reference",
+      "The object adopts the target Product context policies and life cycle behavior after transfer",
+      "The operation is used to move managed data from a collaborative Project space into PDM governance"
+    ],
+    "correctAnswer": [
+      2,
+      3
+    ],
+    "explanation": "Send to PDM is the mechanism used to move managed deliverables from the collaborative Project space into formal PDM control. Once moved, the object is governed by the target PDM context configuration rather than remaining a project-managed design artifact.",
+    "objective": "Identify Windchill capabilities (the use of contexts, libraries, etc.)",
+    "domain": "Business Administration & Contexts",
+    "type": "multiple"
+  },
+  {
+    "id": 118,
+    "topic": "Business Administration & Contexts",
+    "difficulty": "hard",
+    "question": "Which three statements regarding context teams and shared teams are true? (Choose 3)",
+    "options": [
+      "A context can utilize both a local context team and a shared team simultaneously",
+      "Shared teams are defined at the Organization level",
+      "Context managers cannot add local users if a shared team is assigned",
+      "Modifying a shared team updates the membership for all contexts using it"
+    ],
+    "correctAnswer": [
+      0,
+      1,
+      3
+    ],
+    "explanation": "Shared teams reside at the Organization level and propagate updates to all utilizing contexts. A context can have a local team alongside a shared team to accommodate specific local users.",
+    "objective": "Identify Windchill capabilities (the use of contexts, libraries, etc.)",
+    "domain": "Business Administration & Contexts",
+    "type": "multiple"
+  },
+  {
+    "id": 119,
+    "topic": "Business Administration & Contexts",
+    "difficulty": "medium",
+    "question": "Which two Windchill features are configured primarily at the Organization context rather than the Product context? (Choose 2)",
+    "options": [
+      "Shared Teams",
+      "Restricted Directory Search behavior for the organization",
+      "Site-level reusable attributes that bypass organization-level governance",
+      "Product-specific folder structures"
+    ],
+    "correctAnswer": [
+      0,
+      1
+    ],
+    "explanation": "Shared teams are defined at the organization level, and organization configuration also controls whether users can interact with participants outside that organization through Restricted Directory Search. Project plans and product folder structures are lower-context concerns.",
+    "objective": "Identify Windchill capabilities (the use of contexts, libraries, etc.)",
+    "domain": "Business Administration & Contexts",
+    "type": "multiple"
+  },
+  {
+    "id": 120,
+    "topic": "OIRs & Attribute Management",
+    "difficulty": "easy",
+    "question": "Which two behaviors can be automated when an object is created using an Object Initialization Rule (OIR)? (Choose 2)",
+    "options": [
+      "Assigning the default life cycle template",
+      "Checking the object into the vault immediately",
+      "Assigning the default folder location",
+      "Changing the database schema"
+    ],
+    "correctAnswer": [
+      0,
+      2
+    ],
+    "explanation": "OIRs automate instantiation behaviors, specifically setting the default folder path, numbering sequence, life cycle template, and team template.",
+    "objective": "Create and manage business objects (object initialization rules [OIRs], etc.)",
+    "domain": "OIRs & Attribute Management",
+    "type": "multiple"
+  },
+  {
+    "id": 121,
+    "topic": "OIRs & Attribute Management",
+    "difficulty": "medium",
+    "question": "When defining an OIR for auto-numbering, which three XML elements are typically utilized? (Choose 3)",
+    "options": [
+      "<AttrConstraint>",
+      "<AttrValue id=\"number\">",
+      "<Value algorithm=\"wt.rule.algorithm.NumberingAttributeAlgorithm\">",
+      "<Arg>{GEN:...}</Arg>"
+    ],
+    "correctAnswer": [
+      1,
+      2,
+      3
+    ],
+    "explanation": "Auto-numbering rules in an OIR are typically expressed through the numbered attribute block, the NumberingAttributeAlgorithm value definition, and an argument payload that defines the generation pattern. WorkflowTemplateAttributeAlgorithm is unrelated, and AttrConstraint is not the core numbering construct being tested here.",
+    "objective": "Create and manage business objects (object initialization rules [OIRs], etc.)",
+    "domain": "OIRs & Attribute Management",
+    "type": "multiple"
+  },
+  {
+    "id": 122,
+    "topic": "OIRs & Attribute Management",
+    "difficulty": "medium",
+    "question": "If an OIR is modified at the Organization level, which two statements are true regarding existing and new objects? (Choose 2)",
+    "options": [
+      "Existing objects are automatically moved to the new folder specified in the OIR",
+      "New objects created after the change will follow the new rule",
+      "Existing objects' life cycles are updated to match the new OIR",
+      "The change affects all products in the organization unless overridden by a product-level OIR"
+    ],
+    "correctAnswer": [
+      1,
+      3
+    ],
+    "explanation": "OIRs only fire upon object instantiation (creation). They do not retroactively modify existing objects. An Organization OIR cascades down to Products unless explicitly overridden.",
+    "objective": "Create and manage business objects (object initialization rules [OIRs], etc.)",
+    "domain": "OIRs & Attribute Management",
+    "type": "multiple"
+  },
+  {
+    "id": 123,
+    "topic": "OIRs & Attribute Management",
+    "difficulty": "hard",
+    "question": "Which two XML algorithms can be used within an OIR to set the versioning scheme of a document? (Choose 2)",
+    "options": [
+      "VersionSchemeAttributeAlgorithm",
+      "StateBasedVersioningAlgorithm",
+      "LifeCycleTemplateAttributeAlgorithm",
+      "ObjectRevisionAlgorithm"
+    ],
+    "correctAnswer": [
+      0,
+      2
+    ],
+    "explanation": "Versioning is assigned either directly via the VersionSchemeAttributeAlgorithm or indirectly by assigning a life cycle (LifeCycleTemplateAttributeAlgorithm) that uses state-based versioning.",
+    "objective": "Create and manage business objects (object initialization rules [OIRs], etc.)",
+    "domain": "OIRs & Attribute Management",
+    "type": "multiple"
+  },
+  {
+    "id": 124,
+    "topic": "OIRs & Attribute Management",
+    "difficulty": "hard",
+    "question": "When configuring constraints in the Type and Attribute Manager, which two constraints prevent a user from leaving a field blank? (Choose 2)",
+    "options": [
+      "Legal Value Set",
+      "Required",
+      "String Length (with a minimum > 0)",
+      "Regular Expression (allowing empty strings)"
+    ],
+    "correctAnswer": [
+      1,
+      2
+    ],
+    "explanation": "The 'Required' constraint explicitly mandates a value. A 'String Length' constraint with a minimum length greater than zero implicitly prevents the field from being blank.",
+    "objective": "Create and manage business objects (object initialization rules [OIRs], etc.)",
+    "domain": "OIRs & Attribute Management",
+    "type": "multiple"
+  },
+  {
+    "id": 125,
+    "topic": "OIRs & Attribute Management",
+    "difficulty": "hard",
+    "question": "Which three actions are permitted on an alias attribute in Windchill? (Choose 3)",
+    "options": [
+      "Displaying it in a table view",
+      "Using it as search criteria in Advanced Search",
+      "Viewing it on the object's information page",
+      "Editing its value directly from the alias attribute's parent object"
+    ],
+    "correctAnswer": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "Alias attributes are read-only views of data stored on a related object. They can be searched, viewed, and added to tables, but they cannot be edited directly from the referencing object.",
+    "objective": "Create and manage business objects (object initialization rules [OIRs], etc.)",
+    "domain": "OIRs & Attribute Management",
+    "type": "multiple"
+  },
+  {
+    "id": 126,
+    "topic": "OIRs & Attribute Management",
+    "difficulty": "medium",
+    "question": "What two conditions must be met for a Cascading Attribute rule to function properly? (Choose 2)",
+    "options": [
+      "The cascading rule must be saved on the same attribute that it is driving",
+      "The rule must not create a circular dependency",
+      "The attributes must be defined exclusively at the Site level",
+      "An IF/THEN condition must be mapped logically between the driver and driven attributes"
+    ],
+    "correctAnswer": [
+      1,
+      3
+    ],
+    "explanation": "Cascading attributes require a logical IF/THEN driving relationship and will fail to save if the system detects a circular dependency between the attributes.",
+    "objective": "Create and manage business objects (object initialization rules [OIRs], etc.)",
+    "domain": "OIRs & Attribute Management",
+    "type": "multiple"
+  },
+  {
+    "id": 127,
+    "topic": "Change Management & Release",
+    "difficulty": "easy",
+    "question": "Which two objects are considered part of the formal Change Implementation and Review stages? (Choose 2)",
+    "options": [
+      "Problem Report",
+      "Change Notice",
+      "Change Task",
+      "Promotion Request"
+    ],
+    "correctAnswer": [
+      1,
+      2
+    ],
+    "explanation": "The Change Notice is the formal authorization for implementation, and it contains Change Tasks which detail the specific work to be done and reviewed.",
+    "objective": "Manage object change and release (life cycles, workflows, change notices, etc.)",
+    "domain": "Change Management & Release",
+    "type": "multiple"
+  },
+  {
+    "id": 128,
+    "topic": "Change Management & Release",
+    "difficulty": "medium",
+    "question": "In an advanced life cycle, which two features differentiate it from a basic life cycle? (Choose 2)",
+    "options": [
+      "The ability to associate workflow templates with states",
+      "The ability to define state-specific access control grants",
+      "The ability to have more than five states",
+      "The ability to rename states"
+    ],
+    "correctAnswer": [
+      0,
+      1
+    ],
+    "explanation": "Advanced life cycles allow administrators to trigger workflows upon entering a phase and grant state-specific role access control overrides.",
+    "objective": "Manage object change and release (life cycles, workflows, change notices, etc.)",
+    "domain": "Change Management & Release",
+    "type": "multiple"
+  },
+  {
+    "id": 129,
+    "topic": "Change Management & Release",
+    "difficulty": "medium",
+    "question": "When a Change Notice is approved, what happens to the affected objects listed in its Change Tasks? (Choose 2)",
+    "options": [
+      "They are deleted from the vault",
+      "They automatically transition through the 'Change' life cycle path (e.g., to Released)",
+      "Their iterations are locked and a new revision is created if specified",
+      "They are exported to the ERP system immediately"
+    ],
+    "correctAnswer": [
+      1,
+      2
+    ],
+    "explanation": "An approved Change Notice executes the change intent, locking the current iteration and moving the affected objects through the 'Change' transition path to their target release state.",
+    "objective": "Manage object change and release (life cycles, workflows, change notices, etc.)",
+    "domain": "Change Management & Release",
+    "type": "multiple"
+  },
+  {
+    "id": 130,
+    "topic": "Change Management & Release",
+    "difficulty": "hard",
+    "question": "Which three statements are true regarding Windchill Workflow Expression Robots? (Choose 3)",
+    "options": [
+      "They execute Java code directly within the workflow process",
+      "They run in the background method server if configured to do so",
+      "They pause the workflow until a user completes a manual task",
+      "They can be used to programmatically set the state of an object"
+    ],
+    "correctAnswer": [
+      0,
+      1,
+      3
+    ],
+    "explanation": "Expression robots are automated nodes that execute Java API code (like setting a state) in the background server queue, requiring no manual user interaction.",
+    "objective": "Manage object change and release (life cycles, workflows, change notices, etc.)",
+    "domain": "Change Management & Release",
+    "type": "multiple"
+  },
+  {
+    "id": 131,
+    "topic": "Change Management & Release",
+    "difficulty": "hard",
+    "question": "When configuring a workflow task, what two routing options are available in a 'Conditional' routing node? (Choose 2)",
+    "options": [
+      "Routing based on a user's manual selection from a list of options",
+      "Routing based on the evaluation of a Java boolean expression",
+      "Routing based on the outcome of a custom Java code block comparing object attributes",
+      "Routing based strictly on alphabetical order of the task name"
+    ],
+    "correctAnswer": [
+      1,
+      2
+    ],
+    "explanation": "Conditional nodes automatically route the workflow path by evaluating a Java boolean expression or a block of custom Java code that returns a specific routing string.",
+    "objective": "Manage object change and release (life cycles, workflows, change notices, etc.)",
+    "domain": "Change Management & Release",
+    "type": "multiple"
+  },
+  {
+    "id": 132,
+    "topic": "Change Management & Release",
+    "difficulty": "hard",
+    "question": "Which two transition types are strictly associated with the formal Change Management process? (Choose 2)",
+    "options": [
+      "Revise",
+      "Change",
+      "Promote",
+      "Production Released"
+    ],
+    "correctAnswer": [
+      1,
+      3
+    ],
+    "explanation": "The 'Change', 'Production Released', and 'Obsolescence' transitions define paths executed specifically by the approval of a Change Notice.",
+    "objective": "Manage object change and release (life cycles, workflows, change notices, etc.)",
+    "domain": "Change Management & Release",
+    "type": "multiple"
+  },
+  {
+    "id": 133,
+    "topic": "Change Management & Release",
+    "difficulty": "medium",
+    "question": "If a promotion request is rejected by an approver, which two outcomes typically occur based on the OOTB promotion workflow? (Choose 2)",
+    "options": [
+      "The objects remain in their current 'In Work' state",
+      "The promotion request object itself is routed back to the creator for rework or cancellation",
+      "The objects are marked as Obsolete",
+      "The system generates a Problem Report"
+    ],
+    "correctAnswer": [
+      0,
+      1
+    ],
+    "explanation": "When rejected, the Promotion Request workflow routes a rework task back to the creator, and the target objects remain unchanged in their pre-promotion state.",
+    "objective": "Manage object change and release (life cycles, workflows, change notices, etc.)",
+    "domain": "Change Management & Release",
+    "type": "multiple"
+  },
+  {
+    "id": 134,
+    "topic": "Architecture & Installation",
+    "difficulty": "easy",
+    "question": "During a Windchill installation, which two core components must be configured to establish the Database Tier? (Choose 2)",
+    "options": [
+      "Apache Web Server",
+      "Oracle or SQL Server Database",
+      "Windchill Directory Server (LDAP)",
+      "Windchill Method Server"
+    ],
+    "correctAnswer": [
+      1,
+      2
+    ],
+    "explanation": "The database tier consists of the relational database (Oracle/SQL Server) for PLM metadata and the administrative directory server (LDAP) for user authentication.",
+    "objective": "Describe setting up a Windchill system (installation, architecture, etc.)",
+    "domain": "Architecture & Installation",
+    "type": "multiple"
+  },
+  {
+    "id": 135,
+    "topic": "Architecture & Installation",
+    "difficulty": "medium",
+    "question": "Which three statements describe the function of the Windchill Method Server? (Choose 3)",
+    "options": [
+      "It contains the embedded Tomcat servlet engine",
+      "It processes client transactions and business logic",
+      "It interacts directly with the database to store and retrieve metadata",
+      "It acts as a load balancer for external web traffic"
+    ],
+    "correctAnswer": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "The Method Server is the core Java application tier component that contains Tomcat, processes business logic, and executes database transactions.",
+    "objective": "Describe setting up a Windchill system (installation, architecture, etc.)",
+    "domain": "Architecture & Installation",
+    "type": "multiple"
+  },
+  {
+    "id": 136,
+    "topic": "Architecture & Installation",
+    "difficulty": "medium",
+    "question": "When scaling a Windchill environment, what are two benefits of configuring a clustered architecture? (Choose 2)",
+    "options": [
+      "Eliminating the need for a relational database",
+      "Reducing the total amount of disk space needed for vaulting",
+      "High availability and failover protection if one server goes down",
+      "Load balancing of user requests across multiple method servers"
+    ],
+    "correctAnswer": [
+      2,
+      3
+    ],
+    "explanation": "Clustering provides high availability (failover) and horizontal scalability by balancing the user load across multiple nodes.",
+    "objective": "Describe setting up a Windchill system (installation, architecture, etc.)",
+    "domain": "Architecture & Installation",
+    "type": "multiple"
+  },
+  {
+    "id": 137,
+    "topic": "Architecture & Installation",
+    "difficulty": "hard",
+    "question": "Which two configuration files are managed using the `xconfmanager` utility? (Choose 2)",
+    "options": [
+      "wt.properties",
+      "web.xml",
+      "db.properties",
+      "OIR.xml"
+    ],
+    "correctAnswer": [
+      0,
+      2
+    ],
+    "explanation": "The `xconfmanager` utility manages and propagates property changes from `site.xconf` down to target property files like `wt.properties` and `db.properties`.",
+    "objective": "Describe setting up a Windchill system (installation, architecture, etc.)",
+    "domain": "Architecture & Installation",
+    "type": "multiple"
+  },
+  {
+    "id": 138,
+    "topic": "Architecture & Installation",
+    "difficulty": "hard",
+    "question": "What two mechanisms are used to tune Windchill server memory and cache sizes? (Choose 2)",
+    "options": [
+      "Windchill Configuration Assistant (WCA)",
+      "Restarting the Apache web server",
+      "Editing the OIR.xml file",
+      "Modifying JVM arguments in the Server Manager configuration"
+    ],
+    "correctAnswer": [
+      0,
+      3
+    ],
+    "explanation": "WCA calculates the optimal cache and memory settings, while JVM arguments dictate the heap size allocated to the Method Server and Server Manager.",
+    "objective": "Describe setting up a Windchill system (installation, architecture, etc.)",
+    "domain": "Architecture & Installation",
+    "type": "multiple"
+  },
+  {
+    "id": 139,
+    "topic": "Architecture & Installation",
+    "difficulty": "medium",
+    "question": "Which two services must be started in the correct order for Windchill to initialize properly? (Choose 2)",
+    "options": [
+      "The Apache Web Server must start before the Database",
+      "The Database service (Oracle/SQL) must start before Windchill",
+      "The Windchill Directory Server must start before Windchill",
+      "The CAD worker must start before the Database"
+    ],
+    "correctAnswer": [
+      1,
+      2
+    ],
+    "explanation": "Windchill requires both the database and the LDAP directory to be running and accessible before the Method Server can initialize.",
+    "objective": "Describe setting up a Windchill system (installation, architecture, etc.)",
+    "domain": "Architecture & Installation",
+    "type": "multiple"
+  },
+  {
+    "id": 140,
+    "topic": "System Administration & Maintenance",
+    "difficulty": "easy",
+    "question": "Which two tasks are considered routine Windchill administrative maintenance? (Choose 2)",
+    "options": [
+      "Rewriting the core Windchill Java source code",
+      "Monitoring background queues for failed entries",
+      "Manually editing the site.xconf file using Microsoft Word",
+      "Reviewing the Server Status page and Method Server logs"
+    ],
+    "correctAnswer": [
+      1,
+      3
+    ],
+    "explanation": "Routine maintenance involves monitoring system health via the Server Status page, checking logs, and ensuring background queues are processing without failures.",
+    "objective": "Perform basic administration tasks to the Windchill system (services, properties, utilities, etc.)",
+    "domain": "System Administration & Maintenance",
+    "type": "multiple"
+  },
+  {
+    "id": 141,
+    "topic": "System Administration & Maintenance",
+    "difficulty": "medium",
+    "question": "When managing background queues in Windchill, what two actions can an administrator take on a 'Severe' failed queue entry? (Choose 2)",
+    "options": [
+      "Route the entry to a CAD worker queue",
+      "Reset and re-execute the entry after the root cause has been corrected",
+      "Delete the failed entry from the queue",
+      "Promote the entry to a foreground transaction"
+    ],
+    "correctAnswer": [
+      1,
+      2
+    ],
+    "explanation": "Queue administration focuses on diagnosing the failure, then either resetting the entry for reprocessing or deleting it if appropriate. Queue entries are not converted into change objects or promoted into a different transaction model.",
+    "objective": "Perform basic administration tasks to the Windchill system (services, properties, utilities, etc.)",
+    "domain": "System Administration & Maintenance",
+    "type": "multiple"
+  },
+  {
+    "id": 142,
+    "topic": "System Administration & Maintenance",
+    "difficulty": "medium",
+    "question": "Which two statements about the Windchill vaulting process are correct? (Choose 2)",
+    "options": [
+      "Vaulting offloads heavy content files (like CAD) from the database to the file system",
+      "Encrypts passwords in the LDAP server",
+      "Vaulting rules determine which folders specific files are saved to based on life cycle state or context",
+      "Vaulting replaces the need for a database backup"
+    ],
+    "correctAnswer": [
+      0,
+      2
+    ],
+    "explanation": "File vaults store the physical BLOB data (CAD, PDFs) on the file system to keep the database lightweight. Vaulting rules dictate routing logic (e.g., routing Released files to a specific read-only mount).",
+    "objective": "Perform basic administration tasks to the Windchill system (services, properties, utilities, etc.)",
+    "domain": "System Administration & Maintenance",
+    "type": "multiple"
+  },
+  {
+    "id": 143,
+    "topic": "System Administration & Maintenance",
+    "difficulty": "hard",
+    "question": "Which three actions are strictly performed using the `windchill shell` command line? (Choose 3)",
+    "options": [
+      "Creating a new user account",
+      "Starting or stopping Windchill services with `windchill start` or `windchill stop`",
+      "Running the `xconfmanager` utility",
+      "Executing the `WContentVerify` tool"
+    ],
+    "correctAnswer": [
+      1,
+      2,
+      3
+    ],
+    "explanation": "The Windchill shell is the correct command-line environment for administrative utilities such as `windchill start/stop`, `xconfmanager`, and `WContentVerify`. User creation and change approval are handled through application administration and business-process UI flows rather than shell-only commands.",
+    "objective": "Perform basic administration tasks to the Windchill system (services, properties, utilities, etc.)",
+    "domain": "System Administration & Maintenance",
+    "type": "multiple"
+  },
+  {
+    "id": 144,
+    "topic": "System Administration & Maintenance",
+    "difficulty": "hard",
+    "question": "To perform a 'hot backup' of a Windchill environment, what two steps must be taken to ensure data consistency? (Choose 2)",
+    "options": [
+      "Stop the Method Server entirely",
+      "Suspend all background queues",
+      "Place the database in backup mode",
+      "Delete the local cache"
+    ],
+    "correctAnswer": [
+      1,
+      2
+    ],
+    "explanation": "A hot backup allows users to remain logged in. To ensure consistency without shutting down, queues must be suspended and the database placed into hot-backup mode.",
+    "objective": "Perform basic administration tasks to the Windchill system (services, properties, utilities, etc.)",
+    "domain": "System Administration & Maintenance",
+    "type": "multiple"
+  },
+  {
+    "id": 145,
+    "topic": "System Administration & Maintenance",
+    "difficulty": "hard",
+    "question": "What two purposes does the `WinRU` (Windchill Rehost Utility) serve? (Choose 2)",
+    "options": [
+      "Changing the host name or directory structure of an existing Windchill system",
+      "Upgrading Windchill from version 11 to 12",
+      "Migrating CAD data from SolidWorks to Creo",
+      "Cloning a production environment to create a test environment"
+    ],
+    "correctAnswer": [
+      0,
+      3
+    ],
+    "explanation": "The Rehost Utility is used to clone systems for testing/development or to safely change the hostname and LDAP structure of a deployed system.",
+    "objective": "Perform basic administration tasks to the Windchill system (services, properties, utilities, etc.)",
+    "domain": "System Administration & Maintenance",
+    "type": "multiple"
+  },
+  {
+    "id": 146,
+    "topic": "Windchill Navigate",
+    "difficulty": "medium",
+    "question": "What are two primary benefits of using Windchill Navigate? (Choose 2)",
+    "options": [
+      "It replaces Creo Parametric for heavy CAD modeling",
+      "It provides a simplified, app-based UI for non-expert users to view PLM data",
+      "It serves as the backend database for Windchill",
+      "It combines data from Windchill with external enterprise systems like ERP using ThingWorx"
+    ],
+    "correctAnswer": [
+      1,
+      3
+    ],
+    "explanation": "Navigate is built on ThingWorx to provide lightweight, role-based apps for downstream users to view drawings, parts lists, and mashup data from PLM and ERP.",
+    "objective": "Use Windchill Navigate in conjunction with Windchill",
+    "domain": "Windchill Navigate",
+    "type": "multiple"
+  },
+  {
+    "id": 147,
+    "topic": "Windchill Navigate",
+    "difficulty": "easy",
+    "question": "Which two OOTB Navigate apps are typically used by a manufacturing floor worker? (Choose 2)",
+    "options": [
+      "System Configuration Collector",
+      "Policy Administrator",
+      "View Document",
+      "View Drawing"
+    ],
+    "correctAnswer": [
+      2,
+      3
+    ],
+    "explanation": "View Document and View Drawing are standard Navigate apps designed for non-engineers to quickly pull up PDF specs or CAD drawings without learning the full Windchill UI.",
+    "objective": "Use Windchill Navigate in conjunction with Windchill",
+    "domain": "Windchill Navigate",
+    "type": "multiple"
+  },
+  {
+    "id": 148,
+    "topic": "Windchill Navigate",
+    "difficulty": "medium",
+    "question": "Which two technologies form the foundation of Windchill Navigate? (Choose 2)",
+    "options": [
+      "ThingWorx Foundation",
+      "Apache Struts",
+      "Windchill REST Services",
+      "PHP"
+    ],
+    "correctAnswer": [
+      0,
+      2
+    ],
+    "explanation": "Navigate is an IoT mashup built on the ThingWorx platform, which pulls real-time PLM data by communicating with the Windchill REST Services API.",
+    "objective": "Use Windchill Navigate in conjunction with Windchill",
+    "domain": "Windchill Navigate",
+    "type": "multiple"
+  },
+  {
+    "id": 149,
+    "topic": "Windchill Navigate",
+    "difficulty": "hard",
+    "question": "When tailoring Windchill Navigate, which two actions are supported via the Navigate Administrator console? (Choose 2)",
+    "options": [
+      "Modifying the Oracle database schema",
+      "Adding custom Windchill attributes to the View Part app",
+      "Hiding specific attributes from being displayed in an app",
+      "Changing the CAD worker publishing interval"
+    ],
+    "correctAnswer": [
+      1,
+      2
+    ],
+    "explanation": "The Navigate admin UI allows tailoring apps by selecting which OOTB or custom Windchill attributes are visible to the end user, without requiring ThingWorx development.",
+    "objective": "Use Windchill Navigate in conjunction with Windchill",
+    "domain": "Windchill Navigate",
+    "type": "multiple"
+  },
+  {
+    "id": 150,
+    "topic": "Windchill Navigate",
+    "difficulty": "hard",
+    "question": "If a user requires access to a Windchill Navigate app, which two security requirements must be met? (Choose 2)",
+    "options": [
+      "The user must be assigned the Site Administrator role",
+      "The user must have a Creo Parametric license",
+      "The user must have an account in the Windchill directory server (LDAP)",
+      "The user must have appropriate Read access control permissions in Windchill to view the underlying data"
+    ],
+    "correctAnswer": [
+      2,
+      3
+    ],
+    "explanation": "Navigate enforces Windchill's security model. The user must be authenticated, and they will only see data in Navigate that they have Windchill access control permissions to view.",
+    "objective": "Use Windchill Navigate in conjunction with Windchill",
+    "domain": "Windchill Navigate",
+    "type": "multiple"
+  }
+]

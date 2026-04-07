@@ -1,0 +1,1702 @@
+[
+  {
+    "id": 251,
+    "question": "In Windchill product structure management, what does Date Effectivity define?",
+    "options": [
+      "The sequence used to generate new revision identifiers",
+      "The user account allowed to revise the part",
+      "The folder path where released parts are stored",
+      "The calendar date on which one version of an object becomes applicable instead of another in production"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Date Effectivity is used to define when a particular version or configuration becomes effective based on a calendar date.",
+    "topic": "PLM Foundations",
+    "domain": "PLM Foundations",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Effectivity concepts"
+  },
+  {
+    "id": 252,
+    "question": "Which configuration specification is most appropriate when a user needs to filter a product structure by serial number or lot number?",
+    "options": [
+      "Unit Effectivity",
+      "Latest",
+      "Promotion Request",
+      "Baseline"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Unit Effectivity is used when product applicability must be determined by serial number or lot rather than by revision alone.",
+    "topic": "PLM Foundations",
+    "domain": "PLM Foundations",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Configuration specifications"
+  },
+  {
+    "id": 253,
+    "question": "What is the primary purpose of a configuration specification in Windchill?",
+    "options": [
+      "To assign access control policies to object types",
+      "To filter a structure so users see the product definition that matches a specific rule or context",
+      "To generate object numbers during creation",
+      "To replicate vaulted content to remote file servers"
+    ],
+    "correctAnswer": 1,
+    "explanation": "A configuration specification controls how a structure is filtered so the displayed product definition matches criteria such as latest, baseline, promotion, or effectivity.",
+    "topic": "PLM Foundations",
+    "domain": "PLM Foundations",
+    "difficulty": "easy",
+    "type": "single",
+    "objective": "Configuration specifications"
+  },
+  {
+    "id": 254,
+    "question": "In Windchill, a Promotion Request configuration specification is used to display which type of product data?",
+    "options": [
+      "Only objects currently checked out in a workspace",
+      "Only the latest released objects across every context",
+      "The structure and related data associated with a selected promotion request",
+      "Objects grouped by identical life cycle state regardless of structure"
+    ],
+    "correctAnswer": 2,
+    "explanation": "A Promotion Request configuration specification is used to view product data as related to a specific promotion request.",
+    "topic": "PLM Foundations",
+    "domain": "PLM Foundations",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Configuration specifications"
+  },
+  {
+    "id": 255,
+    "question": "What is the primary purpose of a Problem Report in Windchill change management?",
+    "options": [
+      "To authorize a temporary departure from the approved design",
+      "To route released objects directly to the ERP system",
+      "To assign background queue processing to a separate method server",
+      "To document a problem or product enhancement request before formal implementation planning begins"
+    ],
+    "correctAnswer": 3,
+    "explanation": "A Problem Report is used to capture and communicate a product problem or enhancement request so it can be analyzed before implementation work is authorized.",
+    "topic": "Change Management & Release",
+    "domain": "Change Management & Release",
+    "difficulty": "easy",
+    "type": "single",
+    "objective": "Problem Reports"
+  },
+  {
+    "id": 256,
+    "question": "In Windchill, a Variance is best described as which of the following?",
+    "options": [
+      "An authorization to depart from the as-designed configuration for specific units or a limited time period",
+      "A system-generated baseline created during promotion",
+      "A report that measures queue throughput and audit activity",
+      "A request to add a new attribute to a subtype"
+    ],
+    "correctAnswer": 0,
+    "explanation": "A Variance is used to authorize a controlled departure from the as-designed configuration for a specific number of units and or for a specific time period.",
+    "topic": "Change Management & Release",
+    "domain": "Change Management & Release",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Variances"
+  },
+  {
+    "id": 257,
+    "question": "What is the main role of a Change Task within an approved Windchill change process?",
+    "options": [
+      "To store replicated vault content for remote users",
+      "To track a discrete work assignment and the individual business-data change needed to implement approved work",
+      "To define context-level access control rules for reviewers",
+      "To replace the entire Change Notice and act as the top-level approval object"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Change Tasks are used to track discrete implementation work and the specific changes to business data that support an approved Change Notice.",
+    "topic": "Change Management & Release",
+    "domain": "Change Management & Release",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Change Tasks"
+  },
+  {
+    "id": 258,
+    "question": "During the out-of-the-box Windchill change process, when are Change Tasks typically delivered automatically to designated users?",
+    "options": [
+      "Only after the related promotion request is rejected",
+      "When the object is checked out from a workspace",
+      "Immediately after the implementation plan is approved",
+      "As soon as a Problem Report is created"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The Technical Essentials material describes Change Tasks being automatically delivered to designated users after approval of the implementation plan.",
+    "topic": "Change Management & Release",
+    "domain": "Change Management & Release",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Change Tasks"
+  },
+  {
+    "id": 259,
+    "question": "What is the primary purpose of content replication in a Windchill deployment?",
+    "options": [
+      "To keep remote sites from depending on a single central content location for every file retrieval",
+      "To move object metadata ownership from the database to the file system",
+      "To eliminate the need for vaulting strategy altogether",
+      "To copy vaulted content to additional servers so users in other locations can access files more efficiently"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Content replication is used to distribute vaulted content to additional servers, typically to improve access performance for users in different locations.",
+    "topic": "System Administration & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Content replication"
+  },
+  {
+    "id": 260,
+    "question": "What is the key distinction between file vaulting and content replication in Windchill?",
+    "options": [
+      "File vaulting stores authoritative content, while content replication distributes copies of that content to replica locations",
+      "File vaulting controls object life cycles, while replication controls workflow routing",
+      "File vaulting is for metadata only, while replication is for all business objects",
+      "File vaulting runs only in Project contexts, while replication runs only in Product contexts"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Vaulting determines where authoritative content is stored. Replication copies that content to additional replica locations for access and distribution.",
+    "topic": "System Administration & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "difficulty": "hard",
+    "type": "single",
+    "objective": "Content replication"
+  },
+  {
+    "id": 261,
+    "question": "What does a Windchill replication rule primarily define?",
+    "options": [
+      "How a promotion request selects its approval roles",
+      "Which content is copied to which replica target and under what conditions or schedule",
+      "Which content classes or locations are candidates for replication to specific targets",
+      "How OIR precedence is resolved across site and organization levels"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Replication rules determine what content should be replicated, where it should go, and when or under what conditions that replication occurs; a content-scope definition alone is not the full rule.",
+    "topic": "System Administration & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "difficulty": "hard",
+    "type": "single",
+    "objective": "Replication rules"
+  },
+  {
+    "id": 262,
+    "question": "In Windchill content replication architecture, what is a replica server used for?",
+    "options": [
+      "To calculate alias attributes during type creation",
+      "To author and approve Change Notices",
+      "To host replicated content closer to consuming users or sites",
+      "To replace the Windchill Directory Server for authentication"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Replica servers are used to host replicated content so distributed users can access files more efficiently without relying on a single central file location.",
+    "topic": "System Administration & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Replication architecture"
+  },
+  {
+    "id": 263,
+    "question": "What is the main value of Windchill security auditing reports?",
+    "options": [
+      "They generate revision sequences for new documents",
+      "They automatically repair failed workflow robots",
+      "They publish CAD viewables to Creo View",
+      "They analyze security-related activity for compliance, traceability, and investigation"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Security auditing reports are used to review security-related activity and support compliance, traceability, and diagnostic analysis.",
+    "topic": "System Administration & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Audit reports"
+  },
+  {
+    "id": 264,
+    "question": "What is the primary purpose of a Windchill throughput report?",
+    "options": [
+      "To measure system activity and processing volume so administrators can identify trends and bottlenecks",
+      "To control team-role mappings across contexts",
+      "To determine which promotion target state a user may choose",
+      "To assign default folders during object creation"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Throughput reports help administrators understand system activity levels and processing trends so they can evaluate performance and spot bottlenecks.",
+    "topic": "System Administration & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Audit reports"
+  },
+  {
+    "id": 265,
+    "question": "What is the Windchill Configuration Assistant (WCA) primarily used for?",
+    "options": [
+      "Designing workflow templates for change objects",
+      "Evaluating and adjusting system settings and configuration-related values",
+      "Creating library contexts from project plans",
+      "Authoring CAD models directly in the browser"
+    ],
+    "correctAnswer": 1,
+    "explanation": "WCA is used to review and adjust Windchill system settings, making it a system-administration utility rather than a business-administration or authoring tool.",
+    "topic": "System Administration & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "difficulty": "easy",
+    "type": "single",
+    "objective": "Windchill Configuration Assistant"
+  },
+  {
+    "id": 266,
+    "question": "Why might an administrator monitor Windchill queues using a JMX client instead of relying only on the Queue Management UI?",
+    "options": [
+      "To correlate Windchill runtime metrics with broader enterprise monitoring tools",
+      "To create new context templates at the organization level",
+      "To observe queue-related metrics and MBeans through an external monitoring path",
+      "To modify CAD associations between EPMDocuments and WTParts"
+    ],
+    "correctAnswer": 2,
+    "explanation": "JMX monitoring provides an external way to observe queue-related runtime information and metrics, especially when administrators need to integrate Windchill with broader enterprise monitoring.",
+    "topic": "System Administration & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Queue monitoring"
+  },
+  {
+    "id": 267,
+    "question": "Why is content replication often scheduled during off-peak hours in a distributed Windchill environment?",
+    "options": [
+      "To force all users into read-only mode for the next business day",
+      "To regenerate all OIR XML automatically after each replication run",
+      "To ensure LDAP authentication is disabled during synchronization",
+      "To reduce network contention and user-facing performance impact while large content copies occur"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Replication can move large amounts of content, so scheduling it during off-peak periods helps reduce network contention and impact on users.",
+    "topic": "System Administration & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Replication scheduling"
+  },
+  {
+    "id": 268,
+    "question": "What is the advantage of centrally vaulting content before replicating it to additional sites?",
+    "options": [
+      "It preserves a single authoritative content source while still allowing managed distribution to remote consumers",
+      "It converts all secondary content into primary content automatically",
+      "It allows released objects to bypass change management completely",
+      "It eliminates the need for access control policies on documents"
+    ],
+    "correctAnswer": 0,
+    "explanation": "A central vault provides a controlled authoritative source of content, while replication distributes copies outward in a managed way.",
+    "topic": "System Administration & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Replication architecture"
+  },
+  {
+    "id": 269,
+    "question": "Which configuration specification is intended to display a structure as of a specific calendar date rather than by serial number, lot, or promotion object?",
+    "options": [
+      "Promotion Request",
+      "Date Effectivity",
+      "Latest Released",
+      "Unit Effectivity"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Date Effectivity is used when applicability is determined by a calendar date.",
+    "topic": "PLM Foundations",
+    "domain": "PLM Foundations",
+    "difficulty": "easy",
+    "type": "single",
+    "objective": "Effectivity concepts"
+  },
+  {
+    "id": 270,
+    "question": "When an issue needs to be formally investigated and evaluated before implementation work is authorized, which Windchill change object typically follows the initial Problem Report?",
+    "options": [
+      "Baseline",
+      "Replica Rule",
+      "Change Request",
+      "Variance"
+    ],
+    "correctAnswer": 2,
+    "explanation": "A Problem Report is used to capture the issue. A Change Request typically follows when the issue needs formal evaluation and disposition before implementation is approved.",
+    "topic": "Change Management & Release",
+    "domain": "Change Management & Release",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Problem Reports and Change Requests"
+  },
+  {
+    "id": 271,
+    "question": "What is the primary purpose of a baseline in Windchill?",
+    "options": [
+      "To replace a life cycle template during promotion",
+      "To distribute vaulted content to remote sites",
+      "To override object numbering schemes across all contexts",
+      "To capture a point-in-time definition of selected objects for later reference"
+    ],
+    "correctAnswer": 3,
+    "explanation": "A baseline captures a specific snapshot of objects so that exact definitions can be reviewed again later.",
+    "topic": "PLM Foundations",
+    "domain": "PLM Foundations",
+    "difficulty": "easy",
+    "type": "single",
+    "objective": "Baselines"
+  },
+  {
+    "id": 272,
+    "question": "A maturity baseline is most useful when a team needs to do what?",
+    "options": [
+      "Capture the set of objects associated with a release or maturity event",
+      "Move Project data into a Product without review",
+      "Convert CAD documents into WTParts automatically",
+      "Grant temporary modify permission to suppliers"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Maturity baselines are useful for capturing the exact set of objects involved in a release or maturity event.",
+    "topic": "PLM Foundations",
+    "domain": "PLM Foundations",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Baselines"
+  },
+  {
+    "id": 273,
+    "question": "What is the key difference between a baseline and a configuration specification in Windchill?",
+    "options": [
+      "A baseline applies only to documents, while a configuration specification applies only to parts",
+      "A baseline is a captured snapshot, while a configuration specification is a rule for resolving a view of structure data",
+      "A baseline is for access control, while a configuration specification is for team membership",
+      "A baseline stores vault files, while a configuration specification stores metadata"
+    ],
+    "correctAnswer": 1,
+    "explanation": "A baseline preserves a snapshot, while a configuration specification determines how data is filtered and resolved at viewing time.",
+    "topic": "PLM Foundations",
+    "domain": "PLM Foundations",
+    "difficulty": "hard",
+    "type": "single",
+    "objective": "Baselines and configuration specifications"
+  },
+  {
+    "id": 274,
+    "question": "In product structure management, what is the main purpose of an occurrence?",
+    "options": [
+      "To create shared teams across contexts",
+      "To define the revision scheme for a part master",
+      "To track usage-specific information for a child part within a parent structure",
+      "To assign default folders during object creation"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Occurrences represent how a child is used within a specific parent structure and hold usage-specific information.",
+    "topic": "PLM Foundations",
+    "domain": "PLM Foundations",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Occurrences"
+  },
+  {
+    "id": 275,
+    "question": "Which type of information is most appropriately stored at the occurrence or usage level in a BOM?",
+    "options": [
+      "The default organization template",
+      "The site-level LDAP configuration",
+      "The global revision sequence for the part master",
+      "Reference designator or find number"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Usage-level information such as find numbers and reference designators belongs to the occurrence within the structure.",
+    "topic": "PLM Foundations",
+    "domain": "PLM Foundations",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Occurrences"
+  },
+  {
+    "id": 276,
+    "question": "When a user applies the Latest configuration specification, what is Windchill primarily trying to show?",
+    "options": [
+      "The most current resolved structure based on the latest applicable object versions",
+      "Only objects currently in the Released state",
+      "Only the objects in a selected baseline",
+      "Only objects that have completed a promotion workflow"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Latest is used to resolve the most current applicable structure, not a release-only or baseline-only view.",
+    "topic": "PLM Foundations",
+    "domain": "PLM Foundations",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Configuration specifications"
+  },
+  {
+    "id": 277,
+    "question": "What is the intent of a Latest Released configuration specification?",
+    "options": [
+      "To show the latest checked-out objects in a workspace",
+      "To show the most current structure using released data only",
+      "To show only the objects in a selected baseline",
+      "To display objects by serial number"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Latest Released focuses on released content rather than the latest in-work content.",
+    "topic": "PLM Foundations",
+    "domain": "PLM Foundations",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Configuration specifications"
+  },
+  {
+    "id": 278,
+    "question": "Which configuration specification is the best fit when a product change becomes valid on a planned cutover date?",
+    "options": [
+      "Unit Effectivity",
+      "Promotion Request",
+      "Date Effectivity",
+      "Latest Released"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Date Effectivity is used when applicability is determined by calendar date.",
+    "topic": "PLM Foundations",
+    "domain": "PLM Foundations",
+    "difficulty": "easy",
+    "type": "single",
+    "objective": "Effectivity concepts"
+  },
+  {
+    "id": 279,
+    "question": "Which configuration specification should be used when applicability depends on a serial-numbered fleet of products?",
+    "options": [
+      "Date Effectivity",
+      "Baseline",
+      "Change",
+      "Unit Effectivity"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Unit Effectivity is used when applicability is determined by serial or lot range.",
+    "topic": "PLM Foundations",
+    "domain": "PLM Foundations",
+    "difficulty": "easy",
+    "type": "single",
+    "objective": "Effectivity concepts"
+  },
+  {
+    "id": 280,
+    "question": "What does the Toggle Automatic Selection preference in Windchill visualization influence?",
+    "options": [
+      "Whether selections in the visualization pane automatically synchronize with the structure pane",
+      "Whether a workflow starts after check-in",
+      "Whether background queues execute on the current method server",
+      "Whether object numbers are generated automatically"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The automatic selection preference controls synchronization behavior between the structure and visualization panes.",
+    "topic": "PLM Foundations",
+    "domain": "PLM Foundations",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Visualization preferences"
+  },
+  {
+    "id": 281,
+    "question": "How are site-level preferences generally used in Windchill?",
+    "options": [
+      "As immutable values that bypass all context logic",
+      "As enterprise defaults that lower contexts and users may inherit or override if allowed",
+      "As vault replication rules",
+      "As queue-specific settings that never affect users"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Site preferences are typically used as defaults that can flow downward through the preference hierarchy.",
+    "topic": "Business Administration & Contexts",
+    "domain": "Business Administration & Contexts",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Preferences"
+  },
+  {
+    "id": 282,
+    "question": "If preference modification is allowed, what usually happens when a product-level preference is set differently from the organization default?",
+    "options": [
+      "The site value is restored automatically",
+      "The user loses the ability to save any preference",
+      "The product-level value applies within that product context",
+      "The organization value always wins"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Lower context preferences can override broader defaults within their scope when modification is permitted.",
+    "topic": "Business Administration & Contexts",
+    "domain": "Business Administration & Contexts",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Preferences"
+  },
+  {
+    "id": 283,
+    "question": "What additional control can administrators apply when setting Windchill preferences?",
+    "options": [
+      "They can use it to redefine soft type inheritance",
+      "They can attach life cycle transitions to the preference",
+      "They can convert the preference into an OIR algorithm",
+      "They can control whether users or lower contexts may modify the value"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Administrators can often define not just a preference value but also whether it is modifiable downstream.",
+    "topic": "Business Administration & Contexts",
+    "domain": "Business Administration & Contexts",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Preferences"
+  },
+  {
+    "id": 284,
+    "question": "Which of the following is a recognized preference category in Windchill?",
+    "options": [
+      "Configuration specification",
+      "Shared team policy",
+      "Workflow expression",
+      "Vault replication"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Configuration specification is one of the preference categories described in the manuals.",
+    "topic": "Business Administration & Contexts",
+    "domain": "Business Administration & Contexts",
+    "difficulty": "easy",
+    "type": "single",
+    "objective": "Preferences"
+  },
+  {
+    "id": 285,
+    "question": "What is the purpose of the Default Object Types preference area in Windchill?",
+    "options": [
+      "To assign participants to shared teams",
+      "To preselect commonly used object types during object creation",
+      "To redefine Java inheritance for business objects",
+      "To control archive log mode for the database"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Default object type preferences streamline creation workflows by preselecting likely object types.",
+    "topic": "Business Administration & Contexts",
+    "domain": "Business Administration & Contexts",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Preferences"
+  },
+  {
+    "id": 286,
+    "question": "What type of behavior is mainly influenced by Workspace Management preferences?",
+    "options": [
+      "How library contexts inherit organization templates",
+      "How object numbering rules are resolved at the site level",
+      "How users interact with workspace-related CAD data operations",
+      "How LDAP binds are performed during startup"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Workspace Management preferences focus on CAD workspace interaction behavior rather than business-admin definitions or server startup.",
+    "topic": "CAD Data Management",
+    "domain": "CAD Data Management",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Preferences"
+  },
+  {
+    "id": 287,
+    "question": "Which statement best describes a Problem Report?",
+    "options": [
+      "It defines a queue failover target",
+      "It authorizes a temporary design deviation for specific units",
+      "It creates a release baseline automatically",
+      "It captures a problem or enhancement request for evaluation"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Problem Reports are used to capture issues or enhancement requests before formal implementation approval.",
+    "topic": "Change Management & Release",
+    "domain": "Change Management & Release",
+    "difficulty": "easy",
+    "type": "single",
+    "objective": "Problem Reports"
+  },
+  {
+    "id": 288,
+    "question": "What is the primary role of a Change Request in Windchill change management?",
+    "options": [
+      "To formally evaluate and justify a proposed change before implementation approval",
+      "To replicate product structures across organizations",
+      "To publish viewables for CAD models",
+      "To assign default folders during object creation"
+    ],
+    "correctAnswer": 0,
+    "explanation": "A Change Request is used to evaluate a proposed change before implementation proceeds through a Change Notice.",
+    "topic": "Change Management & Release",
+    "domain": "Change Management & Release",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Change Requests"
+  },
+  {
+    "id": 289,
+    "question": "What is the main role of a Change Notice?",
+    "options": [
+      "To act as a personal workspace cache for CAD files",
+      "To manage the approved set of changes, business data, reviews, and implementation work",
+      "To replace the need for a promotion request",
+      "To define site-wide preferences for product structures"
+    ],
+    "correctAnswer": 1,
+    "explanation": "A Change Notice manages approved change implementation rather than initial issue capture or workspace behavior.",
+    "topic": "Change Management & Release",
+    "domain": "Change Management & Release",
+    "difficulty": "easy",
+    "type": "single",
+    "objective": "Change Notices"
+  },
+  {
+    "id": 290,
+    "question": "What does the phrase release through change mean in Windchill?",
+    "options": [
+      "Any released object automatically creates a Change Notice",
+      "Objects bypass review if they are in a change workflow",
+      "New data can be formally released as part of the Change Notice process",
+      "Only variances may move objects to Released"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Release through change means the Change Notice process can drive the release of new or revised data.",
+    "topic": "Change Management & Release",
+    "domain": "Change Management & Release",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Change process"
+  },
+  {
+    "id": 291,
+    "question": "Why is sequencing Change Tasks valuable in a Windchill implementation?",
+    "options": [
+      "It lets users bypass role resolution during approval",
+      "It automatically creates shared teams in Product contexts",
+      "It turns Change Tasks into promotion requests",
+      "It helps enforce dependencies and a controlled order of implementation work"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Sequencing helps ensure dependent work occurs in the proper order.",
+    "topic": "Change Management & Release",
+    "domain": "Change Management & Release",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Change Tasks"
+  },
+  {
+    "id": 292,
+    "question": "What is the main goal of the Review and Audit Change stage?",
+    "options": [
+      "To verify, audit, and finalize the implemented change before closure",
+      "To generate a new OIR for released objects",
+      "To populate workspace preferences for CAD users",
+      "To create the initial Problem Report"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The Review and Audit stage focuses on confirming and auditing the change after implementation work has been completed.",
+    "topic": "Change Management & Release",
+    "domain": "Change Management & Release",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Change process"
+  },
+  {
+    "id": 293,
+    "question": "How does a Variance differ from a Problem Report?",
+    "options": [
+      "A Variance creates a WTPart, while a Problem Report creates an EPMDocument",
+      "A Variance authorizes a temporary departure from design, while a Problem Report records an issue or enhancement request",
+      "A Variance is used only for LDAP synchronization",
+      "A Variance is a queue object, while a Problem Report is a life cycle state"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Variances are exception authorizations; Problem Reports are issue or enhancement records.",
+    "topic": "Change Management & Release",
+    "domain": "Change Management & Release",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Variances"
+  },
+  {
+    "id": 294,
+    "question": "A Variance is most appropriate in which situation?",
+    "options": [
+      "A product team needs to define a new organization context",
+      "An administrator must start the Method Server",
+      "A limited set of units needs temporary authorization to depart from the designed configuration",
+      "A user needs to create a reusable attribute"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Variances are used when a controlled departure from the designed configuration must be authorized.",
+    "topic": "Change Management & Release",
+    "domain": "Change Management & Release",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Variances"
+  },
+  {
+    "id": 295,
+    "question": "When are Change Tasks typically delivered to their designated assignees in the standard change process?",
+    "options": [
+      "Only after the review and audit stage closes",
+      "When the related CAD document is checked in",
+      "As soon as a Problem Report is submitted",
+      "After the implementation plan is approved"
+    ],
+    "correctAnswer": 3,
+    "explanation": "The standard process delivers approved implementation tasks to designated users after the implementation plan is approved.",
+    "topic": "Change Management & Release",
+    "domain": "Change Management & Release",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Change Tasks"
+  },
+  {
+    "id": 296,
+    "question": "What is the primary purpose of content replication?",
+    "options": [
+      "To distribute copies of vaulted content to other locations for more efficient access",
+      "To merge Project and Product contexts",
+      "To replace the database with file-system storage",
+      "To create new revisions automatically"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Content replication distributes content copies to improve access in distributed environments.",
+    "topic": "System Administration & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "difficulty": "easy",
+    "type": "single",
+    "objective": "Content replication"
+  },
+  {
+    "id": 297,
+    "question": "In a replicated content architecture, what remains the authoritative source of managed content?",
+    "options": [
+      "The Windchill Directory Server",
+      "The central vault or source vault location",
+      "The last replica server that received content",
+      "The Apache web server cache"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The authoritative source remains the source vault, while replicas store distributed copies.",
+    "topic": "System Administration & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Content replication"
+  },
+  {
+    "id": 298,
+    "question": "What is a replica server in Windchill primarily intended to do?",
+    "options": [
+      "Store only queue log files",
+      "Run OIR algorithms for new object creation",
+      "Host replicated content closer to consumers in remote locations",
+      "Replace the site context for administrators"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Replica servers are used to host replicated content for improved access in distributed deployments.",
+    "topic": "System Administration & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Replication architecture"
+  },
+  {
+    "id": 299,
+    "question": "What does a replication rule control?",
+    "options": [
+      "Which team template is used during context creation",
+      "Who can edit a WTPart number",
+      "How a life cycle transition is labeled",
+      "What content is copied, where it goes, and when replication occurs"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Replication rules control scope, target, and timing of replicated content.",
+    "topic": "System Administration & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Replication rules"
+  },
+  {
+    "id": 300,
+    "question": "Why do administrators often schedule replication during off-peak periods?",
+    "options": [
+      "To reduce network and performance impact during heavy content transfer",
+      "To force all users into the same workspace",
+      "To invalidate released representations",
+      "To change directory server principals safely"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Large replication jobs can consume network and system resources, so off-peak scheduling reduces user impact.",
+    "topic": "System Administration & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Replication scheduling"
+  },
+  {
+    "id": 301,
+    "question": "Why would an administrator use the Windchill Configuration Assistant before making broad environment-tuning changes?",
+    "options": [
+      "Create promotion requests from CAD models",
+      "It provides a focused utility for reviewing configuration-related settings before changes are applied",
+      "Assign shared teams to contexts",
+      "Model new Java classes for soft types"
+    ],
+    "correctAnswer": 1,
+    "explanation": "WCA is useful before tuning because it gives administrators a focused way to review configuration-related settings rather than making uninformed changes.",
+    "topic": "System Administration & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "difficulty": "easy",
+    "type": "single",
+    "objective": "WCA review workflow"
+  },
+  {
+    "id": 302,
+    "question": "What do throughput reports help an administrator understand?",
+    "options": [
+      "The exact OIR used for each object",
+      "The current team membership for every context",
+      "System activity volume and processing trends",
+      "The default folder path for every subtype"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Throughput reports are used to understand workload and performance trends.",
+    "topic": "System Administration & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Audit and usage reporting"
+  },
+  {
+    "id": 303,
+    "question": "Which administrative need is best served by Windchill security auditing reports?",
+    "options": [
+      "Automatically correcting access control issues without human review",
+      "Replacing queue monitoring for background processing",
+      "Generating visualization files for CAD content",
+      "Providing traceability for security-relevant activity during compliance review or investigation"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Security auditing reports are most valuable when administrators need traceability and evidence around security-relevant activity.",
+    "topic": "System Administration & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Security auditing use cases"
+  },
+  {
+    "id": 304,
+    "question": "Why might a JMX client be used for Windchill queue monitoring?",
+    "options": [
+      "To observe runtime queue metrics through external monitoring tools",
+      "To modify vault folder rules in real time",
+      "To manage WTPart associations",
+      "To replace all in-application queue processing"
+    ],
+    "correctAnswer": 0,
+    "explanation": "JMX provides an external monitoring path for runtime metrics and queue visibility.",
+    "topic": "System Administration & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Queue monitoring"
+  },
+  {
+    "id": 305,
+    "question": "In the Move Wizard, what is the purpose of the Collect Objects table?",
+    "options": [
+      "To assign a new revision sequence",
+      "To gather related objects that should move together with the original selection",
+      "To create a baseline automatically before every move",
+      "To calculate change task routing logic"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The Collect Objects table lets administrators review and include related objects during a move operation.",
+    "topic": "System Administration & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Move Wizard"
+  },
+  {
+    "id": 306,
+    "question": "Which type of related object may be collected and moved with the original selection in Windchill?",
+    "options": [
+      "Method Server JVM arguments only",
+      "The browser cookies of each participant",
+      "Associated team, life cycle, workflow, or representation objects",
+      "The Windchill Directory Server schema"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The Move operation can collect and carry associated managed objects such as teams, life cycles, workflows, and representations.",
+    "topic": "System Administration & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "difficulty": "hard",
+    "type": "single",
+    "objective": "Move Wizard"
+  },
+  {
+    "id": 307,
+    "question": "What is one important step before completing a Move Wizard operation?",
+    "options": [
+      "Stop the database service",
+      "Disable all queue processing",
+      "Delete all existing baselines for the source object",
+      "Review which related objects were collected to ensure the move scope is correct"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Administrators should verify the collected related objects before executing a move.",
+    "topic": "System Administration & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "difficulty": "easy",
+    "type": "single",
+    "objective": "Move Wizard"
+  },
+  {
+    "id": 308,
+    "question": "What is the primary purpose of a document structure in Windchill?",
+    "options": [
+      "To organize related documents into a managed hierarchy",
+      "To generate part numbers during creation",
+      "To assign access control rules to CAD workers",
+      "To replicate library content to remote servers"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Document structures are used to organize related documents in a managed hierarchy.",
+    "topic": "PLM Foundations",
+    "domain": "PLM Foundations",
+    "difficulty": "easy",
+    "type": "single",
+    "objective": "Document structures"
+  },
+  {
+    "id": 309,
+    "question": "Why would a user apply a Baseline filter to a document or product structure?",
+    "options": [
+      "To assign a new life cycle template",
+      "To view the structure exactly as captured in a chosen snapshot",
+      "To show only checked-out objects",
+      "To force all items into the Released state"
+    ],
+    "correctAnswer": 1,
+    "explanation": "A Baseline filter resolves the structure as captured in a baseline snapshot.",
+    "topic": "PLM Foundations",
+    "domain": "PLM Foundations",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Configuration specifications"
+  },
+  {
+    "id": 310,
+    "question": "What does a Promotion Request filter show when applied to a structure?",
+    "options": [
+      "Objects sorted by role membership",
+      "Only the objects currently in a local workspace",
+      "The data associated with a selected promotion request",
+      "Only objects replicated to a remote vault"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The Promotion Request filter shows the structure in the context of a selected promotion request.",
+    "topic": "PLM Foundations",
+    "domain": "PLM Foundations",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Configuration specifications"
+  },
+  {
+    "id": 311,
+    "question": "What does the Occurrences tab help a user analyze?",
+    "options": [
+      "Which preferences are locked at the site level",
+      "Which queue entries failed overnight",
+      "How many users belong to a shared team",
+      "Where and how a child part is used within parent structures"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Occurrences help users understand where a part is used and its usage-specific details.",
+    "topic": "PLM Foundations",
+    "domain": "PLM Foundations",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Occurrences"
+  },
+  {
+    "id": 312,
+    "question": "Which value is a classic example of occurrence-level data in a Windchill BOM?",
+    "options": [
+      "Reference designator",
+      "WTPart number prefix",
+      "Life cycle template name",
+      "LDAP group name"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Reference designators are usage-specific and belong at the occurrence level.",
+    "topic": "PLM Foundations",
+    "domain": "PLM Foundations",
+    "difficulty": "easy",
+    "type": "single",
+    "objective": "Occurrences"
+  },
+  {
+    "id": 313,
+    "question": "Which other value is commonly maintained at the occurrence or usage level rather than on the part master itself?",
+    "options": [
+      "Database vendor name",
+      "Find number",
+      "Site preference lock mode",
+      "Shared team name"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Find numbers are usage-specific identifiers associated with the occurrence in a structure.",
+    "topic": "PLM Foundations",
+    "domain": "PLM Foundations",
+    "difficulty": "easy",
+    "type": "single",
+    "objective": "Occurrences"
+  },
+  {
+    "id": 314,
+    "question": "Which configuration specification is designed to show a structure based on serial-number or lot applicability?",
+    "options": [
+      "Date Effectivity",
+      "Baseline",
+      "Unit Effectivity",
+      "Promotion Request"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Unit Effectivity is used for serial-number or lot-based applicability.",
+    "topic": "PLM Foundations",
+    "domain": "PLM Foundations",
+    "difficulty": "easy",
+    "type": "single",
+    "objective": "Effectivity concepts"
+  },
+  {
+    "id": 315,
+    "question": "Which configuration specification is designed to show a structure based on a calendar date?",
+    "options": [
+      "Unit Effectivity",
+      "Promotion Request",
+      "Latest",
+      "Date Effectivity"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Date Effectivity resolves applicability based on a calendar date.",
+    "topic": "PLM Foundations",
+    "domain": "PLM Foundations",
+    "difficulty": "easy",
+    "type": "single",
+    "objective": "Effectivity concepts"
+  },
+  {
+    "id": 316,
+    "question": "How does a baseline view differ from a Latest view of a structure?",
+    "options": [
+      "A baseline shows a frozen snapshot, while Latest resolves the most current applicable structure",
+      "A baseline is for permissions, while Latest is for preferences",
+      "A baseline is user-specific, while Latest is site-specific",
+      "A baseline shows checked-out content, while Latest shows only released objects"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Baselines are fixed snapshots; Latest is dynamically resolved.",
+    "topic": "PLM Foundations",
+    "domain": "PLM Foundations",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Configuration specifications"
+  },
+  {
+    "id": 317,
+    "question": "What does the Change configuration specification focus on?",
+    "options": [
+      "Only items in the workspace of the current user",
+      "A product definition as related to selected change notices",
+      "All objects assigned to a shared team",
+      "Only released objects in the current product"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The Change configuration specification resolves a structure in the context of selected change notices.",
+    "topic": "Change Management & Release",
+    "domain": "Change Management & Release",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Configuration specifications"
+  },
+  {
+    "id": 318,
+    "question": "Which statement best describes the Visualization preference category?",
+    "options": [
+      "It determines the LDAP replication topology",
+      "It replaces representation publishing rules",
+      "It controls how users interact with visualization-related behavior in the UI",
+      "It defines OIR numbering algorithms"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Visualization preferences influence the UI behavior around visualization interactions.",
+    "topic": "Business Administration & Contexts",
+    "domain": "Business Administration & Contexts",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Preferences"
+  },
+  {
+    "id": 319,
+    "question": "What is the main purpose of the Searching preference category?",
+    "options": [
+      "To publish CAD viewables in batch",
+      "To configure shared team roles",
+      "To assign default life cycles to new objects",
+      "To control search-related user behavior and defaults"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Searching preferences govern search behavior and defaults for users.",
+    "topic": "Business Administration & Contexts",
+    "domain": "Business Administration & Contexts",
+    "difficulty": "easy",
+    "type": "single",
+    "objective": "Preferences"
+  },
+  {
+    "id": 320,
+    "question": "What is the main purpose of the Tables preference category?",
+    "options": [
+      "To control how tabular data is displayed and behaved in the user interface",
+      "To determine CAD worker host names",
+      "To specify where vaulted content is stored",
+      "To create new queue groups"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Table preferences influence how tabular data is presented and behaves in the UI.",
+    "topic": "Business Administration & Contexts",
+    "domain": "Business Administration & Contexts",
+    "difficulty": "easy",
+    "type": "single",
+    "objective": "Preferences"
+  },
+  {
+    "id": 321,
+    "question": "What is the primary purpose of Windchill Visualization Services (WVS)?",
+    "options": [
+      "To orchestrate viewable generation and representation management for product data",
+      "To generate and manage viewable representations of product data",
+      "To replace the need for an LDAP directory",
+      "To create OIR XML automatically"
+    ],
+    "correctAnswer": 1,
+    "explanation": "WVS is responsible for generating and managing viewable representations used for visualization and review; orchestration and representation management are part of that service.",
+    "topic": "CAD Data Management",
+    "domain": "CAD Data Management",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "WVS"
+  },
+  {
+    "id": 322,
+    "question": "What is a representation in Windchill?",
+    "options": [
+      "A vault replication schedule",
+      "The master object that stores the official CAD source file",
+      "A generated viewable derivative used for visualization and review",
+      "A context team template"
+    ],
+    "correctAnswer": 2,
+    "explanation": "A representation is a generated derivative used for visualization, not the original source file itself.",
+    "topic": "CAD Data Management",
+    "domain": "CAD Data Management",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Representations"
+  },
+  {
+    "id": 323,
+    "question": "What is the role of a CAD worker in a WVS architecture?",
+    "options": [
+      "To host supported authoring applications for file conversion tasks",
+      "To apply access control rules during login",
+      "To assign default folders to new CAD documents",
+      "To use native authoring software to convert source files into viewable output"
+    ],
+    "correctAnswer": 3,
+    "explanation": "CAD workers perform the actual file conversion for WVS using supported authoring software; merely hosting the software is not the full role.",
+    "topic": "CAD Data Management",
+    "domain": "CAD Data Management",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "WVS"
+  },
+  {
+    "id": 324,
+    "question": "Why must a CAD worker host usually have the relevant authoring application installed?",
+    "options": [
+      "Because the worker relies on that application to open and convert the source files",
+      "Because Windchill stores all metadata inside the authoring tool",
+      "Because the Directory Server runs inside the authoring application",
+      "Because queue processing is performed only in the CAD desktop client"
+    ],
+    "correctAnswer": 0,
+    "explanation": "CAD workers typically require the native authoring application to convert source files into viewables.",
+    "topic": "CAD Data Management",
+    "domain": "CAD Data Management",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "WVS"
+  },
+  {
+    "id": 325,
+    "question": "Why is publishing commonly handled asynchronously through queues?",
+    "options": [
+      "Because published files must be created before metadata exists",
+      "Because generating viewables can be resource-intensive and should not block interactive user transactions",
+      "Because only LDAP-authenticated users may publish",
+      "Because Product contexts cannot host representations directly"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Queued publishing lets conversion happen in the background instead of blocking interactive operations.",
+    "topic": "CAD Data Management",
+    "domain": "CAD Data Management",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "WVS"
+  },
+  {
+    "id": 326,
+    "question": "What do publish rules in a WVS solution primarily control?",
+    "options": [
+      "Which shared team is assigned to a CAD document",
+      "Which OIR algorithm creates the document number",
+      "What outputs are generated and under which conditions publishing occurs",
+      "Which life cycle transition revises the source model"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Publish rules define what gets published and the conditions under which publishing occurs.",
+    "topic": "CAD Data Management",
+    "domain": "CAD Data Management",
+    "difficulty": "hard",
+    "type": "single",
+    "objective": "WVS"
+  },
+  {
+    "id": 327,
+    "question": "If a source CAD document changes after a representation was generated, what is the likely status of the old representation?",
+    "options": [
+      "It becomes the new primary content automatically",
+      "It is converted into a baseline",
+      "It overrides the source file as the system of record",
+      "It may no longer be up to date and could require republishing"
+    ],
+    "correctAnswer": 3,
+    "explanation": "When source content changes, existing viewables may become stale and require republishing.",
+    "topic": "CAD Data Management",
+    "domain": "CAD Data Management",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Representations"
+  },
+  {
+    "id": 328,
+    "question": "What is the primary role of a Workgroup Manager integration?",
+    "options": [
+      "To connect an authoring application to Windchill for managed file interactions",
+      "To define organization templates",
+      "To perform queue failover",
+      "To run database backups"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Workgroup Manager acts as the integration layer between supported authoring tools and Windchill.",
+    "topic": "CAD Data Management",
+    "domain": "CAD Data Management",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Workgroup Manager"
+  },
+  {
+    "id": 329,
+    "question": "What best describes commonspace in Windchill CAD data management?",
+    "options": [
+      "A viewable-only storage area for published PVZ files",
+      "The authoritative managed repository for checked-in data",
+      "The JMX namespace for queue monitoring",
+      "A private local cache used only by one desktop session"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Commonspace is the managed authoritative repository, unlike a local working workspace.",
+    "topic": "CAD Data Management",
+    "domain": "CAD Data Management",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Workspaces"
+  },
+  {
+    "id": 330,
+    "question": "What best describes a workspace in Windchill CAD data management?",
+    "options": [
+      "A site-wide context template",
+      "A security audit report container",
+      "A managed working area for in-progress design content before final check-in to commonspace",
+      "A replica server used only for remote vault access"
+    ],
+    "correctAnswer": 2,
+    "explanation": "A workspace is a managed working area for in-progress design activity.",
+    "topic": "CAD Data Management",
+    "domain": "CAD Data Management",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Workspaces"
+  },
+  {
+    "id": 331,
+    "question": "What is the key difference between an upload to workspace and a check-in to commonspace?",
+    "options": [
+      "Upload creates baselines, while check-in creates preferences",
+      "Upload is for documents only, while check-in is for parts only",
+      "Upload changes the life cycle, while check-in changes the object type",
+      "Upload places content into the workspace, while check-in creates a managed server iteration in commonspace"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Upload loads content to the workspace; check-in commits a managed iteration into commonspace.",
+    "topic": "CAD Data Management",
+    "domain": "CAD Data Management",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Workspaces"
+  },
+  {
+    "id": 332,
+    "question": "What typically happens when a CAD document is checked in from a workspace?",
+    "options": [
+      "A new managed iteration is stored in commonspace",
+      "The representation becomes the new source file",
+      "The document is converted into a Change Notice",
+      "Its master record is deleted and recreated"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Check-in stores a new managed iteration in commonspace.",
+    "topic": "CAD Data Management",
+    "domain": "CAD Data Management",
+    "difficulty": "easy",
+    "type": "single",
+    "objective": "Workspaces"
+  },
+  {
+    "id": 333,
+    "question": "Why might users collect dependent CAD documents during a check-in or upload process?",
+    "options": [
+      "To force every dependency into the Released state",
+      "To keep referenced design data consistent and complete",
+      "To bypass access control on related objects",
+      "To convert all related documents into WTParts"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Collecting dependencies helps ensure a complete and consistent managed design set.",
+    "topic": "CAD Data Management",
+    "domain": "CAD Data Management",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "CAD dependencies"
+  },
+  {
+    "id": 334,
+    "question": "Which statement best describes a representation relative to the source CAD file?",
+    "options": [
+      "It exists only inside the local workspace",
+      "It is the only file Windchill preserves after check-in",
+      "It is a derived visualization artifact, not a replacement for the original authoring file",
+      "It always contains editable modeling intelligence equal to the source"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Representations support visualization and review but do not replace the source authoring file.",
+    "topic": "CAD Data Management",
+    "domain": "CAD Data Management",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Representations"
+  },
+  {
+    "id": 335,
+    "question": "Why are representations valuable to non-CAD users?",
+    "options": [
+      "They automatically create change objects",
+      "They let any user revise the source model directly",
+      "They remove the need for access control policies",
+      "They allow product data review without requiring the native authoring application"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Viewables let non-CAD stakeholders review product data without needing the source authoring application.",
+    "topic": "CAD Data Management",
+    "domain": "CAD Data Management",
+    "difficulty": "easy",
+    "type": "single",
+    "objective": "Representations"
+  },
+  {
+    "id": 336,
+    "question": "What is one likely outcome of a publishing queue backlog?",
+    "options": [
+      "Viewables may not be available as quickly as source metadata becomes available",
+      "WTPart numbers stop incrementing",
+      "All user preferences are reset",
+      "Shared teams are removed from Product contexts"
+    ],
+    "correctAnswer": 0,
+    "explanation": "A queue backlog delays publishing output even if the source data itself is already managed.",
+    "topic": "CAD Data Management",
+    "domain": "CAD Data Management",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "WVS"
+  },
+  {
+    "id": 337,
+    "question": "What is the main purpose of a profile in Windchill business administration?",
+    "options": [
+      "To narrow and organize the user experience for a target persona or job function",
+      "To tailor the visible user experience for a target persona or job function",
+      "To generate baseline identifiers",
+      "To store CAD source files in the vault"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Profiles are used to tailor the user experience for a persona or job function; they are about UI experience rather than security enforcement or storage architecture.",
+    "topic": "Business Administration & Contexts",
+    "domain": "Business Administration & Contexts",
+    "difficulty": "easy",
+    "type": "single",
+    "objective": "Profiles"
+  },
+  {
+    "id": 338,
+    "question": "What is the key limitation of a profile compared with access control?",
+    "options": [
+      "A profile can grant full control even when ACLs deny it",
+      "A profile replaces all organization templates",
+      "A profile shapes the UI but does not grant permission to data a user is not allowed to access",
+      "A profile determines the revision sequence of WTParts"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Profiles affect the UI experience but do not override access control permissions.",
+    "topic": "Business Administration & Contexts",
+    "domain": "Business Administration & Contexts",
+    "difficulty": "hard",
+    "type": "single",
+    "objective": "Profiles"
+  },
+  {
+    "id": 339,
+    "question": "Why are security auditing reports valuable during compliance reviews?",
+    "options": [
+      "They generate missing CAD representations automatically",
+      "They assign reviewers to promotion requests",
+      "They redefine content replication rules",
+      "They provide evidence and traceability of security-relevant system activity"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Security auditing reports support traceability and compliance evidence.",
+    "topic": "System Administration & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Audit and usage reporting"
+  },
+  {
+    "id": 340,
+    "question": "What is the primary purpose of usage reporting?",
+    "options": [
+      "To measure how the system or features are being used over time",
+      "To resolve OIR precedence conflicts",
+      "To move objects between contexts",
+      "To define context team membership"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Usage reporting helps administrators understand adoption and usage trends.",
+    "topic": "System Administration & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Audit and usage reporting"
+  },
+  {
+    "id": 341,
+    "question": "Why are context templates useful in Windchill administration?",
+    "options": [
+      "They replace all user preferences",
+      "They standardize initial setup such as folders, teams, and related defaults for new contexts",
+      "They define database backup schedules",
+      "They publish CAD data to Creo View"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Context templates help standardize initial configuration for new contexts.",
+    "topic": "Business Administration & Contexts",
+    "domain": "Business Administration & Contexts",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Context templates"
+  },
+  {
+    "id": 342,
+    "question": "What is one thing a context template can help standardize for a newly created context?",
+    "options": [
+      "The version of the desktop CAD application",
+      "The MBean names exposed through JMX",
+      "Initial organizational setup and default configuration patterns",
+      "The host name of the Oracle database server"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Context templates standardize context setup rather than infrastructure host settings.",
+    "topic": "Business Administration & Contexts",
+    "domain": "Business Administration & Contexts",
+    "difficulty": "easy",
+    "type": "single",
+    "objective": "Context templates"
+  },
+  {
+    "id": 343,
+    "question": "What is one reason administrators define preferences at multiple context levels?",
+    "options": [
+      "To replace the need for context templates",
+      "To force all users into one profile",
+      "To ensure every preference always has a different value",
+      "To balance enterprise standards with localized behavior where needed"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Multiple preference levels allow enterprise defaults and local overrides to coexist where appropriate.",
+    "topic": "Business Administration & Contexts",
+    "domain": "Business Administration & Contexts",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Preferences"
+  },
+  {
+    "id": 344,
+    "question": "What is a strong use case for capturing a baseline of a BOM?",
+    "options": [
+      "Preserving an exact structure snapshot for design review or future comparison",
+      "Triggering a shared-team update across all products",
+      "Assigning a temporary deviation to selected units",
+      "Publishing a viewable for a CAD drawing"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Baselines are useful when teams need to preserve an exact BOM snapshot for later comparison or review.",
+    "topic": "PLM Foundations",
+    "domain": "PLM Foundations",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Baselines"
+  },
+  {
+    "id": 345,
+    "question": "What does effectivity in product structures primarily describe?",
+    "options": [
+      "Which type manager constraint is applied to an attribute",
+      "When or for which units one product definition becomes applicable instead of another",
+      "Which user can modify the structure",
+      "Which queue executes the next workflow robot"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Effectivity describes applicability of product definitions by date, lot, or serial range.",
+    "topic": "PLM Foundations",
+    "domain": "PLM Foundations",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Effectivity concepts"
+  },
+  {
+    "id": 346,
+    "question": "Why would a team review product data using a Promotion Request filter?",
+    "options": [
+      "To build an alias attribute path",
+      "To identify replica server targets",
+      "To examine the set of items being considered for a maturity or release event",
+      "To set organization preferences for new contexts"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The Promotion Request filter helps teams inspect the candidate set tied to a promotion event.",
+    "topic": "Change Management & Release",
+    "domain": "Change Management & Release",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Configuration specifications"
+  },
+  {
+    "id": 347,
+    "question": "What is the main purpose of a representation when used in browser-based review?",
+    "options": [
+      "To assign context roles during routing",
+      "To replace the need for a WTPart",
+      "To define OIR numbering patterns",
+      "To provide a lightweight visualization derivative suitable for review and markup"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Representations enable browser-based visualization and review of managed data.",
+    "topic": "CAD Data Management",
+    "domain": "CAD Data Management",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Representations"
+  },
+  {
+    "id": 348,
+    "question": "What is one sign that background publishing is preferable to synchronous conversion?",
+    "options": [
+      "The conversion workload is heavy enough that user transactions should not wait for it to finish",
+      "The object has no life cycle template",
+      "The product uses no shared teams",
+      "The organization has only one context"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Background publishing is preferred when conversion is resource-intensive and would otherwise slow interactive work.",
+    "topic": "CAD Data Management",
+    "domain": "CAD Data Management",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "WVS"
+  },
+  {
+    "id": 349,
+    "question": "What is the main benefit of storing an authoritative content copy centrally before replication?",
+    "options": [
+      "It removes the need for queue monitoring",
+      "It maintains one source of truth while still supporting distributed access",
+      "It allows Product contexts to bypass governance",
+      "It converts all secondaries to primaries"
+    ],
+    "correctAnswer": 1,
+    "explanation": "A central authoritative vault supports governance, while replication supports distributed access.",
+    "topic": "System Administration & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Replication architecture"
+  },
+  {
+    "id": 350,
+    "question": "What is the key reason to monitor system activity through throughput, usage, and audit reports together?",
+    "options": [
+      "They all redefine the same ACL rules from different interfaces",
+      "They eliminate the need for backups",
+      "They provide complementary operational, adoption, and traceability insight",
+      "They automatically create organization contexts"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Using these reports together gives administrators a broader picture of system behavior, usage, and traceability.",
+    "topic": "System Administration & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "difficulty": "hard",
+    "type": "single",
+    "objective": "Audit and usage reporting"
+  }
+]

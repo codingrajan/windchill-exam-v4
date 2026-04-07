@@ -1,0 +1,1667 @@
+[
+  {
+    "id": 1,
+    "topic": "Architecture & Installation",
+    "difficulty": "easy",
+    "question": "Windchill is described in the course materials as a how many-tiered application architecture?",
+    "options": [
+      "Four-tiered",
+      "Single-tiered (monolithic)",
+      "Three-tiered",
+      "Two-tiered"
+    ],
+    "correctAnswer": 2,
+    "explanation": "According to the Windchill Advanced Configuration manual, 'Windchill is a three-tiered application connected to optional components and enterprise systems.' The three tiers are the client tier, the application tier (Java-based Windchill server), and the database tier.",
+    "objective": "Windchill Architecture",
+    "domain": "Architecture & Installation",
+    "type": "single"
+  },
+  {
+    "id": 2,
+    "topic": "Architecture & Installation",
+    "difficulty": "easy",
+    "question": "Which component in the Windchill architecture provides full-text search capability?",
+    "options": [
+      "The Apache web server",
+      "The Oracle database server",
+      "The indexing server",
+      "The visualization publication worker"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The Windchill Advanced Configuration manual states that 'the indexing server provides full-text search capability.' It is listed as one of the additional servers that provide additional capabilities if necessary.",
+    "objective": "Windchill Architecture",
+    "domain": "Architecture & Installation",
+    "type": "single"
+  },
+  {
+    "id": 3,
+    "topic": "Architecture & Installation",
+    "difficulty": "easy",
+    "question": "What does the visualization publication worker generate in the Windchill architecture?",
+    "options": [
+      "Backup archives of the Windchill file vault",
+      "Lightweight viewables from Windchill documents and CAD documents",
+      "Full-text search indexes for Windchill objects",
+      "Database schema updates for new object types"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Per the Advanced Configuration manual, 'the visualization publication worker generates lightweight viewables from Windchill documents and CAD documents. These representations are accessible from a web browser, Creo View, and augmented reality (AR) devices.'",
+    "objective": "Windchill Architecture",
+    "domain": "Architecture & Installation",
+    "type": "single"
+  },
+  {
+    "id": 4,
+    "topic": "Architecture & Installation",
+    "difficulty": "easy",
+    "question": "Which enterprise system can be integrated with Windchill to maintain a single username and password across all enterprise applications?",
+    "options": [
+      "An ERP system such as SAP",
+      "A CAD authoring application such as Creo Parametric",
+      "An enterprise directory server, for example Microsoft Active Directory",
+      "A visualization publication worker"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The course manual identifies an enterprise directory server such as Microsoft Active Directory as the enterprise system used to maintain a single username and password across enterprise applications. ERP, CAD authoring tools, and visualization workers serve different roles in the Windchill architecture.",
+    "objective": "Windchill Architecture",
+    "domain": "Architecture & Installation",
+    "type": "single"
+  },
+  {
+    "id": 5,
+    "topic": "Architecture & Installation",
+    "difficulty": "medium",
+    "question": "In the Windchill three-tier architecture, what is the role of the application tier?",
+    "options": [
+      "It stores all PLM data in a relational database",
+      "It is the Java-based Windchill server that provides system logic for behavior and data element relationships",
+      "It serves as the enterprise directory used for participant attributes",
+      "It is the client layer used by browser and CAD users"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The application tier is the Java-based Windchill server where system logic runs. Database storage belongs to the database tier, participant identity data is handled with directory/database components, and browsers or CAD tools are part of the client tier.",
+    "objective": "Windchill Architecture",
+    "domain": "Architecture & Installation",
+    "type": "single"
+  },
+  {
+    "id": 6,
+    "topic": "Architecture & Installation",
+    "difficulty": "easy",
+    "question": "Which of the following is NOT listed as a client application that PLM users can use to connect to Windchill?",
+    "options": [
+      "An ERP system such as SAP",
+      "A web browser",
+      "A CAD tool such as Creo Parametric",
+      "The Microsoft Office suite"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The course material lists web browsers, CAD tools, Microsoft Office, and Arbortext Editor as client applications used to connect to Windchill. ERP is an integrated enterprise system, not a Windchill client application.",
+    "objective": "Windchill Architecture",
+    "domain": "Architecture & Installation",
+    "type": "single"
+  },
+  {
+    "id": 7,
+    "topic": "Architecture & Installation",
+    "difficulty": "medium",
+    "question": "In a Windchill deployment, which component authenticates Windchill users in addition to an enterprise directory?",
+    "options": [
+      "The Windchill method server",
+      "The Apache web server",
+      "The administrative directory",
+      "The indexing server"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The manual states that in the database tier, 'The administrative directory authenticates Windchill users in addition to an enterprise directory.' The database server separately stores all PLM data.",
+    "objective": "Windchill Architecture",
+    "domain": "Architecture & Installation",
+    "type": "single"
+  },
+  {
+    "id": 8,
+    "topic": "Architecture & Installation",
+    "difficulty": "easy",
+    "question": "Which Windchill configuration type uses a single server to host all tiers of the application?",
+    "options": [
+      "Monolithic (single-tiered) configuration",
+      "Distributed configuration",
+      "Clustered configuration",
+      "Multi-tiered configuration"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The Advanced Configuration manual specifically identifies the 'monolithic (single-tiered) configuration' as distinct from the multi-tiered and clustered configurations, indicating it is the single-server deployment option.",
+    "objective": "Windchill Architecture",
+    "domain": "Architecture & Installation",
+    "type": "single"
+  },
+  {
+    "id": 9,
+    "topic": "Architecture & Installation",
+    "difficulty": "medium",
+    "question": "According to the Windchill implementation process, which stage involves configuring Windchill functionalities on a test server and holding workshops with key users?",
+    "options": [
+      "Solution Deployment",
+      "Solution Support",
+      "Solution Design",
+      "Identify, Model, Plan"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The implementation roadmap states that Solution Design is the stage where the solution team configures Windchill on a test server and conducts workshops with key users. Deployment and Support come later, while Identify/Model/Plan occur earlier in presales and planning.",
+    "objective": "Windchill Architecture",
+    "domain": "Architecture & Installation",
+    "type": "single"
+  },
+  {
+    "id": 10,
+    "topic": "Architecture & Installation",
+    "difficulty": "hard",
+    "question": "Which ERP system is specifically mentioned in the Windchill course scenario as being used by Mech Solutions prior to Windchill implementation?",
+    "options": [
+      "Microsoft Dynamics",
+      "SAP",
+      "Oracle ERP",
+      "Infor LN"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The Technical Essentials manual states in the course scenario: 'Additional design data is stored in an SAP enterprise resource planning (ERP) system.' This is the ERP system used by the fictional Mech Solutions company.",
+    "objective": "Windchill Architecture",
+    "domain": "Architecture & Installation",
+    "type": "single"
+  },
+  {
+    "id": 11,
+    "topic": "Business Administration & Contexts",
+    "difficulty": "easy",
+    "question": "What is the highest-level context in Windchill's context hierarchy?",
+    "options": [
+      "Site context",
+      "Library context",
+      "Organization context",
+      "Product context"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The Advanced Configuration manual states: 'At the highest level, there is a site context that is unique and created during the Windchill installation. This context is for the administrator of the Windchill server and its organizations.'",
+    "domain": "Business Administration & Contexts",
+    "type": "single"
+  },
+  {
+    "id": 12,
+    "topic": "Business Administration & Contexts",
+    "difficulty": "medium",
+    "question": "According to the Windchill Advanced Configuration manual, which of the following is a recommended best practice regarding organization contexts?",
+    "options": [
+      "Create one organization context per business unit",
+      "Create separate organization contexts for each product line",
+      "Use the site context to store design data for the main organization",
+      "Have only one organization in your Windchill environment, if possible"
+    ],
+    "correctAnswer": 3,
+    "explanation": "The manual explicitly states: 'It is the recommended best practice to have only one organization in your Windchill environment, if possible.' Most installations have only one organization unless they support multiple, separate business units.",
+    "domain": "Business Administration & Contexts",
+    "type": "single"
+  },
+  {
+    "id": 13,
+    "topic": "Business Administration & Contexts",
+    "difficulty": "easy",
+    "question": "Which Windchill context type is described as storing information that must be shared across the organization, such as engineering department policies and procedures?",
+    "options": [
+      "Project context",
+      "Program context",
+      "Library context",
+      "Product context"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The manual states: 'A library context is more general. Typically, libraries store information that must be shared across the organization. For example, all engineering department policies and procedures can be grouped in a library.'",
+    "domain": "Business Administration & Contexts",
+    "type": "single"
+  },
+  {
+    "id": 14,
+    "topic": "Business Administration & Contexts",
+    "difficulty": "medium",
+    "question": "An organization context in Windchill is NOT synonymous with which other Windchill object?",
+    "options": [
+      "A top-level administrative container",
+      "A business unit representation in Windchill",
+      "A context that can host lower-level application containers",
+      "An organization principal (organization participant)"
+    ],
+    "correctAnswer": 3,
+    "explanation": "The manual explicitly distinguishes an organization context from an organization principal. The context is an administrative container in the Windchill hierarchy, while the organization principal is the participant object representing the organization and its membership.",
+    "domain": "Business Administration & Contexts",
+    "type": "single"
+  },
+  {
+    "id": 15,
+    "topic": "Business Administration & Contexts",
+    "difficulty": "hard",
+    "question": "When creating a new organization in Windchill, what does the 'Subscriber' checkbox control?",
+    "options": [
+      "Whether the organization can access the enterprise LDAP directory",
+      "Whether the new organization can host products and libraries",
+      "Whether users can subscribe to email notifications in the organization",
+      "Whether the organization has a shared team"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The manual states: 'The Subscriber checkbox enables the new organization to host products and libraries. If this checkbox is cleared, only an organization principal is created, not the organization context.'",
+    "domain": "Business Administration & Contexts",
+    "type": "single"
+  },
+  {
+    "id": 16,
+    "topic": "Business Administration & Contexts",
+    "difficulty": "easy",
+    "question": "Which type of application context stores design data around one project and supports a project plan, activities, milestones, and deliverables?",
+    "options": [
+      "Product context",
+      "Library context",
+      "Program context",
+      "Project context"
+    ],
+    "correctAnswer": 3,
+    "explanation": "The manual describes: 'A project stores design data around one project. It supports collaborative design work, including a project plan, activities, milestones, and deliverables related to project design.'",
+    "domain": "Business Administration & Contexts",
+    "type": "single"
+  },
+  {
+    "id": 17,
+    "topic": "Business Administration & Contexts",
+    "difficulty": "medium",
+    "question": "Which Windchill administrator role is responsible for managing object types, configuring object numbering and versioning schemes, and creating access control policies?",
+    "options": [
+      "Context manager",
+      "Windchill business administrator",
+      "Site administrator (wcadmin)",
+      "Project manager"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The Windchill business administrator is responsible for applying business rules to data, including object types, numbering/versioning schemes, and access control policies. Context managers administer their local containers, and site administrators focus on broader system-level responsibilities.",
+    "domain": "Business Administration & Contexts",
+    "type": "single"
+  },
+  {
+    "id": 18,
+    "topic": "Business Administration & Contexts",
+    "difficulty": "hard",
+    "question": "The site context in Windchill contains which of the following out-of-the-box configuration elements? (Select the most complete answer.)",
+    "options": [
+      "Users, groups, and organizations only",
+      "Life cycles, workflows, templates, preferences, profiles, and team templates",
+      "Products, libraries, projects, and programs",
+      "CAD documents and WTParts only"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The manual lists the OOTB configuration elements in the site context as: 'life cycles, workflows, templates, preferences, profiles, and team templates.' It also states that the site context 'should not contain design data.'",
+    "domain": "Business Administration & Contexts",
+    "type": "single"
+  },
+  {
+    "id": 19,
+    "topic": "Business Administration & Contexts",
+    "difficulty": "medium",
+    "question": "According to Windchill best practices, which type of context creators tend to be most common because sub-context creation within a program or organization is frequent?",
+    "options": [
+      "Program creators",
+      "Product creators",
+      "Project creators",
+      "Library creators"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The manual states: 'Project creators tend to be more common because creating sub-projects within a program or organization is common.' In contrast, product, library, and program creators are 'typically rare, as a new product, library, or program usually requires high-level approval.'",
+    "domain": "Business Administration & Contexts",
+    "type": "single"
+  },
+  {
+    "id": 20,
+    "topic": "Business Administration & Contexts",
+    "difficulty": "hard",
+    "question": "Which configuration driver analysis activity is the FIRST step in identifying Windchill business configuration requirements?",
+    "options": [
+      "Map your product data in the product development stages",
+      "Identify the life cycle and maturity process of each product datum",
+      "Identify your product development stages",
+      "Identify your product data"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Configuration-driver analysis starts by identifying the product data that Windchill must manage. Only after the data is identified do you map it to product development stages and then align life cycle and maturity behavior.",
+    "domain": "Business Administration & Contexts",
+    "type": "single"
+  },
+  {
+    "id": 21,
+    "topic": "Business Administration & Contexts",
+    "difficulty": "hard",
+    "question": "What does the 'Restricted Directory Search' option control when creating a Windchill organization?",
+    "options": [
+      "It limits Windchill search results to the organization context only",
+      "It determines whether the organization permits interaction with users not associated with this organization",
+      "It controls whether Windchill can bind to the LDAP server",
+      "It prevents external file-vault access for organization members"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Restricted Directory Search controls whether users in the organization can interact with users outside that organization. It is not a file-vault control, nor does it configure Windchill LDAP connectivity itself.",
+    "domain": "Business Administration & Contexts",
+    "type": "single"
+  },
+  {
+    "id": 22,
+    "topic": "Business Administration & Contexts",
+    "difficulty": "medium",
+    "question": "A program context in Windchill is best described as which of the following?",
+    "options": [
+      "A context that groups together a set of interrelated projects but is not designed to store design data itself",
+      "A context that stores design data for a single product deliverable",
+      "A context that stores shared enterprise information such as standards and procedures",
+      "A context used to manage change management processes across the enterprise"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The manual describes: 'A program groups together a set of interrelated projects. It supports a plan spanning several projects and products but is not designed to store design data itself. Instead, it stores data related to the entire program or set of projects.'",
+    "domain": "Business Administration & Contexts",
+    "type": "single"
+  },
+  {
+    "id": 23,
+    "topic": "Business Administration & Contexts",
+    "difficulty": "easy",
+    "question": "In Windchill, participants are defined as which of the following?",
+    "options": [
+      "Only users who have logged into the system",
+      "Users, groups, and organizations",
+      "Workflow actors and roles",
+      "Context managers and administrators only"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The Advanced Configuration manual specifically states: 'In Windchill, participants are: users, groups, and organizations.' Participants represent business entities and are referenced in domain policies, workflow tasks, and other data and process management aspects.",
+    "domain": "Business Administration & Contexts",
+    "type": "single"
+  },
+  {
+    "id": 24,
+    "topic": "Business Administration & Contexts",
+    "difficulty": "medium",
+    "question": "What is the purpose of a Functional Definition Document (FDD) in a Windchill implementation?",
+    "options": [
+      "It is the XML document that defines object initialization rules",
+      "It defines the database schema for Windchill objects",
+      "It captures the design of the Windchill solution during the Solution Design stage",
+      "It provides hardware sizing values for the installation"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The implementation process describes the functional definition document as the artifact used to capture the designed Windchill solution. It is not an OIR file, schema definition, or hardware-sizing worksheet.",
+    "domain": "Business Administration & Contexts",
+    "type": "single"
+  },
+  {
+    "id": 25,
+    "topic": "Business Administration & Contexts",
+    "difficulty": "hard",
+    "question": "Which administrator type can create a new promotion preference assigned to a specific destination life cycle state in Windchill?",
+    "options": [
+      "Any context manager in a product or library",
+      "Site administrators only",
+      "Any organization administrator with Create permission on products",
+      "Any user with Full Control permission"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Promotion preferences that apply to destination life cycle states are administered centrally at the site level, so this capability belongs to site administrators rather than ordinary container managers or end users.",
+    "domain": "Business Administration & Contexts",
+    "type": "single"
+  },
+  {
+    "id": 26,
+    "topic": "Object Model & Attributes",
+    "difficulty": "medium",
+    "question": "What is the parent class of all object types in Windchill that represents all data types in the system?",
+    "options": [
+      "wt.part.WTPart",
+      "wt.doc.WTDocument",
+      "wt.fc.WTObject",
+      "com.ptc.windchill.EPMDocument"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The manual states: 'WTObject is the parent class of all object types and represents all data types in Windchill.' Individual classes such as wt.doc.WTDocument inherit from this parent class.",
+    "objective": "Object Types & Attributes",
+    "domain": "Object Model & Attributes",
+    "type": "single"
+  },
+  {
+    "id": 27,
+    "topic": "Object Model & Attributes",
+    "difficulty": "medium",
+    "question": "Which Windchill object class represents all CAD documents in the system?",
+    "options": [
+      "wt.fc.WTObject",
+      "wt.doc.WTDocument",
+      "wt.epm.EPMDocument",
+      "wt.part.WTPart"
+    ],
+    "correctAnswer": 2,
+    "explanation": "EPMDocument is the Windchill object class that represents CAD documents. WTObject is the common parent class, WTDocument is for general documents, and WTPart represents parts rather than CAD files.",
+    "objective": "Object Types & Attributes",
+    "domain": "Object Model & Attributes",
+    "type": "single"
+  },
+  {
+    "id": 28,
+    "topic": "Object Model & Attributes",
+    "difficulty": "medium",
+    "question": "Which type of Windchill attribute is stored in a separate table from the parent type and can be multi-valued?",
+    "options": [
+      "Alias attribute",
+      "Local attribute",
+      "Global attribute",
+      "Calculated attribute"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The manual states that global attributes 'are stored in a table separate from the parent type' and are configured without coding. The 'Always use global attributes' guidance specifically includes: 'You need the attribute to be multi-valued.'",
+    "objective": "Object Types & Attributes",
+    "domain": "Object Model & Attributes",
+    "type": "single"
+  },
+  {
+    "id": 29,
+    "topic": "Object Model & Attributes",
+    "difficulty": "hard",
+    "question": "A local attribute in Windchill has which specific limitation compared to a global attribute?",
+    "options": [
+      "It cannot be constrained using a legal value list",
+      "It can only hold Boolean data types",
+      "It is restricted to one parent type because it is stored in the same table as the parent type",
+      "It cannot be used in a search"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The manual states: 'A local attribute is restricted to one parent type because it is stored in the same table as the parent type. A column of that data type must exist in the table to add a local type. The system administrator must also extend the database schema using the AddColumns tool.'",
+    "objective": "Object Types & Attributes",
+    "domain": "Object Model & Attributes",
+    "type": "single"
+  },
+  {
+    "id": 30,
+    "topic": "Object Model & Attributes",
+    "difficulty": "medium",
+    "question": "Which attribute type creates new attributes from existing ones using mathematical formulae or string concatenation, and is NOT stored directly in the Windchill database?",
+    "options": [
+      "Calculated attribute",
+      "Global attribute",
+      "Alias attribute",
+      "Modeled attribute"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The manual states: 'Calculated attributes create new attributes from existing ones, either by concatenating strings together or using mathematical formulae... Calculated attributes are not stored directly in the Windchill database.'",
+    "objective": "Object Types & Attributes",
+    "domain": "Object Model & Attributes",
+    "type": "single"
+  },
+  {
+    "id": 31,
+    "topic": "Object Model & Attributes",
+    "difficulty": "hard",
+    "question": "An alias attribute in Windchill maps to an attribute on a related object. Which example mapping from the manual navigates from a WTPart to retrieve a Description from a related WTDocument?",
+    "options": [
+      "description=title@wt.doc.WTDocument~name",
+      "description=name@wt.part.WTPart~title",
+      "name=description@wt.doc.WTDocument~title",
+      "name=title@wt.doc.WTDocument~description"
+    ],
+    "correctAnswer": 3,
+    "explanation": "The alias-attribute example in the course material navigates from the WTPart to a related WTDocument and retrieves the document Description attribute using the mapping `name=title@wt.doc.WTDocument~description`. The other options reverse the direction or map the wrong source and target attributes.",
+    "objective": "Object Types & Attributes",
+    "domain": "Object Model & Attributes",
+    "type": "single"
+  },
+  {
+    "id": 32,
+    "topic": "Object Model & Attributes",
+    "difficulty": "medium",
+    "question": "What is the key risk of creating modeled attributes in Windchill instead of using configurable attribute types?",
+    "options": [
+      "Modeled attributes cannot be searched using the Windchill search engine",
+      "They increase the complexity of future Windchill upgrades and require significant Java development effort",
+      "Modeled attributes do not support inheritance from parent types",
+      "They cannot be displayed in Windchill table views or information pages"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The manual warns: 'These custom attributes increase the complexity of future Windchill upgrades and significant expense in development time and effort.' Modeled attributes require Java coding and are infinitely flexible but should only be used when configured types cannot meet the goal.",
+    "objective": "Object Types & Attributes",
+    "domain": "Object Model & Attributes",
+    "type": "single"
+  },
+  {
+    "id": 33,
+    "topic": "Object Model & Attributes",
+    "difficulty": "easy",
+    "question": "What is the difference between a Legal Value Set Constraint and a Suggested Value Set Constraint in Windchill?",
+    "options": [
+      "Legal Value Set applies at the site level; Suggested Value Set applies at the organization level",
+      "Legal Value Set is enforced (cannot be violated); Suggested Value Set permits a user to type a value instead of selecting from the list",
+      "Legal Value Set stores values in a global enumeration; Suggested Value Set stores them in a database table",
+      "Legal Value Set is for integer data types only; Suggested Value Set is for string data types"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The manual states: 'Both supply a set of strings for users to select from. The only difference is that the Suggested Value Set Constraint permits you to violate it, typing in a value instead of selecting one from the list. The Legal Value Set Constraint is enforced.'",
+    "objective": "Object Types & Attributes",
+    "domain": "Object Model & Attributes",
+    "type": "single"
+  },
+  {
+    "id": 34,
+    "topic": "Object Model & Attributes",
+    "difficulty": "hard",
+    "question": "In the Type and Attribute Management utility, which key field for a reusable attribute must be unique across all attributes in the system and enables the attribute to be searched on?",
+    "options": [
+      "Internal Name",
+      "Display Name",
+      "Logical Identifier",
+      "Value Format"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The Logical Identifier must be unique system-wide for a reusable attribute and is the searchable identifier used by the platform. Display names can vary by presentation, and internal naming alone is not the reusable-attribute search key being tested here.",
+    "objective": "Object Types & Attributes",
+    "domain": "Object Model & Attributes",
+    "type": "single"
+  },
+  {
+    "id": 35,
+    "topic": "Object Model & Attributes",
+    "difficulty": "medium",
+    "question": "When creating a new attribute in Windchill's Type and Attribute Management utility, which field CANNOT contain spaces?",
+    "options": [
+      "Display Name",
+      "Logical Identifier",
+      "Description",
+      "Internal Name"
+    ],
+    "correctAnswer": 3,
+    "explanation": "The manual is explicit: 'Internal Name: Cannot contain spaces. This name is not normally viewable in Windchill user interfaces.' The Display Name, in contrast, 'May contain spaces and special characters.'",
+    "objective": "Object Types & Attributes",
+    "domain": "Object Model & Attributes",
+    "type": "single"
+  },
+  {
+    "id": 36,
+    "topic": "Object Model & Attributes",
+    "difficulty": "hard",
+    "question": "What happens to layouts when you add a new layout to a subtype in Windchill?",
+    "options": [
+      "The new layout is merged with inherited layouts from the parent type",
+      "You break the inheritance of all layouts from the parent type",
+      "The layout is automatically synchronized with the parent type on the next check-in",
+      "Only the specified layout is overridden; other layouts continue to be inherited"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The manual warns: 'When you add a layout to a subtype, you break the inheritance of all layouts from the parent type. Thus, if you want to create a new layout for a subtype, you must rewrite all the layouts.'",
+    "objective": "Object Types & Attributes",
+    "domain": "Object Model & Attributes",
+    "type": "single"
+  },
+  {
+    "id": 37,
+    "topic": "Object Model & Attributes",
+    "difficulty": "hard",
+    "question": "A global enumeration in Windchill differs from an Enumerated Type in what fundamental way?",
+    "options": [
+      "Enumerated Types support multi-valued attributes; global enumerations are restricted to single values",
+      "Global enumerations are only available at the site context level; Enumerated Types can be used at any context level",
+      "An Enumerated Type stores legal values in the Windchill code itself; a global enumeration is a separate Windchill object that stores a set of legal values without specifying which types use it",
+      "A global enumeration is stored in Java code and cannot be changed at runtime; an Enumerated Type is a Windchill object"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The manual explains: 'Enumerated Types are the programmatic way to constrain a string to a set of values. When you create an enumerated type, the constraint is stored in the code itself... A Global Enumeration is a separate object that stores a set of legal values. However, the global enumeration does not specify which types or attributes it is used in.'",
+    "objective": "Object Types & Attributes",
+    "domain": "Object Model & Attributes",
+    "type": "single"
+  },
+  {
+    "id": 38,
+    "topic": "Object Model & Attributes",
+    "difficulty": "easy",
+    "question": "Which utility is used to create and manage custom object types and attributes in Windchill?",
+    "options": [
+      "Policy Administration utility",
+      "Object Initialization Rules Administration utility",
+      "Type and Attribute Management utility",
+      "Life Cycle Template Administration utility"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The manual explicitly states: 'Use the Type and Attribute Management utility to create and manage custom object types and attributes.' This is also where global enumerations and reusable attributes are managed.",
+    "objective": "Object Types & Attributes",
+    "domain": "Object Model & Attributes",
+    "type": "single"
+  },
+  {
+    "id": 39,
+    "topic": "Object Model & Attributes",
+    "difficulty": "medium",
+    "question": "When reusable attributes and subtypes are created by the site administrator in the site context, how are they visible to organization contexts?",
+    "options": [
+      "They are seen and available for use by all organization contexts",
+      "They are private to the site context only",
+      "They must be manually shared to each organization",
+      "They are only visible after a Windchill restart"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The manual states: 'When subtypes and reusable attributes are created by the site administrator in the site context (as in this case), they are seen and available for use by all organization contexts.' This contrasts with organization-level attributes that remain private to that organization.",
+    "objective": "Object Types & Attributes",
+    "domain": "Object Model & Attributes",
+    "type": "single"
+  },
+  {
+    "id": 40,
+    "topic": "Object Model & Attributes",
+    "difficulty": "medium",
+    "question": "Which constraint in Windchill is used to validate that an attribute value matches a specific text pattern such as 'P-#####'?",
+    "options": [
+      "Legal Value Set constraint",
+      "Enumerated Value List constraint",
+      "Regular expression constraint",
+      "Required constraint"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The manual gives this example: 'a part number that follows a specific pattern, such as \"P-#####\". You could use a regular expression that defines the pattern of text the part number value must match.' This is listed as one of the ways to constrain attribute values.",
+    "objective": "Object Types & Attributes",
+    "domain": "Object Model & Attributes",
+    "type": "single"
+  },
+  {
+    "id": 41,
+    "topic": "Life Cycles & Workflows",
+    "difficulty": "medium",
+    "question": "What is the key difference between a Basic life cycle and an Advanced life cycle in Windchill?",
+    "options": [
+      "Basic life cycles are available only at the site context",
+      "Advanced life cycles always require state-based versioning",
+      "Advanced life cycles can associate workflow templates with life cycle phases; basic life cycles use only transitions",
+      "Basic life cycles can include gate workflows but advanced life cycles cannot"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The manual distinguishes basic and advanced life cycles primarily by how movement is controlled: basic life cycles rely on transitions only, while advanced life cycles can combine transitions with workflows. State-based versioning is separate from that distinction.",
+    "domain": "Life Cycles & Workflows",
+    "type": "single"
+  },
+  {
+    "id": 42,
+    "topic": "Life Cycles & Workflows",
+    "difficulty": "hard",
+    "question": "When life cycle access control is defined in an Advanced life cycle, which of the following statements accurately describes its behavior?",
+    "options": [
+      "It is grant-only, state-specific, applied to specific roles, and overrides most domain-level access control",
+      "It applies globally to all objects of that type regardless of life cycle state",
+      "It is deny-only and replaces domain-policy grants",
+      "It can be configured only from the Policy Administration utility"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Life cycle access control in advanced life cycles is grant-only, state-specific, and role-based. It overrides most ordinary domain rules but not absolute deny rules or security-label denials.",
+    "domain": "Life Cycles & Workflows",
+    "type": "single"
+  },
+  {
+    "id": 43,
+    "topic": "Life Cycles & Workflows",
+    "difficulty": "medium",
+    "question": "Which life cycle transition type defines the path used when creating a new version of an object?",
+    "options": [
+      "Set State",
+      "Promote",
+      "Change",
+      "Revise"
+    ],
+    "correctAnswer": 3,
+    "explanation": "The manual defines: 'Revise: Defines the path used when creating a new version of an object with either the revise, new view version, or one-off version actions. Each source state can designate a single destination state for a new version.'",
+    "domain": "Life Cycles & Workflows",
+    "type": "single"
+  },
+  {
+    "id": 44,
+    "topic": "Life Cycles & Workflows",
+    "difficulty": "hard",
+    "question": "The 'Lock' life cycle transition type in Windchill works in conjunction with which other transition?",
+    "options": [
+      "Revise transition",
+      "Promote transition",
+      "Change transition",
+      "Set State transition"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The manual states: 'Lock: Works in conjunction with the Promote state transition when a different set of access policies are desired, when promotion requests are under review and seek approval. This transition is only valid for promotion requests and is only used as an interim state for the promotion process duration.'",
+    "domain": "Life Cycles & Workflows",
+    "type": "single"
+  },
+  {
+    "id": 45,
+    "topic": "Life Cycles & Workflows",
+    "difficulty": "hard",
+    "question": "According to the life cycle template resolution algorithm, if an OIR specifies a life cycle template name but the template is not found in the product context, where does Windchill search next?",
+    "options": [
+      "It uses the default Basic Life Cycle template",
+      "It immediately fails and prevents object creation",
+      "It searches the parent organization context, then the site context",
+      "It searches all other product contexts"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The manual describes the resolution sequence: 'If a life cycle template is not located in the specific application context, the system refers to the parent organization context for the life cycle template. If one is not located in the organization context, it refers to the life cycle template at the site context.'",
+    "domain": "Life Cycles & Workflows",
+    "type": "single"
+  },
+  {
+    "id": 46,
+    "topic": "Life Cycles & Workflows",
+    "difficulty": "medium",
+    "question": "In Windchill's state-based versioning, when does the version series change?",
+    "options": [
+      "When an object is demoted back to a previous state",
+      "Only on creation of a new version (revision) of an object, based on the state in which the revision is conducted",
+      "When an object is promoted to a new life cycle state",
+      "Whenever the life cycle template is updated"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The manual explains: 'The version series does not change based on an object moving into a state with a new version series. The version series only changes on a new version of an object and is based on the version series specified in the state where the revision is conducted.'",
+    "domain": "Life Cycles & Workflows",
+    "type": "single"
+  },
+  {
+    "id": 47,
+    "topic": "Life Cycles & Workflows",
+    "difficulty": "hard",
+    "question": "What does the 'Available for Routing' property indicate when configuring a life cycle template?",
+    "options": [
+      "The life cycle is used for routing in project contexts and is not used by other Windchill applications",
+      "The life cycle supports multi-path routing",
+      "The life cycle can be used for any application context",
+      "The life cycle template is published and available for OIRs"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The manual states: 'The Available for Routing selection indicates that the life cycle is used for routing in project contexts and is not a selection used by other Windchill applications. The purpose of routing is to override the assigned process in Windchill Project Management.'",
+    "domain": "Life Cycles & Workflows",
+    "type": "single"
+  },
+  {
+    "id": 48,
+    "topic": "Life Cycles & Workflows",
+    "difficulty": "medium",
+    "question": "The 'Change' transition type in a Windchill life cycle defines which specific behavior?",
+    "options": [
+      "Defines a path that enables rework loops",
+      "Defines the path used when releasing object versions through a change process",
+      "Defines the path used when changing state via Set State",
+      "Defines the path used when creating a new version"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The manual states: 'Change: Defines the path used when releasing object versions through a change process.' For example, if objects must use a change notice to transition from Under Review to Released, you configure the Change lifecycle transition in those states.",
+    "domain": "Life Cycles & Workflows",
+    "type": "single"
+  },
+  {
+    "id": 49,
+    "topic": "Life Cycles & Workflows",
+    "difficulty": "hard",
+    "question": "What is the class recommended for the 'Object class managed by the life cycle' field when configuring a life cycle template's properties?",
+    "options": [
+      "wt.epm.EPMDocument",
+      "wt.part.WTPart",
+      "wt.doc.WTDocument",
+      "wt.fc.WTObject"
+    ],
+    "correctAnswer": 3,
+    "explanation": "The course recommends using `wt.fc.WTObject` as the object class managed by a life cycle template so the template can be assigned broadly through OIRs to business objects. Using a narrower class here is possible in some scenarios but is not the recommended default guidance being tested.",
+    "domain": "Life Cycles & Workflows",
+    "type": "single"
+  },
+  {
+    "id": 50,
+    "topic": "Life Cycles & Workflows",
+    "difficulty": "hard",
+    "question": "What happens if a life cycle template name specified in an OIR cannot be located anywhere in the context hierarchy (product, organization, or site)?",
+    "options": [
+      "The system removes the ability to create the object in the specified context",
+      "The system uses the default Basic Life Cycle as a fallback",
+      "The object is created without a life cycle",
+      "The system logs an error but allows creation"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The manual is clear: 'Suppose the system cannot locate a life cycle template by the name identified in the object initialization rules. In that case, the system removes the ability to create the object in the specified context.'",
+    "domain": "Life Cycles & Workflows",
+    "type": "single"
+  },
+  {
+    "id": 51,
+    "topic": "Life Cycles & Workflows",
+    "difficulty": "medium",
+    "question": "What are the two state-based version series choices available in Windchill?",
+    "options": [
+      "Sequential and Parallel",
+      "Alphabetic and Numeric",
+      "Integer and Alphanumeric",
+      "Mil Std and Numeric"
+    ],
+    "correctAnswer": 3,
+    "explanation": "The manual states: 'There are two choices for the state-based version series: Mil Std: A military standard scheme (e.g., A.1, A.2, B.1) and Numeric: Uses a number for the revision and iteration sequence (e.g., 1.1, 1.2, 2.1).'",
+    "domain": "Life Cycles & Workflows",
+    "type": "single"
+  },
+  {
+    "id": 52,
+    "topic": "Life Cycles & Workflows",
+    "difficulty": "hard",
+    "question": "When configuring custom life cycle state names not included in the OOTB list, where must the new state names be added?",
+    "options": [
+      "In the wt.properties configuration file",
+      "In the site.xconf file",
+      "To the State (wt.lifecycle.StateRB) custom modeled enumeration in the Type and Attribute Manager",
+      "Directly in the life cycle template"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The manual states: 'If you want to use state names that are not included in the OOTB list, you can add entries that represent new state names to the State (wt.lifecycle.StateRB) custom modeled enumeration in the Type and Attribute Manager utility.'",
+    "domain": "Life Cycles & Workflows",
+    "type": "single"
+  },
+  {
+    "id": 53,
+    "topic": "Life Cycles & Workflows",
+    "difficulty": "hard",
+    "question": "Adding custom roles to Windchill for use in workflows and life cycles requires adding an entry to which custom modeled enumeration?",
+    "options": [
+      "State (wt.lifecycle.StateRB)",
+      "Role (wt.project.RoleRB)",
+      "WorkflowRole (wt.workflow.RoleRB)",
+      "ContextRole (wt.context.RoleRB)"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Custom roles that must be available for workflows and life cycles are added through the Role (`wt.project.RoleRB`) custom modeled enumeration. The State enumeration is for life cycle states, not participant roles.",
+    "domain": "Life Cycles & Workflows",
+    "type": "single"
+  },
+  {
+    "id": 54,
+    "topic": "Life Cycles & Workflows",
+    "difficulty": "medium",
+    "question": "Which transition type in Windchill 'defines a path that may be used in a custom workflow to set the state of objects undergoing rework or being refined'?",
+    "options": [
+      "Lock",
+      "Refine",
+      "Review",
+      "Set State"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The manual defines: 'Refine: Defines a path that may be used in a custom workflow to set the state of objects undergoing rework or being refined.' It is useful when reviewers request updated data during a review cycle.",
+    "domain": "Life Cycles & Workflows",
+    "type": "single"
+  },
+  {
+    "id": 55,
+    "topic": "Life Cycles & Workflows",
+    "difficulty": "medium",
+    "question": "Once a new version sequence is started for an object using state-based versioning, what happens if the object is demoted back to an earlier state?",
+    "options": [
+      "The version sequence continues as if no demotion occurred",
+      "The previous sequence is no longer used even if the object moves back to a state with numeric versioning defined",
+      "The version sequence reverts to the scheme defined in the earlier state",
+      "A new version is automatically created to reflect the demotion event"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The manual states: 'Once a new version sequence is started for an object, the previous sequence is no longer used even if the object [is] demoted back to earlier life cycle states, such as from the Released state to In Work state.'",
+    "domain": "Life Cycles & Workflows",
+    "type": "single"
+  },
+  {
+    "id": 56,
+    "topic": "Access Control, Teams & OIRs",
+    "difficulty": "easy",
+    "question": "In which format are Object Initialization Rules (OIRs) written in Windchill?",
+    "options": [
+      "Java properties files",
+      "JSON",
+      "XML",
+      "YAML"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The manual states: 'Object initialization rules control how objects behave when created (instantiated). The rules are written in XML, assigned to a specific object class, and definable at all context levels.'",
+    "objective": "OIRs & Access Control",
+    "domain": "Access Control, Teams & OIRs",
+    "type": "single"
+  },
+  {
+    "id": 57,
+    "topic": "Access Control, Teams & OIRs",
+    "difficulty": "medium",
+    "question": "Which XML algorithm tag in an OIR controls the default folder location for a new object in Windchill?",
+    "options": [
+      "TeamTemplateAttributeAlgorithm",
+      "NumberingAttributeAlgorithm",
+      "FolderPathAttributeAlgorithm",
+      "VersionInfoGenerator"
+    ],
+    "correctAnswer": 2,
+    "explanation": "FolderPathAttributeAlgorithm is the OIR algorithm used to set the default folder location of a new object. TeamTemplateAttributeAlgorithm controls team template association, while numbering and version logic are handled by different algorithms.",
+    "objective": "OIRs & Access Control",
+    "domain": "Access Control, Teams & OIRs",
+    "type": "single"
+  },
+  {
+    "id": 58,
+    "topic": "Access Control, Teams & OIRs",
+    "difficulty": "medium",
+    "question": "In an OIR, what does the TeamTemplateAttributeAlgorithm XML tag control?",
+    "options": [
+      "It defines the context team membership",
+      "It assigns team roles to life cycle states",
+      "It sets the team template associated with objects when they are created",
+      "It controls which workflow template is triggered"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The manual states: 'The team template association rule consists of an XML tag identifying the TeamTemplateAttributeAlgorithm. Team template associations may be defined as part of the object initialization rule set. To change the team template, replace the value in the <Arg></Arg> tags with the name you want to use.'",
+    "objective": "OIRs & Access Control",
+    "domain": "Access Control, Teams & OIRs",
+    "type": "single"
+  },
+  {
+    "id": 59,
+    "topic": "Access Control, Teams & OIRs",
+    "difficulty": "medium",
+    "question": "At which context levels can Object Initialization Rules be defined in Windchill?",
+    "options": [
+      "At all context levels (site, organization, and sub-organization/product/library/project/program)",
+      "Only at the site context level",
+      "Only at the product and library context level",
+      "Only at the site and organization context levels"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The manual states: 'The rules are written in XML, assigned to a specific object class, and definable at all context levels.' The OIR Administration tool shows rules for the current context, parent organization, and site.",
+    "objective": "OIRs & Access Control",
+    "domain": "Access Control, Teams & OIRs",
+    "type": "single"
+  },
+  {
+    "id": 60,
+    "topic": "Access Control, Teams & OIRs",
+    "difficulty": "hard",
+    "question": "When multiple OIRs exist for the same object type at different context levels, which takes precedence?",
+    "options": [
+      "The organization-level rule always takes precedence",
+      "Rules are merged equally",
+      "The site-level rule always takes precedence",
+      "The subtype rule at a lower context level overrides context parents and class hierarchy parents"
+    ],
+    "correctAnswer": 3,
+    "explanation": "The manual explains using an example: 'The subtype overrides its context parent and a class hierarchy parent because 1) it is defined at the PTC Publications organization context level, overriding site-level rules, and 2) it is defined for the Document type, overriding WTDocument rules.'",
+    "objective": "OIRs & Access Control",
+    "domain": "Access Control, Teams & OIRs",
+    "type": "single"
+  },
+  {
+    "id": 61,
+    "topic": "Access Control, Teams & OIRs",
+    "difficulty": "medium",
+    "question": "In Windchill's domain architecture, which statement correctly describes the relationship between domain policies and access control?",
+    "options": [
+      "Domain policies override all life cycle access control",
+      "Domain policies are composed of administrative rules for managing access control, indexing, and notification for an object",
+      "Domain policies are limited to folder naming and cabinet visibility",
+      "Domain policies apply only to the /System domain"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The manual defines domain policies as the administrative rules that manage access control, indexing, and notification for objects within their scope. They are not limited to system domains or folder naming alone.",
+    "objective": "OIRs & Access Control",
+    "domain": "Access Control, Teams & OIRs",
+    "type": "single"
+  },
+  {
+    "id": 62,
+    "topic": "Access Control, Teams & OIRs",
+    "difficulty": "medium",
+    "question": "Which special context group in Windchill collects all participants from all context roles (except Guests) and acts as a superset of context membership?",
+    "options": [
+      "Site Administrators group",
+      "Change Review Board",
+      "Organization Members group",
+      "Team Members context group"
+    ],
+    "correctAnswer": 3,
+    "explanation": "The manual describes: 'The Team Members context group has no corresponding context role. All participants added to any context role, except Guests, are added as members of the Team Members context group. The Team Members context group acts as a superset of context membership.'",
+    "objective": "OIRs & Access Control",
+    "domain": "Access Control, Teams & OIRs",
+    "type": "single"
+  },
+  {
+    "id": 63,
+    "topic": "Access Control, Teams & OIRs",
+    "difficulty": "hard",
+    "question": "Advanced life cycle access control cannot override which two types of access denials?",
+    "options": [
+      "Domain-level deny rules and context team Guest restrictions",
+      "Absolute deny rules from the domain and denial due to a security label",
+      "Workflow-generated deny rules and OIR-based restrictions",
+      "Site administrator overrides and organization-level denials"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The manual explicitly states life cycle access control rules override ordinary deny rules from the domain, 'However, it cannot override: an absolute deny rule from the domain [or] a denial due to a security label. In these cases, the user is denied access even if it is granted by the life cycle.'",
+    "objective": "OIRs & Access Control",
+    "domain": "Access Control, Teams & OIRs",
+    "type": "single"
+  },
+  {
+    "id": 64,
+    "topic": "Access Control, Teams & OIRs",
+    "difficulty": "easy",
+    "question": "The Guest context role in an OOTB context template provides which level of access?",
+    "options": [
+      "Full Control access",
+      "Modify access but no Delete",
+      "Read-only access to objects in the context",
+      "Administrative access"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The manual states: 'The Guest context role provides read access to objects in the context. Most guests do not access the context frequently. As a result, you should generally send guests notifications when they need to do something in the context.'",
+    "objective": "OIRs & Access Control",
+    "domain": "Access Control, Teams & OIRs",
+    "type": "single"
+  },
+  {
+    "id": 65,
+    "topic": "Access Control, Teams & OIRs",
+    "difficulty": "medium",
+    "question": "What is the primary purpose of the Team Members context group according to recommended best practices?",
+    "options": [
+      "To provide Full Control access",
+      "To replace the context team",
+      "To automatically resolve workflow roles",
+      "To provide a minimum level of access to all team roles in a context, improving access policy management and system performance"
+    ],
+    "correctAnswer": 3,
+    "explanation": "The manual states: 'This group can be used to provide the minimum level of access to all team roles in a context, which can provide for improved access policy management and system performance improvements.' The manual recommends using this group as a best practice.",
+    "objective": "OIRs & Access Control",
+    "domain": "Access Control, Teams & OIRs",
+    "type": "single"
+  },
+  {
+    "id": 66,
+    "topic": "Access Control, Teams & OIRs",
+    "difficulty": "medium",
+    "question": "Shared teams in Windchill are defined at which context level and are used across multiple contexts?",
+    "options": [
+      "Project level",
+      "Site level",
+      "Organization level",
+      "Product level"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The manual states: 'Shared teams represent the extension of an individual context team, so they can be used in multiple contexts. Shared teams are defined at the organization level.' They are managed from the Teams page of an organization context.",
+    "objective": "OIRs & Access Control",
+    "domain": "Access Control, Teams & OIRs",
+    "type": "single"
+  },
+  {
+    "id": 67,
+    "topic": "Access Control, Teams & OIRs",
+    "difficulty": "medium",
+    "question": "When an administrator modifies a shared team in Windchill, what is the impact?",
+    "options": [
+      "Only newly created contexts using the shared team are affected",
+      "The changes are queued and applied during the next Windchill restart",
+      "All contexts currently using that shared team are affected by the changes",
+      "Only the administrator's own product context is affected"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The manual states: 'Shared teams are used across multiple contexts. When an administrator changes a shared team, these changes affect the contexts using that shared team.' You can determine affected contexts using the 'Show Team Uses' action.",
+    "objective": "OIRs & Access Control",
+    "domain": "Access Control, Teams & OIRs",
+    "type": "single"
+  },
+  {
+    "id": 68,
+    "topic": "Access Control, Teams & OIRs",
+    "difficulty": "hard",
+    "question": "Custom roles added via the 'Add Roles to Organization' utility can be used for which purpose in Windchill?",
+    "options": [
+      "Workflow role resolution only",
+      "Both access control and workflow role resolution",
+      "Life cycle state definitions",
+      "Access control only; they cannot be used as resource bundle roles in workflows or life cycles"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Custom roles added with the Add Roles to Organization utility create context roles only. They are useful for access control in context teams but do not become resource bundle roles for workflow or life cycle administration.",
+    "objective": "OIRs & Access Control",
+    "domain": "Access Control, Teams & OIRs",
+    "type": "single"
+  },
+  {
+    "id": 69,
+    "topic": "Access Control, Teams & OIRs",
+    "difficulty": "hard",
+    "question": "What does 'role-to-role mapping' in a Windchill team instance allow?",
+    "options": [
+      "It allows a life cycle role to be resolved to another role, then to participants identified for that mapped role in the team template",
+      "It allows a context role to be mapped to a site-level role",
+      "It allows workflow activities to be delegated from one role to another",
+      "It synchronizes role membership across shared teams"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The manual explains: 'If the life cycle roles are resolved to another role (role-to-role mapping), the system adds the new role to the team instance and resolves the role to any participants identified in the team template for the mapped role.'",
+    "objective": "OIRs & Access Control",
+    "domain": "Access Control, Teams & OIRs",
+    "type": "single"
+  },
+  {
+    "id": 70,
+    "topic": "Access Control, Teams & OIRs",
+    "difficulty": "hard",
+    "question": "Once a team instance is created in Windchill, what happens when the associated life cycle template or team template is subsequently updated by an administrator?",
+    "options": [
+      "The team instance is automatically updated to reflect the new template configurations",
+      "The team instance is unaffected by updates to the life cycle template, team template, or context team used to generate it",
+      "The team instance is flagged as out-of-date",
+      "The team instance is regenerated on the next state transition"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The manual clearly states: 'Once a team instance is created, it is unaffected by updates to the life cycle template, team template, or context team used to generate it.' Updates must be made directly to the team instance from the object's details page.",
+    "objective": "OIRs & Access Control",
+    "domain": "Access Control, Teams & OIRs",
+    "type": "single"
+  },
+  {
+    "id": 71,
+    "topic": "Change Management & Release",
+    "difficulty": "medium",
+    "question": "What are the five stages of the Windchill OOTB change management process in order?",
+    "options": [
+      "Create → Review → Approve → Release → Obsolete",
+      "Problem Report → Change Request → Change Notice → Implementation → Approval",
+      "Investigate → Plan → Design → Build → Deploy",
+      "Identify Need → Investigate Need → Change Planning → Change Implementation → Review and Audit Change"
+    ],
+    "correctAnswer": 3,
+    "explanation": "The Technical Essentials manual outlines: 'Change management process: (1) Identify Need, (2) Investigate Need, (3) Change Planning, (4) Change Implementation, (5) Review and Audit Change.' These correspond to specific Windchill objects at each stage.",
+    "objective": "Change & Configuration Management",
+    "domain": "Change Management & Release",
+    "type": "single"
+  },
+  {
+    "id": 72,
+    "topic": "Change Management & Release",
+    "difficulty": "easy",
+    "question": "Which Windchill change management object is created during the 'Identify Need' stage of the change process?",
+    "options": [
+      "Change Notice",
+      "Problem Report",
+      "Change Request",
+      "Promotion Request"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The Technical Essentials manual shows: 'Change management process: Identify Need → Activity: Create a problem report.' A Problem Report is created when a need for change is identified, before escalating to a Change Request.",
+    "objective": "Change & Configuration Management",
+    "domain": "Change Management & Release",
+    "type": "single"
+  },
+  {
+    "id": 73,
+    "topic": "Change Management & Release",
+    "difficulty": "medium",
+    "question": "What is a baseline in Windchill configuration management?",
+    "options": [
+      "A default folder structure",
+      "A promotion request",
+      "A snapshot of a BOM that captures the versions of parts at a specific point in time",
+      "A named configuration specification that filters a BOM to a specific date"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Based on the Technical Essentials manual section 'Create baselines' and 'Activity: Create a baseline of a BOM,' a baseline captures a snapshot of a BOM at a specific point in time, preserving specific versions of parts for configuration management purposes.",
+    "objective": "Change & Configuration Management",
+    "domain": "Change Management & Release",
+    "type": "single"
+  },
+  {
+    "id": 74,
+    "topic": "Change Management & Release",
+    "difficulty": "medium",
+    "question": "What is the purpose of a 'redline' in Windchill change management?",
+    "options": [
+      "A redline is used to manage concurrent change to the same affected objects",
+      "A redline marks objects as obsolete in the release process",
+      "A redline is a type of change notice that bypasses the Change Review Board",
+      "A redline is a domain-level access control rule"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The Technical Essentials manual section 'Identify best practices when using redlines' and 'Use a redline to manage concurrent change: example' describe redlines as a mechanism to plan and manage concurrent changes to the same affected objects in a change process.",
+    "objective": "Change & Configuration Management",
+    "domain": "Change Management & Release",
+    "type": "single"
+  },
+  {
+    "id": 75,
+    "topic": "Change Management & Release",
+    "difficulty": "medium",
+    "question": "A configuration specification in Windchill is used to do which of the following?",
+    "options": [
+      "Define the object initialization rules",
+      "Filter a BOM to display specific versions of components based on criteria such as life cycle state",
+      "Configure the versioning scheme",
+      "Specify the domain policies"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The Technical Essentials manual section 'Specify a configuration specification' and 'Activity: Filter BOMs' describe configuration specifications as criteria used to filter a BOM to display specific versions of parts, such as only the latest Released version.",
+    "objective": "Change & Configuration Management",
+    "domain": "Change Management & Release",
+    "type": "single"
+  },
+  {
+    "id": 76,
+    "topic": "Change Management & Release",
+    "difficulty": "medium",
+    "question": "Which Windchill object is created during the 'Investigate Need' stage of the change management process?",
+    "options": [
+      "Problem Report",
+      "Change Notice",
+      "Promotion Request",
+      "Change Request"
+    ],
+    "correctAnswer": 3,
+    "explanation": "The Technical Essentials manual shows 'Change management process: Investigate Need → Activity: Create a change request.' A Change Request is the next escalation after a Problem Report when the change need is being investigated.",
+    "objective": "Change & Configuration Management",
+    "domain": "Change Management & Release",
+    "type": "single"
+  },
+  {
+    "id": 77,
+    "topic": "Change Management & Release",
+    "difficulty": "medium",
+    "question": "What is the key difference between a promotion request and a change notice in Windchill?",
+    "options": [
+      "A change notice addresses a formal change process with affected items; a promotion request is a simplified process to promote objects to a new life cycle state",
+      "A promotion request can release to multiple destination states; a change notice releases to only one state",
+      "A promotion request is used for CAD documents only; a change notice is used for WTParts",
+      "Promotion requests and change notices serve essentially the same purpose"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The Advanced Configuration manual section 'Compare promotion requests to change management objects' explains that promotion requests are a simplified promotion process, while change notices are used in the formal change management process with roles like Change Administrator and Change Review Board.",
+    "objective": "Change & Configuration Management",
+    "domain": "Change Management & Release",
+    "type": "single"
+  },
+  {
+    "id": 78,
+    "topic": "Change Management & Release",
+    "difficulty": "easy",
+    "question": "What does the 'Obsolescence' life cycle transition type define in Windchill?",
+    "options": [
+      "The path used when an object is moved to the archive folder",
+      "The path used to make object versions obsolete through a change process",
+      "The path used when promoting objects through a promotion request",
+      "The path used when a new version replaces the current version"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The manual defines: 'Obsolescence: Defines the path used to make object versions obsolete through a change process.' This is distinct from the Promote, Change, and Production Released transitions.",
+    "objective": "Change & Configuration Management",
+    "domain": "Change Management & Release",
+    "type": "single"
+  },
+  {
+    "id": 79,
+    "topic": "Change Management & Release",
+    "difficulty": "medium",
+    "question": "In a BOM structure, what do 'occurrences' represent in Windchill?",
+    "options": [
+      "The number of active change notices affecting a specific part",
+      "Specific instances or usages of a component within an assembly, enabling position-specific data",
+      "The number of times a part appears in different product contexts",
+      "The total count of a part across all revisions in the database"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The Technical Essentials manual section 'Identify occurrences of a part in a BOM' and 'Activity: Create occurrences in a BOM' demonstrate that occurrences represent specific instances of a part usage in an assembly, allowing occurrence-specific attributes and position data.",
+    "objective": "Change & Configuration Management",
+    "domain": "Change Management & Release",
+    "type": "single"
+  },
+  {
+    "id": 80,
+    "topic": "Change Management & Release",
+    "difficulty": "hard",
+    "question": "Which Windchill promotion process feature allows creation of separate promotion process choices based on which target state is selected by the user?",
+    "options": [
+      "Promotion schemes",
+      "Promotion requests",
+      "Promotion preferences",
+      "Promotion approvers"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The manual describes: 'Site Administrators can add new promotion preferences assigned to specific destination life cycle states, effectively creating separate promotion process choices based on which target state is selected by the user executing the Promote action.'",
+    "objective": "Change & Configuration Management",
+    "domain": "Change Management & Release",
+    "type": "single"
+  },
+  {
+    "id": 81,
+    "topic": "Change Management & Release",
+    "difficulty": "medium",
+    "question": "In the Windchill change management process, which role is responsible for the 'Change Planning' stage?",
+    "options": [
+      "Change Administrator",
+      "Change Implementor",
+      "Problem Reporter",
+      "Change Review Board"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The Technical Essentials manual section 'Change management process: Change Planning → Activity: Create a change notice to address a requested change' indicates that the Change Administrator creates and manages change notices as part of the Change Planning stage.",
+    "objective": "Change & Configuration Management",
+    "domain": "Change Management & Release",
+    "type": "single"
+  },
+  {
+    "id": 82,
+    "topic": "Change Management & Release",
+    "difficulty": "medium",
+    "question": "What is the purpose of the 'Production Released' life cycle transition type in Windchill?",
+    "options": [
+      "It promotes objects directly to the production folder without a change process",
+      "It locks objects in the production state and prevents any further revisions",
+      "It defines the path used when releasing object versions to production through a change process",
+      "It triggers an automatic ERP system integration to release manufacturing BOMs"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The manual defines: 'Production Released: Defines the path used when releasing object versions to production through a change process.' It is one of three change-related transition targets, along with Change and Obsolescence.",
+    "objective": "Change & Configuration Management",
+    "domain": "Change Management & Release",
+    "type": "single"
+  },
+  {
+    "id": 83,
+    "topic": "Change Management & Release",
+    "difficulty": "easy",
+    "question": "The 'Review and Audit Change' stage of the Windchill change management process allows teams to do which of the following?",
+    "options": [
+      "Verify the implemented changes and audit the entire change process",
+      "Create new change notices to fix issues found during release",
+      "Promote objects back to the In Work state if changes are rejected",
+      "Generate reports on BOM structure changes across all products"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The Technical Essentials manual section 'Change management process: Review and Audit Change → Activity: Review and audit an implemented change' shows this stage is for verifying and auditing the changes that were implemented in the previous stage.",
+    "objective": "Change & Configuration Management",
+    "domain": "Change Management & Release",
+    "type": "single"
+  },
+  {
+    "id": 84,
+    "topic": "Change Management & Release",
+    "difficulty": "easy",
+    "question": "In Windchill, what are the two primary approaches to product development for managing CAD data and parts?",
+    "options": [
+      "Top-down design and bottom-up design",
+      "Document-centric approach and BOM-centric approach",
+      "Drawing-centric approach and model-centric approach",
+      "Part-centric approach and CAD-centric approach"
+    ],
+    "correctAnswer": 3,
+    "explanation": "The Technical Essentials manual explicitly covers 'Describe the part-centric approach to product development' and 'Describe the CAD-centric approach to product development' as two distinct methodologies for managing product data in Windchill.",
+    "objective": "Change & Configuration Management",
+    "domain": "Change Management & Release",
+    "type": "single"
+  },
+  {
+    "id": 85,
+    "topic": "Change Management & Release",
+    "difficulty": "hard",
+    "question": "Which Windchill utility enables an administrator to add a shared team to an existing context (after context creation)?",
+    "options": [
+      "xconfmanager with the --sharedteam flag",
+      "AddSharedTeamToContexts command-line utility",
+      "MoveContextSharedTeam command-line utility",
+      "AssignSharedTeam Windchill Shell command"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The manual states: 'By default, a shared team can only be associated with an application context when that application context is created. The AddSharedTeamToContexts command-line utility enables you to add a shared team to an existing context to have both a local and a shared team.'",
+    "objective": "Change & Configuration Management",
+    "domain": "Change Management & Release",
+    "type": "single"
+  },
+  {
+    "id": 86,
+    "topic": "System Administration & Maintenance",
+    "difficulty": "medium",
+    "question": "Which Windchill utility is used to calculate recommended values for server heap sizes, cache sizes, and other performance parameters based on the number of weighted active users?",
+    "options": [
+      "xconfmanager",
+      "System Configuration Collector (SCC)",
+      "Windchill Configuration Assistant (WCA)",
+      "JConsole (JMX)"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The Advanced Configuration manual states that the Windchill Configuration Assistant (WCA) is used to 'Calculate recommended values' and 'Propagate values from intermediate properties.' The module 'Tune servers' specifically covers WCA as the primary tool for this.",
+    "objective": "Server Tuning & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "type": "single"
+  },
+  {
+    "id": 87,
+    "topic": "System Administration & Maintenance",
+    "difficulty": "medium",
+    "question": "The xconfmanager utility in Windchill is used to do which of the following?",
+    "options": [
+      "Back up the Windchill database and file vaults",
+      "Manage and modify Windchill configuration property files, propagate changes, and validate them",
+      "Manage background queue entries and their states",
+      "Monitor server performance using JMX metrics in real time"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The manual's module on 'Manage properties' covers xconfmanager as the tool to 'Describe the xconfmanager utility,' 'Identify xconfmanager options,' 'Use xconfmanager: example,' and 'Validate changes with xconfmanager.' It manages Windchill configuration property files.",
+    "objective": "Server Tuning & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "type": "single"
+  },
+  {
+    "id": 88,
+    "topic": "System Administration & Maintenance",
+    "difficulty": "easy",
+    "question": "The site.xconf file in Windchill is important for which reason?",
+    "options": [
+      "It defines the LDAP connection parameters for user authentication",
+      "It contains the database schema for all Windchill object types",
+      "It stores the life cycle and workflow templates for the site context",
+      "It is the master Windchill configuration property file that controls server behavior and settings"
+    ],
+    "correctAnswer": 3,
+    "explanation": "The Advanced Configuration manual specifically covers 'Describe the site.xconf file' as part of the 'Manage properties' module. The site.xconf is the central configuration file for Windchill server properties and settings.",
+    "objective": "Server Tuning & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "type": "single"
+  },
+  {
+    "id": 89,
+    "topic": "System Administration & Maintenance",
+    "difficulty": "easy",
+    "question": "Which type of Windchill backup requires stopping all Windchill services before the backup begins?",
+    "options": [
+      "Online backup",
+      "Cold backup",
+      "Hot backup",
+      "Incremental backup"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The Advanced Configuration manual covers both 'Perform a cold backup' and 'Perform a hot backup' in the backup and recovery module. A cold backup requires stopping Windchill services (the system is 'cold'/offline) while a hot backup can be performed while Windchill is running.",
+    "objective": "Server Tuning & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "type": "single"
+  },
+  {
+    "id": 90,
+    "topic": "System Administration & Maintenance",
+    "difficulty": "medium",
+    "question": "What is the purpose of the WContentVerify tool in Windchill?",
+    "options": [
+      "It validates the XML syntax of all object initialization rules in the system",
+      "It verifies the integrity of content stored in file vaults by comparing checksums",
+      "It verifies that all Windchill license keys are current and valid",
+      "It checks that all background queues are processing correctly"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The Advanced Configuration manual includes 'Use the WContentVerify tool' in the backup and recovery module. This tool is used to verify file vault content integrity as part of vault backup and recovery best practices.",
+    "objective": "Server Tuning & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "type": "single"
+  },
+  {
+    "id": 91,
+    "topic": "System Administration & Maintenance",
+    "difficulty": "medium",
+    "question": "In Windchill background queue management, which component must be configured to allow queues to be processed on a separate server from the main method server?",
+    "options": [
+      "A distributed cache server",
+      "A background method server",
+      "A dedicated indexing server",
+      "A visualization publication worker server"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The Advanced Configuration manual covers 'Configure a background method server,' 'Configure multiple background method servers,' and 'Distribute background queues.' Background queues can be processed on dedicated background method servers separate from the main Windchill method server.",
+    "objective": "Server Tuning & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "type": "single"
+  },
+  {
+    "id": 92,
+    "topic": "System Administration & Maintenance",
+    "difficulty": "medium",
+    "question": "Which JMX client tool is specifically mentioned in the Windchill Advanced Configuration manual for modifying property values at runtime?",
+    "options": [
+      "JConsole",
+      "JProfiler",
+      "VisualVM",
+      "Java Mission Control"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The Advanced Configuration manual specifically covers 'Use JConsole to modify property values,' 'Activity: Manage Windchill properties using JConsole,' and 'Activity: Monitor Windchill performance using JConsole.' JConsole is the primary JMX client mentioned.",
+    "objective": "Server Tuning & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "type": "single"
+  },
+  {
+    "id": 93,
+    "topic": "System Administration & Maintenance",
+    "difficulty": "hard",
+    "question": "What is the primary purpose of suspending background queues before performing a backup in Windchill?",
+    "options": [
+      "To reduce CPU usage during the backup so the backup completes faster",
+      "To release database locks held by queue processing threads before backup",
+      "To clear the queue cache and allow it to be backed up separately",
+      "To ensure data consistency by preventing changes to the system during the backup window"
+    ],
+    "correctAnswer": 3,
+    "explanation": "The Advanced Configuration manual covers 'Suspend background queues' as part of the hot backup procedure. Suspending queues ensures data consistency by halting background processing that could modify data during the backup, producing a consistent backup set.",
+    "objective": "Server Tuning & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "type": "single"
+  },
+  {
+    "id": 94,
+    "topic": "System Administration & Maintenance",
+    "difficulty": "easy",
+    "question": "The System Configuration Collector (SCC) in Windchill is used for which purpose?",
+    "options": [
+      "It captures a thread dump of all running Java processes for debugging",
+      "It collects performance metrics for the Windchill Configuration Assistant calculations",
+      "It collects system diagnostics and configuration information for troubleshooting and sharing with PTC Support",
+      "It collects all user activity logs for security auditing"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The Advanced Configuration manual covers 'Activity: Collect system data with the System Configuration Collector (SCC)' and 'Collect and send diagnostic data to PTC.' The SCC gathers system configuration information for diagnostics and PTC technical support.",
+    "objective": "Server Tuning & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "type": "single"
+  },
+  {
+    "id": 95,
+    "topic": "System Administration & Maintenance",
+    "difficulty": "easy",
+    "question": "What is a file vault in Windchill?",
+    "options": [
+      "A backup archive created by the cold backup process",
+      "A storage location where Windchill stores content files associated with managed objects",
+      "A database table that stores metadata for all Windchill documents",
+      "An encrypted container for storing sensitive product data protected by digital certificates"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The Advanced Configuration manual module 'Store content using file vaults' describes file vaults as storage locations where Windchill stores the actual content files (such as CAD files and documents) associated with managed objects, separate from the metadata stored in the database.",
+    "objective": "Server Tuning & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "type": "single"
+  },
+  {
+    "id": 96,
+    "topic": "CAD Data Management",
+    "difficulty": "easy",
+    "question": "What is the key benefit of the workspace architecture in Windchill's CAD integration?",
+    "options": [
+      "It provides a local working area where CAD users can work with files before checking them back into Windchill",
+      "It stores CAD files in a distributed cloud environment for global access",
+      "It automatically publishes visualization viewables each time a CAD file is saved",
+      "It provides a centralized location where all users can edit the same CAD file simultaneously"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The Technical Essentials manual section 'Identify the benefits of the workspace architecture' and 'Use workspaces to manage CAD data: overview' describe workspaces as local working areas for CAD users to manage their active CAD files separately from the Windchill server.",
+    "domain": "CAD Data Management",
+    "type": "single"
+  },
+  {
+    "id": 97,
+    "topic": "CAD Data Management",
+    "difficulty": "medium",
+    "question": "In the CAD data management workflow, what does 'checking out' a CAD document accomplish?",
+    "options": [
+      "It copies the CAD file from Windchill to the user's local workspace and locks it to prevent others from modifying it",
+      "It exports the CAD file to a neutral format such as STEP or IGES",
+      "It transfers ownership of the CAD file to the checking-out user permanently",
+      "It publishes the CAD file as a lightweight viewable in the Creo View format"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The Technical Essentials manual section 'Update CAD documents: check out' describes check out as the process of copying a CAD document to the workspace for editing while locking it in Windchill to prevent concurrent modifications.",
+    "domain": "CAD Data Management",
+    "type": "single"
+  },
+  {
+    "id": 98,
+    "topic": "CAD Data Management",
+    "difficulty": "medium",
+    "question": "Which Windchill object class represents CAD documents in the system, and stores all types of CAD files including parts, assemblies, and drawings?",
+    "options": [
+      "wt.doc.WTDocument",
+      "wt.part.WTPart",
+      "wt.fc.WTObject",
+      "EPMDocument"
+    ],
+    "correctAnswer": 3,
+    "explanation": "The Technical Essentials manual section 'Identify characteristics of CAD documents' and the Advanced Configuration manual both state that 'the EPMDocument class represents all CAD documents.' EPM stands for Engineering Process Management.",
+    "domain": "CAD Data Management",
+    "type": "single"
+  },
+  {
+    "id": 99,
+    "topic": "CAD Data Management",
+    "difficulty": "medium",
+    "question": "What is the first step required before a Creo user can manage CAD data in Windchill?",
+    "options": [
+      "Install the Windchill PDMLink client on the workstation",
+      "Check out an existing CAD document from Windchill",
+      "Register a Windchill server with the CAD tool (Creo)",
+      "Create a workspace in Windchill"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The Technical Essentials manual section 'Register a Windchill server with your CAD tool' and the activity 'Register a Windchill server in Creo and create a workspace' show that registering the Windchill server in Creo is the prerequisite step before workspaces can be created and CAD data managed.",
+    "domain": "CAD Data Management",
+    "type": "single"
+  },
+  {
+    "id": 100,
+    "topic": "CAD Data Management",
+    "difficulty": "medium",
+    "question": "In Windchill's CAD-centric approach, what is the primary driver of part structure and product data?",
+    "options": [
+      "The WTPart and BOM structure drives the CAD document organization",
+      "An ERP system's manufacturing BOM drives the CAD structure",
+      "The life cycle template drives both the CAD assembly and WTPart creation",
+      "The CAD assembly structure drives the Windchill part structure and product data"
+    ],
+    "correctAnswer": 3,
+    "explanation": "The Technical Essentials manual section 'Describe the CAD-centric approach to product development' explains that in the CAD-centric approach, the CAD assembly and its structure are the primary drivers, with Windchill WTParts created from or synchronized with the CAD structure, as opposed to the part-centric approach where WTParts lead.",
+    "domain": "CAD Data Management",
+    "type": "single"
+  }
+]

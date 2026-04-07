@@ -1,0 +1,2552 @@
+[
+  {
+    "id": 351,
+    "question": "What is the primary objective of Windchill Visualization Services in an enterprise deployment?",
+    "options": [
+      "To replace the relational database engine",
+      "To create object numbering rules during authoring",
+      "To define context templates at the organization level",
+      "To provide generated viewables for product review without requiring native authoring tools"
+    ],
+    "correctAnswer": 3,
+    "explanation": "WVS exists to generate viewables that support downstream visualization and review.",
+    "topic": "CAD Data Management",
+    "domain": "CAD Data Management",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "WVS"
+  },
+  {
+    "id": 352,
+    "question": "What is the specific job of a CAD worker in the WVS pipeline?",
+    "options": [
+      "To convert source authoring files into publishable visualization outputs",
+      "To replicate vault content to remote sites",
+      "To resolve OIR precedence for CAD subtypes",
+      "To execute all workflow approvals for CAD objects"
+    ],
+    "correctAnswer": 0,
+    "explanation": "CAD workers perform the actual conversion work needed for visualization publishing.",
+    "topic": "CAD Data Management",
+    "domain": "CAD Data Management",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "WVS"
+  },
+  {
+    "id": 353,
+    "question": "Why must the worker host typically be compatible with the authoring file type it processes?",
+    "options": [
+      "Because the LDAP server runs locally on every worker",
+      "Because the worker relies on supported conversion capability for that source format",
+      "Because queue management requires a separate database on each worker",
+      "Because access control rules are stored in the authoring file"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Workers need compatible conversion capability for the source file type they process.",
+    "topic": "CAD Data Management",
+    "domain": "CAD Data Management",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "WVS"
+  },
+  {
+    "id": 354,
+    "question": "What do publish rules help determine in a WVS implementation?",
+    "options": [
+      "Which representations or output types should be generated for specific publishing scenarios",
+      "How a baseline number is formatted",
+      "When publishing occurs and which output artifacts are generated",
+      "Which organization owns a WTPart master"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Publish rules define when and what WVS publishes; selecting specific output types for specific scenarios is part of that broader rule behavior.",
+    "topic": "CAD Data Management",
+    "domain": "CAD Data Management",
+    "difficulty": "hard",
+    "type": "single",
+    "objective": "WVS"
+  },
+  {
+    "id": 355,
+    "question": "How does a representation differ from a source CAD file?",
+    "options": [
+      "The representation contains all editable modeling intelligence",
+      "The representation replaces the need for check-in",
+      "The representation is the object master, while the source file is only a local cache",
+      "The representation is a viewable derivative, while the source file remains the authoritative authoring content"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Representations support viewing; source files remain the authoritative authored content.",
+    "topic": "CAD Data Management",
+    "domain": "CAD Data Management",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Representations"
+  },
+  {
+    "id": 356,
+    "question": "Why are representations especially valuable to manufacturing, service, or quality users?",
+    "options": [
+      "They can review product data without needing the original CAD application",
+      "They can avoid the need for a Windchill account",
+      "They can revise the model directly from the browser with no governance",
+      "They can bypass role-based access checks"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Representations enable broad review access without requiring native CAD tools.",
+    "topic": "CAD Data Management",
+    "domain": "CAD Data Management",
+    "difficulty": "easy",
+    "type": "single",
+    "objective": "Representations"
+  },
+  {
+    "id": 357,
+    "question": "What usually happens when source content changes after a representation has already been published?",
+    "options": [
+      "The object is forced into Obsolete state",
+      "The existing representation may become outdated until it is republished",
+      "The representation becomes the new primary content automatically",
+      "The change is ignored because published viewables are immutable"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Changed source content can leave existing representations stale until republished.",
+    "topic": "CAD Data Management",
+    "domain": "CAD Data Management",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Representations"
+  },
+  {
+    "id": 358,
+    "question": "Why would an administrator trigger a republish of a representation?",
+    "options": [
+      "To reset all queue entries to severe",
+      "To create a new WTPart master",
+      "To regenerate a missing or stale viewable for the current source content",
+      "To move the object to a new organization context"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Republishing is used to regenerate viewables when the existing one is missing or out of date.",
+    "topic": "CAD Data Management",
+    "domain": "CAD Data Management",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Representations"
+  },
+  {
+    "id": 359,
+    "question": "Why is publishing often queued rather than run inline with a user action?",
+    "options": [
+      "To make source files editable in Creo View",
+      "To ensure every user sees the same table layout",
+      "To bypass lifecycle routing rules",
+      "To keep resource-intensive conversion work out of the interactive user transaction path"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Queue-based publishing avoids blocking user actions with conversion work.",
+    "topic": "CAD Data Management",
+    "domain": "CAD Data Management",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "WVS"
+  },
+  {
+    "id": 360,
+    "question": "What is one common criterion used to select the right worker for a publish job?",
+    "options": [
+      "The source file type and required conversion capability",
+      "The organization role of the object creator",
+      "The current default object type preference",
+      "The last queue processed by JMX"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Worker selection is usually driven by source format and conversion capability.",
+    "topic": "CAD Data Management",
+    "domain": "CAD Data Management",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "WVS"
+  },
+  {
+    "id": 361,
+    "question": "Why is Workgroup Manager important in a non-native CAD or office-authoring integration with Windchill?",
+    "options": [
+      "To replace the need for the Method Server",
+      "To mediate managed interactions between the authoring application and Windchill",
+      "To define ACL absolute deny rules",
+      "To generate security audit reports"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Workgroup Manager matters because it provides the managed integration layer between supported authoring tools and Windchill.",
+    "topic": "CAD Data Management",
+    "domain": "CAD Data Management",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Workgroup Manager integration value"
+  },
+  {
+    "id": 362,
+    "question": "What kind of data does an active workspace primarily contain?",
+    "options": [
+      "Only published viewables for released parts",
+      "Only configuration templates for new contexts",
+      "The user working set of in-progress managed design data",
+      "Only archived queue entries"
+    ],
+    "correctAnswer": 2,
+    "explanation": "A workspace contains the user working set for managed design activity.",
+    "topic": "CAD Data Management",
+    "domain": "CAD Data Management",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Workspaces"
+  },
+  {
+    "id": 363,
+    "question": "After a designer checks in a completed CAD change, which Windchill location becomes the authoritative repository for that committed iteration?",
+    "options": [
+      "A user-specific offline cache with no server metadata",
+      "A visualization-only vault with no source files",
+      "A profile-specific UI layer",
+      "The managed commonspace repository that stores checked-in authoritative iterations"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Once data is checked in, commonspace becomes the authoritative managed repository for that committed iteration.",
+    "topic": "CAD Data Management",
+    "domain": "CAD Data Management",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Commonspace authority after check-in"
+  },
+  {
+    "id": 364,
+    "question": "What is accomplished by uploading a file into a workspace?",
+    "options": [
+      "The content is placed into the managed working area before commonspace check-in",
+      "The content is converted directly into a baseline",
+      "The content is assigned an absolute deny rule",
+      "The content is immediately released to production"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Upload places data into the workspace; it does not by itself release or baseline the data.",
+    "topic": "CAD Data Management",
+    "domain": "CAD Data Management",
+    "difficulty": "easy",
+    "type": "single",
+    "objective": "Workspaces"
+  },
+  {
+    "id": 365,
+    "question": "What is accomplished by checking content into commonspace?",
+    "options": [
+      "The queue is moved to a replica server",
+      "A managed server iteration is committed to the authoritative repository",
+      "The preference hierarchy is reset",
+      "The product context is converted into a Project"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Check-in commits a managed iteration into commonspace.",
+    "topic": "CAD Data Management",
+    "domain": "CAD Data Management",
+    "difficulty": "easy",
+    "type": "single",
+    "objective": "Workspaces"
+  },
+  {
+    "id": 366,
+    "question": "Why is collecting dependencies during CAD upload or check-in important?",
+    "options": [
+      "It converts all dependencies to secondary content",
+      "It forces a new baseline at every iteration",
+      "It helps preserve a complete and consistent managed design set",
+      "It avoids all need for access control"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Collecting dependencies helps keep managed design data complete and consistent.",
+    "topic": "CAD Data Management",
+    "domain": "CAD Data Management",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "CAD dependencies"
+  },
+  {
+    "id": 367,
+    "question": "What is one risk of checking in only a top-level CAD file without needed dependencies?",
+    "options": [
+      "The database enters backup mode",
+      "The shared team is deleted",
+      "The object number changes automatically",
+      "The managed design set can become incomplete or inconsistent"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Omitting required dependencies can leave managed design data incomplete or inconsistent.",
+    "topic": "CAD Data Management",
+    "domain": "CAD Data Management",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "CAD dependencies"
+  },
+  {
+    "id": 368,
+    "question": "What is the main reason browser users rely on representations instead of native source files?",
+    "options": [
+      "Representations are optimized for review and do not require the native authoring application",
+      "Representations replace the need for commonspace",
+      "Representations always contain more design intelligence than source files",
+      "Representations bypass all licensing requirements for Windchill"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Representations are meant for browser review, not full authoring.",
+    "topic": "CAD Data Management",
+    "domain": "CAD Data Management",
+    "difficulty": "easy",
+    "type": "single",
+    "objective": "Representations"
+  },
+  {
+    "id": 369,
+    "question": "What is the likely user-facing effect of a large WVS publish queue backlog?",
+    "options": [
+      "The LDAP server becomes the file vault",
+      "Viewables appear later than expected even though source objects already exist",
+      "The source metadata disappears from Windchill",
+      "All checked-in data is converted to Released automatically"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Queue backlog affects how quickly published viewables become available.",
+    "topic": "CAD Data Management",
+    "domain": "CAD Data Management",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "WVS"
+  },
+  {
+    "id": 370,
+    "question": "Why might an administrator prefer background publishing for large CAD assemblies?",
+    "options": [
+      "To force the output into the database instead of the vault",
+      "To bypass lifecycle access control",
+      "To avoid tying up interactive transactions while large conversions run",
+      "To prevent the assembly from having a WTPart link"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Background publishing is preferred for heavy conversions that should not block interactive activity.",
+    "topic": "CAD Data Management",
+    "domain": "CAD Data Management",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "WVS"
+  },
+  {
+    "id": 371,
+    "question": "What is the primary purpose of the Occurrences table or tab in a structure context?",
+    "options": [
+      "To identify replica vault folder locations",
+      "To list all users who have queue administrator rights",
+      "To display locked preferences only",
+      "To show where and how a child is used inside parent structures"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Occurrences help users inspect usage-specific positions inside structures.",
+    "topic": "PLM Foundations",
+    "domain": "PLM Foundations",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Occurrences"
+  },
+  {
+    "id": 372,
+    "question": "Where is quantity typically interpreted in a product structure?",
+    "options": [
+      "At the parent-child usage level within the structure",
+      "At the LDAP principal level",
+      "At the preference category level",
+      "At the representation level"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Quantity is a usage-related concept associated with the product structure relationship.",
+    "topic": "PLM Foundations",
+    "domain": "PLM Foundations",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Occurrences"
+  },
+  {
+    "id": 373,
+    "question": "Which value is most likely to be maintained per usage occurrence rather than globally on the part?",
+    "options": [
+      "Windchill installation path",
+      "Reference designator",
+      "Object master number",
+      "LDAP bind DN"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Reference designators are occurrence-specific.",
+    "topic": "PLM Foundations",
+    "domain": "PLM Foundations",
+    "difficulty": "easy",
+    "type": "single",
+    "objective": "Occurrences"
+  },
+  {
+    "id": 374,
+    "question": "What is the purpose of a find number in a structure context?",
+    "options": [
+      "To define the organization name of the object owner",
+      "To choose the queue where WVS publishes",
+      "To identify or order a usage occurrence within the parent structure",
+      "To determine whether a user can override a preference"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Find numbers are commonly used to identify and order BOM occurrences.",
+    "topic": "PLM Foundations",
+    "domain": "PLM Foundations",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Occurrences"
+  },
+  {
+    "id": 375,
+    "question": "Why is a baseline useful during design review?",
+    "options": [
+      "It guarantees every object is released",
+      "It disables future revisions for the captured parts",
+      "It replaces the need for structure filtering",
+      "It preserves the exact set of data being reviewed at that moment"
+    ],
+    "correctAnswer": 3,
+    "explanation": "A baseline captures the exact review set for later reference.",
+    "topic": "PLM Foundations",
+    "domain": "PLM Foundations",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Baselines"
+  },
+  {
+    "id": 376,
+    "question": "What does the Latest configuration specification provide that a baseline does not?",
+    "options": [
+      "A dynamically resolved current view of the structure",
+      "A permanent release lock",
+      "A queue execution history",
+      "An immutable snapshot ID"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Latest is dynamic, whereas a baseline is fixed.",
+    "topic": "PLM Foundations",
+    "domain": "PLM Foundations",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Configuration specifications"
+  },
+  {
+    "id": 377,
+    "question": "Why would a user apply the Change configuration specification?",
+    "options": [
+      "To display only workspace content",
+      "To view the product definition in the context of selected change notices",
+      "To force all occurrences to quantity one",
+      "To see only released iterations"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The Change configuration specification is used to view data in the context of selected change notices.",
+    "topic": "Change Management & Release",
+    "domain": "Change Management & Release",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Configuration specifications"
+  },
+  {
+    "id": 378,
+    "question": "Why would a user apply a Promotion Request filter to a structure?",
+    "options": [
+      "To copy the structure into a Project context",
+      "To convert viewables into source files",
+      "To inspect the set of data associated with a specific promotion event",
+      "To change the product numbering scheme"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Promotion Request filters help inspect release-candidate data associated with a promotion.",
+    "topic": "Change Management & Release",
+    "domain": "Change Management & Release",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Configuration specifications"
+  },
+  {
+    "id": 379,
+    "question": "When should Unit Effectivity be preferred over Date Effectivity?",
+    "options": [
+      "When only released data must be shown",
+      "When data must be filtered by a baseline snapshot",
+      "When applicability begins on a planned calendar date",
+      "When applicability is driven by serial-number or lot range"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Unit Effectivity is for serial or lot applicability.",
+    "topic": "PLM Foundations",
+    "domain": "PLM Foundations",
+    "difficulty": "easy",
+    "type": "single",
+    "objective": "Effectivity concepts"
+  },
+  {
+    "id": 380,
+    "question": "When should Date Effectivity be preferred over Unit Effectivity?",
+    "options": [
+      "When applicability begins on a defined calendar date",
+      "When only workspace content must be shown",
+      "When applicability is tied to a serial-number range",
+      "When a baseline snapshot is required"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Date Effectivity is for calendar-based applicability.",
+    "topic": "PLM Foundations",
+    "domain": "PLM Foundations",
+    "difficulty": "easy",
+    "type": "single",
+    "objective": "Effectivity concepts"
+  },
+  {
+    "id": 381,
+    "question": "What does effectivity primarily control in product configuration?",
+    "options": [
+      "Which organization template is displayed",
+      "Applicability of one version or configuration versus another",
+      "Whether a team role can approve a workflow task",
+      "How a queue entry is retried"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Effectivity is about applicability, not permissions or workflow routing.",
+    "topic": "PLM Foundations",
+    "domain": "PLM Foundations",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Effectivity concepts"
+  },
+  {
+    "id": 382,
+    "question": "What is the value of creating a Problem Report before implementation work begins?",
+    "options": [
+      "It automatically updates all shared teams",
+      "It directly releases the affected objects",
+      "It documents the issue or enhancement request so it can be analyzed formally",
+      "It replaces the need for a Change Notice"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Problem Reports are used for formal issue or enhancement capture before implementation approval.",
+    "topic": "Change Management & Release",
+    "domain": "Change Management & Release",
+    "difficulty": "easy",
+    "type": "single",
+    "objective": "Problem Reports"
+  },
+  {
+    "id": 383,
+    "question": "What is the primary value of a Change Request?",
+    "options": [
+      "It chooses the default view table layout",
+      "It records and evaluates proposed change business justification before implementation is approved",
+      "It manages replica-server schedules",
+      "It evaluates and justifies a proposed change before implementation is authorized"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Change Requests are used for evaluation and justification before implementation approval; recording proposed-change business justification is part of that purpose, but the broader evaluation-and-authorization framing is more complete.",
+    "topic": "Change Management & Release",
+    "domain": "Change Management & Release",
+    "difficulty": "hard",
+    "type": "single",
+    "objective": "Change Requests"
+  },
+  {
+    "id": 384,
+    "question": "Which change object typically manages the approved implementation, reviews, and business-data updates?",
+    "options": [
+      "Change Notice",
+      "Problem Report",
+      "Variance",
+      "Baseline"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The Change Notice manages the approved implementation process.",
+    "topic": "Change Management & Release",
+    "domain": "Change Management & Release",
+    "difficulty": "easy",
+    "type": "single",
+    "objective": "Change Notices"
+  },
+  {
+    "id": 385,
+    "question": "Which object is best suited to tracking a discrete assignment inside an approved change plan?",
+    "options": [
+      "Profile",
+      "Change Task",
+      "Preference",
+      "Replica Server"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Change Tasks are used to track discrete implementation work inside an approved plan.",
+    "topic": "Change Management & Release",
+    "domain": "Change Management & Release",
+    "difficulty": "easy",
+    "type": "single",
+    "objective": "Change Tasks"
+  },
+  {
+    "id": 386,
+    "question": "What is the purpose of a Variance in change management?",
+    "options": [
+      "To report a defect for root-cause analysis",
+      "To create a new type and attribute definition",
+      "To authorize a controlled exception from the designed configuration for limited use",
+      "To schedule WVS publishing"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Variances authorize controlled exceptions rather than simply documenting problems.",
+    "topic": "Change Management & Release",
+    "domain": "Change Management & Release",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Variances"
+  },
+  {
+    "id": 387,
+    "question": "During the Review and Audit stage, what should the change team confirm before closing the process?",
+    "options": [
+      "That the first baseline of the product has been created automatically",
+      "That the organization template was re-applied to the context",
+      "That new LDAP users were generated for all reviewers",
+      "That the approved change was implemented correctly and the result is auditable"
+    ],
+    "correctAnswer": 3,
+    "explanation": "The Review and Audit stage is where the team confirms the approved change was implemented correctly and that closure is supported by auditability.",
+    "topic": "Change Management & Release",
+    "domain": "Change Management & Release",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Review and Audit confirmation"
+  },
+  {
+    "id": 388,
+    "question": "What does release through change enable?",
+    "options": [
+      "Formal release of new or revised data through the change process",
+      "Automatic creation of shared teams",
+      "Replacement of promotion processes in all cases",
+      "Automatic replication of content after every check-in"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Release through change allows the change process to release data formally.",
+    "topic": "Change Management & Release",
+    "domain": "Change Management & Release",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Change process"
+  },
+  {
+    "id": 389,
+    "question": "Why is automatic routing valuable in workflow-driven change processes?",
+    "options": [
+      "It sets all objects to Released immediately",
+      "It moves tasks to the right participants without requiring manual handoff at every step",
+      "It prevents baselines from being created",
+      "It replaces the need for ACL rules"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Automatic routing helps workflow tasks reach the appropriate participants efficiently.",
+    "topic": "Life Cycles & Workflows",
+    "domain": "Life Cycles & Workflows",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Workflow-driven change"
+  },
+  {
+    "id": 390,
+    "question": "What is the purpose of sequencing Change Tasks?",
+    "options": [
+      "To force all tasks into one shared team",
+      "To convert each task into a problem report",
+      "To enforce a logical order where some implementation work depends on earlier tasks",
+      "To let users bypass change approval entirely"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Sequencing is used when implementation work has dependencies.",
+    "topic": "Change Management & Release",
+    "domain": "Change Management & Release",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Change Tasks"
+  },
+  {
+    "id": 391,
+    "question": "Why would an administrator use Queue Management UI rather than only operating-system logs?",
+    "options": [
+      "It defines CAD worker host mappings",
+      "It replaces JMX monitoring completely",
+      "It is the only place where ACLs can be edited",
+      "It provides queue-specific operational visibility inside Windchill"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Queue Management gives in-application visibility into queue behavior.",
+    "topic": "System Administration & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Queue monitoring"
+  },
+  {
+    "id": 392,
+    "question": "What kind of question can a throughput report answer well?",
+    "options": [
+      "When system processing activity is trending higher or lower over time",
+      "Which representation is attached to a source file",
+      "Whether processing volume or workload patterns may indicate operational bottlenecks",
+      "Which library context owns a standard part"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Throughput reports help answer workload and trend questions; identifying possible bottlenecks is a likely use, but the clearest core fit is trend and activity volume over time.",
+    "topic": "System Administration & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Audit and usage reporting"
+  },
+  {
+    "id": 393,
+    "question": "What kind of question can a security auditing report answer well?",
+    "options": [
+      "Which queue entry has the oldest retry timestamp",
+      "Which security-relevant actions occurred and when",
+      "Whether a suspicious access or administrative action needs traceable evidence for investigation",
+      "Which product structure has the most children"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Security auditing reports focus on security-relevant activity and traceability; they are valuable precisely because they support investigation of suspicious or sensitive actions.",
+    "topic": "System Administration & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Audit and usage reporting"
+  },
+  {
+    "id": 394,
+    "question": "What kind of question can a usage report answer well?",
+    "options": [
+      "Which occurrence has a reference designator",
+      "Whether a feature, app, or area of the system is seeing meaningful adoption over time",
+      "How broadly a feature or area of the system is being used",
+      "Which queue entry can be retried"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Usage reports help analyze adoption and usage patterns; trend questions about whether a feature is being used meaningfully are part of that broader purpose.",
+    "topic": "System Administration & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Audit and usage reporting"
+  },
+  {
+    "id": 395,
+    "question": "Why is WCA useful before making broad system-tuning changes?",
+    "options": [
+      "It deletes failed queue entries",
+      "It automatically republishes every representation",
+      "It recalculates all WTPart structures",
+      "It provides a controlled way to review configuration-related settings"
+    ],
+    "correctAnswer": 3,
+    "explanation": "WCA helps administrators inspect and adjust configuration settings carefully.",
+    "topic": "System Administration & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "WCA"
+  },
+  {
+    "id": 396,
+    "question": "What does the Visualization preference area most directly affect?",
+    "options": [
+      "User behavior around viewing and interacting with visualized data",
+      "Server-side OIR precedence",
+      "Replica-server scheduling",
+      "Context team role resolution"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Visualization preferences shape UI behavior around visualized data.",
+    "topic": "Business Administration & Contexts",
+    "domain": "Business Administration & Contexts",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Preferences"
+  },
+  {
+    "id": 397,
+    "question": "What is one benefit of Default Object Types preferences?",
+    "options": [
+      "They eliminate the need for user permissions",
+      "They reduce repeated object-type selection steps during creation",
+      "They replace all context templates",
+      "They prevent revisions from being created"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Default object type preferences streamline creation workflows.",
+    "topic": "Business Administration & Contexts",
+    "domain": "Business Administration & Contexts",
+    "difficulty": "easy",
+    "type": "single",
+    "objective": "Preferences"
+  },
+  {
+    "id": 398,
+    "question": "What is one benefit of Workspace Management preferences?",
+    "options": [
+      "They convert Product contexts into Projects",
+      "They define LDAP replication rules",
+      "They let administrators and users tune workspace-related behavior without altering core code",
+      "They make baselines update automatically"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Workspace Management preferences tune behavior in supported ways without code changes.",
+    "topic": "CAD Data Management",
+    "domain": "CAD Data Management",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Preferences"
+  },
+  {
+    "id": 399,
+    "question": "What is one benefit of Configuration Specification preferences?",
+    "options": [
+      "They determine who may create Change Notices",
+      "They assign vault folder locations directly",
+      "They replace occurrence-level data",
+      "They can shape default behavior when users work with structure filters"
+    ],
+    "correctAnswer": 3,
+    "explanation": "These preferences influence structure-filter behavior and defaults.",
+    "topic": "PLM Foundations",
+    "domain": "PLM Foundations",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Preferences"
+  },
+  {
+    "id": 400,
+    "question": "What does the preference hierarchy allow an implementation team to balance?",
+    "options": [
+      "Enterprise consistency with local or user-specific needs",
+      "Workflow robots with directory-server roles",
+      "Baselines with shared teams",
+      "Vault replication with object numbering"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Preference hierarchies balance enterprise standards against scoped flexibility.",
+    "topic": "Business Administration & Contexts",
+    "domain": "Business Administration & Contexts",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Preferences"
+  },
+  {
+    "id": 401,
+    "question": "What is the main purpose of a Windchill profile?",
+    "options": [
+      "To define content replication targets",
+      "To simplify and tailor the user interface for a particular persona",
+      "To create life cycle templates",
+      "To determine the database backup mode"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Profiles tailor the UI for specific personas or roles.",
+    "topic": "Business Administration & Contexts",
+    "domain": "Business Administration & Contexts",
+    "difficulty": "easy",
+    "type": "single",
+    "objective": "Profiles"
+  },
+  {
+    "id": 402,
+    "question": "What can a profile not do by itself?",
+    "options": [
+      "Reduce visible complexity for casual users",
+      "Support a role-focused UX",
+      "Grant access to data that the user lacks permission to read",
+      "Hide interface elements from a user persona"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Profiles do not override access control permissions.",
+    "topic": "Business Administration & Contexts",
+    "domain": "Business Administration & Contexts",
+    "difficulty": "hard",
+    "type": "single",
+    "objective": "Profiles"
+  },
+  {
+    "id": 403,
+    "question": "Why are templates important when creating new contexts?",
+    "options": [
+      "They automatically publish CAD viewables",
+      "They bypass organization-level governance",
+      "They replace all access control policies globally",
+      "They help standardize initial setup across similar contexts"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Templates provide standardized starting configuration for new contexts.",
+    "topic": "Business Administration & Contexts",
+    "domain": "Business Administration & Contexts",
+    "difficulty": "easy",
+    "type": "single",
+    "objective": "Context templates"
+  },
+  {
+    "id": 404,
+    "question": "What does a template pick list control during context creation?",
+    "options": [
+      "Which predefined templates are available for the user to choose from",
+      "Which CAD worker publishes drawings",
+      "Which queues will process workflow robots",
+      "Which replica servers are online"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The template pick list controls available template choices during creation.",
+    "topic": "Business Administration & Contexts",
+    "domain": "Business Administration & Contexts",
+    "difficulty": "easy",
+    "type": "single",
+    "objective": "Context templates"
+  },
+  {
+    "id": 405,
+    "question": "What is one reason to define preferences at the library or product context level?",
+    "options": [
+      "To make representations editable",
+      "To support local behavior within that context while preserving enterprise defaults elsewhere",
+      "To replace the commonspace repository",
+      "To force all users into the same profile"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Local context preferences let teams tune behavior without changing enterprise-wide defaults.",
+    "topic": "Business Administration & Contexts",
+    "domain": "Business Administration & Contexts",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Preferences"
+  },
+  {
+    "id": 406,
+    "question": "What does the Collect Objects step in a move operation help prevent?",
+    "options": [
+      "Queue entries from being retried",
+      "Users from changing personal preferences",
+      "Accidentally moving an object without reviewing important related data that should move with it",
+      "Representations from being published asynchronously"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Collect Objects reduces the risk of moving incomplete data sets.",
+    "topic": "System Administration & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Move Wizard"
+  },
+  {
+    "id": 407,
+    "question": "Which kind of security-related data may be included when moving an object with its related data?",
+    "options": [
+      "Browser session cookies",
+      "LDAP administrator passwords",
+      "Database audit logs only",
+      "Ad-hoc access control rules associated with the object"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Ad-hoc access control rules can be among the related data moved with an object.",
+    "topic": "System Administration & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "difficulty": "hard",
+    "type": "single",
+    "objective": "Move Wizard"
+  },
+  {
+    "id": 408,
+    "question": "Which collaboration artifacts may also move with an object when collected appropriately?",
+    "options": [
+      "Discussions, topics, and postings",
+      "The Oracle listener configuration",
+      "The Java runtime bundled with the browser",
+      "The end user's local Creo trail files"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Move operations can collect collaboration artifacts such as discussions and postings.",
+    "topic": "System Administration & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Move Wizard"
+  },
+  {
+    "id": 409,
+    "question": "Which product-definition artifacts may be moved along with a selected object when collected by the Move Wizard?",
+    "options": [
+      "Only site-level preferences",
+      "Product configurations or product instances related to the object",
+      "Only queue entries in severe state",
+      "Only organization principals"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Move operations can collect related product-definition artifacts such as product configurations and instances.",
+    "topic": "System Administration & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "difficulty": "hard",
+    "type": "single",
+    "objective": "Move Wizard"
+  },
+  {
+    "id": 410,
+    "question": "Why is a central vault important even in a replicated environment?",
+    "options": [
+      "It removes the need for any database backups",
+      "It preserves a governed source of content even when replicas are distributed outward",
+      "It preserves an authoritative source of content while replicas serve distributed access",
+      "It replaces every file worker with a queue"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Centralized authoritative storage remains important even when content is replicated outward; governance of the source copy is the key reason.",
+    "topic": "System Administration & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Replication architecture"
+  },
+  {
+    "id": 411,
+    "question": "What problem do replica servers primarily help solve?",
+    "options": [
+      "Insufficient profile customization for administrators",
+      "Life cycle template name collisions",
+      "Lack of Change Notice roles",
+      "Slow access to large content across distributed locations"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Replica servers are used to improve content access for distributed users.",
+    "topic": "System Administration & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Replication architecture"
+  },
+  {
+    "id": 412,
+    "question": "What is the main administrative purpose of a replication rule schedule?",
+    "options": [
+      "To control when replication jobs are allowed to run",
+      "To assign owners to Change Tasks",
+      "To set visualization preferences",
+      "To define when a part may be revised"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Replication schedules define when replication activity may run.",
+    "topic": "System Administration & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "difficulty": "easy",
+    "type": "single",
+    "objective": "Replication scheduling"
+  },
+  {
+    "id": 413,
+    "question": "Why is file vaulting not the same as content replication?",
+    "options": [
+      "Vaulting is done by users, while replication is done by suppliers",
+      "Vaulting defines authoritative storage, while replication distributes copies of that stored content",
+      "Vaulting controls ACLs, while replication controls profiles",
+      "Vaulting is only for metadata, while replication is only for CAD"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Vaulting and replication are related but distinct storage concepts.",
+    "topic": "System Administration & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Replication architecture"
+  },
+  {
+    "id": 414,
+    "question": "What is one expected benefit of browser-based visualization through WVS?",
+    "options": [
+      "Removal of the need for commonspace check-in",
+      "Direct editing of the source assembly in the viewable",
+      "Broader review participation without native authoring-tool dependency",
+      "Automatic granting of modify access to all reviewers"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Browser-based visualization broadens participation in review processes.",
+    "topic": "CAD Data Management",
+    "domain": "CAD Data Management",
+    "difficulty": "easy",
+    "type": "single",
+    "objective": "WVS"
+  },
+  {
+    "id": 415,
+    "question": "What does a publish failure most directly affect?",
+    "options": [
+      "Site preference inheritance",
+      "Organization-template pick lists",
+      "Existence of the object master itself",
+      "Availability of the expected viewable output"
+    ],
+    "correctAnswer": 3,
+    "explanation": "A publish failure affects viewable generation, not the existence of the object master.",
+    "topic": "CAD Data Management",
+    "domain": "CAD Data Management",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "WVS"
+  },
+  {
+    "id": 416,
+    "question": "Why should worker compatibility be validated during implementation planning?",
+    "options": [
+      "Unsupported or mismatched conversion environments can prevent reliable publishing",
+      "It sets the product numbering seed",
+      "It determines whether WTParts can have attributes",
+      "It chooses the library context hierarchy"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Worker compatibility is critical for reliable conversion and publishing.",
+    "topic": "CAD Data Management",
+    "domain": "CAD Data Management",
+    "difficulty": "hard",
+    "type": "single",
+    "objective": "WVS"
+  },
+  {
+    "id": 417,
+    "question": "What is one reason to use queued publishing even if users want immediate visualization?",
+    "options": [
+      "Queued publishing converts Product contexts into Libraries",
+      "Queued publishing scales better and avoids tying up interactive transactions",
+      "Queued publishing is required for all non-CAD documents",
+      "Queued publishing disables all ACL evaluation"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Queued publishing is a scalability choice that protects interactive performance.",
+    "topic": "CAD Data Management",
+    "domain": "CAD Data Management",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "WVS"
+  },
+  {
+    "id": 418,
+    "question": "Why might a manual republish be necessary after a worker or rule fix?",
+    "options": [
+      "To rewrite the object master number",
+      "To create a new Change Notice automatically",
+      "To regenerate viewables that failed or were produced under the earlier incorrect configuration",
+      "To move the object to another context"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Republishing can be necessary after publishing configuration issues are corrected.",
+    "topic": "CAD Data Management",
+    "domain": "CAD Data Management",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "WVS"
+  },
+  {
+    "id": 419,
+    "question": "What is the main value of a browser viewable during cross-functional review?",
+    "options": [
+      "It forces all objects into Released state",
+      "It guarantees they can revise source geometry directly",
+      "It removes the need for permissions",
+      "It lets stakeholders inspect product data without requiring full CAD authoring capability"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Browser viewables support broad review participation without full CAD authoring.",
+    "topic": "CAD Data Management",
+    "domain": "CAD Data Management",
+    "difficulty": "easy",
+    "type": "single",
+    "objective": "Representations"
+  },
+  {
+    "id": 420,
+    "question": "What role does a local workspace play in CAD change isolation?",
+    "options": [
+      "It lets designers work on in-progress changes before committing them to commonspace",
+      "It permanently replaces commonspace for all released data",
+      "It stores only published PVZ files",
+      "It is where security audits are generated"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Workspaces isolate in-progress design work before check-in to commonspace.",
+    "topic": "CAD Data Management",
+    "domain": "CAD Data Management",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Workspaces"
+  },
+  {
+    "id": 421,
+    "question": "Why is check-in a more governance-significant action than upload to workspace?",
+    "options": [
+      "Because upload changes the life cycle but check-in does not",
+      "Because check-in commits a managed iteration to the authoritative repository",
+      "Because upload creates baselines while check-in creates none",
+      "Because upload bypasses OIRs"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Check-in commits governed data to commonspace, unlike workspace upload.",
+    "topic": "CAD Data Management",
+    "domain": "CAD Data Management",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Workspaces"
+  },
+  {
+    "id": 422,
+    "question": "What is a strong reason to capture a baseline before a formal review or milestone?",
+    "options": [
+      "To enforce all queue retries",
+      "To change the team template automatically",
+      "To preserve an exact reference set of the data under review",
+      "To move data into a Project context"
+    ],
+    "correctAnswer": 2,
+    "explanation": "A baseline preserves the exact review set at that moment.",
+    "topic": "PLM Foundations",
+    "domain": "PLM Foundations",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Baselines"
+  },
+  {
+    "id": 423,
+    "question": "Why is a Promotion Request filter useful for release readiness review?",
+    "options": [
+      "It recalculates all reference designators",
+      "It assigns profiles to manufacturing users",
+      "It republishes all CAD data in the workspace",
+      "It isolates the set of data associated with the proposed promotion event"
+    ],
+    "correctAnswer": 3,
+    "explanation": "The Promotion Request filter helps isolate release-candidate data.",
+    "topic": "Change Management & Release",
+    "domain": "Change Management & Release",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Configuration specifications"
+  },
+  {
+    "id": 424,
+    "question": "Why is a Change filter useful during change impact review?",
+    "options": [
+      "It shows product definition data in the context of selected change notices",
+      "It locks the data against future revisions",
+      "It changes serial effectivity to date effectivity",
+      "It reveals only private-domain ACL entries"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The Change filter helps users inspect data in the context of change notices.",
+    "topic": "Change Management & Release",
+    "domain": "Change Management & Release",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Configuration specifications"
+  },
+  {
+    "id": 425,
+    "question": "What makes Unit Effectivity especially useful in service or serialized-product contexts?",
+    "options": [
+      "It overrides product structure quantities",
+      "It can align configuration applicability to specific serial numbers or lots",
+      "It assigns life cycle transitions",
+      "It automatically creates problem reports"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Unit Effectivity supports serialized or lot-tracked applicability.",
+    "topic": "PLM Foundations",
+    "domain": "PLM Foundations",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Effectivity concepts"
+  },
+  {
+    "id": 426,
+    "question": "What makes Date Effectivity especially useful for planned engineering cutovers?",
+    "options": [
+      "It binds queue entries to a worker host",
+      "It locks a baseline from reuse",
+      "It aligns applicability to a known calendar date",
+      "It removes the need for released states"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Date Effectivity is appropriate when applicability changes on a planned date.",
+    "topic": "PLM Foundations",
+    "domain": "PLM Foundations",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Effectivity concepts"
+  },
+  {
+    "id": 427,
+    "question": "Why should a Variance not be used as a generic defect-reporting mechanism?",
+    "options": [
+      "Because Variances can be created only by the database administrator",
+      "Because Variances replace all Change Requests",
+      "Because Variances are only for CAD publishing",
+      "Because its role is to authorize a controlled deviation, not simply record an issue"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Variances authorize exceptions; they are not generic issue records.",
+    "topic": "Change Management & Release",
+    "domain": "Change Management & Release",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Variances"
+  },
+  {
+    "id": 428,
+    "question": "Why should a Problem Report not be treated as implementation authorization?",
+    "options": [
+      "Because it captures and communicates the issue, but approval and implementation are handled by later change objects",
+      "Because it is part of the queue subsystem",
+      "Because it automatically releases affected objects",
+      "Because it can only exist in Library contexts"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Problem Reports capture the need; later change objects govern approval and implementation.",
+    "topic": "Change Management & Release",
+    "domain": "Change Management & Release",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Problem Reports"
+  },
+  {
+    "id": 429,
+    "question": "What is the main purpose of Change Tasks after a change plan is approved?",
+    "options": [
+      "To capture baseline snapshots of preferences",
+      "To assign and track the discrete implementation work that must be completed",
+      "To define system preference inheritance",
+      "To schedule vault replication"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Change Tasks assign and track implementation work.",
+    "topic": "Change Management & Release",
+    "domain": "Change Management & Release",
+    "difficulty": "easy",
+    "type": "single",
+    "objective": "Change Tasks"
+  },
+  {
+    "id": 430,
+    "question": "Why is the Review and Audit stage important after implementation work completes?",
+    "options": [
+      "It resets the object to In Work",
+      "It republishes all CAD data automatically",
+      "It provides formal confirmation and traceability before the change closes",
+      "It reassigns all team roles to the creator"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Review and Audit is the formal confirmation and traceability stage after implementation.",
+    "topic": "Change Management & Release",
+    "domain": "Change Management & Release",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Change process"
+  },
+  {
+    "id": 431,
+    "question": "What is one reason implementation teams value release through change?",
+    "options": [
+      "It allows workspaces to replace commonspace",
+      "It guarantees that every change skips review",
+      "It removes the need for life cycle states entirely",
+      "It unifies change execution and data release under a governed process"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Release through change ties implementation and release together in a governed process.",
+    "topic": "Change Management & Release",
+    "domain": "Change Management & Release",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Change process"
+  },
+  {
+    "id": 432,
+    "question": "What does a profile primarily help reduce for casual or targeted users?",
+    "options": [
+      "Interface complexity",
+      "Database size",
+      "Vault storage cost",
+      "Queue execution time"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Profiles help reduce visible UI complexity for targeted personas.",
+    "topic": "Business Administration & Contexts",
+    "domain": "Business Administration & Contexts",
+    "difficulty": "easy",
+    "type": "single",
+    "objective": "Profiles"
+  },
+  {
+    "id": 433,
+    "question": "Why does access control still matter even when a profile hides most interface actions?",
+    "options": [
+      "Because profiles automatically grant all read access",
+      "Because permissions are enforced independently of UI tailoring",
+      "Because hidden actions override all ACL denies",
+      "Because profiles replace private domains"
+    ],
+    "correctAnswer": 1,
+    "explanation": "ACLs remain the real security boundary even when profiles simplify the UI.",
+    "topic": "Access Control, Teams & OIRs",
+    "domain": "Access Control, Teams & OIRs",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Profiles and access control"
+  },
+  {
+    "id": 434,
+    "question": "What is the main purpose of a site-level preference default?",
+    "options": [
+      "To create one-off exceptions for a single workspace only",
+      "To define CAD worker file mappings",
+      "To establish a broad starting value across the deployment",
+      "To store baseline snapshots"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Site-level preferences are broad defaults for the deployment.",
+    "topic": "Business Administration & Contexts",
+    "domain": "Business Administration & Contexts",
+    "difficulty": "easy",
+    "type": "single",
+    "objective": "Preferences"
+  },
+  {
+    "id": 435,
+    "question": "Why might a product context set a preference that differs from the organization default?",
+    "options": [
+      "To replace the site context completely",
+      "To redefine LDAP principals",
+      "To change occurrence quantities globally",
+      "To support the needs of that product while keeping the broader organizational default intact"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Product-level preferences can support local needs while preserving broader defaults elsewhere.",
+    "topic": "Business Administration & Contexts",
+    "domain": "Business Administration & Contexts",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Preferences"
+  },
+  {
+    "id": 436,
+    "question": "Why might a user-level preference exist in addition to context-level preferences?",
+    "options": [
+      "To allow personal working defaults within the limits allowed by administrators",
+      "To replace shared teams with local teams",
+      "To move objects between contexts",
+      "To override all access control rules"
+    ],
+    "correctAnswer": 0,
+    "explanation": "User preferences allow personal defaults within administrator-defined limits.",
+    "topic": "Business Administration & Contexts",
+    "domain": "Business Administration & Contexts",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Preferences"
+  },
+  {
+    "id": 437,
+    "question": "What is one benefit of locking a preference against downstream modification?",
+    "options": [
+      "It converts the preference into a representation",
+      "It preserves a required standard where local override would be risky",
+      "It merges Project data into Products automatically",
+      "It guarantees faster queue throughput"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Locking a preference enforces a required standard by preventing local overrides.",
+    "topic": "Business Administration & Contexts",
+    "domain": "Business Administration & Contexts",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Preferences"
+  },
+  {
+    "id": 438,
+    "question": "What does the Content preference category most directly influence?",
+    "options": [
+      "Team template inheritance",
+      "Life cycle transition labels",
+      "User behavior related to handling or displaying content",
+      "Queue retry intervals"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Content preferences affect how users interact with content-related behavior.",
+    "topic": "Business Administration & Contexts",
+    "domain": "Business Administration & Contexts",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Preferences"
+  },
+  {
+    "id": 439,
+    "question": "What does the Display preference category most directly influence?",
+    "options": [
+      "Object type inheritance rules",
+      "Change Task sequencing",
+      "Vault replication topology",
+      "General interface presentation behavior"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Display preferences affect general UI presentation behavior.",
+    "topic": "Business Administration & Contexts",
+    "domain": "Business Administration & Contexts",
+    "difficulty": "easy",
+    "type": "single",
+    "objective": "Preferences"
+  },
+  {
+    "id": 440,
+    "question": "Why are throughput reports useful for capacity planning?",
+    "options": [
+      "They help reveal workload patterns and possible bottlenecks",
+      "They replace queue monitoring altogether",
+      "They redefine the life cycle of released parts",
+      "They determine the next promotion state"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Throughput reporting supports capacity planning by exposing workload trends.",
+    "topic": "System Administration & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Audit and usage reporting"
+  },
+  {
+    "id": 441,
+    "question": "Why are security auditing reports useful during investigations?",
+    "options": [
+      "They transform viewables into source files",
+      "They provide traceable records of security-relevant activity",
+      "They reassign object ownership automatically",
+      "They create new baselines from queue history"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Security auditing reports support investigations with traceable records.",
+    "topic": "System Administration & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Audit and usage reporting"
+  },
+  {
+    "id": 442,
+    "question": "Why is JMX monitoring valuable in an enterprise monitoring strategy?",
+    "options": [
+      "It creates team templates on demand",
+      "It publishes CAD viewables directly to users",
+      "It exposes runtime information in a form external monitoring tools can consume",
+      "It replaces the need for database backups"
+    ],
+    "correctAnswer": 2,
+    "explanation": "JMX helps integrate Windchill runtime monitoring with external tools.",
+    "topic": "System Administration & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Queue monitoring"
+  },
+  {
+    "id": 443,
+    "question": "Why is WCA helpful during configuration reviews?",
+    "options": [
+      "It determines occurrence quantities",
+      "It generates change workflows from templates",
+      "It replaces ThingWorx in Navigate",
+      "It gives administrators a focused utility for examining system settings"
+    ],
+    "correctAnswer": 3,
+    "explanation": "WCA is useful because it centralizes review of configuration-related settings.",
+    "topic": "System Administration & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "difficulty": "easy",
+    "type": "single",
+    "objective": "WCA"
+  },
+  {
+    "id": 444,
+    "question": "What is one practical benefit of a baseline captured before release review?",
+    "options": [
+      "Teams can return to the exact approved snapshot later",
+      "The object automatically becomes obsolete after promotion",
+      "The baseline replaces all future revisions",
+      "The baseline deletes stale representations"
+    ],
+    "correctAnswer": 0,
+    "explanation": "A baseline preserves the exact reviewed state for future reference.",
+    "topic": "PLM Foundations",
+    "domain": "PLM Foundations",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Baselines"
+  },
+  {
+    "id": 445,
+    "question": "What is one practical benefit of configuration specifications versus fixed snapshots?",
+    "options": [
+      "They permanently freeze all objects in the product",
+      "They let users resolve structures dynamically for different scenarios",
+      "They override change management approvals",
+      "They move data between contexts"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Configuration specifications dynamically resolve structures for different business scenarios.",
+    "topic": "PLM Foundations",
+    "domain": "PLM Foundations",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Configuration specifications"
+  },
+  {
+    "id": 446,
+    "question": "What is effectivity fundamentally about?",
+    "options": [
+      "Access rights for administrators",
+      "Publishing output format selection",
+      "Applicability of configuration over time or unit range",
+      "Queue-entry deletion policies"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Effectivity defines applicability by date, lot, or serial range.",
+    "topic": "PLM Foundations",
+    "domain": "PLM Foundations",
+    "difficulty": "easy",
+    "type": "single",
+    "objective": "Effectivity concepts"
+  },
+  {
+    "id": 447,
+    "question": "Why is a Change Request valuable before implementation begins?",
+    "options": [
+      "It automatically checks in all affected data",
+      "It assigns a representation to every CAD document",
+      "It creates a new organization context",
+      "It provides a formal step to assess and justify the proposed change"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Change Requests provide formal evaluation before implementation is authorized.",
+    "topic": "Change Management & Release",
+    "domain": "Change Management & Release",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Change Requests"
+  },
+  {
+    "id": 448,
+    "question": "Why is a Problem Report still useful even if the issue seems obvious?",
+    "options": [
+      "It formalizes issue capture and creates traceability for later evaluation",
+      "It bypasses all governance because the issue is obvious",
+      "It replaces the need for affected items in Change Notices",
+      "It immediately authorizes production deviation"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Formal issue capture and traceability are valuable even for obvious problems.",
+    "topic": "Change Management & Release",
+    "domain": "Change Management & Release",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Problem Reports"
+  },
+  {
+    "id": 449,
+    "question": "What is one reason to avoid using a Variance where a Problem Report is more appropriate?",
+    "options": [
+      "A Variance cannot reference product data",
+      "A Variance authorizes an exception rather than documenting the root issue for evaluation",
+      "A Variance is only for queue monitoring",
+      "A Variance can only be created in Navigate"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Variances authorize exceptions; they are not substitutes for problem capture and evaluation.",
+    "topic": "Change Management & Release",
+    "domain": "Change Management & Release",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Variances"
+  },
+  {
+    "id": 450,
+    "question": "Why is it useful that Change Tasks can be assigned to designated users after plan approval?",
+    "options": [
+      "It guarantees every task is identical",
+      "It disables life cycle transitions during implementation",
+      "It translates the approved plan into accountable implementation work",
+      "It removes the need for all review and audit activity"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Assigned Change Tasks convert the approved plan into accountable work.",
+    "topic": "Change Management & Release",
+    "domain": "Change Management & Release",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Change Tasks"
+  },
+  {
+    "id": 451,
+    "question": "What is one advantage of Windchill Navigate for casual users?",
+    "options": [
+      "It disables access control for approved viewers",
+      "It reduces interface complexity by exposing a focused task-oriented experience",
+      "It replaces all CAD authoring tools",
+      "It provides focused app-based access to PLM data without the full Windchill interface complexity"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Navigate is useful because it offers focused app-based access for targeted users; reducing interface complexity is part of that value, but the stronger statement includes direct PLM-data access in a focused app experience.",
+    "topic": "Windchill Navigate",
+    "domain": "Windchill Navigate",
+    "difficulty": "easy",
+    "type": "single",
+    "objective": "Navigate"
+  },
+  {
+    "id": 452,
+    "question": "What role does ThingWorx Foundation play in Windchill Navigate?",
+    "options": [
+      "It provides the application platform used to deliver Navigate experiences",
+      "It acts as the Windchill Directory Server",
+      "It replaces Windchill REST Services entirely",
+      "It stores all CAD source files in place of the vault"
+    ],
+    "correctAnswer": 0,
+    "explanation": "ThingWorx Foundation is the application platform underlying Navigate.",
+    "topic": "Windchill Navigate",
+    "domain": "Windchill Navigate",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Navigate architecture"
+  },
+  {
+    "id": 453,
+    "question": "What role do Windchill REST Services play in Navigate?",
+    "options": [
+      "They manage database backup mode",
+      "They expose Windchill data and operations for app consumption",
+      "They create product contexts during organization setup",
+      "They define queue routing rules"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Windchill REST Services provide the data access layer used by Navigate apps.",
+    "topic": "Windchill Navigate",
+    "domain": "Windchill Navigate",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Navigate architecture"
+  },
+  {
+    "id": 454,
+    "question": "What is a key reason Navigate can be valuable in manufacturing or service use cases?",
+    "options": [
+      "It eliminates the need for object structures",
+      "It allows direct CAD authoring in the browser",
+      "It can surface just the needed PLM data in a simpler task-focused interface",
+      "It replaces all Windchill access control rules"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Navigate is valuable because it can present focused PLM data in simpler task-driven experiences.",
+    "topic": "Windchill Navigate",
+    "domain": "Windchill Navigate",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Navigate"
+  },
+  {
+    "id": 455,
+    "question": "What can the Navigate Administrator typically tailor in an app?",
+    "options": [
+      "Which organization context owns the data",
+      "Which life cycle transitions exist in Windchill",
+      "Which database schema columns back the object",
+      "Which attributes are visible to the user in that app"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Navigate administration often includes tailoring visible attributes in apps.",
+    "topic": "Windchill Navigate",
+    "domain": "Windchill Navigate",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Navigate administration"
+  },
+  {
+    "id": 456,
+    "question": "Why does Navigate not replace full Windchill for administrators or power users?",
+    "options": [
+      "Because it is designed for focused app experiences, not every deep administration workflow",
+      "Because it cannot read Windchill data at all",
+      "Because it stores no credentials",
+      "Because it requires a CAD worker to launch"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Navigate complements rather than replaces the full Windchill interface.",
+    "topic": "Windchill Navigate",
+    "domain": "Windchill Navigate",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Navigate"
+  },
+  {
+    "id": 457,
+    "question": "What still governs whether a user may see business data through Navigate?",
+    "options": [
+      "The order of queue startup during system boot",
+      "Underlying Windchill account and access permissions",
+      "The file threshold value in the vault",
+      "The number of baselines stored in the product"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Navigate access still depends on the underlying Windchill account and permissions.",
+    "topic": "Windchill Navigate",
+    "domain": "Windchill Navigate",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Navigate security"
+  },
+  {
+    "id": 458,
+    "question": "Why is a Windchill directory account still necessary for Navigate access?",
+    "options": [
+      "Because Navigate stores users only in Creo Parametric",
+      "Because Navigate bypasses all server-side identity services",
+      "Because Navigate users still authenticate as Windchill users",
+      "Because queue monitoring requires a separate identity system"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Navigate still depends on Windchill user identity and authentication.",
+    "topic": "Windchill Navigate",
+    "domain": "Windchill Navigate",
+    "difficulty": "easy",
+    "type": "single",
+    "objective": "Navigate security"
+  },
+  {
+    "id": 459,
+    "question": "What is one architectural advantage of Navigate using ThingWorx plus Windchill REST Services?",
+    "options": [
+      "It removes the need for Windchill entirely",
+      "It forces all data into the browser cache",
+      "It replaces commonspace with app-local storage",
+      "It separates user experience delivery from the core PLM repository while still using governed Windchill data"
+    ],
+    "correctAnswer": 3,
+    "explanation": "This architecture supports focused experiences while keeping governed data in Windchill.",
+    "topic": "Windchill Navigate",
+    "domain": "Windchill Navigate",
+    "difficulty": "hard",
+    "type": "single",
+    "objective": "Navigate architecture"
+  },
+  {
+    "id": 460,
+    "question": "What is one limitation of relying only on Navigate for an implementation team?",
+    "options": [
+      "Some deeper Windchill administration and authoring workflows still require the full platform UI",
+      "Navigate cannot use Windchill security",
+      "Navigate cannot show documents",
+      "Navigate cannot display attributes"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Navigate is focused and does not replace all deep Windchill workflows.",
+    "topic": "Windchill Navigate",
+    "domain": "Windchill Navigate",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Navigate"
+  },
+  {
+    "id": 461,
+    "question": "What is the main difference between a preference and a profile?",
+    "options": [
+      "A preference creates WTParts, while a profile creates EPMDocuments",
+      "A preference sets behavior defaults, while a profile tailors the visible user experience",
+      "A preference is for only admins, while a profile is for only suppliers",
+      "A preference controls ACLs, while a profile stores CAD source files"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Preferences tune behavior defaults; profiles tailor the UI experience.",
+    "topic": "Business Administration & Contexts",
+    "domain": "Business Administration & Contexts",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Preferences and profiles"
+  },
+  {
+    "id": 462,
+    "question": "What problem do profiles solve especially well?",
+    "options": [
+      "Serial effectivity resolution in structures",
+      "Queue-severe entry recovery",
+      "Excess interface complexity for specific user personas",
+      "Vault replication delays over WAN"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Profiles are useful for reducing visible complexity for specific personas.",
+    "topic": "Business Administration & Contexts",
+    "domain": "Business Administration & Contexts",
+    "difficulty": "easy",
+    "type": "single",
+    "objective": "Profiles"
+  },
+  {
+    "id": 463,
+    "question": "Why should profiles be planned alongside access control rather than instead of it?",
+    "options": [
+      "Because ACLs are optional when profiles exist",
+      "Because profiles define object numbering",
+      "Because profiles automatically grant all missing permissions",
+      "Because UI simplification and data permission are different concerns"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Profiles and access control address different needs and should be planned together.",
+    "topic": "Business Administration & Contexts",
+    "domain": "Business Administration & Contexts",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Profiles and access control"
+  },
+  {
+    "id": 464,
+    "question": "Why is it useful to establish site defaults before local preference overrides?",
+    "options": [
+      "It creates a consistent enterprise baseline from which exceptions can be managed",
+      "It eliminates the need for profiles",
+      "It ensures no context can ever have a different value",
+      "It prevents users from logging in until preferences are set"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Enterprise defaults provide a manageable baseline before scoped overrides are introduced.",
+    "topic": "Business Administration & Contexts",
+    "domain": "Business Administration & Contexts",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Preferences"
+  },
+  {
+    "id": 465,
+    "question": "What is one reason to document which preferences are locked versus locally modifiable?",
+    "options": [
+      "It defines which CAD worker is primary",
+      "It clarifies where teams can adapt behavior and where standards must remain consistent",
+      "It changes object inheritance automatically",
+      "It allows users to bypass queue errors"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Documenting lock strategy helps teams understand where adaptation is allowed.",
+    "topic": "Business Administration & Contexts",
+    "domain": "Business Administration & Contexts",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Preferences"
+  },
+  {
+    "id": 466,
+    "question": "Why do usage and throughput reports complement each other?",
+    "options": [
+      "They are only for CAD workers and queues respectively",
+      "Both are exact duplicates with different names",
+      "One shows adoption patterns while the other shows processing workload patterns",
+      "One replaces security auditing and the other replaces WCA"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Usage and throughput answer different but complementary operational questions.",
+    "topic": "System Administration & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Audit and usage reporting"
+  },
+  {
+    "id": 467,
+    "question": "Why do security audit and usage reports complement each other?",
+    "options": [
+      "They both permanently store baselines",
+      "One is for LDAP only and the other is for CAD only",
+      "They both only measure queue retries",
+      "One emphasizes traceability of sensitive actions while the other highlights broader system adoption"
+    ],
+    "correctAnswer": 3,
+    "explanation": "They provide different kinds of insight: security traceability versus adoption and usage.",
+    "topic": "System Administration & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Audit and usage reporting"
+  },
+  {
+    "id": 468,
+    "question": "What is one practical advantage of JMX monitoring alongside Windchill administration pages?",
+    "options": [
+      "It supports integration with broader enterprise monitoring platforms",
+      "It publishes missing CAD viewables",
+      "It assigns context team roles",
+      "It creates template pick lists"
+    ],
+    "correctAnswer": 0,
+    "explanation": "JMX enables integration with enterprise monitoring beyond the built-in pages.",
+    "topic": "System Administration & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Queue monitoring"
+  },
+  {
+    "id": 469,
+    "question": "Why is an authoritative central vault still important for auditability?",
+    "options": [
+      "It prevents all users from checking in data",
+      "It provides a governed source copy even when replicas exist elsewhere",
+      "It replaces the database entirely",
+      "It makes baselines unnecessary"
+    ],
+    "correctAnswer": 1,
+    "explanation": "An authoritative source copy supports governance and auditability.",
+    "topic": "System Administration & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Replication architecture"
+  },
+  {
+    "id": 470,
+    "question": "What is one benefit of replication for globally distributed teams?",
+    "options": [
+      "Automatic life cycle promotion of all replicated data",
+      "Removal of all need for queue monitoring",
+      "Reduced latency when retrieving large content from remote locations",
+      "Replacement of shared teams with vault rules"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Replication improves large-content access for distributed users.",
+    "topic": "System Administration & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "difficulty": "easy",
+    "type": "single",
+    "objective": "Replication architecture"
+  },
+  {
+    "id": 471,
+    "question": "What is one administrative reason to schedule replication rather than run it ad hoc all the time?",
+    "options": [
+      "It guarantees every replicated file is released",
+      "It prevents users from creating baselines",
+      "It turns replicas into authoritative sources",
+      "It allows predictable control over network and system load"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Scheduled replication provides predictable resource usage and operational control.",
+    "topic": "System Administration & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Replication scheduling"
+  },
+  {
+    "id": 472,
+    "question": "Why is browser visualization often a major adoption aid outside engineering?",
+    "options": [
+      "It lowers the barrier to product-data review for non-authoring stakeholders",
+      "It removes the need for any metadata in Windchill",
+      "It forces data into Project contexts",
+      "It gives every viewer direct modify authority"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Browser visualization helps downstream stakeholders consume product data more easily.",
+    "topic": "CAD Data Management",
+    "domain": "CAD Data Management",
+    "difficulty": "easy",
+    "type": "single",
+    "objective": "Representations"
+  },
+  {
+    "id": 473,
+    "question": "Why should representation strategy be considered during architecture planning?",
+    "options": [
+      "Because representations remove the need for queues",
+      "Because worker capacity, publishing rules, and review expectations affect system behavior and user experience",
+      "Because representations are only relevant to organization contexts",
+      "Because representations replace all source files after go-live"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Representation strategy affects architecture, capacity planning, and user experience.",
+    "topic": "Architecture & Installation",
+    "domain": "Architecture & Installation",
+    "difficulty": "hard",
+    "type": "single",
+    "objective": "Visualization architecture"
+  },
+  {
+    "id": 474,
+    "question": "Why should worker capacity be considered in a deployment with heavy CAD visualization demand?",
+    "options": [
+      "Worker capacity determines team-role mappings",
+      "Worker capacity replaces the need for commonspace",
+      "Insufficient worker capacity can create publish backlogs and slow viewable availability",
+      "Worker capacity only affects LDAP login times"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Worker capacity directly affects publish backlog and availability of viewables.",
+    "topic": "Architecture & Installation",
+    "domain": "Architecture & Installation",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Visualization architecture"
+  },
+  {
+    "id": 475,
+    "question": "Why is it useful to distinguish source-data governance from viewable-distribution strategy?",
+    "options": [
+      "Because governance is handled only by ThingWorx",
+      "Because source files never need ACLs if viewables exist",
+      "Because viewables always override source files in Windchill",
+      "Because authoritative source management and broad downstream review have different technical needs"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Source governance and viewable distribution are related but distinct concerns.",
+    "topic": "Architecture & Installation",
+    "domain": "Architecture & Installation",
+    "difficulty": "hard",
+    "type": "single",
+    "objective": "Visualization architecture"
+  },
+  {
+    "id": 476,
+    "question": "What is one implementation risk of ignoring publish-rule design?",
+    "options": [
+      "Viewables may be missing, excessive, or generated at the wrong times",
+      "Preferences may become immutable automatically",
+      "WTPart numbers may stop inheriting from masters",
+      "Shared teams may disappear from Products"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Poor publish-rule design can produce the wrong amount or timing of published output.",
+    "topic": "CAD Data Management",
+    "domain": "CAD Data Management",
+    "difficulty": "hard",
+    "type": "single",
+    "objective": "WVS"
+  },
+  {
+    "id": 477,
+    "question": "Why should queue monitoring be part of steady-state operations for a WVS-heavy system?",
+    "options": [
+      "Because queue monitoring chooses effectivity values",
+      "Because queue health directly affects publication timeliness and user-visible viewables",
+      "Because queue monitoring sets default object types",
+      "Because queue monitoring replaces CAD workers"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Queue health has a direct impact on WVS output timeliness.",
+    "topic": "System Administration & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Queue monitoring"
+  },
+  {
+    "id": 478,
+    "question": "What is one practical benefit of a profile-based UX for a floor or service persona?",
+    "options": [
+      "It stores source CAD data locally",
+      "It guarantees full administrative access",
+      "It exposes only the most relevant actions and data for that role",
+      "It removes all need for Windchill permissions"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Profiles can simplify the experience for targeted personas.",
+    "topic": "Business Administration & Contexts",
+    "domain": "Business Administration & Contexts",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Profiles"
+  },
+  {
+    "id": 479,
+    "question": "Why are focused app experiences valuable even when the full platform is available?",
+    "options": [
+      "They replace baselines and effectivity",
+      "They eliminate the need for any server-side services",
+      "They remove commonspace from the deployment",
+      "They reduce training burden and distraction for users who need only specific tasks"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Focused experiences reduce training and distraction for task-oriented users.",
+    "topic": "Windchill Navigate",
+    "domain": "Windchill Navigate",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Navigate"
+  },
+  {
+    "id": 480,
+    "question": "What is one reason to treat Navigate app access separately from CAD authoring capability?",
+    "options": [
+      "Because task-focused viewing and deep design authoring are different user needs",
+      "Because Navigate replaces all CAD tools",
+      "Because authoring capability is determined only by queue state",
+      "Because Navigate cannot read released data"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Viewing and authoring are different needs and should be planned separately.",
+    "topic": "Windchill Navigate",
+    "domain": "Windchill Navigate",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Navigate"
+  },
+  {
+    "id": 481,
+    "question": "What is one strong use case for a baseline after a release milestone?",
+    "options": [
+      "Recalculating serial effectivity ranges",
+      "Providing an immutable reference point for later comparison or audit",
+      "Publishing every CAD file again automatically",
+      "Changing the object owner to the auditor"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Baselines are valuable as reference points after milestones and releases.",
+    "topic": "PLM Foundations",
+    "domain": "PLM Foundations",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Baselines"
+  },
+  {
+    "id": 482,
+    "question": "What is one advantage of resolving a structure with different configuration specifications instead of duplicating the BOM?",
+    "options": [
+      "Each filter creates a separate permanent copy of the product",
+      "Configuration specifications override all ACLs",
+      "Different business questions can be answered from the same managed data set",
+      "A second BOM is always required for released data"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Configuration specifications let teams answer different questions from the same managed data.",
+    "topic": "PLM Foundations",
+    "domain": "PLM Foundations",
+    "difficulty": "hard",
+    "type": "single",
+    "objective": "Configuration specifications"
+  },
+  {
+    "id": 483,
+    "question": "Why is effectivity useful in managing phased product transitions?",
+    "options": [
+      "It forces every user to see the same baseline forever",
+      "It changes object type inheritance",
+      "It disables Change Notices for released parts",
+      "It lets applicability shift in a controlled way rather than requiring a single instant replacement everywhere"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Effectivity supports controlled phased applicability transitions.",
+    "topic": "PLM Foundations",
+    "domain": "PLM Foundations",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Effectivity concepts"
+  },
+  {
+    "id": 484,
+    "question": "Why is a Problem Report useful for enhancement requests as well as defects?",
+    "options": [
+      "Because it captures a need for evaluation whether the driver is a problem or an improvement request",
+      "Because it is a vaulting-only object",
+      "Because it bypasses formal review",
+      "Because it directly authorizes production deviation"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Problem Reports can capture both defects and enhancement requests for evaluation.",
+    "topic": "Change Management & Release",
+    "domain": "Change Management & Release",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Problem Reports"
+  },
+  {
+    "id": 485,
+    "question": "What is one reason a Change Notice is still needed after a Change Request is approved?",
+    "options": [
+      "A Change Request cannot reference product data",
+      "The approved change still needs governed implementation planning and execution",
+      "A Change Request only exists in Project contexts",
+      "A Change Request already publishes all affected viewables"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Approval of the proposed change is distinct from governed implementation planning and execution.",
+    "topic": "Change Management & Release",
+    "domain": "Change Management & Release",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Change Notices"
+  },
+  {
+    "id": 486,
+    "question": "Why are Change Tasks useful for accountability?",
+    "options": [
+      "They determine the LDAP authentication flow",
+      "They create representation outputs",
+      "They make specific implementation work visible and assignable",
+      "They replace all audit requirements"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Change Tasks make implementation work explicit and accountable.",
+    "topic": "Change Management & Release",
+    "domain": "Change Management & Release",
+    "difficulty": "easy",
+    "type": "single",
+    "objective": "Change Tasks"
+  },
+  {
+    "id": 487,
+    "question": "What is one reason to preserve auditability after change implementation?",
+    "options": [
+      "So profiles can grant more permissions",
+      "So the vault threshold can be lowered",
+      "So baselines can be deleted faster",
+      "So the organization can show what was done and how it was validated"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Auditability matters because the organization may need to prove what happened and how it was validated.",
+    "topic": "Change Management & Release",
+    "domain": "Change Management & Release",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Change process"
+  },
+  {
+    "id": 488,
+    "question": "What is one implementation takeaway from the preference hierarchy?",
+    "options": [
+      "Behavior should be standardized intentionally, not left to accidental local divergence",
+      "Preferences are a substitute for ACLs",
+      "All preferences should always be unique per user",
+      "Site defaults should never be used"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The preference hierarchy should be designed intentionally to balance consistency and flexibility.",
+    "topic": "Business Administration & Contexts",
+    "domain": "Business Administration & Contexts",
+    "difficulty": "hard",
+    "type": "single",
+    "objective": "Preferences"
+  },
+  {
+    "id": 489,
+    "question": "What is one implementation takeaway from profile design?",
+    "options": [
+      "Profiles should control database backup mode",
+      "Profile scope should match the persona and tasks the user actually needs",
+      "Profiles should be used to replace life cycle policies",
+      "Profiles should include every possible action to avoid hiding anything"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Profiles are most effective when aligned closely to user persona and task scope.",
+    "topic": "Business Administration & Contexts",
+    "domain": "Business Administration & Contexts",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Profiles"
+  },
+  {
+    "id": 490,
+    "question": "Why is a report-based view of system behavior valuable in addition to direct admin observation?",
+    "options": [
+      "It determines Product versus Library context type",
+      "It replaces the need for logs or queue pages entirely",
+      "It provides trend and evidence data that may not be obvious from a momentary manual check",
+      "It changes object masters into iterations"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Reports provide trend and evidence-based visibility beyond one-time observation.",
+    "topic": "System Administration & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Audit and usage reporting"
+  },
+  {
+    "id": 491,
+    "question": "What is one reason to use both WCA and operational reports in administration?",
+    "options": [
+      "Both are only for Navigate",
+      "Both tools are required to create a WTPart",
+      "Both replace all queue interfaces",
+      "Together they help with configuration review and evidence-based system observation"
+    ],
+    "correctAnswer": 3,
+    "explanation": "WCA helps review settings, while reports help observe runtime and usage behavior.",
+    "topic": "System Administration & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "WCA and reporting"
+  },
+  {
+    "id": 492,
+    "question": "Why is replicated content not treated as the new system of record automatically?",
+    "options": [
+      "Because governance is anchored to the authoritative source copy even when distribution copies exist",
+      "Because replicas cannot store files at all",
+      "Because replication deletes the original file",
+      "Because replicas are only for queue logs"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Replicas distribute content but do not replace the authoritative source.",
+    "topic": "System Administration & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Replication architecture"
+  },
+  {
+    "id": 493,
+    "question": "Why is queue-health visibility important to user experience?",
+    "options": [
+      "Queue health only matters to LDAP administrators",
+      "Delayed or failed background work can directly affect what users see and when they see it",
+      "Queue health changes reference designators",
+      "Queue health determines object types"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Background queues often affect user-visible outcomes such as publishing and processing delays.",
+    "topic": "System Administration & Maintenance",
+    "domain": "System Administration & Maintenance",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Queue monitoring"
+  },
+  {
+    "id": 494,
+    "question": "What is one reason to size visualization architecture thoughtfully during deployment?",
+    "options": [
+      "Visualization architecture only matters after go-live defects occur",
+      "Visualization architecture is irrelevant if baselines are used",
+      "Review demand, file complexity, and publish volume can materially affect system capacity needs",
+      "Visualization architecture controls context template pick lists"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Visualization demand and file complexity affect capacity planning and architecture choices.",
+    "topic": "Architecture & Installation",
+    "domain": "Architecture & Installation",
+    "difficulty": "hard",
+    "type": "single",
+    "objective": "Visualization architecture"
+  },
+  {
+    "id": 495,
+    "question": "Why is commonspace still central even when teams work daily in workspaces?",
+    "options": [
+      "Because workspaces cannot contain any metadata",
+      "Because commonspace is where preferences are stored",
+      "Because commonspace replaces all need for baselines",
+      "Because commonspace remains the authoritative managed repository for committed data"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Workspaces are temporary working areas; commonspace remains authoritative.",
+    "topic": "CAD Data Management",
+    "domain": "CAD Data Management",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Workspaces"
+  },
+  {
+    "id": 496,
+    "question": "Why should implementation teams distinguish issue capture, change evaluation, and change execution?",
+    "options": [
+      "Because Problem Reports, Change Requests, and Change Notices serve different governance purposes",
+      "Because only one of them can reference product data",
+      "Because using one object for every stage weakens traceability and approval clarity",
+      "Because all three objects are exact synonyms in Windchill"
+    ],
+    "correctAnswer": 0,
+    "explanation": "These objects represent different stages and purposes in governed change management; if one object is overloaded for every stage, traceability and approval clarity become weaker.",
+    "topic": "Change Management & Release",
+    "domain": "Change Management & Release",
+    "difficulty": "hard",
+    "type": "single",
+    "objective": "Change management governance"
+  },
+  {
+    "id": 497,
+    "question": "What is one reason not to overload a single object to do every change-management job?",
+    "options": [
+      "It would stop WVS publishing",
+      "Windchill separates responsibilities so traceability and approvals remain clear",
+      "It would remove all preferences",
+      "One object is technically incapable of storing any metadata"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Different change objects exist so responsibilities and traceability stay clear.",
+    "topic": "Change Management & Release",
+    "domain": "Change Management & Release",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Change management governance"
+  },
+  {
+    "id": 498,
+    "question": "Why is it helpful that Navigate can surface Windchill data in a lighter UI while Windchill still governs the source?",
+    "options": [
+      "It makes all source files editable from the browser",
+      "It removes the need for ThingWorx or REST services",
+      "It combines ease of consumption with governed master data",
+      "It replaces the need for permissions and policies"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Navigate can simplify consumption while Windchill remains the governed source of truth.",
+    "topic": "Windchill Navigate",
+    "domain": "Windchill Navigate",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Navigate architecture"
+  },
+  {
+    "id": 499,
+    "question": "What is one reason to generate the next question batches from a protected concept inventory?",
+    "options": [
+      "It removes the need for manual review",
+      "It converts single-answer questions into multiple-response questions",
+      "It guarantees every new question will be hard",
+      "It reduces the chance of writing new questions that repeat the same tested concept"
+    ],
+    "correctAnswer": 3,
+    "explanation": "A protected concept inventory helps prevent concept repetition across the growing bank.",
+    "topic": "PLM Foundations",
+    "domain": "PLM Foundations",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Question-bank governance"
+  },
+  {
+    "id": 500,
+    "question": "What is the safest interpretation of the target 500-question design given the current pool already has many multiple-response items?",
+    "options": [
+      "New batches should stay mostly single-answer so the overall bank moves closer to the desired ratio",
+      "Every fifth question must be converted into code snippets immediately",
+      "All new questions should be multiple-response to match file 2",
+      "The existing bank should ignore the ratio entirely"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Because the existing pool already contains many multiple-response questions, keeping new batches mostly single-answer helps move the overall ratio closer to the target.",
+    "topic": "PLM Foundations",
+    "domain": "PLM Foundations",
+    "difficulty": "medium",
+    "type": "single",
+    "objective": "Question-bank governance"
+  }
+]
