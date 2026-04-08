@@ -6,39 +6,31 @@ service cloud.firestore {
       return request.auth != null;
     }
 
-    function isAllowedAdminEmail() {
-      return signedIn() &&
-        request.auth.token.email != null &&
-        request.auth.token.email in [
-          'replace-with-admin@example.com'
-        ];
-    }
-
     match /exam_presets/{document=**} {
       allow read: if true;
-      allow write: if isAllowedAdminEmail();
+      allow write: if signedIn();
     }
 
     match /exam_sessions/{document=**} {
       allow read: if true;
-      allow write: if isAllowedAdminEmail();
+      allow write: if signedIn();
     }
 
     match /session_participants/{document=**} {
-      allow read: if isAllowedAdminEmail();
+      allow read: if signedIn();
       allow create: if true;
       allow update: if true;
-      allow delete: if isAllowedAdminEmail();
+      allow delete: if signedIn();
     }
 
     match /exam_results/{document=**} {
-      allow read: if isAllowedAdminEmail();
+      allow read: if signedIn();
       allow create: if true;
-      allow update, delete: if isAllowedAdminEmail();
+      allow update, delete: if signedIn();
     }
 
     match /audit_logs/{document=**} {
-      allow read, write: if isAllowedAdminEmail();
+      allow read, write: if signedIn();
     }
   }
 }

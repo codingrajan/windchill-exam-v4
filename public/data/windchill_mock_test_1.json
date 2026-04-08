@@ -421,7 +421,7 @@
   },
   {
     "id": 21,
-    "topic": "Backup, Vaulting, and Rehost",
+    "topic": "Vaulting and Content Maintenance",
     "difficulty": "hard",
     "question": "What does the 'Restricted Directory Search' option control when creating a Windchill organization?",
     "options": [
@@ -432,13 +432,13 @@
     ],
     "correctAnswer": 1,
     "explanation": "Restricted Directory Search controls whether users in the organization can interact with users outside that organization. It is not a file-vault control, nor does it configure Windchill LDAP connectivity itself.",
-    "domain": "System Administration, Vaulting, and Performance",
+    "domain": "Vaulting, Replication, and Data Maintenance",
     "type": "single",
     "sourceManual": "Windchill Technical Essentials course manual.pdf",
-    "sourceSection": "Backup, Vaulting, and Rehost",
-    "misconceptionTag": "Administration utility purpose confusion",
+    "sourceSection": "Vaulting and Content Maintenance",
+    "misconceptionTag": "Vaulting location and content-maintenance confusion",
     "releaseVersion": "2026.04",
-    "objective": "Backup, Vaulting, and Rehost"
+    "objective": "Vaulting and Content Maintenance"
   },
   {
     "id": 22,
@@ -1798,7 +1798,7 @@
     "correctAnswer": 2,
     "explanation": "The Advanced Configuration manual states that the Windchill Configuration Assistant (WCA) is used to 'Calculate recommended values' and 'Propagate values from intermediate properties.' The module 'Tune servers' specifically covers WCA as the primary tool for this.",
     "objective": "Administrative Utilities and Queues",
-    "domain": "System Administration, Vaulting, and Performance",
+    "domain": "System Administration, Utilities, and Monitoring",
     "type": "single",
     "sourceManual": "Windchill Advanced Configuration course manual.pdf",
     "sourceSection": "Administrative Utilities and Queues",
@@ -1819,7 +1819,7 @@
     "correctAnswer": 1,
     "explanation": "The manual's module on 'Manage properties' covers xconfmanager as the tool to 'Describe the xconfmanager utility,' 'Identify xconfmanager options,' 'Use xconfmanager: example,' and 'Validate changes with xconfmanager.' It manages Windchill configuration property files.",
     "objective": "Administrative Utilities and Queues",
-    "domain": "System Administration, Vaulting, and Performance",
+    "domain": "System Administration, Utilities, and Monitoring",
     "type": "single",
     "sourceManual": "Windchill Technical Essentials course manual.pdf",
     "sourceSection": "Administrative Utilities and Queues",
@@ -1840,7 +1840,7 @@
     "correctAnswer": 3,
     "explanation": "The Advanced Configuration manual specifically covers 'Describe the site.xconf file' as part of the 'Manage properties' module. The site.xconf is the central configuration file for Windchill server properties and settings.",
     "objective": "Performance and Runtime Administration",
-    "domain": "System Administration, Vaulting, and Performance",
+    "domain": "System Administration, Utilities, and Monitoring",
     "type": "single",
     "sourceManual": "Windchill Advanced Configuration course manual.pdf",
     "sourceSection": "Performance and Runtime Administration",
@@ -1849,7 +1849,7 @@
   },
   {
     "id": 89,
-    "topic": "Backup, Vaulting, and Rehost",
+    "topic": "Backup and Rehost",
     "difficulty": "easy",
     "question": "Which type of Windchill backup requires stopping all Windchill services before the backup begins?",
     "options": [
@@ -1860,17 +1860,17 @@
     ],
     "correctAnswer": 1,
     "explanation": "The Advanced Configuration manual covers both 'Perform a cold backup' and 'Perform a hot backup' in the backup and recovery module. A cold backup requires stopping Windchill services (the system is 'cold'/offline) while a hot backup can be performed while Windchill is running.",
-    "objective": "Backup, Vaulting, and Rehost",
-    "domain": "System Administration, Vaulting, and Performance",
+    "objective": "Backup and Rehost",
+    "domain": "Vaulting, Replication, and Data Maintenance",
     "type": "single",
     "sourceManual": "Windchill Advanced Configuration course manual.pdf",
-    "sourceSection": "Backup, Vaulting, and Rehost",
-    "misconceptionTag": "Administration utility purpose confusion",
+    "sourceSection": "Backup and Rehost",
+    "misconceptionTag": "Backup, restore, and rehost scope confusion",
     "releaseVersion": "2026.04"
   },
   {
     "id": 90,
-    "topic": "Backup, Vaulting, and Rehost",
+    "topic": "Backup and Rehost",
     "difficulty": "medium",
     "question": "What is the purpose of the WContentVerify tool in Windchill?",
     "options": [
@@ -1881,12 +1881,12 @@
     ],
     "correctAnswer": 1,
     "explanation": "The Advanced Configuration manual includes 'Use the WContentVerify tool' in the backup and recovery module. This tool is used to verify file vault content integrity as part of vault backup and recovery best practices.",
-    "objective": "Backup, Vaulting, and Rehost",
-    "domain": "System Administration, Vaulting, and Performance",
+    "objective": "Backup and Rehost",
+    "domain": "Vaulting, Replication, and Data Maintenance",
     "type": "single",
     "sourceManual": "Windchill Advanced Configuration course manual.pdf",
-    "sourceSection": "Backup, Vaulting, and Rehost",
-    "misconceptionTag": "Administration utility purpose confusion",
+    "sourceSection": "Backup and Rehost",
+    "misconceptionTag": "Backup, restore, and rehost scope confusion",
     "releaseVersion": "2026.04"
   },
   {
@@ -1924,7 +1924,7 @@
     "correctAnswer": 0,
     "explanation": "The Advanced Configuration manual specifically covers 'Use JConsole to modify property values,' 'Activity: Manage Windchill properties using JConsole,' and 'Activity: Monitor Windchill performance using JConsole.' JConsole is the primary JMX client mentioned.",
     "objective": "Administrative Utilities and Queues",
-    "domain": "System Administration, Vaulting, and Performance",
+    "domain": "System Administration, Utilities, and Monitoring",
     "type": "single",
     "sourceManual": "Windchill Advanced Configuration course manual.pdf",
     "sourceSection": "Administrative Utilities and Queues",
@@ -1933,7 +1933,7 @@
   },
   {
     "id": 93,
-    "topic": "Backup, Vaulting, and Rehost",
+    "topic": "Backup and Rehost",
     "difficulty": "hard",
     "question": "What is the primary purpose of suspending background queues before performing a backup in Windchill?",
     "options": [
@@ -1944,12 +1944,12 @@
     ],
     "correctAnswer": 3,
     "explanation": "The Advanced Configuration manual covers 'Suspend background queues' as part of the hot backup procedure. Suspending queues ensures data consistency by halting background processing that could modify data during the backup, producing a consistent backup set.",
-    "objective": "Backup, Vaulting, and Rehost",
-    "domain": "System Administration, Vaulting, and Performance",
+    "objective": "Backup and Rehost",
+    "domain": "Vaulting, Replication, and Data Maintenance",
     "type": "single",
     "sourceManual": "Windchill Advanced Configuration course manual.pdf",
-    "sourceSection": "Backup, Vaulting, and Rehost",
-    "misconceptionTag": "Administration utility purpose confusion",
+    "sourceSection": "Backup and Rehost",
+    "misconceptionTag": "Backup, restore, and rehost scope confusion",
     "releaseVersion": "2026.04"
   },
   {
@@ -1966,7 +1966,7 @@
     "correctAnswer": 2,
     "explanation": "The Advanced Configuration manual covers 'Activity: Collect system data with the System Configuration Collector (SCC)' and 'Collect and send diagnostic data to PTC.' The SCC gathers system configuration information for diagnostics and PTC technical support.",
     "objective": "Administrative Utilities and Queues",
-    "domain": "System Administration, Vaulting, and Performance",
+    "domain": "System Administration, Utilities, and Monitoring",
     "type": "single",
     "sourceManual": "Windchill Advanced Configuration course manual.pdf",
     "sourceSection": "Administrative Utilities and Queues",
@@ -1975,7 +1975,7 @@
   },
   {
     "id": 95,
-    "topic": "Backup, Vaulting, and Rehost",
+    "topic": "Vaulting and Content Maintenance",
     "difficulty": "easy",
     "question": "What is a file vault in Windchill?",
     "options": [
@@ -1986,12 +1986,12 @@
     ],
     "correctAnswer": 1,
     "explanation": "The Advanced Configuration manual module 'Store content using file vaults' describes file vaults as storage locations where Windchill stores the actual content files (such as CAD files and documents) associated with managed objects, separate from the metadata stored in the database.",
-    "objective": "Backup, Vaulting, and Rehost",
-    "domain": "System Administration, Vaulting, and Performance",
+    "objective": "Vaulting and Content Maintenance",
+    "domain": "Vaulting, Replication, and Data Maintenance",
     "type": "single",
     "sourceManual": "Windchill Advanced Configuration course manual.pdf",
-    "sourceSection": "Backup, Vaulting, and Rehost",
-    "misconceptionTag": "Administration utility purpose confusion",
+    "sourceSection": "Vaulting and Content Maintenance",
+    "misconceptionTag": "Vaulting location and content-maintenance confusion",
     "releaseVersion": "2026.04"
   },
   {

@@ -19,6 +19,14 @@ export interface HistoryInsights {
   priorityFocus: string[];
 }
 
+export interface ReviewCoachingSummary {
+  wrongCount: number;
+  skippedCount: number;
+  topMisconceptions: Array<{ label: string; count: number }>;
+  topObjectives: Array<{ label: string; count: number }>;
+  coachingActions: string[];
+}
+
 export const getTrackProfile = (track: ExamTrack) => TRACK_PROFILES[track];
 
 export function buildReadinessInsights(
@@ -142,5 +150,74 @@ export function buildHistoryInsights(results: ExamResult[]): HistoryInsights | n
     trendLabel,
     readinessHeadline: latest.scoreInterpretation ?? readinessHeadline,
     priorityFocus,
+  };
+}
+
+export function buildReviewCoachingSummary(
+  items: Array<{
+    correct: boolean;
+    skipped: boolean;
+    objective?: string;
+    misconceptionTag?: string;
+    domain?: string;
+  }>,
+): ReviewCoachingSummary {
+  const wrongItems = items.filter((item) => !item.correct && !item.skipped);
+  const skippedItems = items.filter((item) => item.skipped);
+  const misconceptionCounts = new Map<string, number>();
+  const objectiveCounts = new Map<string, number>();
+  const domainCounts = new Map<string, number>();
+
+  [...wrongItems, ...skippedItems].forEach((item) => {
+    if (item.misconceptionTag) {
+      misconceptionCounts.set(item.misconceptionTag, (misconceptionCounts.get(item.misconceptionTag) ?? 0) + 1);
+    }
+    if (item.objective) {
+      objectiveCounts.set(item.objective, (objectiveCounts.get(item.objective) ?? 0) + 1);
+    }
+    if (item.domain) {
+      domainCounts.set(item.domain, (domainCounts.get(item.domain) ?? 0) + 1);
+    }
+  });
+
+  const topMisconceptions = [...misconceptionCounts.entries()]
+    .sort((left, right) => right[1] - left[1])
+    .slice(0, 3)
+    .map(([label, count]) => ({ label, count }));
+
+  const topObjectives = [...objectiveCounts.entries()]
+    .sort((left, right) => right[1] - left[1])
+    .slice(0, 3)
+    .map(([label, count]) => ({ label, count }));
+
+  const topDomains = [...domainCounts.entries()]
+    .sort((left, right) => right[1] - left[1])
+    .slice(0, 2)
+    .map(([label]) => label);
+
+  const coachingActions = new Set<string>();
+
+  if (topDomains.length > 0) {
+    coachingActions.add(`Re-run a focused drill on ${topDomains.join(' and ')}.`);
+  }
+
+  if (topObjectives.length > 0) {
+    coachingActions.add(`Review objective coverage around ${topObjectives[0].label}.`);
+  }
+
+  if (topMisconceptions.length > 0) {
+    coachingActions.add(`Challenge the misconception pattern: ${topMisconceptions[0].label}.`);
+  }
+
+  if (skippedItems.length >= 3) {
+    coachingActions.add('Run a timed recovery set to reduce decision-time skips.');
+  }
+
+  return {
+    wrongCount: wrongItems.length,
+    skippedCount: skippedItems.length,
+    topMisconceptions,
+    topObjectives,
+    coachingActions: [...coachingActions].slice(0, 4),
   };
 }

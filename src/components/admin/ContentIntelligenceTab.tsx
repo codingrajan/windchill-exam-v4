@@ -30,6 +30,7 @@ function toSortedEntries(counts: Map<string, number>) {
 export default function ContentIntelligenceTab() {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [loading, setLoading] = useState(true);
+  const [gapFilter, setGapFilter] = useState<'all' | 'metadata' | 'taxonomy'>('all');
 
   useEffect(() => {
     void loadQuestionPool()
@@ -52,6 +53,15 @@ export default function ContentIntelligenceTab() {
     let misconceptionTagged = 0;
     let releaseVersionTagged = 0;
     let multiResponseCount = 0;
+    const questionsWithGaps: Array<{
+      id: number;
+      prompt: string;
+      section: string;
+      objective: string;
+      sourceManual: string;
+      misconceptionTag: string;
+      flags: string[];
+    }> = [];
 
     questions.forEach((question) => {
       const domain = question.domain?.trim() || question.topic?.trim() || 'Unclassified';
@@ -79,6 +89,25 @@ export default function ContentIntelligenceTab() {
       }
       if (question.releaseVersion?.trim()) releaseVersionTagged += 1;
       if (isMultiAnswerQuestion(question)) multiResponseCount += 1;
+
+      const flags: string[] = [];
+      if (!question.objective?.trim()) flags.push('Missing objective');
+      if (!question.sourceManual?.trim()) flags.push('Missing source manual');
+      if (!question.misconceptionTag?.trim()) flags.push('Missing misconception');
+      if (!question.releaseVersion?.trim()) flags.push('Missing release version');
+      if (section === 'Unclassified') flags.push('Unclassified section');
+      if ((question.domain?.trim() || '') !== section) flags.push('Domain / section drift');
+      if (flags.length > 0) {
+        questionsWithGaps.push({
+          id: question.id,
+          prompt: question.question,
+          section,
+          objective: question.objective?.trim() || '--',
+          sourceManual: question.sourceManual?.trim() || '--',
+          misconceptionTag: question.misconceptionTag?.trim() || '--',
+          flags,
+        });
+      }
     });
 
     return {
@@ -111,8 +140,17 @@ export default function ContentIntelligenceTab() {
       misconceptionTagged,
       releaseVersionTagged,
       multiResponseCount,
+      questionsWithGaps,
     };
   }, [questions]);
+
+  const gapRows = useMemo(() => {
+    if (gapFilter === 'all') return metrics.questionsWithGaps;
+    if (gapFilter === 'metadata') {
+      return metrics.questionsWithGaps.filter((row) => row.flags.some((flag) => flag.startsWith('Missing')));
+    }
+    return metrics.questionsWithGaps.filter((row) => row.flags.some((flag) => !flag.startsWith('Missing')));
+  }, [gapFilter, metrics.questionsWithGaps]);
 
   if (loading) {
     return (
@@ -369,6 +407,96 @@ export default function ContentIntelligenceTab() {
               </div>
             );
           })}
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+        <div className="bg-white border border-zinc-100 rounded-2xl shadow-sm overflow-hidden">
+          <div className="px-5 py-4 bg-zinc-50 border-b border-zinc-100">
+            <p className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wider">Source Manual Coverage</p>
+          </div>
+          <div className="p-5 space-y-3">
+            {metrics.sourceManualCounts.map(([manual, count]) => (
+              <div key={manual} className="bg-zinc-50 border border-zinc-100 rounded-xl px-4 py-3 flex items-center justify-between gap-3">
+                <span className="text-sm font-medium text-zinc-700">{manual}</span>
+                <span className="text-xs font-semibold text-zinc-500">{count}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="bg-white border border-zinc-100 rounded-2xl shadow-sm overflow-hidden">
+          <div className="px-5 py-4 bg-zinc-50 border-b border-zinc-100">
+            <p className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wider">Top Objectives</p>
+          </div>
+          <div className="p-5 space-y-3">
+            {metrics.objectiveCounts.slice(0, 15).map(([objective, count]) => (
+              <div key={objective} className="bg-zinc-50 border border-zinc-100 rounded-xl px-4 py-3 flex items-center justify-between gap-3">
+                <span className="text-sm font-medium text-zinc-700">{objective}</span>
+                <span className="text-xs font-semibold text-zinc-500">{count}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="bg-white border border-zinc-100 rounded-2xl shadow-sm overflow-hidden">
+        <div className="px-5 py-4 bg-zinc-50 border-b border-zinc-100 flex items-center justify-between gap-3 flex-wrap">
+          <p className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wider">Question QA Audit</p>
+          <div className="flex items-center gap-1 bg-zinc-100 p-1 rounded-xl">
+            {[
+              { key: 'all', label: `All (${metrics.questionsWithGaps.length})` },
+              { key: 'metadata', label: 'Metadata' },
+              { key: 'taxonomy', label: 'Taxonomy' },
+            ].map((entry) => (
+              <button
+                key={entry.key}
+                onClick={() => setGapFilter(entry.key as 'all' | 'metadata' | 'taxonomy')}
+                className={`px-3 py-1.5 rounded-lg text-[11px] font-semibold transition-all ${
+                  gapFilter === entry.key ? 'bg-white text-indigo-600 shadow-sm' : 'text-zinc-500'
+                }`}
+              >
+                {entry.label}
+              </button>
+            ))}
+          </div>
+        </div>
+        <div className="p-5">
+          {gapRows.length === 0 ? (
+            <div className="text-center py-12 text-zinc-400 text-sm font-medium">No flagged questions for this filter.</div>
+          ) : (
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="bg-zinc-50 border-b border-zinc-100">
+                    {['QID', 'Section', 'Objective', 'Source Manual', 'Misconception', 'Flags'].map((header) => (
+                      <th key={header} className="px-4 py-3 text-left text-[10px] font-semibold text-zinc-400 uppercase tracking-wider whitespace-nowrap">{header}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {gapRows.slice(0, 80).map((row, index) => (
+                    <tr key={row.id} className={`border-b border-zinc-50 ${index % 2 === 0 ? 'bg-white' : 'bg-zinc-50/30'}`}>
+                      <td className="px-4 py-3 whitespace-nowrap text-xs font-semibold text-zinc-700">#{row.id}</td>
+                      <td className="px-4 py-3 text-zinc-700">{row.section}</td>
+                      <td className="px-4 py-3 text-zinc-700">{row.objective}</td>
+                      <td className="px-4 py-3 text-zinc-700">{row.sourceManual}</td>
+                      <td className="px-4 py-3 text-zinc-700">{row.misconceptionTag}</td>
+                      <td className="px-4 py-3">
+                        <div className="flex flex-wrap gap-1.5">
+                          {row.flags.map((flag) => (
+                            <span key={flag} className="text-[10px] font-semibold text-amber-700 bg-amber-50 border border-amber-100 px-2 py-0.5 rounded-full">
+                              {flag}
+                            </span>
+                          ))}
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
         </div>
       </div>
     </div>

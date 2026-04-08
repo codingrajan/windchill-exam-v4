@@ -719,7 +719,7 @@
     ],
     "explanation": "Expression robots are automated nodes that execute Java API code (like setting a state) in the background server queue, requiring no manual user interaction.",
     "objective": "Administrative Utilities and Queues",
-    "domain": "System Administration, Vaulting, and Performance",
+    "domain": "System Administration, Utilities, and Monitoring",
     "type": "multiple",
     "sourceManual": "Windchill Technical Essentials course manual.pdf",
     "sourceSection": "Administrative Utilities and Queues",
@@ -888,7 +888,7 @@
     ],
     "explanation": "The `xconfmanager` utility manages and propagates property changes from `site.xconf` down to target property files like `wt.properties` and `db.properties`.",
     "objective": "Administrative Utilities and Queues",
-    "domain": "System Administration, Vaulting, and Performance",
+    "domain": "System Administration, Utilities, and Monitoring",
     "type": "multiple",
     "sourceManual": "Windchill Technical Essentials course manual.pdf",
     "sourceSection": "Administrative Utilities and Queues",
@@ -897,7 +897,7 @@
   },
   {
     "id": 138,
-    "topic": "Core Architecture and Services",
+    "topic": "Administrative Utilities and Queues",
     "difficulty": "hard",
     "question": "What two mechanisms are used to tune Windchill server memory and cache sizes? (Choose 2)",
     "options": [
@@ -911,12 +911,12 @@
       3
     ],
     "explanation": "WCA calculates the optimal cache and memory settings, while JVM arguments dictate the heap size allocated to the Method Server and Server Manager.",
-    "objective": "Core Architecture and Services",
-    "domain": "Architecture, Installation, and Integration",
+    "objective": "Administrative Utilities and Queues",
+    "domain": "System Administration, Utilities, and Monitoring",
     "type": "multiple",
     "sourceManual": "Windchill Technical Essentials course manual.pdf",
-    "sourceSection": "Core Architecture and Services",
-    "misconceptionTag": "Architecture component role confusion",
+    "sourceSection": "Administrative Utilities and Queues",
+    "misconceptionTag": "Administration utility purpose confusion",
     "releaseVersion": "2026.04"
   },
   {
@@ -960,7 +960,7 @@
     ],
     "explanation": "Routine maintenance involves monitoring system health via the Server Status page, checking logs, and ensuring background queues are processing without failures.",
     "objective": "Administrative Utilities and Queues",
-    "domain": "System Administration, Vaulting, and Performance",
+    "domain": "System Administration, Utilities, and Monitoring",
     "type": "multiple",
     "sourceManual": "Windchill Technical Essentials course manual.pdf",
     "sourceSection": "Administrative Utilities and Queues",
@@ -984,7 +984,7 @@
     ],
     "explanation": "Queue administration focuses on diagnosing the failure, then either resetting the entry for reprocessing or deleting it if appropriate. Queue entries are not converted into change objects or promoted into a different transaction model.",
     "objective": "Administrative Utilities and Queues",
-    "domain": "System Administration, Vaulting, and Performance",
+    "domain": "System Administration, Utilities, and Monitoring",
     "type": "multiple",
     "sourceManual": "Windchill Technical Essentials course manual.pdf",
     "sourceSection": "Administrative Utilities and Queues",
@@ -993,7 +993,7 @@
   },
   {
     "id": 142,
-    "topic": "Backup, Vaulting, and Rehost",
+    "topic": "Vaulting and Content Maintenance",
     "difficulty": "medium",
     "question": "Which two statements about the Windchill vaulting process are correct? (Choose 2)",
     "options": [
@@ -1007,17 +1007,17 @@
       2
     ],
     "explanation": "File vaults store the physical BLOB data (CAD, PDFs) on the file system to keep the database lightweight. Vaulting rules dictate routing logic (e.g., routing Released files to a specific read-only mount).",
-    "objective": "Backup, Vaulting, and Rehost",
-    "domain": "System Administration, Vaulting, and Performance",
+    "objective": "Vaulting and Content Maintenance",
+    "domain": "Vaulting, Replication, and Data Maintenance",
     "type": "multiple",
     "sourceManual": "Windchill Technical Essentials course manual.pdf",
-    "sourceSection": "Backup, Vaulting, and Rehost",
-    "misconceptionTag": "Administration utility purpose confusion",
+    "sourceSection": "Vaulting and Content Maintenance",
+    "misconceptionTag": "Vaulting location and content-maintenance confusion",
     "releaseVersion": "2026.04"
   },
   {
     "id": 143,
-    "topic": "Administrative Utilities and Queues",
+    "topic": "Vaulting and Content Maintenance",
     "difficulty": "hard",
     "question": "Which three actions are strictly performed using the `windchill shell` command line? (Choose 3)",
     "options": [
@@ -1032,17 +1032,17 @@
       3
     ],
     "explanation": "The Windchill shell is the correct command-line environment for administrative utilities such as `windchill start/stop`, `xconfmanager`, and `WContentVerify`. User creation and change approval are handled through application administration and business-process UI flows rather than shell-only commands.",
-    "objective": "Administrative Utilities and Queues",
-    "domain": "System Administration, Vaulting, and Performance",
+    "objective": "Vaulting and Content Maintenance",
+    "domain": "Vaulting, Replication, and Data Maintenance",
     "type": "multiple",
     "sourceManual": "Windchill Technical Essentials course manual.pdf",
-    "sourceSection": "Administrative Utilities and Queues",
-    "misconceptionTag": "Administration utility purpose confusion",
+    "sourceSection": "Vaulting and Content Maintenance",
+    "misconceptionTag": "Vaulting location and content-maintenance confusion",
     "releaseVersion": "2026.04"
   },
   {
     "id": 144,
-    "topic": "Backup, Vaulting, and Rehost",
+    "topic": "Backup and Rehost",
     "difficulty": "hard",
     "question": "To perform a 'hot backup' of a Windchill environment, what two steps must be taken to ensure data consistency? (Choose 2)",
     "options": [
@@ -1056,17 +1056,17 @@
       2
     ],
     "explanation": "A hot backup allows users to remain logged in. To ensure consistency without shutting down, queues must be suspended and the database placed into hot-backup mode.",
-    "objective": "Backup, Vaulting, and Rehost",
-    "domain": "System Administration, Vaulting, and Performance",
+    "objective": "Backup and Rehost",
+    "domain": "Vaulting, Replication, and Data Maintenance",
     "type": "multiple",
     "sourceManual": "Windchill Technical Essentials course manual.pdf",
-    "sourceSection": "Backup, Vaulting, and Rehost",
-    "misconceptionTag": "Administration utility purpose confusion",
+    "sourceSection": "Backup and Rehost",
+    "misconceptionTag": "Backup, restore, and rehost scope confusion",
     "releaseVersion": "2026.04"
   },
   {
     "id": 145,
-    "topic": "Backup, Vaulting, and Rehost",
+    "topic": "Backup and Rehost",
     "difficulty": "hard",
     "question": "What two purposes does the `WinRU` (Windchill Rehost Utility) serve? (Choose 2)",
     "options": [
@@ -1080,12 +1080,12 @@
       3
     ],
     "explanation": "The Rehost Utility is used to clone systems for testing/development or to safely change the hostname and LDAP structure of a deployed system.",
-    "objective": "Backup, Vaulting, and Rehost",
-    "domain": "System Administration, Vaulting, and Performance",
+    "objective": "Backup and Rehost",
+    "domain": "Vaulting, Replication, and Data Maintenance",
     "type": "multiple",
     "sourceManual": "Windchill Technical Essentials course manual.pdf",
-    "sourceSection": "Backup, Vaulting, and Rehost",
-    "misconceptionTag": "Administration utility purpose confusion",
+    "sourceSection": "Backup and Rehost",
+    "misconceptionTag": "Backup, restore, and rehost scope confusion",
     "releaseVersion": "2026.04"
   },
   {

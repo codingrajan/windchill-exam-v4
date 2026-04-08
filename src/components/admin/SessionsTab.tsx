@@ -257,6 +257,19 @@ export default function SessionsTab() {
     return { participants, results, completed, inProgress, passed };
   };
 
+  const getLeaderboard = (sessionId: string) => {
+    const participants = participantsBySession[sessionId] ?? [];
+    return participants
+      .filter((participant) => participant.status === 'completed' && typeof participant.score === 'number')
+      .sort((left, right) => {
+        if ((right.score ?? -1) !== (left.score ?? -1)) {
+          return (right.score ?? -1) - (left.score ?? -1);
+        }
+        return String(left.submittedAt ?? left.startedAt).localeCompare(String(right.submittedAt ?? right.startedAt));
+      })
+      .map((participant, index) => ({ ...participant, rank: index + 1 }));
+  };
+
   const fmtDate = (iso?: string) =>
     iso
       ? new Date(iso).toLocaleDateString('en-IN', {
@@ -463,6 +476,10 @@ export default function SessionsTab() {
                           </div>
                           {(() => {
                             const stats = getSessionStats(session.id);
+                            const leaderboard = getLeaderboard(session.id);
+                            const averageScore = leaderboard.length
+                              ? Math.round(leaderboard.reduce((sum, participant) => sum + (participant.score ?? 0), 0) / leaderboard.length)
+                              : null;
                             return (
                               <div className="mt-5">
                                 <p className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wider mb-3">Session Activity</p>
@@ -480,6 +497,61 @@ export default function SessionsTab() {
                                     <p className="text-lg font-bold text-emerald-600">{stats.completed}</p>
                                   </div>
                                 </div>
+                                {leaderboard.length > 0 && (
+                                  <div className="mb-5">
+                                    <div className="flex items-center justify-between gap-3 flex-wrap mb-3">
+                                      <p className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wider">Session Leaderboard</p>
+                                      <div className="flex items-center gap-2 flex-wrap">
+                                        {averageScore !== null && (
+                                          <span className="text-[10px] font-semibold px-2.5 py-1 rounded-full border bg-blue-50 text-blue-600 border-blue-100">
+                                            Avg {averageScore}%
+                                          </span>
+                                        )}
+                                        <span className="text-[10px] font-semibold px-2.5 py-1 rounded-full border bg-emerald-50 text-emerald-600 border-emerald-100">
+                                          {stats.passed} passed
+                                        </span>
+                                      </div>
+                                    </div>
+                                    <div className="overflow-x-auto bg-white border border-zinc-100 rounded-xl">
+                                      <table className="w-full text-sm">
+                                        <thead>
+                                          <tr className="bg-zinc-50 border-b border-zinc-100">
+                                            {['Rank', 'Candidate', 'Score', 'Result', 'Submitted'].map((header) => (
+                                              <th key={header} className="px-4 py-3 text-left text-[10px] font-semibold text-zinc-400 uppercase tracking-wider whitespace-nowrap">{header}</th>
+                                            ))}
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          {leaderboard.map((participant, index) => (
+                                            <tr key={`leader-${participant.id ?? `${participant.sessionId}-${participant.candidateName}-${index}`}`} className={`border-b border-zinc-50 ${index % 2 === 0 ? 'bg-white' : 'bg-zinc-50/30'}`}>
+                                              <td className="px-4 py-3">
+                                                <span className={`inline-flex min-w-8 items-center justify-center rounded-full px-2 py-1 text-[11px] font-bold ${
+                                                  participant.rank === 1
+                                                    ? 'bg-amber-50 text-amber-700 border border-amber-200'
+                                                    : 'bg-zinc-100 text-zinc-600 border border-zinc-200'
+                                                }`}>
+                                                  #{participant.rank}
+                                                </span>
+                                              </td>
+                                              <td className="px-4 py-3 font-semibold text-zinc-800 whitespace-nowrap">{participant.candidateName}</td>
+                                              <td className="px-4 py-3 text-sm font-bold text-zinc-800">{participant.score}%</td>
+                                              <td className="px-4 py-3">
+                                                <span className={`text-[11px] font-semibold px-2.5 py-1 rounded-full border ${
+                                                  participant.passed
+                                                    ? 'bg-emerald-50 text-emerald-600 border-emerald-100'
+                                                    : 'bg-red-50 text-red-500 border-red-100'
+                                                }`}>
+                                                  {participant.passed ? 'PASS' : 'FAIL'}
+                                                </span>
+                                              </td>
+                                              <td className="px-4 py-3 text-zinc-500 text-[12px] whitespace-nowrap">{fmtDate(participant.submittedAt)}</td>
+                                            </tr>
+                                          ))}
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                  </div>
+                                )}
                                 {stats.participants.length > 0 ? (
                                   <div className="overflow-x-auto bg-white border border-zinc-100 rounded-xl">
                                     <table className="w-full text-sm">

@@ -25,7 +25,7 @@ A React + TypeScript + Vite mock-test platform for the PTC Windchill Implementat
 ## Project Structure
 
 ```text
-windchill-exam-v3/
+windchill-exam-v4/
   public/
     data/
       windchill_mock_test_1.json
@@ -192,6 +192,40 @@ VITE_ADMIN_EMAILS=admin1@example.com,admin2@example.com
 VITE_ENABLE_SERVER_WRITES=false
 ```
 
+### Public Repo And Firebase Credentials
+
+- The Firebase web app config used by the frontend is intentionally public:
+  - `apiKey`
+  - `authDomain`
+  - `projectId`
+  - `storageBucket`
+  - `messagingSenderId`
+  - `appId`
+  - `measurementId`
+- These values are not secrets in a browser-based Firebase app.
+- Security must come from:
+  - Firestore Rules
+  - Firebase Authentication
+  - optional server-side admin credentials only on Vercel
+- Do **not** commit:
+  - `FIREBASE_ADMIN_SERVICE_ACCOUNT_JSON`
+  - downloaded Firebase service-account files
+  - any private admin secret used only by server functions
+
+The current public frontend config is:
+
+```ts
+const firebaseConfig = {
+  apiKey: "AIzaSyDqe4YXGVtglnjC3W1ODV4zRcADWtVFjSM",
+  authDomain: "windchill-mock-exam-v4.firebaseapp.com",
+  projectId: "windchill-mock-exam-v4",
+  storageBucket: "windchill-mock-exam-v4.firebasestorage.app",
+  messagingSenderId: "1088263687851",
+  appId: "1:1088263687851:web:013cd37e168d565e9071ee",
+  measurementId: "G-B2ZEEBH0SE"
+};
+```
+
 ### Firestore Collections Used
 
 - `exam_presets`
@@ -216,20 +250,36 @@ Candidate session starts also move to `/api/exam/start` in this mode, so retake 
 
 ## Recommended Firebase Security Model
 
-For production, do not rely on open client writes.
+Current app model:
 
-Recommended minimum:
+- candidates are anonymous browser users
+- admins are Firebase Authentication users
+- admin-only screens operate behind Firebase sign-in
+- Firestore rules should therefore distinguish between:
+  - public candidate flows
+  - signed-in admin operations
+
+Recommended baseline for this repo:
 
 - `exam_results`
-  - authenticated admin read
-  - controlled write strategy
+  - public create
+  - signed-in admin read/update/delete
 - `exam_presets`
-  - authenticated admin read/write only
+  - public read
+  - signed-in admin write
+- `exam_sessions`
+  - public read
+  - signed-in admin write
+- `session_participants`
+  - public create/update
+  - signed-in admin read/delete
+- `audit_logs`
+  - signed-in admin read/write only
 - Firebase Auth
-  - only admin users should be able to sign in to the admin console
+  - only admin users should exist here
 - Firestore Rules
   - start from `firestore.rules`
-  - replace the placeholder admin email with your actual admin email list
+  - no email allowlist is required if Firebase Authentication is used only for admins
 - Strict Rules Cutover
   - once server writes are fully enabled, switch to `firestore.server.rules`
   - this blocks direct candidate writes to `exam_results` and `session_participants`
@@ -238,7 +288,12 @@ Recommended minimum:
 - Server Write Boundary
   - when `VITE_ENABLE_SERVER_WRITES=true`, session start, result submission, and admin mutations use `/api/exam/start`, `/api/exam/submit`, and `/api/admin/write`
 
-If this project is hardened further, result writes and admin mutations should move behind a trusted backend boundary such as Vercel functions or Firebase callable functions.
+If this project later introduces candidate sign-in, move admin authorization from plain `request.auth != null` to either:
+
+- Firebase custom claims
+- a strict email allowlist
+
+For the current freeware deployment model, `request.auth != null` is sufficient because only admins authenticate.
 
 ### Offline Validation
 
@@ -253,6 +308,15 @@ npm run validate:questions
 ### 1. Push To GitHub
 
 Commit the repo and push it to GitHub.
+
+### Public Repository Requirement
+
+- A public GitHub repo is **not** required to host on Vercel.
+- Vercel can deploy from:
+  - private GitHub repos
+  - public GitHub repos
+- Public website access is controlled by Vercel deployment settings and your app itself, not by whether the source repo is public.
+- If the site should be reachable by all users, the deployment can still come from a private repo.
 
 ### 2. Import Into Vercel
 

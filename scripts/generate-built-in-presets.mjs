@@ -18,7 +18,8 @@ const domainOrder = [
   'Change and Release Management',
   'Configuration Management and Product Structures',
   'CAD Data Management and Visualization',
-  'System Administration, Vaulting, and Performance',
+  'System Administration, Utilities, and Monitoring',
+  'Vaulting, Replication, and Data Maintenance',
   'Navigate and Role-Based Consumption',
 ];
 

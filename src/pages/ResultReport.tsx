@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../services/firebase';
 import { buildCertificateHTML } from '../utils/certificate';
-import { getTrackProfile } from '../utils/examInsights';
+import { buildReviewCoachingSummary, getTrackProfile } from '../utils/examInsights';
 import { getQuestionDomain, loadQuestionPool } from '../utils/examLogic';
 import type { AnswerValue, ExamResult, Question, QuestionResult } from '../types/index';
 
@@ -169,6 +169,19 @@ export default function ResultReport() {
       }),
     [reviewFilter, reviewRows],
   );
+  const coachingSummary = useMemo(
+    () =>
+      buildReviewCoachingSummary(
+        reviewRows.map((entry) => ({
+          correct: entry.result.correct,
+          skipped: entry.result.skipped,
+          objective: entry.question.objective,
+          misconceptionTag: entry.question.misconceptionTag,
+          domain: getQuestionDomain(entry.question),
+        })),
+      ),
+    [reviewRows],
+  );
 
   const openCertificate = () => {
     if (!record) return;
@@ -258,6 +271,66 @@ export default function ResultReport() {
                 </div>
               ))}
             </div>
+          </div>
+        )}
+
+        {(coachingSummary.topMisconceptions.length > 0 || coachingSummary.topObjectives.length > 0) && (
+          <div className="mb-8 bg-white border border-zinc-100 rounded-2xl p-5">
+            <div className="flex items-start justify-between gap-4 flex-wrap mb-4">
+              <div>
+                <p className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wider mb-1">Coaching Summary</p>
+                <p className="text-sm font-medium text-zinc-700">
+                  {coachingSummary.wrongCount} wrong and {coachingSummary.skippedCount} skipped answers drove this attempt.
+                </p>
+              </div>
+              <span className="text-[11px] font-semibold px-3 py-1 rounded-full border bg-red-50 text-red-600 border-red-100">
+                Review Driver
+              </span>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              <div className="bg-zinc-50 border border-zinc-100 rounded-xl p-4">
+                <p className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wider mb-2">Top Misconceptions</p>
+                {coachingSummary.topMisconceptions.length > 0 ? (
+                  <div className="space-y-2">
+                    {coachingSummary.topMisconceptions.map((item) => (
+                      <div key={item.label} className="flex items-center justify-between gap-3 text-sm">
+                        <span className="font-medium text-zinc-700">{item.label}</span>
+                        <span className="text-xs font-semibold text-red-600 bg-red-50 border border-red-100 px-2 py-0.5 rounded-full">{item.count}</span>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="text-sm text-zinc-400">No repeated misconception cluster detected.</p>
+                )}
+              </div>
+              <div className="bg-zinc-50 border border-zinc-100 rounded-xl p-4">
+                <p className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wider mb-2">Objectives To Revisit</p>
+                {coachingSummary.topObjectives.length > 0 ? (
+                  <div className="space-y-2">
+                    {coachingSummary.topObjectives.map((item) => (
+                      <div key={item.label} className="flex items-center justify-between gap-3 text-sm">
+                        <span className="font-medium text-zinc-700">{item.label}</span>
+                        <span className="text-xs font-semibold text-amber-700 bg-amber-50 border border-amber-100 px-2 py-0.5 rounded-full">{item.count}</span>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="text-sm text-zinc-400">No repeated objective weakness detected.</p>
+                )}
+              </div>
+            </div>
+            {coachingSummary.coachingActions.length > 0 && (
+              <div className="bg-indigo-50 border border-indigo-100 rounded-xl p-4">
+                <p className="text-[10px] font-semibold text-indigo-500 uppercase tracking-wider mb-2">Next Coaching Actions</p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                  {coachingSummary.coachingActions.map((action) => (
+                    <div key={action} className="text-sm font-medium text-zinc-700 bg-white/80 border border-indigo-100 rounded-xl px-4 py-3">
+                      {action}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         )}
 

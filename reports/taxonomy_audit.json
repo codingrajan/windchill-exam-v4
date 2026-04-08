@@ -1,20 +1,11 @@
 {
-  "generatedAt": "2026-04-08T19:03:10.487Z",
+  "generatedAt": "2026-04-08T20:06:54.411Z",
   "questionCount": 500,
-  "domainCount": 11,
-  "objectiveCount": 44,
+  "domainCount": 12,
+  "objectiveCount": 45,
   "manualCount": 2,
-  "misconceptionCount": 25,
-  "flaggedDomains": [
-    {
-      "domain": "System Administration, Vaulting, and Performance",
-      "flags": [
-        "domain-too-broad"
-      ],
-      "questionCount": 81,
-      "objectiveCount": 5
-    }
-  ],
+  "misconceptionCount": 27,
+  "flaggedDomains": [],
   "lowCoverageObjectives": [
     {
       "objective": "Client Access and Web Tier",
@@ -42,76 +33,6 @@
     }
   ],
   "domains": [
-    {
-      "domain": "System Administration, Vaulting, and Performance",
-      "questionCount": 81,
-      "objectiveCount": 5,
-      "dominantObjective": "Administrative Utilities and Queues",
-      "dominantObjectiveShare": 0.32,
-      "objectives": [
-        {
-          "objective": "Administrative Utilities and Queues",
-          "count": 26
-        },
-        {
-          "objective": "Replication and Distribution",
-          "count": 17
-        },
-        {
-          "objective": "Backup, Vaulting, and Rehost",
-          "count": 15
-        },
-        {
-          "objective": "Audit and Usage Reporting",
-          "count": 15
-        },
-        {
-          "objective": "Performance and Runtime Administration",
-          "count": 8
-        }
-      ],
-      "manuals": [
-        {
-          "manual": "Windchill Technical Essentials course manual.pdf",
-          "count": 66
-        },
-        {
-          "manual": "Windchill Advanced Configuration course manual.pdf",
-          "count": 15
-        }
-      ],
-      "misconceptions": [
-        {
-          "tag": "Administration utility purpose confusion",
-          "count": 49
-        },
-        {
-          "tag": "Replication vs vaulting misconception",
-          "count": 17
-        },
-        {
-          "tag": "Audit reporting vs operational monitoring confusion",
-          "count": 15
-        }
-      ],
-      "flags": [
-        "domain-too-broad"
-      ],
-      "sampleQuestionIds": [
-        21,
-        86,
-        87,
-        88,
-        89,
-        90,
-        92,
-        93,
-        94,
-        95,
-        130,
-        137
-      ]
-    },
     {
       "domain": "CAD Data Management and Visualization",
       "questionCount": 78,
@@ -369,6 +290,62 @@
       ]
     },
     {
+      "domain": "System Administration, Utilities, and Monitoring",
+      "questionCount": 42,
+      "objectiveCount": 3,
+      "dominantObjective": "Administrative Utilities and Queues",
+      "dominantObjectiveShare": 0.55,
+      "objectives": [
+        {
+          "objective": "Administrative Utilities and Queues",
+          "count": 23
+        },
+        {
+          "objective": "Audit and Usage Reporting",
+          "count": 15
+        },
+        {
+          "objective": "Performance and Runtime Administration",
+          "count": 4
+        }
+      ],
+      "manuals": [
+        {
+          "manual": "Windchill Technical Essentials course manual.pdf",
+          "count": 35
+        },
+        {
+          "manual": "Windchill Advanced Configuration course manual.pdf",
+          "count": 7
+        }
+      ],
+      "misconceptions": [
+        {
+          "tag": "Administration utility purpose confusion",
+          "count": 27
+        },
+        {
+          "tag": "Audit reporting vs operational monitoring confusion",
+          "count": 15
+        }
+      ],
+      "flags": [],
+      "sampleQuestionIds": [
+        86,
+        87,
+        88,
+        92,
+        94,
+        130,
+        137,
+        138,
+        140,
+        141,
+        172,
+        237
+      ]
+    },
+    {
       "domain": "Data Model, Types, and Attributes",
       "questionCount": 41,
       "objectiveCount": 4,
@@ -430,6 +407,66 @@
         36,
         37,
         38
+      ]
+    },
+    {
+      "domain": "Vaulting, Replication, and Data Maintenance",
+      "questionCount": 40,
+      "objectiveCount": 3,
+      "dominantObjective": "Replication and Distribution",
+      "dominantObjectiveShare": 0.47,
+      "objectives": [
+        {
+          "objective": "Replication and Distribution",
+          "count": 19
+        },
+        {
+          "objective": "Vaulting and Content Maintenance",
+          "count": 15
+        },
+        {
+          "objective": "Backup and Rehost",
+          "count": 6
+        }
+      ],
+      "manuals": [
+        {
+          "manual": "Windchill Technical Essentials course manual.pdf",
+          "count": 32
+        },
+        {
+          "manual": "Windchill Advanced Configuration course manual.pdf",
+          "count": 8
+        }
+      ],
+      "misconceptions": [
+        {
+          "tag": "Replication vs vaulting misconception",
+          "count": 19
+        },
+        {
+          "tag": "Vaulting location and content-maintenance confusion",
+          "count": 15
+        },
+        {
+          "tag": "Backup, restore, and rehost scope confusion",
+          "count": 6
+        }
+      ],
+      "flags": [],
+      "sampleQuestionIds": [
+        21,
+        89,
+        90,
+        93,
+        95,
+        142,
+        143,
+        144,
+        145,
+        157,
+        232,
+        233
       ]
     },
     {
@@ -546,10 +583,10 @@
     },
     {
       "domain": "Architecture, Installation, and Integration",
-      "questionCount": 21,
+      "questionCount": 20,
       "objectiveCount": 4,
       "dominantObjective": "Installation and Deployment Topology",
-      "dominantObjectiveShare": 0.52,
+      "dominantObjectiveShare": 0.55,
       "objectives": [
         {
           "objective": "Installation and Deployment Topology",
@@ -557,7 +594,7 @@
         },
         {
           "objective": "Core Architecture and Services",
-          "count": 7
+          "count": 6
         },
         {
           "objective": "Enterprise Integration and Authentication",
@@ -570,18 +607,18 @@
       ],
       "manuals": [
         {
-          "manual": "Windchill Technical Essentials course manual.pdf",
-          "count": 11
+          "manual": "Windchill Advanced Configuration course manual.pdf",
+          "count": 10
         },
         {
-          "manual": "Windchill Advanced Configuration course manual.pdf",
+          "manual": "Windchill Technical Essentials course manual.pdf",
           "count": 10
         }
       ],
       "misconceptions": [
         {
           "tag": "Architecture component role confusion",
-          "count": 19
+          "count": 18
         },
         {
           "tag": "Integration-point and authentication-role confusion",

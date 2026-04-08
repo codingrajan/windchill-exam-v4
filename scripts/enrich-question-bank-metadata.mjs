@@ -18,9 +18,9 @@ const inferDomain = (question) => {
 
   if (has(text, /Navigate|ThingWorx|Windchill REST Services/i)) return 'Navigate and Role-Based Consumption';
   if (has(text, /project plan|milestones|deliverables|context creators|site-level preferences|product-level preference|organization default|preference modification|Searching preference|Tables preference|Package business administration configurations|templates important when creating new contexts|template pick list|preference hierarchy|locked preference|user-level preference|Content preference category|Display preference category|setting Windchill preferences|context levels|locked versus locally modifiable/i)) return 'Contexts, Preferences, and Business Administration';
-  if (has(text, /security auditing reports|usage report|usage reporting|Performance Advisor|WAN accelerator|report-based view of system behavior|replicated content/i)) return 'System Administration, Vaulting, and Performance';
+  if (has(text, /security auditing reports|usage report|usage reporting|Performance Advisor|WAN accelerator|report-based view of system behavior|throughput|cache sizes|heap sizes/i)) return 'System Administration, Utilities, and Monitoring';
   if (has(text, /worker host|publish job|background publishing|synchronous conversion|check(?:ing)? in only a top-level CAD file|dependencies|authoring file type|manual republish|browser viewable|publish failure|publish-rule design|viewable-distribution strategy/i)) return 'CAD Data Management and Visualization';
-  if (has(text, /Collect Objects step|move operation help prevent|move with an object when collected appropriately/i)) return 'System Administration, Vaulting, and Performance';
+  if (has(text, /Collect Objects step|move operation help prevent|move with an object when collected appropriately/i)) return 'Vaulting, Replication, and Data Maintenance';
   if (has(text, /focused app experiences/i)) return 'Navigate and Role-Based Consumption';
   if (has(text, /private domain architecture|actor\b.*role resolution|actor in the context of team template role resolution/i)) return 'Access Control, Teams, and Security';
   if (has(text, /Review and Audit stage|review and audit change|issue capture|change evaluation|change execution|change-management job|release through change|Problem Report|Change Request|Change Notice|Change Task|Variance/i)) return 'Change and Release Management';
@@ -28,7 +28,8 @@ const inferDomain = (question) => {
   if (has(text, /EPMDocument|WTPart|WTDocumentMaster|WTDocument\b|primary content|secondary content|owner association|image association|content association|described by|reference link|master object/i)) return 'Data Model, Types, and Attributes';
   if (has(text, /workspace|check out|checkout|check in|check-in|workgroup manager|CAD document|CAD-centric|Creo|representation|WVS|publish rule|Creo View|drawing|assembly|visualization|commonspace|out-of-date|authoring application/i)) return 'CAD Data Management and Visualization';
   if (has(text, /multi-tiered configuration|monolithic|Apache web server|application tier|client environment|initialize properly|services must be started|database tier|method server|directory server|clustered architecture|single server|web server/i)) return 'Architecture, Installation, and Integration';
-  if (has(text, /routine Windchill administrative maintenance|administrative maintenance|site\.xconf|xconfmanager|queue|backup|vault|rehost|replication|replica server|audit report|usage reporting|throughput|WCA|Move Wizard|SCC|windchill shell|cache sizes|heap sizes|JMX|WContentVerify|hot backup/i)) return 'System Administration, Vaulting, and Performance';
+  if (has(text, /backup|vault|rehost|replication|replica server|replicated content|Move Wizard|WContentVerify|hot backup/i)) return 'Vaulting, Replication, and Data Maintenance';
+  if (has(text, /routine Windchill administrative maintenance|administrative maintenance|site\.xconf|xconfmanager|queue|audit report|usage reporting|throughput|WCA|SCC|windchill shell|cache sizes|heap sizes|JMX/i)) return 'System Administration, Utilities, and Monitoring';
   if (has(text, /profile\b|Functional Definition Document|FDD|configuration driver|business configuration requirements|subscriber checkbox|Restricted Directory Search|organization context|program context|project context|library context|product context|context hierarchy|context template|Add Roles to Organization/i)) return 'Contexts, Preferences, and Business Administration';
   if (has(text, /baseline|configuration specification|effectivity|occurrence|Where Used|Latest Released|Latest configuration specification|maturity baseline|serial number|lot number|calendar date/i)) return 'Configuration Management and Product Structures';
   if (has(text, /Lock' life cycle transition|Change' transition type|transition type|Set State|combined use of workflows and user actions|Production Released|Obsolescence/i)) return 'Lifecycle, Workflow, and Object Initialization';
@@ -112,13 +113,17 @@ const inferObjective = (question, domain) => {
     return 'CAD Documents and Authoring Context';
   }
 
-  if (domain === 'System Administration, Vaulting, and Performance') {
-    if (has(text, /replication|replica server|content replication/i)) return 'Replication and Distribution';
-    if (has(text, /audit|usage reporting|throughput/i)) return 'Audit and Usage Reporting';
-    if (has(text, /backup|vault|rehost/i)) return 'Backup, Vaulting, and Rehost';
-    if (has(text, /queue|Move Wizard|WCA|windchill shell|xconfmanager|JMX|SCC/i)) return 'Administrative Utilities and Queues';
+  if (domain === 'System Administration, Utilities, and Monitoring') {
+    if (has(text, /audit|usage reporting|throughput|Performance Advisor/i)) return 'Audit and Usage Reporting';
+    if (has(text, /queue|WCA|windchill shell|xconfmanager|JMX|SCC/i)) return 'Administrative Utilities and Queues';
     if (has(text, /maintenance/i)) return 'Operational Maintenance';
     return 'Performance and Runtime Administration';
+  }
+
+  if (domain === 'Vaulting, Replication, and Data Maintenance') {
+    if (has(text, /replication|replica server|content replication|replicated content/i)) return 'Replication and Distribution';
+    if (has(text, /backup|rehost|hot backup/i)) return 'Backup and Rehost';
+    return 'Vaulting and Content Maintenance';
   }
 
   if (domain === 'Navigate and Role-Based Consumption') {
@@ -187,9 +192,14 @@ const inferMisconceptionTag = (domain, objective, text) => {
   if (domain === 'CAD Data Management and Visualization') {
     return /Visualization/i.test(objective) ? 'Visualization pipeline role confusion' : 'Workspace vs commonspace authority';
   }
-  if (domain === 'System Administration, Vaulting, and Performance') {
+  if (domain === 'System Administration, Utilities, and Monitoring') {
     if (/Audit and Usage Reporting/i.test(objective)) return 'Audit reporting vs operational monitoring confusion';
-    return /Replication/i.test(objective) ? 'Replication vs vaulting misconception' : 'Administration utility purpose confusion';
+    return 'Administration utility purpose confusion';
+  }
+  if (domain === 'Vaulting, Replication, and Data Maintenance') {
+    if (/Replication and Distribution/i.test(objective)) return 'Replication vs vaulting misconception';
+    if (/Backup and Rehost/i.test(objective)) return 'Backup, restore, and rehost scope confusion';
+    return 'Vaulting location and content-maintenance confusion';
   }
   if (domain === 'Architecture, Installation, and Integration') {
     return /Integration|Authentication/i.test(objective) ? 'Integration-point and authentication-role confusion' : 'Architecture component role confusion';
