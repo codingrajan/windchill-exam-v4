@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useBlocker, useLocation, useNavigate } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import type { AnswerMap, ExamConfig, Question } from '../types/index';
 import { buildRandomExam, getQuestionDomain, isQuestionAnswered, loadQuestionPool, shuffle } from '../utils/examLogic';
@@ -38,6 +38,20 @@ export default function Quiz() {
   const [isLoaded, setIsLoaded] = useState(false);
 
   const hasSubmitted = useRef(false);
+
+  // Block in-app navigation (back button, logo click) while exam is active
+  useBlocker(() => isLoaded && !hasSubmitted.current);
+
+  // Block browser refresh / tab close while exam is active
+  useEffect(() => {
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      if (isLoaded && !hasSubmitted.current) {
+        e.preventDefault();
+      }
+    };
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
+  }, [isLoaded]);
 
   useEffect(() => {
     if (!config) {
