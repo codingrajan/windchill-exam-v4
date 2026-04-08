@@ -12,6 +12,7 @@
     "manifest:questions": "node scripts/generate-question-bank-manifest.mjs",
     "enrich:questions": "node scripts/enrich-question-bank-metadata.mjs",
     "generate:presets": "node scripts/generate-built-in-presets.mjs",
+    "generate:sessions": "node scripts/generate-session-schedule-assets.mjs",
     "audit:taxonomy": "node scripts/generate-taxonomy-audit.mjs"
   },
   "dependencies": {

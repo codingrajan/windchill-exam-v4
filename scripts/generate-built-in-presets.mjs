@@ -174,6 +174,9 @@ const presetsConfig = [
 
 const questions = loadQuestions();
 const presets = presetsConfig.map((config) => buildPreset(questions, config));
+const existingHiddenPresets = fs.existsSync(outputPath)
+  ? JSON.parse(fs.readFileSync(outputPath, 'utf8')).filter((preset) => preset.showOnHome === false)
+  : [];
 
-fs.writeFileSync(outputPath, `${JSON.stringify(presets, null, 2)}\n`, 'utf8');
+fs.writeFileSync(outputPath, `${JSON.stringify([...presets.map((preset) => ({ ...preset, showOnHome: true })), ...existingHiddenPresets], null, 2)}\n`, 'utf8');
 console.log(`Built-in presets written to ${path.relative(process.cwd(), outputPath)}`);

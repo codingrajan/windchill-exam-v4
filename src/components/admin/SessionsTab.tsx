@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import type { ChangeEvent, FormEvent } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { collection, getDocs, orderBy, query } from 'firebase/firestore';
+import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../../services/firebase';
 import {
   fetchBuiltInPresets,
@@ -9,6 +9,12 @@ import {
   mergePresetCatalog,
   syncBuiltInPresetsToFirestore,
 } from '../../services/presetCatalog';
+import {
+  fetchBuiltInSessions,
+  fetchFirestoreSessions,
+  mergeSessionCatalog,
+  syncBuiltInSessionsToFirestore,
+} from '../../services/sessionCatalog';
 import {
   createExamSession,
   patchExamSession,
@@ -44,9 +50,21 @@ export default function SessionsTab() {
   const fetchSessions = async () => {
     setLoading(true);
     try {
-      const snap = await getDocs(query(collection(db, 'exam_sessions'), orderBy('createdAt', 'desc')));
-      const list: ExamSession[] = [];
-      snap.forEach((entry) => list.push({ ...(entry.data() as ExamSession), id: entry.id }));
+      const [firestoreSessions, builtInSessions] = await Promise.all([
+        fetchFirestoreSessions().catch(() => [] as ExamSession[]),
+        fetchBuiltInSessions().catch(() => [] as ExamSession[]),
+      ]);
+
+      if (builtInSessions.length > 0) {
+        try {
+          await syncBuiltInSessionsToFirestore(builtInSessions, firestoreSessions);
+        } catch (error) {
+          console.error('Session sync error:', error);
+        }
+      }
+
+      const refreshedSessions = await fetchFirestoreSessions().catch(() => firestoreSessions);
+      const list = mergeSessionCatalog(refreshedSessions, builtInSessions);
       setSessions(list);
 
       const initial: Record<string, string> = {};

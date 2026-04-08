@@ -86,6 +86,7 @@ export interface ExamSession {
   startsAt?: string;
   maxRetakes?: number;
   allowedCandidates?: string[];
+  isBuiltIn?: boolean;
 }
 
 export interface Preset {
@@ -99,6 +100,7 @@ export interface Preset {
   difficultyLabel?: string;
   multiSelectRatio?: number;
   isBuiltIn?: boolean;
+  showOnHome?: boolean;
 }
 
 export interface ExamConfig {

@@ -59,8 +59,9 @@ export default function Welcome() {
     ])
       .then(([firestorePresets, builtInPresets]) => {
         const merged = mergePresetCatalog(firestorePresets, builtInPresets);
-        setPresets(merged);
-        if (merged.length > 0) setSelectedPresetId(merged[0].id);
+        const homeVisible = merged.filter((preset) => preset.showOnHome !== false);
+        setPresets(homeVisible);
+        if (homeVisible.length > 0) setSelectedPresetId(homeVisible[0].id);
         else setMode('random');
       })
       .finally(() => setIsLoading(false));
