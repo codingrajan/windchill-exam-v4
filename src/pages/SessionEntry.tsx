@@ -29,7 +29,7 @@ export default function SessionEntry() {
         const sessionSnap = await getDoc(doc(db, 'exam_sessions', sessionId));
         if (!sessionSnap.exists()) { setPageState('invalid'); return; }
 
-        const data = sessionSnap.data() as ExamSession;
+        const data = { ...(sessionSnap.data() as ExamSession), id: sessionSnap.id };
 
         if (!data.isActive) { setPageState('inactive'); return; }
 
