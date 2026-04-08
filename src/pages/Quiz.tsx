@@ -78,6 +78,8 @@ export default function Quiz() {
             timeTaken: getTimeLimit(questions.length || config.targetCount),
             examineeName: config.examineeName,
             examMode: config.mode,
+            sessionId: config.sessionId,
+            sessionName: config.sessionName,
           },
         });
       }
@@ -107,6 +109,8 @@ export default function Quiz() {
         timeTaken: getTimeLimit(questions.length || config.targetCount) - timeLeft,
         examineeName: config.examineeName,
         examMode: config.mode,
+        sessionId: config.sessionId,
+        sessionName: config.sessionName,
       },
     });
   };

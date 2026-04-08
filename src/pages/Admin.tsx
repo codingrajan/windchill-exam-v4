@@ -2,16 +2,16 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import type { FormEvent } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
-import { collection, deleteDoc, doc, getDoc, getDocs, orderBy, query, setDoc } from 'firebase/firestore';
+import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, orderBy, query, setDoc, updateDoc } from 'firebase/firestore';
 import { auth, db } from '../services/firebase';
-import type { ExamResult, Preset, Question } from '../types/index';
+import type { ExamResult, ExamSession, Preset, Question } from '../types/index';
 import { getQuestionDomain, loadQuestionPool } from '../utils/examLogic';
 
 interface ExamResultDoc extends ExamResult {
   docId: string;
 }
 
-type ActiveTab = 'reports' | 'presets';
+type ActiveTab = 'reports' | 'presets' | 'sessions';
 type FilterScore = 'all' | 'pass' | 'fail';
 const PRESET_SLOTS = [
   { id: 'preset_1', label: 'Slot A', targetCount: 25 },
@@ -154,8 +154,8 @@ function ReportsTab() {
         {loading ? <div className="flex items-center justify-center h-40"><div className="w-6 h-6 border-2 border-indigo-400 border-t-transparent rounded-full animate-spin" /></div> : filtered.length === 0 ? <div className="text-center py-16 text-zinc-400 text-sm font-medium">No records match your filters.</div> : (
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
-              <thead><tr className="bg-zinc-50 border-b border-zinc-100"><th className="px-4 py-3 text-left"><LiteCheckbox checked={allSelected} onChange={toggleAll} /></th>{['Examinee', 'Mode', 'Score', 'Result', 'Time', 'Strongest Domain', 'Date'].map((header) => <th key={header} className="px-4 py-3 text-left text-[10px] font-semibold text-zinc-400 uppercase tracking-wider whitespace-nowrap">{header}</th>)}</tr></thead>
-              <tbody>{filtered.map((record, index) => <tr key={record.docId} className={`border-b border-zinc-50 hover:bg-zinc-50/60 transition-colors ${selected.has(record.docId) ? 'bg-indigo-50/40' : index % 2 === 0 ? 'bg-white' : 'bg-zinc-50/30'}`}><td className="px-4 py-3"><LiteCheckbox checked={selected.has(record.docId)} onChange={() => setSelected((prev) => { const next = new Set(prev); if (next.has(record.docId)) next.delete(record.docId); else next.add(record.docId); return next; })} /></td><td className="px-4 py-3 font-semibold text-zinc-800 whitespace-nowrap">{record.examineeName}</td><td className="px-4 py-3"><span className="text-[11px] font-medium text-zinc-500 capitalize bg-zinc-100 px-2.5 py-1 rounded-full">{record.examMode}</span></td><td className="px-4 py-3"><span className={`text-sm font-bold ${record.scorePercentage >= 80 ? 'text-emerald-600' : 'text-red-500'}`}>{record.scorePercentage}%</span><span className="text-[11px] text-zinc-400 ml-1">({record.questionsAnsweredCorrectly}/{record.totalQuestions})</span></td><td className="px-4 py-3"><span className={`text-[11px] font-semibold px-2.5 py-1 rounded-full border ${record.passed ? 'bg-emerald-50 text-emerald-600 border-emerald-100' : 'bg-red-50 text-red-500 border-red-100'}`}>{record.passed ? 'PASS' : 'FAIL'}</span></td><td className="px-4 py-3 text-zinc-500 font-medium whitespace-nowrap">{fmtTime(record.timeTakenSeconds)}</td><td className="px-4 py-3 text-zinc-500 font-medium text-[12px] max-w-[140px] truncate">{record.strongestDomain ?? '--'}</td><td className="px-4 py-3 text-zinc-400 text-[12px] whitespace-nowrap">{fmtDate(record.examDate)}</td></tr>)}</tbody>
+              <thead><tr className="bg-zinc-50 border-b border-zinc-100"><th className="px-4 py-3 text-left"><LiteCheckbox checked={allSelected} onChange={toggleAll} /></th>{['Examinee', 'Mode / Session', 'Score', 'Result', 'Time', 'Strongest Domain', 'Date'].map((header) => <th key={header} className="px-4 py-3 text-left text-[10px] font-semibold text-zinc-400 uppercase tracking-wider whitespace-nowrap">{header}</th>)}</tr></thead>
+              <tbody>{filtered.map((record, index) => <tr key={record.docId} className={`border-b border-zinc-50 hover:bg-zinc-50/60 transition-colors ${selected.has(record.docId) ? 'bg-indigo-50/40' : index % 2 === 0 ? 'bg-white' : 'bg-zinc-50/30'}`}><td className="px-4 py-3"><LiteCheckbox checked={selected.has(record.docId)} onChange={() => setSelected((prev) => { const next = new Set(prev); if (next.has(record.docId)) next.delete(record.docId); else next.add(record.docId); return next; })} /></td><td className="px-4 py-3 font-semibold text-zinc-800 whitespace-nowrap">{record.examineeName}</td><td className="px-4 py-3"><span className="text-[11px] font-medium text-zinc-500 capitalize bg-zinc-100 px-2.5 py-1 rounded-full">{record.examMode}</span>{record.sessionName && <span className="text-[10px] font-medium text-indigo-500 bg-indigo-50 border border-indigo-100 px-2 py-0.5 rounded-full ml-1.5 whitespace-nowrap">{record.sessionName}</span>}</td><td className="px-4 py-3"><span className={`text-sm font-bold ${record.scorePercentage >= 80 ? 'text-emerald-600' : 'text-red-500'}`}>{record.scorePercentage}%</span><span className="text-[11px] text-zinc-400 ml-1">({record.questionsAnsweredCorrectly}/{record.totalQuestions})</span></td><td className="px-4 py-3"><span className={`text-[11px] font-semibold px-2.5 py-1 rounded-full border ${record.passed ? 'bg-emerald-50 text-emerald-600 border-emerald-100' : 'bg-red-50 text-red-500 border-red-100'}`}>{record.passed ? 'PASS' : 'FAIL'}</span></td><td className="px-4 py-3 text-zinc-500 font-medium whitespace-nowrap">{fmtTime(record.timeTakenSeconds)}</td><td className="px-4 py-3 text-zinc-500 font-medium text-[12px] max-w-[140px] truncate">{record.strongestDomain ?? '--'}</td><td className="px-4 py-3 text-zinc-400 text-[12px] whitespace-nowrap">{fmtDate(record.examDate)}</td></tr>)}</tbody>
             </table>
           </div>
         )}
@@ -271,6 +271,248 @@ function PresetsTab() {
   );
 }
 
+function SessionsTab() {
+  const [sessions, setSessions] = useState<ExamSession[]>([]);
+  const [presets, setPresets] = useState<Preset[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [creating, setCreating] = useState(false);
+  const [toggling, setToggling] = useState<string | null>(null);
+  const [deleting, setDeleting] = useState<string | null>(null);
+  const [copied, setCopied] = useState<string | null>(null);
+  const [message, setMessage] = useState('');
+
+  // Create-form state
+  const [formName, setFormName] = useState('');
+  const [formPresetId, setFormPresetId] = useState('');
+  const [formCode, setFormCode] = useState('');
+  const [formExpiry, setFormExpiry] = useState('');
+
+  const fetchSessions = async () => {
+    setLoading(true);
+    try {
+      const snap = await getDocs(query(collection(db, 'exam_sessions'), orderBy('createdAt', 'desc')));
+      const list: ExamSession[] = [];
+      snap.forEach((d) => list.push({ ...(d.data() as ExamSession), id: d.id }));
+      setSessions(list);
+    } catch (err) {
+      console.error('Session fetch error:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    void fetchSessions();
+    PRESET_SLOTS.forEach((slot) => {
+      void getDoc(doc(db, 'exam_presets', slot.id)).then((snap) => {
+        if (snap.exists()) setPresets((prev) => {
+          if (prev.find((p) => p.id === slot.id)) return prev;
+          return [...prev, snap.data() as Preset];
+        });
+      });
+    });
+  }, []);
+
+  const handleCreate = async (e: FormEvent) => {
+    e.preventDefault();
+    if (!formName.trim() || !formPresetId || !formCode.trim()) return;
+    setCreating(true);
+    setMessage('');
+    try {
+      const selectedPreset = presets.find((p) => p.id === formPresetId);
+      const payload: Omit<ExamSession, 'id'> = {
+        name: formName.trim(),
+        presetId: formPresetId,
+        presetName: selectedPreset?.name ?? formPresetId,
+        accessCode: formCode.trim(),
+        isActive: true,
+        createdAt: new Date().toISOString(),
+        ...(formExpiry ? { expiresAt: new Date(formExpiry).toISOString() } : {}),
+      };
+      const ref = await addDoc(collection(db, 'exam_sessions'), payload);
+      setSessions((prev) => [{ ...payload, id: ref.id }, ...prev]);
+      setFormName('');
+      setFormPresetId('');
+      setFormCode('');
+      setFormExpiry('');
+      setMessage('Session created successfully.');
+    } catch (err) {
+      console.error('Create session error:', err);
+      setMessage('Error creating session.');
+    } finally {
+      setCreating(false);
+    }
+  };
+
+  const toggleActive = async (session: ExamSession) => {
+    setToggling(session.id);
+    try {
+      await updateDoc(doc(db, 'exam_sessions', session.id), { isActive: !session.isActive });
+      setSessions((prev) => prev.map((s) => s.id === session.id ? { ...s, isActive: !s.isActive } : s));
+    } catch (err) {
+      console.error('Toggle error:', err);
+    } finally {
+      setToggling(null);
+    }
+  };
+
+  const deleteSession = async (sessionId: string) => {
+    if (!confirm('Permanently delete this session? Candidates will no longer be able to access it.')) return;
+    setDeleting(sessionId);
+    try {
+      await deleteDoc(doc(db, 'exam_sessions', sessionId));
+      setSessions((prev) => prev.filter((s) => s.id !== sessionId));
+    } catch (err) {
+      console.error('Delete session error:', err);
+    } finally {
+      setDeleting(null);
+    }
+  };
+
+  const copyLink = (sessionId: string) => {
+    const url = `${window.location.origin}/session/${sessionId}`;
+    void navigator.clipboard.writeText(url).then(() => {
+      setCopied(sessionId);
+      setTimeout(() => setCopied(null), 2000);
+    });
+  };
+
+  const fmtDate = (iso?: string) => (iso ? new Date(iso).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' }) : '--');
+
+  return (
+    <div className="grid grid-cols-1 xl:grid-cols-3 gap-5">
+      {/* Create form */}
+      <div className="xl:col-span-1">
+        <div className="bg-white border border-zinc-100 rounded-2xl p-5 shadow-sm">
+          <p className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wider mb-4">Create New Session</p>
+          <form onSubmit={handleCreate} className="space-y-3">
+            <input
+              type="text"
+              placeholder="Session name, e.g. Batch Jan 2025 – A"
+              value={formName}
+              onChange={(e) => setFormName(e.target.value)}
+              required
+              className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-3 py-2.5 text-sm text-zinc-800 font-medium outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 transition-all placeholder:text-zinc-300"
+            />
+            <select
+              value={formPresetId}
+              onChange={(e) => setFormPresetId(e.target.value)}
+              required
+              className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-3 py-2.5 text-sm text-zinc-800 font-medium outline-none focus:border-indigo-400 transition-all"
+            >
+              <option value="">Select a preset exam…</option>
+              {PRESET_SLOTS.map((slot) => {
+                const p = presets.find((x) => x.id === slot.id);
+                return p ? (
+                  <option key={slot.id} value={slot.id}>{p.name} ({slot.targetCount}Q)</option>
+                ) : (
+                  <option key={slot.id} value="" disabled>{slot.label} – not configured</option>
+                );
+              })}
+            </select>
+            <input
+              type="text"
+              placeholder="Access code (shared with candidates)"
+              value={formCode}
+              onChange={(e) => setFormCode(e.target.value)}
+              required
+              className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-3 py-2.5 text-sm text-zinc-800 font-medium outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 transition-all placeholder:text-zinc-300"
+            />
+            <div>
+              <label className="block text-[11px] font-medium text-zinc-400 mb-1">Expiry date (optional)</label>
+              <input
+                type="date"
+                value={formExpiry}
+                onChange={(e) => setFormExpiry(e.target.value)}
+                className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-3 py-2.5 text-sm text-zinc-800 font-medium outline-none focus:border-indigo-400 transition-all"
+              />
+            </div>
+            <button
+              type="submit"
+              disabled={creating}
+              className="w-full py-3 rounded-xl font-semibold text-sm bg-indigo-600 hover:bg-indigo-700 text-white shadow-sm transition-all disabled:opacity-50"
+            >
+              {creating ? 'Creating...' : 'Create Session'}
+            </button>
+            {message && (
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className={`text-[12px] font-medium text-center ${message.includes('Error') ? 'text-red-500' : 'text-emerald-600'}`}
+              >
+                {message}
+              </motion.p>
+            )}
+          </form>
+        </div>
+      </div>
+
+      {/* Sessions list */}
+      <div className="xl:col-span-2">
+        <div className="bg-white border border-zinc-100 rounded-2xl shadow-sm overflow-hidden">
+          <div className="px-5 py-4 border-b border-zinc-100 bg-zinc-50">
+            <p className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wider">Active Sessions</p>
+          </div>
+          {loading ? (
+            <div className="flex items-center justify-center h-40">
+              <div className="w-6 h-6 border-2 border-indigo-400 border-t-transparent rounded-full animate-spin" />
+            </div>
+          ) : sessions.length === 0 ? (
+            <div className="text-center py-16 text-zinc-400 text-sm font-medium">No sessions yet. Create one to get started.</div>
+          ) : (
+            <div className="divide-y divide-zinc-50">
+              {sessions.map((session) => (
+                <div key={session.id} className="px-5 py-4 hover:bg-zinc-50/60 transition-colors">
+                  <div className="flex items-start justify-between gap-3 flex-wrap">
+                    <div className="min-w-0">
+                      <div className="flex items-center gap-2 flex-wrap mb-1">
+                        <span className="text-sm font-semibold text-zinc-800">{session.name}</span>
+                        <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full border ${session.isActive ? 'bg-emerald-50 text-emerald-600 border-emerald-100' : 'bg-zinc-100 text-zinc-400 border-zinc-200'}`}>
+                          {session.isActive ? 'Active' : 'Inactive'}
+                        </span>
+                      </div>
+                      <p className="text-[12px] text-zinc-400 font-medium">
+                        Preset: <span className="text-zinc-600">{session.presetName}</span>
+                        <span className="mx-2 text-zinc-200">|</span>
+                        Code: <span className="text-zinc-600 font-mono">{session.accessCode}</span>
+                        <span className="mx-2 text-zinc-200">|</span>
+                        Created: {fmtDate(session.createdAt)}
+                        {session.expiresAt && <><span className="mx-2 text-zinc-200">|</span>Expires: {fmtDate(session.expiresAt)}</>}
+                      </p>
+                    </div>
+                    <div className="flex items-center gap-2 flex-shrink-0 flex-wrap">
+                      <button
+                        onClick={() => copyLink(session.id)}
+                        className={`text-[11px] font-semibold px-3 py-1.5 rounded-lg border transition-all ${copied === session.id ? 'bg-emerald-50 border-emerald-200 text-emerald-600' : 'bg-indigo-50 border-indigo-100 text-indigo-600 hover:bg-indigo-100'}`}
+                      >
+                        {copied === session.id ? 'Copied!' : 'Copy Link'}
+                      </button>
+                      <button
+                        onClick={() => void toggleActive(session)}
+                        disabled={toggling === session.id}
+                        className="text-[11px] font-semibold px-3 py-1.5 rounded-lg border border-zinc-200 bg-zinc-50 text-zinc-600 hover:border-zinc-300 transition-all disabled:opacity-50"
+                      >
+                        {toggling === session.id ? '...' : session.isActive ? 'Deactivate' : 'Activate'}
+                      </button>
+                      <button
+                        onClick={() => void deleteSession(session.id)}
+                        disabled={deleting === session.id}
+                        className="text-[11px] font-semibold px-3 py-1.5 rounded-lg border border-red-100 bg-red-50 text-red-500 hover:bg-red-100 transition-all disabled:opacity-50"
+                      >
+                        {deleting === session.id ? '...' : 'Delete'}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Admin() {
   const [authed, setAuthed] = useState(false);
   const [authLoading, setAuthLoading] = useState(true);
@@ -337,11 +579,11 @@ export default function Admin() {
   return (
     <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.35 }} className="max-w-7xl mx-auto py-4 px-2">
       <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
-        <div><h1 className="text-2xl font-bold text-zinc-900 tracking-tight">Admin Command Center</h1><p className="text-sm text-zinc-500 font-medium mt-0.5">Exam Reports and Preset Management</p></div>
+        <div><h1 className="text-2xl font-bold text-zinc-900 tracking-tight">Admin Command Center</h1><p className="text-sm text-zinc-500 font-medium mt-0.5">Exam Reports, Preset Management &amp; Secured Sessions</p></div>
         <button onClick={() => void signOut(auth)} className="text-xs font-semibold text-zinc-500 border border-zinc-200 hover:border-red-200 hover:text-red-500 hover:bg-red-50 px-4 py-2 rounded-full transition-all">Sign Out</button>
       </div>
-      <div className="flex gap-1 bg-zinc-100 p-1 rounded-xl w-fit mb-6">{([{ key: 'reports', label: 'Exam Reports' }, { key: 'presets', label: 'Preset Manager' }] as const).map((item) => <button key={item.key} onClick={() => setTab(item.key)} className={`px-5 py-2 rounded-lg text-xs font-semibold transition-all ${tab === item.key ? 'bg-white text-indigo-600 shadow-sm' : 'text-zinc-500 hover:text-zinc-700'}`}>{item.label}</button>)}</div>
-      <AnimatePresence mode="wait"><motion.div key={tab} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.18 }}>{tab === 'reports' ? <ReportsTab /> : <PresetsTab />}</motion.div></AnimatePresence>
+      <div className="flex gap-1 bg-zinc-100 p-1 rounded-xl w-fit mb-6">{([{ key: 'reports', label: 'Exam Reports' }, { key: 'presets', label: 'Preset Manager' }, { key: 'sessions', label: 'Exam Sessions' }] as const).map((item) => <button key={item.key} onClick={() => setTab(item.key)} className={`px-5 py-2 rounded-lg text-xs font-semibold transition-all ${tab === item.key ? 'bg-white text-indigo-600 shadow-sm' : 'text-zinc-500 hover:text-zinc-700'}`}>{item.label}</button>)}</div>
+      <AnimatePresence mode="wait"><motion.div key={tab} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.18 }}>{tab === 'reports' ? <ReportsTab /> : tab === 'presets' ? <PresetsTab /> : <SessionsTab />}</motion.div></AnimatePresence>
     </motion.div>
   );
 }

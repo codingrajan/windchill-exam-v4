@@ -4,6 +4,7 @@ import Welcome from './pages/Welcome';
 import Quiz from './pages/Quiz';
 import Results from './pages/Results';
 import Admin from './pages/Admin';
+import SessionEntry from './pages/SessionEntry';
 
 function Header() {
   const navigate  = useNavigate();
@@ -55,10 +56,11 @@ function App() {
 
         <main className="w-full max-w-7xl px-4 py-6 flex-grow flex flex-col">
           <Routes>
-            <Route path="/"        element={<Welcome />} />
-            <Route path="/quiz"    element={<Quiz />} />
-            <Route path="/results" element={<Results />} />
-            <Route path="/admin"   element={<Admin />} />
+            <Route path="/"                    element={<Welcome />} />
+            <Route path="/quiz"               element={<Quiz />} />
+            <Route path="/results"            element={<Results />} />
+            <Route path="/admin"              element={<Admin />} />
+            <Route path="/session/:sessionId" element={<SessionEntry />} />
           </Routes>
         </main>
 

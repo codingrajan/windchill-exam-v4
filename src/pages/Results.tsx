@@ -137,6 +137,8 @@ export default function Results() {
     timeTaken?: number;
     examineeName?: string;
     examMode?: ExamMode;
+    sessionId?: string;
+    sessionName?: string;
   };
 
   const hasSaved = useRef(false);
@@ -145,6 +147,8 @@ export default function Results() {
   const timeTaken = state.timeTaken ?? 0;
   const examineeName = state.examineeName ?? 'Anonymous';
   const examMode = state.examMode ?? 'random';
+  const sessionId = state.sessionId;
+  const sessionName = state.sessionName;
   const summary = evaluateExam(questions, answers);
 
   useEffect(() => {
@@ -162,12 +166,14 @@ export default function Results() {
       weakestDomain: summary.weakestTopic.topic,
       timeTakenSeconds: timeTaken,
       examDate: new Date().toISOString(),
+      ...(sessionId ? { sessionId } : {}),
+      ...(sessionName ? { sessionName } : {}),
     };
 
     void addDoc(collection(db, 'exam_results'), payload).catch((error: unknown) => {
       console.error('Result save error:', error);
     });
-  }, [examMode, examineeName, questions.length, summary.correctCount, summary.passed, summary.percentage, summary.strongestTopic.topic, summary.weakestTopic.topic, timeTaken]);
+  }, [examMode, examineeName, questions.length, sessionId, sessionName, summary.correctCount, summary.passed, summary.percentage, summary.strongestTopic.topic, summary.weakestTopic.topic, timeTaken]);
 
   if (questions.length === 0) {
     return (

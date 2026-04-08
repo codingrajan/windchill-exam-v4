@@ -29,7 +29,20 @@ export interface ExamResult {
   strongestDomain: string;
   weakestDomain: string;
   timeTakenSeconds: number;
-  examDate: string; 
+  examDate: string;
+  sessionId?: string;
+  sessionName?: string;
+}
+
+export interface ExamSession {
+  id: string;
+  name: string;
+  presetId: string;
+  presetName: string;
+  accessCode: string;
+  isActive: boolean;
+  createdAt: string;
+  expiresAt?: string;
 }
 
 export interface Preset {
@@ -46,6 +59,8 @@ export interface ExamConfig {
   targetCount: number;
   presetId?: string | null;
   presetQuestionIds?: number[] | null;
+  sessionId?: string;
+  sessionName?: string;
 }
 
 export interface EvaluatedQuestion {
