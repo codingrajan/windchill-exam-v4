@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import type { AnswerMap, ExamConfig, Question } from '../types/index';
-import { buildRandomExam, getQuestionDomain, isQuestionAnswered, loadQuestionPool } from '../utils/examLogic';
+import { buildRandomExam, getQuestionDomain, isQuestionAnswered, loadQuestionPool, shuffle } from '../utils/examLogic';
 
 function getTimeLimit(count: number): number {
   if (count <= 25) return 900;
@@ -52,7 +52,7 @@ export default function Quiz() {
       if (config.mode === 'preset' && Array.isArray(config.presetQuestionIds)) {
         const presetIds = new Set<number>(config.presetQuestionIds);
         const matched = rawPool.filter((question) => presetIds.has(question.id));
-        finalSet = buildRandomExam(matched, Math.min(config.targetCount, matched.length));
+        finalSet = shuffle(matched);
       } else {
         finalSet = buildRandomExam(rawPool, config.targetCount);
       }

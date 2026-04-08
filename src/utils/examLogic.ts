@@ -88,7 +88,7 @@ const extractQuestionArray = (payload: unknown): unknown[] => {
   return [];
 };
 
-const shuffle = <T>(items: readonly T[]): T[] => {
+export const shuffle = <T>(items: readonly T[]): T[] => {
   const copy = [...items];
   for (let index = copy.length - 1; index > 0; index -= 1) {
     const swapIndex = Math.floor(Math.random() * (index + 1));
