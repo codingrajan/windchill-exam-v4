@@ -136,11 +136,11 @@ export default function ReportsTab() {
   return (
     <div className="space-y-5">
       <div className="bg-white border border-zinc-100 rounded-2xl p-5 shadow-sm">
-        <p className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wider mb-3">Filter Records</p>
+        <p className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wider mb-3">Report Filters</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-3">
           <input
             type="text"
-            placeholder="Search by name..."
+            placeholder="Search by candidate name..."
             value={name}
             onChange={(e) => setName(e.target.value)}
             className="bg-zinc-50 border border-zinc-200 rounded-xl px-3 py-2.5 text-sm text-zinc-800 font-medium outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 transition-all placeholder:text-zinc-300"
@@ -159,7 +159,7 @@ export default function ReportsTab() {
           <input type="date" value={from} onChange={(e) => setFrom(e.target.value)} className="bg-zinc-50 border border-zinc-200 rounded-xl px-3 py-2.5 text-sm text-zinc-800 font-medium outline-none focus:border-indigo-400 transition-all" />
           <input type="date" value={to} onChange={(e) => setTo(e.target.value)} className="bg-zinc-50 border border-zinc-200 rounded-xl px-3 py-2.5 text-sm text-zinc-800 font-medium outline-none focus:border-indigo-400 transition-all" />
           <button onClick={exportCSV} disabled={filtered.length === 0} className="text-xs font-semibold text-indigo-600 bg-indigo-50 border border-indigo-100 hover:bg-indigo-100 px-4 py-2 rounded-xl transition-colors disabled:opacity-40">
-            Export CSV
+            Export Reports CSV
           </button>
         </div>
       </div>
@@ -250,7 +250,7 @@ export default function ReportsTab() {
       </div>
 
       <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-[11px] text-zinc-400 text-center">
-        Open any saved report to review question-level errors, explanations, and certificate eligibility.
+        Open any saved report to review question-level errors, explanations, coaching cues, and certificate eligibility.
       </motion.p>
     </div>
   );

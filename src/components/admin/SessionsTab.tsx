@@ -23,6 +23,43 @@ import {
 } from '../../services/writeGateway';
 import type { ExamResult, ExamSession, Preset, SessionParticipant } from '../../types/index';
 
+type CandidateImportSummary = {
+  validNames: string[];
+  duplicateCount: number;
+  ignoredCount: number;
+};
+
+const parseCandidateList = (input: string): CandidateImportSummary => {
+  const lines = input
+    .split('\n')
+    .map((line) => line.trim())
+    .filter(Boolean);
+
+  const seen = new Set<string>();
+  const validNames: string[] = [];
+  let duplicateCount = 0;
+  let ignoredCount = 0;
+
+  lines.forEach((line) => {
+    const firstCell = line.split(',')[0]?.trim() ?? '';
+    if (!firstCell || firstCell.toLowerCase() === 'name') {
+      ignoredCount += 1;
+      return;
+    }
+
+    const normalized = firstCell.toLowerCase();
+    if (seen.has(normalized)) {
+      duplicateCount += 1;
+      return;
+    }
+
+    seen.add(normalized);
+    validNames.push(firstCell);
+  });
+
+  return { validNames, duplicateCount, ignoredCount };
+};
+
 export default function SessionsTab() {
   const [sessions, setSessions] = useState<ExamSession[]>([]);
   const [presets, setPresets] = useState<Preset[]>([]);
@@ -35,6 +72,7 @@ export default function SessionsTab() {
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [candidateText, setCandidateText] = useState<Record<string, string>>({});
   const [savingCandidates, setSavingCandidates] = useState<string | null>(null);
+  const [candidateWarnings, setCandidateWarnings] = useState<Record<string, string>>({});
   const [participantsBySession, setParticipantsBySession] = useState<Record<string, SessionParticipant[]>>({});
   const [resultsBySession, setResultsBySession] = useState<Record<string, ExamResult[]>>({});
 
@@ -246,8 +284,15 @@ export default function SessionsTab() {
     const reader = new FileReader();
     reader.onload = (loadEvent) => {
       const text = String(loadEvent.target?.result ?? '');
-      const names = text.split(/[\n,]/).map((name) => name.trim()).filter(Boolean).join('\n');
-      setCandidateText((prev) => ({ ...prev, [sessionId]: names }));
+      const parsed = parseCandidateList(text);
+      setCandidateText((prev) => ({ ...prev, [sessionId]: parsed.validNames.join('\n') }));
+      setCandidateWarnings((prev) => ({
+        ...prev,
+        [sessionId]:
+          parsed.duplicateCount > 0 || parsed.ignoredCount > 0
+            ? `${parsed.duplicateCount} duplicate entr${parsed.duplicateCount === 1 ? 'y was' : 'ies were'} removed, ${parsed.ignoredCount} line${parsed.ignoredCount === 1 ? ' was' : 's were'} ignored.`
+            : '',
+      }));
     };
     reader.readAsText(file);
   };
@@ -255,9 +300,18 @@ export default function SessionsTab() {
   const saveCandidates = async (session: ExamSession) => {
     setSavingCandidates(session.id);
     try {
-      const names = (candidateText[session.id] ?? '').split('\n').map((name) => name.trim()).filter(Boolean);
+      const parsed = parseCandidateList(candidateText[session.id] ?? '');
+      const names = parsed.validNames;
       await saveSessionCandidateList(session.id, names);
       setSessions((prev) => prev.map((entry) => (entry.id === session.id ? { ...entry, allowedCandidates: names } : entry)));
+      setCandidateText((prev) => ({ ...prev, [session.id]: names.join('\n') }));
+      setCandidateWarnings((prev) => ({
+        ...prev,
+        [session.id]:
+          parsed.duplicateCount > 0 || parsed.ignoredCount > 0
+            ? `${parsed.duplicateCount} duplicate entr${parsed.duplicateCount === 1 ? 'y was' : 'ies were'} removed, ${parsed.ignoredCount} line${parsed.ignoredCount === 1 ? ' was' : 's were'} ignored.`
+            : '',
+      }));
       void fetchSessionActivity();
     } catch (error) {
       console.error('Save candidates error:', error);
@@ -288,6 +342,50 @@ export default function SessionsTab() {
       .map((participant, index) => ({ ...participant, rank: index + 1 }));
   };
 
+  const downloadCsv = (filename: string, rows: Array<Array<string | number>>) => {
+    const csv = rows.map((row) => row.map((cell) => `"${String(cell).replace(/"/g, '""')}"`).join(',')).join('\n');
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const anchor = document.createElement('a');
+    anchor.href = url;
+    anchor.download = filename;
+    anchor.click();
+    URL.revokeObjectURL(url);
+  };
+
+  const exportLeaderboard = (session: ExamSession) => {
+    const leaderboard = getLeaderboard(session.id);
+    if (leaderboard.length === 0) return;
+    downloadCsv(`${session.id}_leaderboard.csv`, [
+      ['Rank', 'Candidate', 'Email', 'Score', 'Passed', 'Submitted At'],
+      ...leaderboard.map((participant) => [
+        participant.rank,
+        participant.candidateName,
+        participant.candidateEmail ?? '',
+        participant.score ?? '',
+        participant.passed ? 'Yes' : 'No',
+        participant.submittedAt ?? '',
+      ]),
+    ]);
+  };
+
+  const exportActivity = (session: ExamSession) => {
+    const stats = getSessionStats(session.id);
+    if (stats.participants.length === 0) return;
+    downloadCsv(`${session.id}_activity.csv`, [
+      ['Candidate', 'Email', 'Status', 'Score', 'Passed', 'Started At', 'Submitted At'],
+      ...stats.participants.map((participant) => [
+        participant.candidateName,
+        participant.candidateEmail ?? '',
+        participant.status,
+        participant.score ?? '',
+        participant.passed ? 'Yes' : participant.passed === false ? 'No' : '',
+        participant.startedAt,
+        participant.submittedAt ?? '',
+      ]),
+    ]);
+  };
+
   const fmtDate = (iso?: string) =>
     iso
       ? new Date(iso).toLocaleDateString('en-IN', {
@@ -303,7 +401,7 @@ export default function SessionsTab() {
     <div className="grid grid-cols-1 xl:grid-cols-3 gap-5">
       <div className="xl:col-span-1">
         <div className="bg-white border border-zinc-100 rounded-2xl p-5 shadow-sm">
-          <p className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wider mb-4">Create New Session</p>
+          <p className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wider mb-4">Create Session</p>
           <form onSubmit={handleCreate} className="space-y-3">
             <input
               type="text"
@@ -335,7 +433,7 @@ export default function SessionsTab() {
               className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-3 py-2.5 text-sm text-zinc-800 font-medium outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 transition-all placeholder:text-zinc-300"
             />
             <div>
-              <label className="block text-[11px] font-medium text-zinc-400 mb-1">Max Retakes (0 = unlimited)</label>
+              <label className="block text-[11px] font-medium text-zinc-400 mb-1">Max Attempts (0 = unlimited)</label>
               <input
                 type="number"
                 min="0"
@@ -385,7 +483,7 @@ export default function SessionsTab() {
       <div className="xl:col-span-2">
         <div className="bg-white border border-zinc-100 rounded-2xl shadow-sm overflow-hidden">
           <div className="px-5 py-4 border-b border-zinc-100 bg-zinc-50">
-            <p className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wider">Sessions ({sessions.length})</p>
+            <p className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wider">Exam Sessions ({sessions.length})</p>
           </div>
           {loading ? (
             <div className="flex items-center justify-center h-40">
@@ -408,6 +506,11 @@ export default function SessionsTab() {
                           <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full border ${session.isActive ? 'bg-emerald-50 text-emerald-600 border-emerald-100' : 'bg-zinc-100 text-zinc-400 border-zinc-200'}`}>
                             {session.isActive ? 'Active' : 'Inactive'}
                           </span>
+                          {session.isBuiltIn && (
+                            <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full border bg-amber-50 text-amber-700 border-amber-100">
+                              Scheduled
+                            </span>
+                          )}
                           {(session.allowedCandidates?.length ?? 0) > 0 && (
                             <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full border bg-blue-50 text-blue-600 border-blue-100">
                               {session.allowedCandidates!.length} registered
@@ -491,6 +594,11 @@ export default function SessionsTab() {
                                 {(candidateText[session.id] ?? '').split('\n').filter(Boolean).length} candidate{(candidateText[session.id] ?? '').split('\n').filter(Boolean).length !== 1 ? 's' : ''}
                               </span>
                             )}
+                            {candidateWarnings[session.id] && (
+                              <span className="text-[11px] text-amber-600">
+                                {candidateWarnings[session.id]}
+                              </span>
+                            )}
                           </div>
                           {(() => {
                             const stats = getSessionStats(session.id);
@@ -498,10 +606,16 @@ export default function SessionsTab() {
                             const averageScore = leaderboard.length
                               ? Math.round(leaderboard.reduce((sum, participant) => sum + (participant.score ?? 0), 0) / leaderboard.length)
                               : null;
+                            const passRate = leaderboard.length ? Math.round((stats.passed / leaderboard.length) * 100) : null;
+                            const topScore = leaderboard.length > 0 ? leaderboard[0].score ?? null : null;
                             return (
                               <div className="mt-5">
                                 <p className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wider mb-3">Session Activity</p>
-                                <div className="grid grid-cols-3 gap-3 mb-4">
+                                <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mb-4">
+                                  <div className="bg-white border border-zinc-100 rounded-xl px-4 py-3">
+                                    <p className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wider mb-1">Registered</p>
+                                    <p className="text-lg font-bold text-zinc-900">{session.allowedCandidates?.length ?? 0}</p>
+                                  </div>
                                   <div className="bg-white border border-zinc-100 rounded-xl px-4 py-3">
                                     <p className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wider mb-1">Started</p>
                                     <p className="text-lg font-bold text-zinc-900">{stats.participants.length}</p>
@@ -514,12 +628,26 @@ export default function SessionsTab() {
                                     <p className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wider mb-1">Completed</p>
                                     <p className="text-lg font-bold text-emerald-600">{stats.completed}</p>
                                   </div>
+                                  <div className="bg-white border border-zinc-100 rounded-xl px-4 py-3">
+                                    <p className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wider mb-1">Pass Rate</p>
+                                    <p className="text-lg font-bold text-blue-600">{passRate ?? 0}%</p>
+                                  </div>
+                                  <div className="bg-white border border-zinc-100 rounded-xl px-4 py-3">
+                                    <p className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wider mb-1">Top Score</p>
+                                    <p className="text-lg font-bold text-zinc-900">{topScore ?? '--'}{topScore !== null ? '%' : ''}</p>
+                                  </div>
                                 </div>
                                 {leaderboard.length > 0 && (
                                   <div className="mb-5">
                                     <div className="flex items-center justify-between gap-3 flex-wrap mb-3">
                                       <p className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wider">Session Leaderboard</p>
                                       <div className="flex items-center gap-2 flex-wrap">
+                                        <button
+                                          onClick={() => exportLeaderboard(session)}
+                                          className="text-[10px] font-semibold px-2.5 py-1 rounded-full border bg-white text-indigo-600 border-indigo-100 hover:bg-indigo-50"
+                                        >
+                                          Export Leaderboard
+                                        </button>
                                         {averageScore !== null && (
                                           <span className="text-[10px] font-semibold px-2.5 py-1 rounded-full border bg-blue-50 text-blue-600 border-blue-100">
                                             Avg {averageScore}%
@@ -572,6 +700,14 @@ export default function SessionsTab() {
                                 )}
                                 {stats.participants.length > 0 ? (
                                   <div className="overflow-x-auto bg-white border border-zinc-100 rounded-xl">
+                                    <div className="flex items-center justify-end px-4 pt-3">
+                                      <button
+                                        onClick={() => exportActivity(session)}
+                                        className="text-[10px] font-semibold px-2.5 py-1 rounded-full border bg-white text-indigo-600 border-indigo-100 hover:bg-indigo-50"
+                                      >
+                                        Export Activity
+                                      </button>
+                                    </div>
                                     <table className="w-full text-sm">
                                       <thead>
                                         <tr className="bg-zinc-50 border-b border-zinc-100">

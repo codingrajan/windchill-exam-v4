@@ -181,7 +181,7 @@ export default function Welcome() {
                         mode === entry ? 'bg-white text-indigo-600 shadow-sm' : 'text-zinc-500 hover:text-zinc-700'
                       }`}
                     >
-                      {entry === 'preset' ? 'Pre-Setup' : 'Random'}
+                      {entry === 'preset' ? 'Preset' : 'Random'}
                     </button>
                   ))}
                 </div>
@@ -237,7 +237,7 @@ export default function Welcome() {
                 {mode === 'preset' ? (
                   <>
                     <label className="block text-[10px] font-semibold text-zinc-400 uppercase tracking-wider mb-2">
-                      Available Presets
+                      Preset Library
                     </label>
                     {isLoading ? (
                       <p className="text-zinc-300 text-sm animate-pulse">Loading presets...</p>
@@ -290,7 +290,7 @@ export default function Welcome() {
                               </span>
                             </div>
                             <p className="text-[11px] text-zinc-500">
-                              Preset mode fixes the difficulty profile automatically. Track and experience settings are not used, and eligible passed attempts can generate a certificate.
+                          Preset mode fixes the difficulty profile automatically. Track and experience settings stay off, and passed preset attempts can unlock a certificate.
                             </p>
                           </div>
                         )}
@@ -314,7 +314,7 @@ export default function Welcome() {
                       <option value={25}>25 Questions - Focused (15 min)</option>
                       <option value={50}>50 Questions - Comprehensive (35 min)</option>
                       <option value={75}>75 Questions - Full Simulation (60 min)</option>
-                      <option value={100}>100 Questions - Complete Exam (75 min)</option>
+                      <option value={100}>100 Questions - Complete Practice (75 min)</option>
                     </select>
                   </>
                 )}
@@ -329,7 +329,7 @@ export default function Welcome() {
                     : 'bg-zinc-100 text-zinc-400 cursor-not-allowed'
                 }`}
               >
-                Initialize Examination {'->'}
+                Start Exam {'->'}
               </button>
             </div>
 
