@@ -1,10 +1,30 @@
 import { useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
-import { addDoc, collection, doc, updateDoc } from 'firebase/firestore';
-import { db } from '../services/firebase';
-import type { AnswerMap, EvaluatedQuestion, ExamMode, ExamResult, Question, QuestionResult } from '../types/index';
-import { evaluateExam, getQuestionDomain } from '../utils/examLogic';
+import type {
+  AnswerMap,
+  EvaluatedQuestion,
+  ExamMode,
+  ExamResult,
+  ExamTrack,
+  ExperienceBand,
+  Question,
+  QuestionResult,
+  RecentAttemptSnapshot,
+  StudyPlanSnapshot,
+} from '../types/index';
+import { buildReadinessInsights, getTrackProfile } from '../utils/examInsights';
+import { buildStudyPlan } from '../utils/studyPlan';
+import { buildCertificateHTML } from '../utils/certificate';
+import {
+  buildRemediationExam,
+  buildWeakDomainExam,
+  buildWrongOnlyExam,
+  evaluateExam,
+  getQuestionDomain,
+  loadQuestionPool,
+} from '../utils/examLogic';
+import { submitExamResult } from '../services/writeGateway';
 
 function DiffBadge({ level }: { level: string }) {
   const styles: Record<string, string> = {
@@ -119,6 +139,23 @@ function ReviewItem({
               <div className="bg-indigo-50 border border-indigo-100 rounded-xl p-4">
                 <p className="text-[10px] font-semibold text-indigo-500 uppercase tracking-wider mb-1.5">Explanation</p>
                 <p className="text-sm text-zinc-700 leading-relaxed">{question.explanation}</p>
+                <div className="flex flex-wrap gap-2 mt-3">
+                  {question.objective && (
+                    <span className="text-[10px] font-medium bg-white border border-indigo-100 text-indigo-700 px-2.5 py-1 rounded-full">
+                      Objective: {question.objective}
+                    </span>
+                  )}
+                  {question.sourceSection && (
+                    <span className="text-[10px] font-medium bg-white border border-indigo-100 text-indigo-700 px-2.5 py-1 rounded-full">
+                      Source: {question.sourceSection}
+                    </span>
+                  )}
+                  {question.misconceptionTag && (
+                    <span className="text-[10px] font-medium bg-white border border-indigo-100 text-indigo-700 px-2.5 py-1 rounded-full">
+                      Misconception: {question.misconceptionTag}
+                    </span>
+                  )}
+                </div>
               </div>
             </div>
           </motion.div>
@@ -128,70 +165,9 @@ function ReviewItem({
   );
 }
 
-function buildCertificateHTML(opts: {
-  name: string;
-  score: number;
-  date: string;
-  examTitle: string;
-  totalQuestions: number;
-  correct: number;
-  ptcLogoUrl: string;
-  pluralLogoUrl: string;
-}): string {
-  return `<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8" />
-<title>Certificate of Achievement</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Plus Jakarta Sans', sans-serif; background: #fff; display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 32px; }
-  .cert { width: 800px; border: 8px solid #4f46e5; border-radius: 24px; padding: 60px 72px; text-align: center; position: relative; background: #fff; }
-  .cert::before { content: ''; position: absolute; inset: 12px; border: 2px solid #e0e7ff; border-radius: 16px; pointer-events: none; }
-  .logo-row { display: flex; align-items: center; justify-content: center; gap: 24px; margin-bottom: 12px; }
-  .logo-img { height: 48px; object-fit: contain; border-radius: 10px; border: 1px solid #e4e4e7; padding: 6px; background: #fff; }
-  .logo-divider { width: 1px; height: 32px; background: #e4e4e7; }
-  .logo-x { font-size: 18px; font-weight: 800; color: #a1a1aa; }
-  .platform-label { font-size: 11px; font-weight: 700; color: #6366f1; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 32px; }
-  .subtitle { font-size: 13px; font-weight: 600; color: #a1a1aa; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
-  h1 { font-size: 36px; font-weight: 800; color: #18181b; margin-bottom: 24px; }
-  .presented { font-size: 14px; color: #71717a; margin-bottom: 8px; font-weight: 600; }
-  .name { font-size: 48px; font-weight: 800; color: #4f46e5; margin-bottom: 8px; border-bottom: 3px solid #e0e7ff; padding-bottom: 16px; }
-  .exam-title { font-size: 16px; color: #52525b; font-weight: 600; margin: 24px 0; }
-  .score-circle { width: 120px; height: 120px; border-radius: 50%; background: #f0fdf4; border: 6px solid #059669; display: inline-flex; flex-direction: column; align-items: center; justify-content: center; margin: 16px 0; }
-  .score-pct { font-size: 32px; font-weight: 800; color: #059669; line-height: 1; }
-  .score-label { font-size: 10px; font-weight: 700; color: #059669; letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; }
-  .meta { font-size: 12px; color: #a1a1aa; margin-top: 8px; font-weight: 600; }
-  .pass-badge { display: inline-block; background: #f0fdf4; color: #059669; border: 2px solid #bbf7d0; border-radius: 100px; padding: 8px 28px; font-size: 14px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; margin-top: 24px; }
-  .footer { margin-top: 40px; padding-top: 24px; border-top: 2px solid #f4f4f5; font-size: 11px; color: #d4d4d8; font-weight: 600; letter-spacing: 1px; }
-  @media print { body { padding: 0; } .cert { border-width: 6px; } }
-</style>
-</head>
-<body>
-<div class="cert">
-  <div class="logo-row">
-    <img class="logo-img" src="${opts.ptcLogoUrl}" alt="PTC" />
-    <span class="logo-x">&times;</span>
-    <img class="logo-img" src="${opts.pluralLogoUrl}" alt="Plural" />
-  </div>
-  <div class="platform-label">PTC &times; Plural Mock Exam</div>
-  <div class="subtitle">Certificate of Achievement</div>
-  <h1>This certifies that</h1>
-  <div class="presented">the following candidate has successfully passed</div>
-  <div class="name">${opts.name}</div>
-  <div class="exam-title">${opts.examTitle}</div>
-  <div class="score-circle">
-    <div class="score-pct">${opts.score}%</div>
-    <div class="score-label">Score</div>
-  </div>
-  <div class="meta">${opts.correct} of ${opts.totalQuestions} questions correct &nbsp;&middot;&nbsp; Issued ${opts.date}</div>
-  <div class="pass-badge">&#10003; Passed</div>
-  <div class="footer">PTC &times; Plural Windchill Exam Platform &nbsp;&bull;&nbsp; Issued on ${opts.date}</div>
-</div>
-</body>
-</html>`;
-}
+type RecoveryMode = 'blended' | 'wrong_only' | 'weak_domain' | 'timed_recovery';
+type ReviewFilter = 'all' | 'wrong' | 'skipped';
+const SUBMITTED_ATTEMPTS_KEY = 'wc_submitted_attempts';
 
 export default function Results() {
   const location = useLocation();
@@ -202,11 +178,15 @@ export default function Results() {
     timeTaken?: number;
     examineeName?: string;
     examMode?: ExamMode;
+    examTrack?: ExamTrack;
+    experienceBand?: ExperienceBand;
     sessionId?: string;
     sessionName?: string;
     candidateEmail?: string;
     participantId?: string;
+    resultAttemptId?: string;
     questionTimings?: Record<number, number>;
+    presetLabel?: string;
   };
 
   const hasSaved = useRef(false);
@@ -215,15 +195,38 @@ export default function Results() {
   const timeTaken = state.timeTaken ?? 0;
   const examineeName = state.examineeName ?? 'Anonymous';
   const examMode = state.examMode ?? 'random';
+  const examTrack = state.examTrack ?? 'hard_mode';
+  const experienceBand = state.experienceBand;
   const sessionId = state.sessionId;
   const sessionName = state.sessionName;
-  const candidateEmail = state.candidateEmail;
+  const candidateEmail = state.candidateEmail?.trim().toLowerCase();
   const participantId = state.participantId;
+  const resultAttemptId = state.resultAttemptId;
   const questionTimings = state.questionTimings ?? {};
+  const presetLabel = state.presetLabel;
   const summary = evaluateExam(questions, answers);
+  const trackProfile = getTrackProfile(examTrack);
+  const displayExamLabel = examMode === 'preset' ? presetLabel ?? 'Preset Exam' : examMode === 'remediation' ? 'Remediation' : trackProfile.shortLabel;
+  const insights = buildReadinessInsights(summary, examTrack, experienceBand);
+  const [startingRemediation, setStartingRemediation] = useState(false);
+  const [studyPlanSaved, setStudyPlanSaved] = useState(false);
+  const [resultDocId, setResultDocId] = useState('');
+  const [reviewFilter, setReviewFilter] = useState<ReviewFilter>('all');
 
   useEffect(() => {
     if (questions.length === 0 || hasSaved.current) return;
+    if (!resultAttemptId) return;
+
+    try {
+      const submittedAttempts = JSON.parse(window.sessionStorage.getItem(SUBMITTED_ATTEMPTS_KEY) ?? '[]') as string[];
+      if (submittedAttempts.includes(resultAttemptId)) {
+        hasSaved.current = true;
+        return;
+      }
+    } catch {
+      // noop
+    }
+
     hasSaved.current = true;
 
     const submittedAt = new Date().toISOString();
@@ -238,42 +241,95 @@ export default function Results() {
     );
 
     const payload: ExamResult = {
+      attemptId: resultAttemptId,
       examineeName,
       examMode,
+      examTrack,
+      experienceBand,
       scorePercentage: summary.percentage,
       questionsAnsweredCorrectly: summary.correctCount,
       totalQuestions: questions.length,
       passed: summary.passed,
       strongestDomain: summary.strongestTopic.topic,
       weakestDomain: summary.weakestTopic.topic,
+      readinessBand: insights.readinessBand,
+      benchmarkMessage: insights.benchmarkMessage,
+      scoreInterpretation: insights.scoreInterpretation,
+      recommendedFocus: insights.focusAreas,
       timeTakenSeconds: timeTaken,
       examDate: submittedAt,
       questionResults,
+      submittedAnswers: summary.evaluatedQuestions.reduce<Record<string, number | number[] | null>>((acc, entry) => {
+        acc[String(entry.question.id)] = entry.answer ?? null;
+        return acc;
+      }, {}),
       ...(sessionId ? { sessionId } : {}),
       ...(sessionName ? { sessionName } : {}),
       ...(candidateEmail ? { candidateEmail } : {}),
       ...(participantId ? { participantId } : {}),
     };
 
-    void addDoc(collection(db, 'exam_results'), payload).catch((error: unknown) => {
-      console.error('Result save error:', error);
-    });
-
-    if (participantId) {
-      void updateDoc(doc(db, 'session_participants', participantId), {
-        status: 'completed',
-        submittedAt,
-        score: summary.percentage,
+    if (candidateEmail) {
+      const recentAttempt: RecentAttemptSnapshot = {
+        examineeName,
+        examDate: submittedAt,
+        scorePercentage: summary.percentage,
         passed: summary.passed,
-      }).catch((error: unknown) => {
-        console.error('Participant update error:', error);
+        examTrack,
+        readinessBand: insights.readinessBand,
+        benchmarkMessage: insights.benchmarkMessage,
+        scoreInterpretation: insights.scoreInterpretation,
+        weakestDomain: summary.weakestTopic.topic,
+        strongestDomain: summary.strongestTopic.topic,
+        recommendedFocus: insights.focusAreas,
+      };
+
+      const studyPlan: StudyPlanSnapshot = buildStudyPlan({
+        examineeName,
+        examTrack,
+        readinessBand: insights.readinessBand,
+        weakestDomain: summary.weakestTopic.topic,
+        strongestDomain: summary.strongestTopic.topic,
+        focusAreas: insights.focusAreas,
+        scoreInterpretation: insights.scoreInterpretation,
       });
+
+      try {
+        window.localStorage.setItem(`windchill:lastAttempt:${candidateEmail}`, JSON.stringify(recentAttempt));
+        window.localStorage.setItem(`windchill:studyPlan:${candidateEmail}`, JSON.stringify(studyPlan));
+        setStudyPlanSaved(true);
+      } catch (error) {
+        console.error('Local snapshot save error:', error);
+      }
     }
+
+    void submitExamResult(payload, participantId)
+      .then((docId) => {
+        setResultDocId(docId);
+        try {
+          const submittedAttempts = JSON.parse(window.sessionStorage.getItem(SUBMITTED_ATTEMPTS_KEY) ?? '[]') as string[];
+          if (!submittedAttempts.includes(resultAttemptId)) {
+            submittedAttempts.push(resultAttemptId);
+            window.sessionStorage.setItem(SUBMITTED_ATTEMPTS_KEY, JSON.stringify(submittedAttempts));
+          }
+        } catch {
+          // noop
+        }
+      })
+      .catch((error: unknown) => {
+        console.error('Result save error:', error);
+      });
   }, [
     examMode,
+    examTrack,
     examineeName,
+    experienceBand,
     candidateEmail,
+    insights.benchmarkMessage,
+    insights.focusAreas,
+    insights.readinessBand,
     participantId,
+    resultAttemptId,
     questions.length,
     questionTimings,
     sessionId,
@@ -306,6 +362,53 @@ export default function Results() {
     setTimeout(() => win.print(), 600);
   };
 
+  const launchRemediation = async (mode: RecoveryMode) => {
+    setStartingRemediation(true);
+    try {
+      const pool = await loadQuestionPool();
+      const missedQuestionIds = summary.evaluatedQuestions
+        .filter((entry) => !entry.isCorrect)
+        .map((entry) => entry.question.id);
+      const targetCount =
+        mode === 'timed_recovery'
+          ? Math.min(15, Math.max(10, missedQuestionIds.length || 10))
+          : Math.min(questions.length, Math.max(10, Math.min(25, missedQuestionIds.length + 5)));
+      const remediationQuestions =
+        mode === 'wrong_only'
+          ? buildWrongOnlyExam(pool, missedQuestionIds, targetCount)
+          : mode === 'weak_domain'
+            ? buildWeakDomainExam(pool, summary.weakestTopic.topic, targetCount)
+            : buildRemediationExam(pool, missedQuestionIds, summary.weakestTopic.topic, targetCount);
+
+      navigate('/quiz', {
+        state: {
+          examineeName,
+          mode: 'remediation',
+          track: examTrack,
+          presetLabel: 'Recovery Quiz',
+          targetCount: remediationQuestions.length,
+          presetId: null,
+          presetQuestionIds: remediationQuestions.map((question) => question.id),
+          experienceBand,
+          candidateEmail,
+          sessionName:
+            mode === 'wrong_only'
+              ? 'Recovery Quiz · Wrong Answers'
+              : mode === 'weak_domain'
+                ? `Recovery Quiz · ${summary.weakestTopic.topic}`
+                : mode === 'timed_recovery'
+                  ? 'Recovery Quiz · Timed 15'
+                  : 'Recovery Quiz · Blended',
+        },
+      });
+    } catch (error) {
+      console.error('Remediation launch error:', error);
+      alert('Could not start the remediation quiz. Please try again.');
+    } finally {
+      setStartingRemediation(false);
+    }
+  };
+
   if (questions.length === 0) {
     return (
       <div className="text-center py-20 text-zinc-400 font-medium">
@@ -320,6 +423,13 @@ export default function Results() {
   }
 
   const passColor = summary.passed ? 'text-emerald-600' : 'text-red-500';
+  const filteredQuestions = questions.filter((_, index) => {
+    const evaluated = summary.evaluatedQuestions[index];
+    if (!evaluated) return false;
+    if (reviewFilter === 'wrong') return !evaluated.isCorrect && !evaluated.isSkipped;
+    if (reviewFilter === 'skipped') return evaluated.isSkipped;
+    return true;
+  });
 
   return (
     <motion.div
@@ -328,7 +438,7 @@ export default function Results() {
       transition={{ duration: 0.4 }}
       className="max-w-5xl mx-auto py-6 px-2"
     >
-      <div className="bg-white border border-zinc-100 rounded-3xl shadow-sm p-8 md:p-12">
+        <div className="bg-white border border-zinc-100 rounded-3xl shadow-sm p-8 md:p-12">
         <div className="flex flex-col md:flex-row gap-8 items-center mb-10 pb-10 border-b border-zinc-100">
           <div className="relative w-40 h-40 flex-shrink-0">
             <svg className="w-full h-full -rotate-90" viewBox="0 0 160 160">
@@ -363,10 +473,27 @@ export default function Results() {
               >
                 {summary.passed ? 'Above threshold' : 'Below 80%'}
               </span>
+              <span className="text-xs font-semibold px-3 py-1 rounded-full border bg-blue-50 text-blue-600 border-blue-200">
+                {displayExamLabel}
+              </span>
             </div>
             <p className="text-sm text-zinc-500 mb-4">
               Candidate: <span className="font-semibold text-zinc-800">{examineeName}</span>
             </p>
+            <div className="mb-4 grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div className="bg-blue-50 border border-blue-100 rounded-2xl p-4">
+                <p className="text-[10px] font-semibold text-blue-600 uppercase tracking-wider mb-1">Benchmark</p>
+                <p className="text-sm font-medium text-zinc-700">{insights.benchmarkMessage}</p>
+              </div>
+              <div className="bg-zinc-50 border border-zinc-100 rounded-2xl p-4">
+                <p className="text-[10px] font-semibold text-zinc-500 uppercase tracking-wider mb-1">Readiness View</p>
+                <p className="text-sm font-medium text-zinc-700">{insights.summaryNote}</p>
+              </div>
+            </div>
+            <div className="mb-4 bg-emerald-50 border border-emerald-100 rounded-2xl p-4">
+              <p className="text-[10px] font-semibold text-emerald-600 uppercase tracking-wider mb-1">Score Interpretation</p>
+              <p className="text-sm font-medium text-zinc-700">{insights.scoreInterpretation}</p>
+            </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               <StatBox label="Correct" value={summary.correctCount} color="text-emerald-600" />
               <StatBox label="Incorrect" value={summary.incorrectCount} color="text-red-500" />
@@ -391,9 +518,55 @@ export default function Results() {
           </div>
         </div>
 
+        {insights.focusAreas.length > 0 && (
+          <div className="mb-10 bg-amber-50 border border-amber-100 rounded-2xl p-5">
+            <p className="text-[10px] font-semibold text-amber-600 uppercase tracking-wider mb-3">Recommended Next Focus</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+              {insights.focusAreas.map((focus) => (
+                <div key={focus} className="text-sm font-medium text-zinc-700 bg-white/70 border border-amber-100 rounded-xl px-4 py-3">
+                  {focus}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {candidateEmail && (
+        <div className="mb-10 bg-white border border-zinc-100 rounded-2xl p-5">
+          <div className="flex items-center justify-between gap-3 flex-wrap mb-4">
+            <div>
+              <p className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wider mb-1">Saved Recovery Plan</p>
+              <p className="text-sm font-medium text-zinc-700">
+                {studyPlanSaved ? 'A 7-day revision plan has been saved on this device.' : 'Recovery plan will be saved after this result is processed.'}
+              </p>
+            </div>
+            <span className="text-[11px] font-semibold px-3 py-1 rounded-full border bg-indigo-50 text-indigo-600 border-indigo-100">
+              7-Day Plan
+            </span>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            {buildStudyPlan({
+              examineeName,
+              examTrack,
+              readinessBand: insights.readinessBand,
+              weakestDomain: summary.weakestTopic.topic,
+              strongestDomain: summary.strongestTopic.topic,
+              focusAreas: insights.focusAreas,
+              scoreInterpretation: insights.scoreInterpretation,
+            }).days.slice(0, 4).map((day) => (
+              <div key={day.title} className="bg-zinc-50 border border-zinc-100 rounded-xl px-4 py-3">
+                <p className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wider mb-1">{day.title}</p>
+                <p className="text-sm font-semibold text-zinc-800 mb-1">{day.focus}</p>
+                <p className="text-xs text-zinc-500">{day.action}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        )}
+
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
           <div className="lg:col-span-2">
-            <h3 className="text-sm font-semibold text-zinc-700 uppercase tracking-wider mb-4">Domain Analysis</h3>
+            <h3 className="text-sm font-semibold text-zinc-700 uppercase tracking-wider mb-4">Section Analysis</h3>
             <div className="space-y-3">
               {Object.entries(summary.topicStats).map(([topic, stats]) => {
                 const pct = stats.total === 0 ? 0 : Math.round((stats.correct / stats.total) * 100);
@@ -445,6 +618,55 @@ export default function Results() {
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
             <h3 className="text-sm font-semibold text-zinc-700 uppercase tracking-wider">Detailed Question Review</h3>
             <div className="flex items-center gap-3 flex-wrap">
+              <div className="flex items-center gap-1 bg-zinc-100 p-1 rounded-xl">
+                {[
+                  { key: 'all', label: `All (${questions.length})` },
+                  { key: 'wrong', label: `Wrong (${summary.incorrectCount})` },
+                  { key: 'skipped', label: `Skipped (${summary.skippedCount})` },
+                ].map((entry) => (
+                  <button
+                    key={entry.key}
+                    onClick={() => setReviewFilter(entry.key as ReviewFilter)}
+                    className={`px-3 py-1.5 rounded-lg text-[11px] font-semibold transition-all ${
+                      reviewFilter === entry.key ? 'bg-white text-indigo-600 shadow-sm' : 'text-zinc-500'
+                    }`}
+                  >
+                    {entry.label}
+                  </button>
+                ))}
+              </div>
+              {examMode === 'random' && (
+              <div className="flex items-center gap-2 flex-wrap">
+                <button
+                  onClick={() => void launchRemediation('blended')}
+                  disabled={startingRemediation}
+                  className="bg-amber-500 hover:bg-amber-600 text-white px-5 py-2.5 rounded-xl text-sm font-semibold transition-colors shadow-sm disabled:opacity-60"
+                >
+                  {startingRemediation ? 'Preparing...' : 'Recovery · Blended'}
+                </button>
+                <button
+                  onClick={() => void launchRemediation('wrong_only')}
+                  disabled={startingRemediation}
+                  className="bg-white border border-amber-200 text-amber-700 hover:bg-amber-50 px-5 py-2.5 rounded-xl text-sm font-semibold transition-colors disabled:opacity-60"
+                >
+                  Wrong Only
+                </button>
+                <button
+                  onClick={() => void launchRemediation('weak_domain')}
+                  disabled={startingRemediation}
+                  className="bg-white border border-blue-200 text-blue-700 hover:bg-blue-50 px-5 py-2.5 rounded-xl text-sm font-semibold transition-colors disabled:opacity-60"
+                >
+                  Weakest Domain
+                </button>
+                <button
+                  onClick={() => void launchRemediation('timed_recovery')}
+                  disabled={startingRemediation}
+                  className="bg-white border border-emerald-200 text-emerald-700 hover:bg-emerald-50 px-5 py-2.5 rounded-xl text-sm font-semibold transition-colors disabled:opacity-60"
+                >
+                  Timed 15
+                </button>
+              </div>
+              )}
               {summary.passed && examMode === 'preset' && (
                 <button
                   onClick={openCertificate}
@@ -454,6 +676,14 @@ export default function Results() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
                   </svg>
                   Download Certificate
+                </button>
+              )}
+              {resultDocId && (
+                <button
+                  onClick={() => navigate(`/result/${resultDocId}`)}
+                  className="bg-white border border-indigo-200 text-indigo-700 hover:bg-indigo-50 px-5 py-2.5 rounded-xl text-sm font-semibold transition-colors"
+                >
+                  Open Saved Report
                 </button>
               )}
               {sessionId ? (
@@ -469,9 +699,10 @@ export default function Results() {
             </div>
           </div>
           <div className="space-y-3">
-            {questions.map((question, index) => (
-              <ReviewItem key={question.id} question={question} index={index} userAnswer={answers[index]} />
-            ))}
+            {filteredQuestions.map((question) => {
+              const index = questions.findIndex((entry) => entry.id === question.id);
+              return <ReviewItem key={`${question.id}-${index}`} question={question} index={index} userAnswer={answers[index]} />;
+            })}
           </div>
         </div>
       </div>

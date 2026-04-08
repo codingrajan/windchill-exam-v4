@@ -1,4 +1,5 @@
 // src/App.tsx
+import { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import Welcome from './pages/Welcome';
 import Quiz from './pages/Quiz';
@@ -6,6 +7,8 @@ import Results from './pages/Results';
 import Admin from './pages/Admin';
 import SessionEntry from './pages/SessionEntry';
 import History from './pages/History';
+import ResultReport from './pages/ResultReport';
+import { flushPendingExamResults } from './services/writeGateway';
 
 function Header() {
   const navigate  = useNavigate();
@@ -48,6 +51,10 @@ function Header() {
 }
 
 function App() {
+  useEffect(() => {
+    void flushPendingExamResults();
+  }, []);
+
   return (
     <Router>
       <div className="min-h-screen bg-zinc-50 text-zinc-900 flex flex-col items-center font-sans">
@@ -63,6 +70,7 @@ function App() {
             <Route path="/admin"              element={<Admin />} />
             <Route path="/session/:sessionId" element={<SessionEntry />} />
             <Route path="/history"            element={<History />} />
+            <Route path="/result/:resultId"   element={<ResultReport />} />
           </Routes>
         </main>
 

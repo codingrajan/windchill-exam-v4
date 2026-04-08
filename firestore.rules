@@ -1,0 +1,44 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isAllowedAdminEmail() {
+      return signedIn() &&
+        request.auth.token.email != null &&
+        request.auth.token.email in [
+          'replace-with-admin@example.com'
+        ];
+    }
+
+    match /exam_presets/{document=**} {
+      allow read: if true;
+      allow write: if isAllowedAdminEmail();
+    }
+
+    match /exam_sessions/{document=**} {
+      allow read: if true;
+      allow write: if isAllowedAdminEmail();
+    }
+
+    match /session_participants/{document=**} {
+      allow read: if isAllowedAdminEmail();
+      allow create: if true;
+      allow update: if true;
+      allow delete: if isAllowedAdminEmail();
+    }
+
+    match /exam_results/{document=**} {
+      allow read: if isAllowedAdminEmail();
+      allow create: if true;
+      allow update, delete: if isAllowedAdminEmail();
+    }
+
+    match /audit_logs/{document=**} {
+      allow read, write: if isAllowedAdminEmail();
+    }
+  }
+}

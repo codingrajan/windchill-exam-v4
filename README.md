@@ -164,9 +164,9 @@ npm run build
 
 ## Firebase Setup
 
-The app currently supports Vite environment variables through `.env`.
+The app supports Vite environment variables through `.env`, but the client runtime also has the `windchill-mock-exam-v4` Firebase project baked in as a fallback.
 
-Create a local `.env` file from `.env.example`.
+Create a local `.env` file from `.env.example` only if you want to override the baked-in client config or configure admin/server-write behavior.
 
 Examples:
 
@@ -181,13 +181,15 @@ Copy-Item .env.example .env
 Fill in:
 
 ```env
-VITE_FIREBASE_API_KEY=
-VITE_FIREBASE_AUTH_DOMAIN=
-VITE_FIREBASE_PROJECT_ID=
-VITE_FIREBASE_STORAGE_BUCKET=
-VITE_FIREBASE_MESSAGING_SENDER_ID=
-VITE_FIREBASE_APP_ID=
-VITE_FIREBASE_MEASUREMENT_ID=
+VITE_FIREBASE_API_KEY=AIzaSyDqe4YXGVtglnjC3W1ODV4zRcADWtVFjSM
+VITE_FIREBASE_AUTH_DOMAIN=windchill-mock-exam-v4.firebaseapp.com
+VITE_FIREBASE_PROJECT_ID=windchill-mock-exam-v4
+VITE_FIREBASE_STORAGE_BUCKET=windchill-mock-exam-v4.firebasestorage.app
+VITE_FIREBASE_MESSAGING_SENDER_ID=1088263687851
+VITE_FIREBASE_APP_ID=1:1088263687851:web:013cd37e168d565e9071ee
+VITE_FIREBASE_MEASUREMENT_ID=G-B2ZEEBH0SE
+VITE_ADMIN_EMAILS=admin1@example.com,admin2@example.com
+VITE_ENABLE_SERVER_WRITES=false
 ```
 
 ### Firestore Collections Used
@@ -198,6 +200,19 @@ VITE_FIREBASE_MEASUREMENT_ID=
 ### Authentication Used
 
 - Firebase email/password sign-in for admin access
+- Approved admin emails must also be listed in `VITE_ADMIN_EMAILS`
+
+### Optional Server Write Mode
+
+To route critical writes through Vercel serverless functions:
+
+- set `VITE_ENABLE_SERVER_WRITES=true`
+- add server-side environment variable `FIREBASE_ADMIN_SERVICE_ACCOUNT_JSON`
+- add server-side environment variable `ADMIN_EMAILS`
+
+`FIREBASE_ADMIN_SERVICE_ACCOUNT_JSON` should contain the full Firebase service account JSON as a single string.
+
+Candidate session starts also move to `/api/exam/start` in this mode, so retake checks and participant record creation stop relying on browser-side writes.
 
 ## Recommended Firebase Security Model
 
@@ -212,8 +227,26 @@ Recommended minimum:
   - authenticated admin read/write only
 - Firebase Auth
   - only admin users should be able to sign in to the admin console
+- Firestore Rules
+  - start from `firestore.rules`
+  - replace the placeholder admin email with your actual admin email list
+- Strict Rules Cutover
+  - once server writes are fully enabled, switch to `firestore.server.rules`
+  - this blocks direct candidate writes to `exam_results` and `session_participants`
+- Audit Logging
+  - admin-side mutations now write to Firestore collection `audit_logs`
+- Server Write Boundary
+  - when `VITE_ENABLE_SERVER_WRITES=true`, session start, result submission, and admin mutations use `/api/exam/start`, `/api/exam/submit`, and `/api/admin/write`
 
 If this project is hardened further, result writes and admin mutations should move behind a trusted backend boundary such as Vercel functions or Firebase callable functions.
+
+### Offline Validation
+
+Run this before releasing question-bank changes:
+
+```bash
+npm run validate:questions
+```
 
 ## Deploying To Vercel
 
@@ -247,6 +280,13 @@ In Vercel Project Settings -> Environment Variables, add:
 - `VITE_FIREBASE_MESSAGING_SENDER_ID`
 - `VITE_FIREBASE_APP_ID`
 - `VITE_FIREBASE_MEASUREMENT_ID`
+- `VITE_ADMIN_EMAILS`
+- `VITE_ENABLE_SERVER_WRITES`
+
+For server write mode, also add these server environment variables in Vercel:
+
+- `FIREBASE_ADMIN_SERVICE_ACCOUNT_JSON`
+- `ADMIN_EMAILS`
 
 ### 5. Deploy
 

@@ -3,15 +3,24 @@ import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 
 const env = import.meta.env;
+const firebaseFallbackConfig = {
+  apiKey: 'AIzaSyDqe4YXGVtglnjC3W1ODV4zRcADWtVFjSM',
+  authDomain: 'windchill-mock-exam-v4.firebaseapp.com',
+  projectId: 'windchill-mock-exam-v4',
+  storageBucket: 'windchill-mock-exam-v4.firebasestorage.app',
+  messagingSenderId: '1088263687851',
+  appId: '1:1088263687851:web:013cd37e168d565e9071ee',
+  measurementId: 'G-B2ZEEBH0SE',
+} as const;
 
 const firebaseConfig = {
-  apiKey: env.VITE_FIREBASE_API_KEY || 'AIzaSyD3DQn88St_z9wuYVwiwBjxC3Y0K3LSVX8',
-  authDomain: env.VITE_FIREBASE_AUTH_DOMAIN || 'windchill-mock-exams.firebaseapp.com',
-  projectId: env.VITE_FIREBASE_PROJECT_ID || 'windchill-mock-exams',
-  storageBucket: env.VITE_FIREBASE_STORAGE_BUCKET || 'windchill-mock-exams.firebasestorage.app',
-  messagingSenderId: env.VITE_FIREBASE_MESSAGING_SENDER_ID || '971978492228',
-  appId: env.VITE_FIREBASE_APP_ID || '1:971978492228:web:a9b27813cc55dec40def11',
-  measurementId: env.VITE_FIREBASE_MEASUREMENT_ID || 'G-TNWL8F6TYM',
+  apiKey: env.VITE_FIREBASE_API_KEY || firebaseFallbackConfig.apiKey,
+  authDomain: env.VITE_FIREBASE_AUTH_DOMAIN || firebaseFallbackConfig.authDomain,
+  projectId: env.VITE_FIREBASE_PROJECT_ID || firebaseFallbackConfig.projectId,
+  storageBucket: env.VITE_FIREBASE_STORAGE_BUCKET || firebaseFallbackConfig.storageBucket,
+  messagingSenderId: env.VITE_FIREBASE_MESSAGING_SENDER_ID || firebaseFallbackConfig.messagingSenderId,
+  appId: env.VITE_FIREBASE_APP_ID || firebaseFallbackConfig.appId,
+  measurementId: env.VITE_FIREBASE_MEASUREMENT_ID || firebaseFallbackConfig.measurementId,
 };
 
 const app = initializeApp(firebaseConfig);

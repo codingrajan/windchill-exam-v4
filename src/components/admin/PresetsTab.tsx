@@ -1,10 +1,10 @@
 import { useEffect, useMemo, useState } from 'react';
 import type { FormEvent } from 'react';
 import { motion } from 'framer-motion';
-import { addDoc, collection, deleteDoc, doc, getDocs, setDoc } from 'firebase/firestore';
-import { db } from '../../services/firebase';
 import type { Preset, Question } from '../../types/index';
+import { removePreset, upsertPreset } from '../../services/writeGateway';
 import { getQuestionDomain, loadQuestionPool } from '../../utils/examLogic';
+import { fetchBuiltInPresets, fetchFirestorePresets, mergePresetCatalog, syncBuiltInPresetsToFirestore } from '../../services/presetCatalog';
 import DiffBadge from '../shared/DiffBadge';
 import LiteCheckbox from '../shared/LiteCheckbox';
 
@@ -32,14 +32,37 @@ export default function PresetsTab() {
     void loadQuestionPool().then((pool) => { setQuestions(pool); setPoolLoading(false); });
   }, []);
 
-  useEffect(() => {
-    void getDocs(collection(db, 'exam_presets')).then((snap) => {
-      const list: Preset[] = [];
-      snap.forEach((d) => list.push({ ...(d.data() as Preset), id: d.id }));
-      list.sort((a, b) => a.name.localeCompare(b.name));
-      setPresets(list);
+  const loadPresets = async (seedBuiltIns = false) => {
+    try {
+      const [firestorePresets, builtInPresets] = await Promise.all([
+        fetchFirestorePresets().catch(() => [] as Preset[]),
+        fetchBuiltInPresets().catch(() => [] as Preset[]),
+      ]);
+
+      if (seedBuiltIns && builtInPresets.length > 0) {
+        try {
+          const syncResult = await syncBuiltInPresetsToFirestore(builtInPresets, firestorePresets);
+          if (syncResult.syncedIds.length > 0) {
+            setMessage(`Synced ${syncResult.syncedIds.length} built-in preset${syncResult.syncedIds.length !== 1 ? 's' : ''} to Firestore.`);
+          } else if (syncResult.failedIds.length > 0) {
+            setMessage('Built-in presets loaded from fallback. Firestore sync was blocked.');
+          }
+        } catch (error) {
+          console.error('Built-in preset sync error:', error);
+          setMessage('Built-in presets loaded from fallback. Firestore sync failed.');
+        }
+      }
+
+      const refreshedFirestorePresets = await fetchFirestorePresets().catch(() => firestorePresets);
+      const merged = mergePresetCatalog(refreshedFirestorePresets, builtInPresets);
+      setPresets(merged);
+    } finally {
       setPresetsLoading(false);
-    });
+    }
+  };
+
+  useEffect(() => {
+    void loadPresets(true);
   }, []);
 
   const openNew = () => {
@@ -80,16 +103,13 @@ export default function PresetsTab() {
       const payload = { name: presetName.trim(), questions: [...selected], targetCount, updatedAt: new Date().toISOString() };
       if (activeView?.kind === 'edit') {
         const id = activeView.preset.id;
-        await setDoc(doc(db, 'exam_presets', id), { ...payload, id });
-        const updated: Preset = { ...payload, id };
-        setPresets((prev) => prev.map((p) => p.id === id ? updated : p).sort((a, b) => a.name.localeCompare(b.name)));
+        const updated = await upsertPreset(payload, id);
+        setPresets((prev) => mergePresetCatalog(prev.map((p) => p.id === id ? updated : p), []));
         setActiveView({ kind: 'edit', preset: updated });
         setMessage('Preset updated successfully.');
       } else {
-        const ref = await addDoc(collection(db, 'exam_presets'), payload);
-        await setDoc(doc(db, 'exam_presets', ref.id), { ...payload, id: ref.id });
-        const created: Preset = { ...payload, id: ref.id };
-        setPresets((prev) => [...prev, created].sort((a, b) => a.name.localeCompare(b.name)));
+        const created = await upsertPreset(payload);
+        setPresets((prev) => mergePresetCatalog([...prev, created], []));
         setActiveView({ kind: 'edit', preset: created });
         setMessage('Preset created successfully.');
       }
@@ -105,7 +125,7 @@ export default function PresetsTab() {
     if (!window.confirm(`Delete "${preset.name}"? Exam sessions using this preset will be affected.`)) return;
     setDeleting(true);
     try {
-      await deleteDoc(doc(db, 'exam_presets', preset.id));
+      await removePreset(preset);
       setPresets((prev) => prev.filter((p) => p.id !== preset.id));
       setActiveView(null);
       setPresetName(''); setSelected(new Set()); setMessage('');
@@ -141,16 +161,24 @@ export default function PresetsTab() {
                 <button
                   key={p.id}
                   onClick={() => openEdit(p)}
-                  className={`w-full flex items-center justify-between px-4 py-3 rounded-xl border-2 transition-all text-left ${isEditingId === p.id ? 'border-indigo-400 bg-indigo-50' : 'border-zinc-100 bg-zinc-50 hover:border-indigo-200'}`}
+                  className={`w-full flex items-start justify-between gap-3 px-4 py-3 rounded-xl border-2 transition-all text-left ${isEditingId === p.id ? 'border-indigo-400 bg-indigo-50' : 'border-zinc-100 bg-zinc-50 hover:border-indigo-200'}`}
                 >
-                  <div>
-                    <span className={`text-sm font-semibold ${isEditingId === p.id ? 'text-indigo-700' : 'text-zinc-700'}`}>{p.name}</span>
-                    <span className="text-[11px] text-zinc-400 ml-2">{p.targetCount}Q</span>
+                  <div className="min-w-0 flex-1">
+                    <p className={`text-sm font-semibold leading-snug break-words ${isEditingId === p.id ? 'text-indigo-700' : 'text-zinc-700'}`}>{p.name}</p>
+                    <div className="mt-1.5 flex flex-wrap items-center gap-1.5">
+                      <span className="text-[11px] text-zinc-400">{p.targetCount}Q</span>
+                      {p.isBuiltIn && <span className="text-[10px] font-semibold text-indigo-500 bg-indigo-50 border border-indigo-100 px-2 py-0.5 rounded-full">Built-In</span>}
+                    </div>
                   </div>
-                  <span className="text-[10px] font-semibold text-emerald-600 bg-emerald-50 border border-emerald-100 px-2 py-0.5 rounded-full">Active</span>
+                  <span className="shrink-0 text-[10px] font-semibold text-emerald-600 bg-emerald-50 border border-emerald-100 px-2 py-0.5 rounded-full whitespace-nowrap">{p.difficultyLabel ?? 'Active'}</span>
                 </button>
               ))}
             </div>
+          )}
+          {message && !activeView && (
+            <p className={`mt-3 text-[12px] font-medium ${message.includes('blocked') || message.includes('failed') || message.includes('Error') ? 'text-amber-600' : 'text-emerald-600'}`}>
+              {message}
+            </p>
           )}
         </div>
 

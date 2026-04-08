@@ -1,15 +1,22 @@
 // src/types/index.ts
 
 export type Difficulty = 'easy' | 'medium' | 'hard' | 'unrated';
-export type ExamMode = 'preset' | 'random';
+export type ExamMode = 'preset' | 'random' | 'remediation';
+export type ExamTrack = 'exam_parity' | 'hard_mode';
+export type ExperienceBand = '2_5' | '6_10' | '11_15';
 export type QuestionKind = 'single' | 'multiple';
 export type AnswerValue = number | number[];
 export type AnswerMap = Record<number, AnswerValue>;
+export type StoredAnswerMap = Record<string, AnswerValue | null>;
 
 export interface Question {
   id: number;
   domain?: string;
   objective?: string;
+  sourceManual?: string;
+  sourceSection?: string;
+  misconceptionTag?: string;
+  releaseVersion?: string;
   topic: string;
   difficulty: Difficulty;
   type?: QuestionKind;
@@ -41,14 +48,22 @@ export interface SessionParticipant {
 }
 
 export interface ExamResult {
+  docId?: string;
+  attemptId?: string;
   examineeName: string;
   examMode: ExamMode;
+  examTrack?: ExamTrack;
+  experienceBand?: ExperienceBand;
   scorePercentage: number;
   questionsAnsweredCorrectly: number;
   totalQuestions: number;
   passed: boolean;
   strongestDomain: string;
   weakestDomain: string;
+  readinessBand?: 'high' | 'borderline' | 'developing';
+  benchmarkMessage?: string;
+  scoreInterpretation?: string;
+  recommendedFocus?: string[];
   timeTakenSeconds: number;
   examDate: string;
   sessionId?: string;
@@ -56,6 +71,7 @@ export interface ExamResult {
   candidateEmail?: string;
   participantId?: string;
   questionResults?: QuestionResult[];
+  submittedAnswers?: StoredAnswerMap;
 }
 
 export interface ExamSession {
@@ -78,14 +94,23 @@ export interface Preset {
   targetCount: number;
   questions: number[];
   updatedAt: string;
+  examTrack?: ExamTrack;
+  difficultyProfile?: 'easy_medium' | 'medium_hard';
+  difficultyLabel?: string;
+  multiSelectRatio?: number;
+  isBuiltIn?: boolean;
 }
 
 export interface ExamConfig {
   examineeName: string;
   mode: ExamMode;
+  track: ExamTrack;
+  resultAttemptId?: string;
+  presetLabel?: string;
   targetCount: number;
   presetId?: string | null;
   presetQuestionIds?: number[] | null;
+  experienceBand?: ExperienceBand;
   sessionId?: string;
   sessionName?: string;
   candidateEmail?: string;
@@ -115,4 +140,43 @@ export interface EvaluationSummary {
   strongestTopic: { topic: string; percentage: number };
   weakestTopic: { topic: string; percentage: number };
   evaluatedQuestions: EvaluatedQuestion[];
+}
+
+export interface AuditLogEntry {
+  id?: string;
+  action: string;
+  entityType: string;
+  entityId?: string | null;
+  actorEmail?: string;
+  createdAt: string;
+  details?: Record<string, unknown>;
+}
+
+export interface RecentAttemptSnapshot {
+  examineeName: string;
+  examDate: string;
+  scorePercentage: number;
+  passed: boolean;
+  examTrack: ExamTrack;
+  readinessBand?: 'high' | 'borderline' | 'developing';
+  benchmarkMessage?: string;
+  scoreInterpretation?: string;
+  weakestDomain: string;
+  strongestDomain: string;
+  recommendedFocus?: string[];
+}
+
+export interface StudyPlanSnapshot {
+  generatedAt: string;
+  examineeName: string;
+  examTrack: ExamTrack;
+  readinessBand?: 'high' | 'borderline' | 'developing';
+  headline: string;
+  weakestDomain: string;
+  scoreInterpretation?: string;
+  days: Array<{
+    title: string;
+    focus: string;
+    action: string;
+  }>;
 }

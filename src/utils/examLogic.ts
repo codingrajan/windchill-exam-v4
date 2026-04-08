@@ -2,10 +2,12 @@ import type {
   AnswerMap,
   AnswerValue,
   Difficulty,
+  ExamTrack,
   EvaluationSummary,
   Question,
   TopicStat,
 } from '../types/index';
+import { TRACK_PROFILES } from '../constants/examStrategy';
 
 export const QUESTION_POOL_FILES = [
   '/data/windchill_mock_test_1.json',
@@ -18,7 +20,7 @@ export const QUESTION_POOL_FILES = [
 const EMPTY_TOPIC = 'Unclassified';
 
 export const getQuestionDomain = (question: Pick<Question, 'domain' | 'topic'>): string =>
-  question.domain?.trim() || question.topic?.trim() || EMPTY_TOPIC;
+  question.topic?.trim() || question.domain?.trim() || EMPTY_TOPIC;
 
 export const normalizeDifficulty = (raw: string | null | undefined): Difficulty => {
   const normalized = raw?.toLowerCase().trim();
@@ -42,7 +44,7 @@ const normalizeAnswerValue = (value: unknown): AnswerValue | null => {
   return Number.isInteger(value) ? (value as number) : null;
 };
 
-const normalizeQuestion = (raw: unknown): Question | null => {
+const normalizeQuestion = (raw: unknown, sourceFile?: string): Question | null => {
   if (!raw || typeof raw !== 'object') return null;
 
   const candidate = raw as Partial<Question>;
@@ -68,15 +70,20 @@ const normalizeQuestion = (raw: unknown): Question | null => {
     id: questionId,
     domain: typeof candidate.domain === 'string' ? candidate.domain.trim() || EMPTY_TOPIC : undefined,
     topic:
-      (typeof candidate.domain === 'string' && candidate.domain.trim()) ||
       (typeof candidate.topic === 'string' && candidate.topic.trim()) ||
+      (typeof candidate.domain === 'string' && candidate.domain.trim()) ||
       EMPTY_TOPIC,
     difficulty: normalizeDifficulty(candidate.difficulty),
+    objective: typeof candidate.objective === 'string' ? candidate.objective.trim() : undefined,
     type: Array.isArray(correctAnswer) ? 'multiple' : 'single',
     question: candidate.question.trim(),
     options,
     correctAnswer,
     explanation: candidate.explanation.trim(),
+    sourceManual: typeof candidate.sourceManual === 'string' ? candidate.sourceManual.trim() : undefined,
+    sourceSection: typeof candidate.sourceSection === 'string' ? candidate.sourceSection.trim() : sourceFile,
+    misconceptionTag: typeof candidate.misconceptionTag === 'string' ? candidate.misconceptionTag.trim() : undefined,
+    releaseVersion: typeof candidate.releaseVersion === 'string' ? candidate.releaseVersion.trim() : '2026.04',
   };
 };
 
@@ -103,7 +110,8 @@ export const loadQuestionPool = async (): Promise<Question[]> => {
       try {
         const response = await fetch(file);
         if (!response.ok) return [];
-        return extractQuestionArray(await response.json());
+        const questions = extractQuestionArray(await response.json());
+        return questions.map((question) => ({ question, sourceFile: file.replace('/data/', '') }));
       } catch {
         return [];
       }
@@ -112,7 +120,7 @@ export const loadQuestionPool = async (): Promise<Question[]> => {
 
   const byId = new Map<number, Question>();
   for (const payload of payloads.flat()) {
-    const normalized = normalizeQuestion(payload);
+    const normalized = normalizeQuestion(payload.question, payload.sourceFile);
     if (!normalized || byId.has(normalized.id)) continue;
     byId.set(normalized.id, normalized);
   }
@@ -120,26 +128,36 @@ export const loadQuestionPool = async (): Promise<Question[]> => {
   return [...byId.values()].sort((left, right) => left.id - right.id);
 };
 
-export const buildRandomExam = (pool: Question[], targetCount: number): Question[] => {
-  let pEasy = 0.3;
-  let pMed = 0.35;
+const allocateCounts = (targetCount: number, track: ExamTrack) => {
+  const profile = TRACK_PROFILES[track];
+  let easyNeeded = Math.round(targetCount * profile.difficultyTargets.easy);
+  let medNeeded = Math.round(targetCount * profile.difficultyTargets.medium);
+  let hardNeeded = Math.round(targetCount * profile.difficultyTargets.hard);
+  let unratedNeeded = targetCount - easyNeeded - medNeeded - hardNeeded;
 
-  if (targetCount === 25) {
-    pEasy = 0.1;
-    pMed = 0.2;
-  } else if (targetCount === 50) {
-    pEasy = 0.2;
-    pMed = 0.4;
-  } else if (targetCount === 75) {
-    pEasy = 0.25;
-    pMed = 0.45;
+  if (targetCount <= 25 && track === 'exam_parity') {
+    easyNeeded = Math.max(easyNeeded, 4);
+    medNeeded = Math.max(medNeeded, 10);
+    hardNeeded = Math.max(hardNeeded, 6);
+    unratedNeeded = Math.max(0, targetCount - easyNeeded - medNeeded - hardNeeded);
   }
 
-  let easyNeeded = Math.round(targetCount * pEasy);
-  let medNeeded = Math.round(targetCount * pMed);
-  let hardNeeded = targetCount - easyNeeded - medNeeded;
+  return {
+    easyNeeded,
+    medNeeded,
+    hardNeeded,
+    unratedNeeded,
+    multiNeeded: Math.round(targetCount * profile.multiSelectRatio),
+  };
+};
 
-  const multiNeeded = Math.round(targetCount * 0.1);
+export const buildRandomExam = (
+  pool: Question[],
+  targetCount: number,
+  options: { track?: ExamTrack } = {},
+): Question[] => {
+  const track = options.track ?? 'hard_mode';
+  let { easyNeeded, medNeeded, hardNeeded, unratedNeeded, multiNeeded } = allocateCounts(targetCount, track);
   const multiPool = pool.filter(isMultiAnswerQuestion);
   const singlePool = pool.filter((question) => !isMultiAnswerQuestion(question));
   const selectedQuestions: Question[] = [];
@@ -150,6 +168,7 @@ export const buildRandomExam = (pool: Question[], targetCount: number): Question
     if (difficulty === 'easy') easyNeeded -= 1;
     if (difficulty === 'medium') medNeeded -= 1;
     if (difficulty === 'hard') hardNeeded -= 1;
+    if (difficulty === 'unrated') unratedNeeded -= 1;
   }
 
   const easyPool = shuffle(singlePool.filter((question) => normalizeDifficulty(question.difficulty) === 'easy'));
@@ -165,6 +184,7 @@ export const buildRandomExam = (pool: Question[], targetCount: number): Question
   draw(easyPool, easyNeeded);
   draw(mediumPool, medNeeded);
   draw(hardPool, hardNeeded);
+  draw(unratedPool, unratedNeeded);
 
   if (selectedQuestions.length < targetCount) {
     const spilloverPool = [...easyPool, ...mediumPool, ...hardPool, ...unratedPool];
@@ -172,6 +192,68 @@ export const buildRandomExam = (pool: Question[], targetCount: number): Question
   }
 
   return shuffle(selectedQuestions).slice(0, targetCount);
+};
+
+export const buildRemediationExam = (
+  pool: Question[],
+  missedQuestionIds: number[],
+  weakestDomain: string | null,
+  targetCount: number,
+): Question[] => {
+  const missedIdSet = new Set(missedQuestionIds);
+  const directMisses = shuffle(pool.filter((question) => missedIdSet.has(question.id)));
+  const weakestDomainPool =
+    weakestDomain && weakestDomain !== 'N/A'
+      ? shuffle(pool.filter((question) => getQuestionDomain(question) === weakestDomain && !missedIdSet.has(question.id)))
+      : [];
+
+  const selected: Question[] = [];
+  const seenIds = new Set<number>();
+
+  const drawUnique = (source: Question[], count: number) => {
+    for (const question of source) {
+      if (selected.length >= count || seenIds.has(question.id)) continue;
+      selected.push(question);
+      seenIds.add(question.id);
+    }
+  };
+
+  drawUnique(directMisses, Math.min(targetCount, Math.max(8, Math.round(targetCount * 0.6))));
+  drawUnique(weakestDomainPool, targetCount);
+
+  if (selected.length < targetCount) {
+    drawUnique(shuffle(pool), targetCount);
+  }
+
+  return shuffle(selected).slice(0, targetCount);
+};
+
+export const buildWrongOnlyExam = (
+  pool: Question[],
+  missedQuestionIds: number[],
+  targetCount: number,
+): Question[] => {
+  const missedIdSet = new Set(missedQuestionIds);
+  const directMisses = shuffle(pool.filter((question) => missedIdSet.has(question.id)));
+  return directMisses.slice(0, targetCount);
+};
+
+export const buildWeakDomainExam = (
+  pool: Question[],
+  weakestDomain: string | null,
+  targetCount: number,
+): Question[] => {
+  if (!weakestDomain || weakestDomain === 'N/A') {
+    return shuffle(pool).slice(0, targetCount);
+  }
+
+  const domainPool = shuffle(pool.filter((question) => getQuestionDomain(question) === weakestDomain));
+  if (domainPool.length >= targetCount) {
+    return domainPool.slice(0, targetCount);
+  }
+
+  const remainder = shuffle(pool.filter((question) => getQuestionDomain(question) !== weakestDomain));
+  return shuffle([...domainPool, ...remainder]).slice(0, targetCount);
 };
 
 export const isQuestionAnswered = (answer: AnswerValue | undefined): boolean =>

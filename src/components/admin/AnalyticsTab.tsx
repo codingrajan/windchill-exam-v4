@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useState } from 'react';
-import { collection, deleteDoc, doc, getDocs } from 'firebase/firestore';
+import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../../services/firebase';
 import type { ExamResult, Question, QuestionResult } from '../../types/index';
+import { deleteAllExamResults } from '../../services/writeGateway';
 import { getQuestionDomain, loadQuestionPool } from '../../utils/examLogic';
 import DiffBadge from '../shared/DiffBadge';
 
@@ -71,8 +72,7 @@ export default function AnalyticsTab() {
     if (!window.confirm('Delete ALL exam results? This will clear the analytics and cannot be undone.')) return;
     setDeleting(true);
     try {
-      const snap = await getDocs(collection(db, 'exam_results'));
-      await Promise.all(snap.docs.map((d) => deleteDoc(doc(db, 'exam_results', d.id))));
+      await deleteAllExamResults();
       setStats(new Map());
     } catch (err) {
       console.error('Delete all error:', err);

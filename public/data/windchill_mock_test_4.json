@@ -10,11 +10,15 @@
     ],
     "correctAnswer": 3,
     "explanation": "Date Effectivity is used to define when a particular version or configuration becomes effective based on a calendar date.",
-    "topic": "PLM Foundations",
-    "domain": "PLM Foundations",
+    "topic": "Effectivity and Applicability",
+    "domain": "Configuration Management and Product Structures",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Effectivity concepts"
+    "objective": "Effectivity and Applicability",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Effectivity and Applicability",
+    "misconceptionTag": "Effectivity and applicability confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 252,
@@ -27,11 +31,15 @@
     ],
     "correctAnswer": 0,
     "explanation": "Unit Effectivity is used when product applicability must be determined by serial number or lot rather than by revision alone.",
-    "topic": "PLM Foundations",
-    "domain": "PLM Foundations",
+    "topic": "Effectivity and Applicability",
+    "domain": "Configuration Management and Product Structures",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Configuration specifications"
+    "objective": "Effectivity and Applicability",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Effectivity and Applicability",
+    "misconceptionTag": "Effectivity and applicability confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 253,
@@ -44,11 +52,15 @@
     ],
     "correctAnswer": 1,
     "explanation": "A configuration specification controls how a structure is filtered so the displayed product definition matches criteria such as latest, baseline, promotion, or effectivity.",
-    "topic": "PLM Foundations",
-    "domain": "PLM Foundations",
+    "topic": "Baselines and Structure Snapshots",
+    "domain": "Configuration Management and Product Structures",
     "difficulty": "easy",
     "type": "single",
-    "objective": "Configuration specifications"
+    "objective": "Baselines and Structure Snapshots",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Baselines and Structure Snapshots",
+    "misconceptionTag": "Configuration filtering vs structure definition",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 254,
@@ -61,11 +73,15 @@
     ],
     "correctAnswer": 2,
     "explanation": "A Promotion Request configuration specification is used to view product data as related to a specific promotion request.",
-    "topic": "PLM Foundations",
-    "domain": "PLM Foundations",
+    "topic": "Configuration Specifications and Filters",
+    "domain": "Configuration Management and Product Structures",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Configuration specifications"
+    "objective": "Configuration Specifications and Filters",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Configuration Specifications and Filters",
+    "misconceptionTag": "Configuration filtering vs structure definition",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 255,
@@ -78,11 +94,15 @@
     ],
     "correctAnswer": 3,
     "explanation": "A Problem Report is used to capture and communicate a product problem or enhancement request so it can be analyzed before implementation work is authorized.",
-    "topic": "Change Management & Release",
-    "domain": "Change Management & Release",
+    "topic": "Issue Intake and Variance Control",
+    "domain": "Change and Release Management",
     "difficulty": "easy",
     "type": "single",
-    "objective": "Problem Reports"
+    "objective": "Issue Intake and Variance Control",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Issue Intake and Variance Control",
+    "misconceptionTag": "Change object role and stage confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 256,
@@ -95,11 +115,15 @@
     ],
     "correctAnswer": 0,
     "explanation": "A Variance is used to authorize a controlled departure from the as-designed configuration for a specific number of units and or for a specific time period.",
-    "topic": "Change Management & Release",
-    "domain": "Change Management & Release",
+    "topic": "Issue Intake and Variance Control",
+    "domain": "Change and Release Management",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Variances"
+    "objective": "Issue Intake and Variance Control",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Issue Intake and Variance Control",
+    "misconceptionTag": "Change object role and stage confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 257,
@@ -112,11 +136,15 @@
     ],
     "correctAnswer": 1,
     "explanation": "Change Tasks are used to track discrete implementation work and the specific changes to business data that support an approved Change Notice.",
-    "topic": "Change Management & Release",
-    "domain": "Change Management & Release",
+    "topic": "Change Requests and Notices",
+    "domain": "Change and Release Management",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Change Tasks"
+    "objective": "Change Requests and Notices",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Change Requests and Notices",
+    "misconceptionTag": "Change object role and stage confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 258,
@@ -129,11 +157,15 @@
     ],
     "correctAnswer": 2,
     "explanation": "The Technical Essentials material describes Change Tasks being automatically delivered to designated users after approval of the implementation plan.",
-    "topic": "Change Management & Release",
-    "domain": "Change Management & Release",
+    "topic": "Change Execution and Resulting Objects",
+    "domain": "Change and Release Management",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Change Tasks"
+    "objective": "Change Execution and Resulting Objects",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Change Execution and Resulting Objects",
+    "misconceptionTag": "Change object role and stage confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 259,
@@ -146,11 +178,15 @@
     ],
     "correctAnswer": 3,
     "explanation": "Content replication is used to distribute vaulted content to additional servers, typically to improve access performance for users in different locations.",
-    "topic": "System Administration & Maintenance",
-    "domain": "System Administration & Maintenance",
+    "topic": "Replication and Distribution",
+    "domain": "System Administration, Vaulting, and Performance",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Content replication"
+    "objective": "Replication and Distribution",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Replication and Distribution",
+    "misconceptionTag": "Replication vs vaulting misconception",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 260,
@@ -163,11 +199,15 @@
     ],
     "correctAnswer": 0,
     "explanation": "Vaulting determines where authoritative content is stored. Replication copies that content to additional replica locations for access and distribution.",
-    "topic": "System Administration & Maintenance",
-    "domain": "System Administration & Maintenance",
+    "topic": "Replication and Distribution",
+    "domain": "System Administration, Vaulting, and Performance",
     "difficulty": "hard",
     "type": "single",
-    "objective": "Content replication"
+    "objective": "Replication and Distribution",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Replication and Distribution",
+    "misconceptionTag": "Replication vs vaulting misconception",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 261,
@@ -180,11 +220,15 @@
     ],
     "correctAnswer": 1,
     "explanation": "Replication rules determine what content should be replicated, where it should go, and when or under what conditions that replication occurs; a content-scope definition alone is not the full rule.",
-    "topic": "System Administration & Maintenance",
-    "domain": "System Administration & Maintenance",
+    "topic": "Replication and Distribution",
+    "domain": "System Administration, Vaulting, and Performance",
     "difficulty": "hard",
     "type": "single",
-    "objective": "Replication rules"
+    "objective": "Replication and Distribution",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Replication and Distribution",
+    "misconceptionTag": "Replication vs vaulting misconception",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 262,
@@ -197,11 +241,15 @@
     ],
     "correctAnswer": 2,
     "explanation": "Replica servers are used to host replicated content so distributed users can access files more efficiently without relying on a single central file location.",
-    "topic": "System Administration & Maintenance",
-    "domain": "System Administration & Maintenance",
+    "topic": "Replication and Distribution",
+    "domain": "System Administration, Vaulting, and Performance",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Replication architecture"
+    "objective": "Replication and Distribution",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Replication and Distribution",
+    "misconceptionTag": "Replication vs vaulting misconception",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 263,
@@ -214,11 +262,15 @@
     ],
     "correctAnswer": 3,
     "explanation": "Security auditing reports are used to review security-related activity and support compliance, traceability, and diagnostic analysis.",
-    "topic": "System Administration & Maintenance",
-    "domain": "System Administration & Maintenance",
+    "topic": "Audit and Usage Reporting",
+    "domain": "System Administration, Vaulting, and Performance",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Audit reports"
+    "objective": "Audit and Usage Reporting",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Audit and Usage Reporting",
+    "misconceptionTag": "Audit reporting vs operational monitoring confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 264,
@@ -231,11 +283,15 @@
     ],
     "correctAnswer": 0,
     "explanation": "Throughput reports help administrators understand system activity levels and processing trends so they can evaluate performance and spot bottlenecks.",
-    "topic": "System Administration & Maintenance",
-    "domain": "System Administration & Maintenance",
+    "topic": "Audit and Usage Reporting",
+    "domain": "System Administration, Vaulting, and Performance",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Audit reports"
+    "objective": "Audit and Usage Reporting",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Audit and Usage Reporting",
+    "misconceptionTag": "Audit reporting vs operational monitoring confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 265,
@@ -248,11 +304,15 @@
     ],
     "correctAnswer": 1,
     "explanation": "WCA is used to review and adjust Windchill system settings, making it a system-administration utility rather than a business-administration or authoring tool.",
-    "topic": "System Administration & Maintenance",
-    "domain": "System Administration & Maintenance",
+    "topic": "Administrative Utilities and Queues",
+    "domain": "System Administration, Vaulting, and Performance",
     "difficulty": "easy",
     "type": "single",
-    "objective": "Windchill Configuration Assistant"
+    "objective": "Administrative Utilities and Queues",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Administrative Utilities and Queues",
+    "misconceptionTag": "Administration utility purpose confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 266,
@@ -265,11 +325,15 @@
     ],
     "correctAnswer": 2,
     "explanation": "JMX monitoring provides an external way to observe queue-related runtime information and metrics, especially when administrators need to integrate Windchill with broader enterprise monitoring.",
-    "topic": "System Administration & Maintenance",
-    "domain": "System Administration & Maintenance",
+    "topic": "Administrative Utilities and Queues",
+    "domain": "System Administration, Vaulting, and Performance",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Queue monitoring"
+    "objective": "Administrative Utilities and Queues",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Administrative Utilities and Queues",
+    "misconceptionTag": "Administration utility purpose confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 267,
@@ -282,11 +346,15 @@
     ],
     "correctAnswer": 3,
     "explanation": "Replication can move large amounts of content, so scheduling it during off-peak periods helps reduce network contention and impact on users.",
-    "topic": "System Administration & Maintenance",
-    "domain": "System Administration & Maintenance",
+    "topic": "Replication and Distribution",
+    "domain": "System Administration, Vaulting, and Performance",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Replication scheduling"
+    "objective": "Replication and Distribution",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Replication and Distribution",
+    "misconceptionTag": "Replication vs vaulting misconception",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 268,
@@ -299,11 +367,15 @@
     ],
     "correctAnswer": 0,
     "explanation": "A central vault provides a controlled authoritative source of content, while replication distributes copies outward in a managed way.",
-    "topic": "System Administration & Maintenance",
-    "domain": "System Administration & Maintenance",
+    "topic": "Replication and Distribution",
+    "domain": "System Administration, Vaulting, and Performance",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Replication architecture"
+    "objective": "Replication and Distribution",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Replication and Distribution",
+    "misconceptionTag": "Replication vs vaulting misconception",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 269,
@@ -316,11 +388,15 @@
     ],
     "correctAnswer": 1,
     "explanation": "Date Effectivity is used when applicability is determined by a calendar date.",
-    "topic": "PLM Foundations",
-    "domain": "PLM Foundations",
+    "topic": "Effectivity and Applicability",
+    "domain": "Configuration Management and Product Structures",
     "difficulty": "easy",
     "type": "single",
-    "objective": "Effectivity concepts"
+    "objective": "Effectivity and Applicability",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Effectivity and Applicability",
+    "misconceptionTag": "Effectivity and applicability confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 270,
@@ -333,11 +409,15 @@
     ],
     "correctAnswer": 2,
     "explanation": "A Problem Report is used to capture the issue. A Change Request typically follows when the issue needs formal evaluation and disposition before implementation is approved.",
-    "topic": "Change Management & Release",
-    "domain": "Change Management & Release",
+    "topic": "Issue Intake and Variance Control",
+    "domain": "Change and Release Management",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Problem Reports and Change Requests"
+    "objective": "Issue Intake and Variance Control",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Issue Intake and Variance Control",
+    "misconceptionTag": "Change object role and stage confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 271,
@@ -350,11 +430,15 @@
     ],
     "correctAnswer": 3,
     "explanation": "A baseline captures a specific snapshot of objects so that exact definitions can be reviewed again later.",
-    "topic": "PLM Foundations",
-    "domain": "PLM Foundations",
+    "topic": "Baselines and Structure Snapshots",
+    "domain": "Configuration Management and Product Structures",
     "difficulty": "easy",
     "type": "single",
-    "objective": "Baselines"
+    "objective": "Baselines and Structure Snapshots",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Baselines and Structure Snapshots",
+    "misconceptionTag": "Configuration filtering vs structure definition",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 272,
@@ -367,11 +451,15 @@
     ],
     "correctAnswer": 0,
     "explanation": "Maturity baselines are useful for capturing the exact set of objects involved in a release or maturity event.",
-    "topic": "PLM Foundations",
-    "domain": "PLM Foundations",
+    "topic": "Baselines and Structure Snapshots",
+    "domain": "Configuration Management and Product Structures",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Baselines"
+    "objective": "Baselines and Structure Snapshots",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Baselines and Structure Snapshots",
+    "misconceptionTag": "Configuration filtering vs structure definition",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 273,
@@ -384,11 +472,15 @@
     ],
     "correctAnswer": 1,
     "explanation": "A baseline preserves a snapshot, while a configuration specification determines how data is filtered and resolved at viewing time.",
-    "topic": "PLM Foundations",
-    "domain": "PLM Foundations",
+    "topic": "Baselines and Structure Snapshots",
+    "domain": "Configuration Management and Product Structures",
     "difficulty": "hard",
     "type": "single",
-    "objective": "Baselines and configuration specifications"
+    "objective": "Baselines and Structure Snapshots",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Baselines and Structure Snapshots",
+    "misconceptionTag": "Configuration filtering vs structure definition",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 274,
@@ -401,11 +493,15 @@
     ],
     "correctAnswer": 2,
     "explanation": "Occurrences represent how a child is used within a specific parent structure and hold usage-specific information.",
-    "topic": "PLM Foundations",
-    "domain": "PLM Foundations",
+    "topic": "Structure Usage and Navigation",
+    "domain": "Configuration Management and Product Structures",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Occurrences"
+    "objective": "Structure Usage and Navigation",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Structure Usage and Navigation",
+    "misconceptionTag": "Usage link, occurrence, and navigation confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 275,
@@ -418,11 +514,15 @@
     ],
     "correctAnswer": 3,
     "explanation": "Usage-level information such as find numbers and reference designators belongs to the occurrence within the structure.",
-    "topic": "PLM Foundations",
-    "domain": "PLM Foundations",
+    "topic": "Structure Usage and Navigation",
+    "domain": "Configuration Management and Product Structures",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Occurrences"
+    "objective": "Structure Usage and Navigation",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Structure Usage and Navigation",
+    "misconceptionTag": "Usage link, occurrence, and navigation confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 276,
@@ -435,11 +535,15 @@
     ],
     "correctAnswer": 0,
     "explanation": "Latest is used to resolve the most current applicable structure, not a release-only or baseline-only view.",
-    "topic": "PLM Foundations",
-    "domain": "PLM Foundations",
+    "topic": "Baselines and Structure Snapshots",
+    "domain": "Configuration Management and Product Structures",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Configuration specifications"
+    "objective": "Baselines and Structure Snapshots",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Baselines and Structure Snapshots",
+    "misconceptionTag": "Configuration filtering vs structure definition",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 277,
@@ -452,11 +556,15 @@
     ],
     "correctAnswer": 1,
     "explanation": "Latest Released focuses on released content rather than the latest in-work content.",
-    "topic": "PLM Foundations",
-    "domain": "PLM Foundations",
+    "topic": "Configuration Specifications and Filters",
+    "domain": "Configuration Management and Product Structures",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Configuration specifications"
+    "objective": "Configuration Specifications and Filters",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Configuration Specifications and Filters",
+    "misconceptionTag": "Configuration filtering vs structure definition",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 278,
@@ -469,11 +577,15 @@
     ],
     "correctAnswer": 2,
     "explanation": "Date Effectivity is used when applicability is determined by calendar date.",
-    "topic": "PLM Foundations",
-    "domain": "PLM Foundations",
+    "topic": "Effectivity and Applicability",
+    "domain": "Configuration Management and Product Structures",
     "difficulty": "easy",
     "type": "single",
-    "objective": "Effectivity concepts"
+    "objective": "Effectivity and Applicability",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Effectivity and Applicability",
+    "misconceptionTag": "Effectivity and applicability confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 279,
@@ -486,11 +598,15 @@
     ],
     "correctAnswer": 3,
     "explanation": "Unit Effectivity is used when applicability is determined by serial or lot range.",
-    "topic": "PLM Foundations",
-    "domain": "PLM Foundations",
+    "topic": "Effectivity and Applicability",
+    "domain": "Configuration Management and Product Structures",
     "difficulty": "easy",
     "type": "single",
-    "objective": "Effectivity concepts"
+    "objective": "Effectivity and Applicability",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Effectivity and Applicability",
+    "misconceptionTag": "Effectivity and applicability confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 280,
@@ -503,11 +619,15 @@
     ],
     "correctAnswer": 0,
     "explanation": "The automatic selection preference controls synchronization behavior between the structure and visualization panes.",
-    "topic": "PLM Foundations",
-    "domain": "PLM Foundations",
+    "topic": "Visualization and Publishing",
+    "domain": "CAD Data Management and Visualization",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Visualization preferences"
+    "objective": "Visualization and Publishing",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Visualization and Publishing",
+    "misconceptionTag": "Visualization pipeline role confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 281,
@@ -520,11 +640,15 @@
     ],
     "correctAnswer": 1,
     "explanation": "Site preferences are typically used as defaults that can flow downward through the preference hierarchy.",
-    "topic": "Business Administration & Contexts",
-    "domain": "Business Administration & Contexts",
+    "topic": "Preferences",
+    "domain": "Contexts, Preferences, and Business Administration",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Preferences"
+    "objective": "Preferences",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Preferences",
+    "misconceptionTag": "Preference, profile, and inheritance confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 282,
@@ -537,11 +661,15 @@
     ],
     "correctAnswer": 2,
     "explanation": "Lower context preferences can override broader defaults within their scope when modification is permitted.",
-    "topic": "Business Administration & Contexts",
-    "domain": "Business Administration & Contexts",
+    "topic": "Preferences",
+    "domain": "Contexts, Preferences, and Business Administration",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Preferences"
+    "objective": "Preferences",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Preferences",
+    "misconceptionTag": "Preference, profile, and inheritance confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 283,
@@ -554,11 +682,15 @@
     ],
     "correctAnswer": 3,
     "explanation": "Administrators can often define not just a preference value but also whether it is modifiable downstream.",
-    "topic": "Business Administration & Contexts",
-    "domain": "Business Administration & Contexts",
+    "topic": "Preferences",
+    "domain": "Contexts, Preferences, and Business Administration",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Preferences"
+    "objective": "Preferences",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Preferences",
+    "misconceptionTag": "Preference, profile, and inheritance confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 284,
@@ -571,11 +703,15 @@
     ],
     "correctAnswer": 0,
     "explanation": "Configuration specification is one of the preference categories described in the manuals.",
-    "topic": "Business Administration & Contexts",
-    "domain": "Business Administration & Contexts",
+    "topic": "Configuration Specifications and Filters",
+    "domain": "Configuration Management and Product Structures",
     "difficulty": "easy",
     "type": "single",
-    "objective": "Preferences"
+    "objective": "Configuration Specifications and Filters",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Configuration Specifications and Filters",
+    "misconceptionTag": "Configuration filtering vs structure definition",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 285,
@@ -588,11 +724,15 @@
     ],
     "correctAnswer": 1,
     "explanation": "Default object type preferences streamline creation workflows by preselecting likely object types.",
-    "topic": "Business Administration & Contexts",
-    "domain": "Business Administration & Contexts",
+    "topic": "Workflow Design and Execution",
+    "domain": "Lifecycle, Workflow, and Object Initialization",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Preferences"
+    "objective": "Workflow Design and Execution",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Workflow Design and Execution",
+    "misconceptionTag": "Life cycle vs workflow confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 286,
@@ -605,11 +745,15 @@
     ],
     "correctAnswer": 2,
     "explanation": "Workspace Management preferences focus on CAD workspace interaction behavior rather than business-admin definitions or server startup.",
-    "topic": "CAD Data Management",
-    "domain": "CAD Data Management",
+    "topic": "Workspaces and Commonspace Control",
+    "domain": "CAD Data Management and Visualization",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Preferences"
+    "objective": "Workspaces and Commonspace Control",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Workspaces and Commonspace Control",
+    "misconceptionTag": "Workspace vs commonspace authority",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 287,
@@ -622,11 +766,15 @@
     ],
     "correctAnswer": 3,
     "explanation": "Problem Reports are used to capture issues or enhancement requests before formal implementation approval.",
-    "topic": "Change Management & Release",
-    "domain": "Change Management & Release",
+    "topic": "Issue Intake and Variance Control",
+    "domain": "Change and Release Management",
     "difficulty": "easy",
     "type": "single",
-    "objective": "Problem Reports"
+    "objective": "Issue Intake and Variance Control",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Issue Intake and Variance Control",
+    "misconceptionTag": "Change object role and stage confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 288,
@@ -639,11 +787,15 @@
     ],
     "correctAnswer": 0,
     "explanation": "A Change Request is used to evaluate a proposed change before implementation proceeds through a Change Notice.",
-    "topic": "Change Management & Release",
-    "domain": "Change Management & Release",
+    "topic": "Change Requests and Notices",
+    "domain": "Change and Release Management",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Change Requests"
+    "objective": "Change Requests and Notices",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Change Requests and Notices",
+    "misconceptionTag": "Change object role and stage confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 289,
@@ -656,11 +808,15 @@
     ],
     "correctAnswer": 1,
     "explanation": "A Change Notice manages approved change implementation rather than initial issue capture or workspace behavior.",
-    "topic": "Change Management & Release",
-    "domain": "Change Management & Release",
+    "topic": "Change Requests and Notices",
+    "domain": "Change and Release Management",
     "difficulty": "easy",
     "type": "single",
-    "objective": "Change Notices"
+    "objective": "Change Requests and Notices",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Change Requests and Notices",
+    "misconceptionTag": "Change object role and stage confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 290,
@@ -673,11 +829,15 @@
     ],
     "correctAnswer": 2,
     "explanation": "Release through change means the Change Notice process can drive the release of new or revised data.",
-    "topic": "Change Management & Release",
-    "domain": "Change Management & Release",
+    "topic": "Change Requests and Notices",
+    "domain": "Change and Release Management",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Change process"
+    "objective": "Change Requests and Notices",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Change Requests and Notices",
+    "misconceptionTag": "Change object role and stage confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 291,
@@ -690,11 +850,15 @@
     ],
     "correctAnswer": 3,
     "explanation": "Sequencing helps ensure dependent work occurs in the proper order.",
-    "topic": "Change Management & Release",
-    "domain": "Change Management & Release",
+    "topic": "Change Execution and Resulting Objects",
+    "domain": "Change and Release Management",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Change Tasks"
+    "objective": "Change Execution and Resulting Objects",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Change Execution and Resulting Objects",
+    "misconceptionTag": "Change object role and stage confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 292,
@@ -707,11 +871,15 @@
     ],
     "correctAnswer": 0,
     "explanation": "The Review and Audit stage focuses on confirming and auditing the change after implementation work has been completed.",
-    "topic": "Change Management & Release",
-    "domain": "Change Management & Release",
+    "topic": "Change Governance and Review",
+    "domain": "Change and Release Management",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Change process"
+    "objective": "Change Governance and Review",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Change Governance and Review",
+    "misconceptionTag": "Change object role and stage confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 293,
@@ -724,11 +892,15 @@
     ],
     "correctAnswer": 1,
     "explanation": "Variances are exception authorizations; Problem Reports are issue or enhancement records.",
-    "topic": "Change Management & Release",
-    "domain": "Change Management & Release",
+    "topic": "Issue Intake and Variance Control",
+    "domain": "Change and Release Management",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Variances"
+    "objective": "Issue Intake and Variance Control",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Issue Intake and Variance Control",
+    "misconceptionTag": "Change object role and stage confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 294,
@@ -741,11 +913,15 @@
     ],
     "correctAnswer": 2,
     "explanation": "Variances are used when a controlled departure from the designed configuration must be authorized.",
-    "topic": "Change Management & Release",
-    "domain": "Change Management & Release",
+    "topic": "Issue Intake and Variance Control",
+    "domain": "Change and Release Management",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Variances"
+    "objective": "Issue Intake and Variance Control",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Issue Intake and Variance Control",
+    "misconceptionTag": "Change object role and stage confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 295,
@@ -758,11 +934,15 @@
     ],
     "correctAnswer": 3,
     "explanation": "The standard process delivers approved implementation tasks to designated users after the implementation plan is approved.",
-    "topic": "Change Management & Release",
-    "domain": "Change Management & Release",
+    "topic": "Change Execution and Resulting Objects",
+    "domain": "Change and Release Management",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Change Tasks"
+    "objective": "Change Execution and Resulting Objects",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Change Execution and Resulting Objects",
+    "misconceptionTag": "Change object role and stage confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 296,
@@ -775,11 +955,15 @@
     ],
     "correctAnswer": 0,
     "explanation": "Content replication distributes content copies to improve access in distributed environments.",
-    "topic": "System Administration & Maintenance",
-    "domain": "System Administration & Maintenance",
+    "topic": "Replication and Distribution",
+    "domain": "System Administration, Vaulting, and Performance",
     "difficulty": "easy",
     "type": "single",
-    "objective": "Content replication"
+    "objective": "Replication and Distribution",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Replication and Distribution",
+    "misconceptionTag": "Replication vs vaulting misconception",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 297,
@@ -792,11 +976,15 @@
     ],
     "correctAnswer": 1,
     "explanation": "The authoritative source remains the source vault, while replicas store distributed copies.",
-    "topic": "System Administration & Maintenance",
-    "domain": "System Administration & Maintenance",
+    "topic": "Backup, Vaulting, and Rehost",
+    "domain": "System Administration, Vaulting, and Performance",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Content replication"
+    "objective": "Backup, Vaulting, and Rehost",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Backup, Vaulting, and Rehost",
+    "misconceptionTag": "Administration utility purpose confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 298,
@@ -809,11 +997,15 @@
     ],
     "correctAnswer": 2,
     "explanation": "Replica servers are used to host replicated content for improved access in distributed deployments.",
-    "topic": "System Administration & Maintenance",
-    "domain": "System Administration & Maintenance",
+    "topic": "Replication and Distribution",
+    "domain": "System Administration, Vaulting, and Performance",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Replication architecture"
+    "objective": "Replication and Distribution",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Replication and Distribution",
+    "misconceptionTag": "Replication vs vaulting misconception",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 299,
@@ -826,11 +1018,15 @@
     ],
     "correctAnswer": 3,
     "explanation": "Replication rules control scope, target, and timing of replicated content.",
-    "topic": "System Administration & Maintenance",
-    "domain": "System Administration & Maintenance",
+    "topic": "Replication and Distribution",
+    "domain": "System Administration, Vaulting, and Performance",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Replication rules"
+    "objective": "Replication and Distribution",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Replication and Distribution",
+    "misconceptionTag": "Replication vs vaulting misconception",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 300,
@@ -843,11 +1039,15 @@
     ],
     "correctAnswer": 0,
     "explanation": "Large replication jobs can consume network and system resources, so off-peak scheduling reduces user impact.",
-    "topic": "System Administration & Maintenance",
-    "domain": "System Administration & Maintenance",
+    "topic": "Replication and Distribution",
+    "domain": "System Administration, Vaulting, and Performance",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Replication scheduling"
+    "objective": "Replication and Distribution",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Replication and Distribution",
+    "misconceptionTag": "Replication vs vaulting misconception",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 301,
@@ -860,11 +1060,15 @@
     ],
     "correctAnswer": 1,
     "explanation": "WCA is useful before tuning because it gives administrators a focused way to review configuration-related settings rather than making uninformed changes.",
-    "topic": "System Administration & Maintenance",
-    "domain": "System Administration & Maintenance",
+    "topic": "Administrative Utilities and Queues",
+    "domain": "System Administration, Vaulting, and Performance",
     "difficulty": "easy",
     "type": "single",
-    "objective": "WCA review workflow"
+    "objective": "Administrative Utilities and Queues",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Administrative Utilities and Queues",
+    "misconceptionTag": "Administration utility purpose confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 302,
@@ -877,11 +1081,15 @@
     ],
     "correctAnswer": 2,
     "explanation": "Throughput reports are used to understand workload and performance trends.",
-    "topic": "System Administration & Maintenance",
-    "domain": "System Administration & Maintenance",
+    "topic": "Audit and Usage Reporting",
+    "domain": "System Administration, Vaulting, and Performance",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Audit and usage reporting"
+    "objective": "Audit and Usage Reporting",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Audit and Usage Reporting",
+    "misconceptionTag": "Audit reporting vs operational monitoring confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 303,
@@ -894,11 +1102,15 @@
     ],
     "correctAnswer": 3,
     "explanation": "Security auditing reports are most valuable when administrators need traceability and evidence around security-relevant activity.",
-    "topic": "System Administration & Maintenance",
-    "domain": "System Administration & Maintenance",
+    "topic": "Audit and Usage Reporting",
+    "domain": "System Administration, Vaulting, and Performance",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Security auditing use cases"
+    "objective": "Audit and Usage Reporting",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Audit and Usage Reporting",
+    "misconceptionTag": "Audit reporting vs operational monitoring confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 304,
@@ -911,11 +1123,15 @@
     ],
     "correctAnswer": 0,
     "explanation": "JMX provides an external monitoring path for runtime metrics and queue visibility.",
-    "topic": "System Administration & Maintenance",
-    "domain": "System Administration & Maintenance",
+    "topic": "Administrative Utilities and Queues",
+    "domain": "System Administration, Vaulting, and Performance",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Queue monitoring"
+    "objective": "Administrative Utilities and Queues",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Administrative Utilities and Queues",
+    "misconceptionTag": "Administration utility purpose confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 305,
@@ -928,11 +1144,15 @@
     ],
     "correctAnswer": 1,
     "explanation": "The Collect Objects table lets administrators review and include related objects during a move operation.",
-    "topic": "System Administration & Maintenance",
-    "domain": "System Administration & Maintenance",
+    "topic": "Administrative Utilities and Queues",
+    "domain": "System Administration, Vaulting, and Performance",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Move Wizard"
+    "objective": "Administrative Utilities and Queues",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Administrative Utilities and Queues",
+    "misconceptionTag": "Administration utility purpose confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 306,
@@ -945,11 +1165,15 @@
     ],
     "correctAnswer": 2,
     "explanation": "The Move operation can collect and carry associated managed objects such as teams, life cycles, workflows, and representations.",
-    "topic": "System Administration & Maintenance",
-    "domain": "System Administration & Maintenance",
+    "topic": "Visualization and Publishing",
+    "domain": "CAD Data Management and Visualization",
     "difficulty": "hard",
     "type": "single",
-    "objective": "Move Wizard"
+    "objective": "Visualization and Publishing",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Visualization and Publishing",
+    "misconceptionTag": "Visualization pipeline role confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 307,
@@ -962,11 +1186,15 @@
     ],
     "correctAnswer": 3,
     "explanation": "Administrators should verify the collected related objects before executing a move.",
-    "topic": "System Administration & Maintenance",
-    "domain": "System Administration & Maintenance",
+    "topic": "Administrative Utilities and Queues",
+    "domain": "System Administration, Vaulting, and Performance",
     "difficulty": "easy",
     "type": "single",
-    "objective": "Move Wizard"
+    "objective": "Administrative Utilities and Queues",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Administrative Utilities and Queues",
+    "misconceptionTag": "Administration utility purpose confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 308,
@@ -979,11 +1207,15 @@
     ],
     "correctAnswer": 0,
     "explanation": "Document structures are used to organize related documents in a managed hierarchy.",
-    "topic": "PLM Foundations",
-    "domain": "PLM Foundations",
+    "topic": "Structure Usage and Navigation",
+    "domain": "Configuration Management and Product Structures",
     "difficulty": "easy",
     "type": "single",
-    "objective": "Document structures"
+    "objective": "Structure Usage and Navigation",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Structure Usage and Navigation",
+    "misconceptionTag": "Usage link, occurrence, and navigation confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 309,
@@ -996,11 +1228,15 @@
     ],
     "correctAnswer": 1,
     "explanation": "A Baseline filter resolves the structure as captured in a baseline snapshot.",
-    "topic": "PLM Foundations",
-    "domain": "PLM Foundations",
+    "topic": "Baselines and Structure Snapshots",
+    "domain": "Configuration Management and Product Structures",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Configuration specifications"
+    "objective": "Baselines and Structure Snapshots",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Baselines and Structure Snapshots",
+    "misconceptionTag": "Configuration filtering vs structure definition",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 310,
@@ -1013,11 +1249,15 @@
     ],
     "correctAnswer": 2,
     "explanation": "The Promotion Request filter shows the structure in the context of a selected promotion request.",
-    "topic": "PLM Foundations",
-    "domain": "PLM Foundations",
+    "topic": "Promotion Requests and Release Paths",
+    "domain": "Change and Release Management",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Configuration specifications"
+    "objective": "Promotion Requests and Release Paths",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Promotion Requests and Release Paths",
+    "misconceptionTag": "Promotion request vs change notice confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 311,
@@ -1030,11 +1270,15 @@
     ],
     "correctAnswer": 3,
     "explanation": "Occurrences help users understand where a part is used and its usage-specific details.",
-    "topic": "PLM Foundations",
-    "domain": "PLM Foundations",
+    "topic": "Structure Usage and Navigation",
+    "domain": "Configuration Management and Product Structures",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Occurrences"
+    "objective": "Structure Usage and Navigation",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Structure Usage and Navigation",
+    "misconceptionTag": "Usage link, occurrence, and navigation confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 312,
@@ -1047,11 +1291,15 @@
     ],
     "correctAnswer": 0,
     "explanation": "Reference designators are usage-specific and belong at the occurrence level.",
-    "topic": "PLM Foundations",
-    "domain": "PLM Foundations",
+    "topic": "Structure Usage and Navigation",
+    "domain": "Configuration Management and Product Structures",
     "difficulty": "easy",
     "type": "single",
-    "objective": "Occurrences"
+    "objective": "Structure Usage and Navigation",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Structure Usage and Navigation",
+    "misconceptionTag": "Usage link, occurrence, and navigation confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 313,
@@ -1064,11 +1312,15 @@
     ],
     "correctAnswer": 1,
     "explanation": "Find numbers are usage-specific identifiers associated with the occurrence in a structure.",
-    "topic": "PLM Foundations",
-    "domain": "PLM Foundations",
+    "topic": "Structure Usage and Navigation",
+    "domain": "Configuration Management and Product Structures",
     "difficulty": "easy",
     "type": "single",
-    "objective": "Occurrences"
+    "objective": "Structure Usage and Navigation",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Structure Usage and Navigation",
+    "misconceptionTag": "Usage link, occurrence, and navigation confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 314,
@@ -1081,11 +1333,15 @@
     ],
     "correctAnswer": 2,
     "explanation": "Unit Effectivity is used for serial-number or lot-based applicability.",
-    "topic": "PLM Foundations",
-    "domain": "PLM Foundations",
+    "topic": "Effectivity and Applicability",
+    "domain": "Configuration Management and Product Structures",
     "difficulty": "easy",
     "type": "single",
-    "objective": "Effectivity concepts"
+    "objective": "Effectivity and Applicability",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Effectivity and Applicability",
+    "misconceptionTag": "Effectivity and applicability confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 315,
@@ -1098,11 +1354,15 @@
     ],
     "correctAnswer": 3,
     "explanation": "Date Effectivity resolves applicability based on a calendar date.",
-    "topic": "PLM Foundations",
-    "domain": "PLM Foundations",
+    "topic": "Effectivity and Applicability",
+    "domain": "Configuration Management and Product Structures",
     "difficulty": "easy",
     "type": "single",
-    "objective": "Effectivity concepts"
+    "objective": "Effectivity and Applicability",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Effectivity and Applicability",
+    "misconceptionTag": "Effectivity and applicability confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 316,
@@ -1115,11 +1375,15 @@
     ],
     "correctAnswer": 0,
     "explanation": "Baselines are fixed snapshots; Latest is dynamically resolved.",
-    "topic": "PLM Foundations",
-    "domain": "PLM Foundations",
+    "topic": "Baselines and Structure Snapshots",
+    "domain": "Configuration Management and Product Structures",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Configuration specifications"
+    "objective": "Baselines and Structure Snapshots",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Baselines and Structure Snapshots",
+    "misconceptionTag": "Configuration filtering vs structure definition",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 317,
@@ -1132,11 +1396,15 @@
     ],
     "correctAnswer": 1,
     "explanation": "The Change configuration specification resolves a structure in the context of selected change notices.",
-    "topic": "Change Management & Release",
-    "domain": "Change Management & Release",
+    "topic": "Change Requests and Notices",
+    "domain": "Change and Release Management",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Configuration specifications"
+    "objective": "Change Requests and Notices",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Change Requests and Notices",
+    "misconceptionTag": "Change object role and stage confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 318,
@@ -1149,11 +1417,15 @@
     ],
     "correctAnswer": 2,
     "explanation": "Visualization preferences influence the UI behavior around visualization interactions.",
-    "topic": "Business Administration & Contexts",
-    "domain": "Business Administration & Contexts",
+    "topic": "Visualization and Publishing",
+    "domain": "CAD Data Management and Visualization",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Preferences"
+    "objective": "Visualization and Publishing",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Visualization and Publishing",
+    "misconceptionTag": "Visualization pipeline role confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 319,
@@ -1166,11 +1438,15 @@
     ],
     "correctAnswer": 3,
     "explanation": "Searching preferences govern search behavior and defaults for users.",
-    "topic": "Business Administration & Contexts",
-    "domain": "Business Administration & Contexts",
+    "topic": "Preferences",
+    "domain": "Contexts, Preferences, and Business Administration",
     "difficulty": "easy",
     "type": "single",
-    "objective": "Preferences"
+    "objective": "Preferences",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Preferences",
+    "misconceptionTag": "Preference, profile, and inheritance confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 320,
@@ -1183,11 +1459,15 @@
     ],
     "correctAnswer": 0,
     "explanation": "Table preferences influence how tabular data is presented and behaves in the UI.",
-    "topic": "Business Administration & Contexts",
-    "domain": "Business Administration & Contexts",
+    "topic": "Preferences",
+    "domain": "Contexts, Preferences, and Business Administration",
     "difficulty": "easy",
     "type": "single",
-    "objective": "Preferences"
+    "objective": "Preferences",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Preferences",
+    "misconceptionTag": "Preference, profile, and inheritance confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 321,
@@ -1200,11 +1480,15 @@
     ],
     "correctAnswer": 1,
     "explanation": "WVS is responsible for generating and managing viewable representations used for visualization and review; orchestration and representation management are part of that service.",
-    "topic": "CAD Data Management",
-    "domain": "CAD Data Management",
+    "topic": "Visualization and Publishing",
+    "domain": "CAD Data Management and Visualization",
     "difficulty": "medium",
     "type": "single",
-    "objective": "WVS"
+    "objective": "Visualization and Publishing",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Visualization and Publishing",
+    "misconceptionTag": "Visualization pipeline role confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 322,
@@ -1217,11 +1501,15 @@
     ],
     "correctAnswer": 2,
     "explanation": "A representation is a generated derivative used for visualization, not the original source file itself.",
-    "topic": "CAD Data Management",
-    "domain": "CAD Data Management",
+    "topic": "Visualization and Publishing",
+    "domain": "CAD Data Management and Visualization",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Representations"
+    "objective": "Visualization and Publishing",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Visualization and Publishing",
+    "misconceptionTag": "Visualization pipeline role confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 323,
@@ -1234,11 +1522,15 @@
     ],
     "correctAnswer": 3,
     "explanation": "CAD workers perform the actual file conversion for WVS using supported authoring software; merely hosting the software is not the full role.",
-    "topic": "CAD Data Management",
-    "domain": "CAD Data Management",
+    "topic": "Visualization and Publishing",
+    "domain": "CAD Data Management and Visualization",
     "difficulty": "medium",
     "type": "single",
-    "objective": "WVS"
+    "objective": "Visualization and Publishing",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Visualization and Publishing",
+    "misconceptionTag": "Visualization pipeline role confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 324,
@@ -1251,11 +1543,15 @@
     ],
     "correctAnswer": 0,
     "explanation": "CAD workers typically require the native authoring application to convert source files into viewables.",
-    "topic": "CAD Data Management",
-    "domain": "CAD Data Management",
+    "topic": "Visualization and Publishing",
+    "domain": "CAD Data Management and Visualization",
     "difficulty": "medium",
     "type": "single",
-    "objective": "WVS"
+    "objective": "Visualization and Publishing",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Visualization and Publishing",
+    "misconceptionTag": "Visualization pipeline role confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 325,
@@ -1268,11 +1564,15 @@
     ],
     "correctAnswer": 1,
     "explanation": "Queued publishing lets conversion happen in the background instead of blocking interactive operations.",
-    "topic": "CAD Data Management",
-    "domain": "CAD Data Management",
+    "topic": "Administrative Utilities and Queues",
+    "domain": "System Administration, Vaulting, and Performance",
     "difficulty": "medium",
     "type": "single",
-    "objective": "WVS"
+    "objective": "Administrative Utilities and Queues",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Administrative Utilities and Queues",
+    "misconceptionTag": "Administration utility purpose confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 326,
@@ -1285,11 +1585,15 @@
     ],
     "correctAnswer": 2,
     "explanation": "Publish rules define what gets published and the conditions under which publishing occurs.",
-    "topic": "CAD Data Management",
-    "domain": "CAD Data Management",
+    "topic": "Visualization and Publishing",
+    "domain": "CAD Data Management and Visualization",
     "difficulty": "hard",
     "type": "single",
-    "objective": "WVS"
+    "objective": "Visualization and Publishing",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Visualization and Publishing",
+    "misconceptionTag": "Visualization pipeline role confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 327,
@@ -1302,11 +1606,15 @@
     ],
     "correctAnswer": 3,
     "explanation": "When source content changes, existing viewables may become stale and require republishing.",
-    "topic": "CAD Data Management",
-    "domain": "CAD Data Management",
+    "topic": "Visualization and Publishing",
+    "domain": "CAD Data Management and Visualization",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Representations"
+    "objective": "Visualization and Publishing",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Visualization and Publishing",
+    "misconceptionTag": "Visualization pipeline role confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 328,
@@ -1319,11 +1627,15 @@
     ],
     "correctAnswer": 0,
     "explanation": "Workgroup Manager acts as the integration layer between supported authoring tools and Windchill.",
-    "topic": "CAD Data Management",
-    "domain": "CAD Data Management",
+    "topic": "CAD Documents and Authoring Context",
+    "domain": "CAD Data Management and Visualization",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Workgroup Manager"
+    "objective": "CAD Documents and Authoring Context",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "CAD Documents and Authoring Context",
+    "misconceptionTag": "Workspace vs commonspace authority",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 329,
@@ -1336,11 +1648,15 @@
     ],
     "correctAnswer": 1,
     "explanation": "Commonspace is the managed authoritative repository, unlike a local working workspace.",
-    "topic": "CAD Data Management",
-    "domain": "CAD Data Management",
+    "topic": "Workspaces and Commonspace Control",
+    "domain": "CAD Data Management and Visualization",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Workspaces"
+    "objective": "Workspaces and Commonspace Control",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Workspaces and Commonspace Control",
+    "misconceptionTag": "Workspace vs commonspace authority",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 330,
@@ -1353,11 +1669,15 @@
     ],
     "correctAnswer": 2,
     "explanation": "A workspace is a managed working area for in-progress design activity.",
-    "topic": "CAD Data Management",
-    "domain": "CAD Data Management",
+    "topic": "Workspaces and Commonspace Control",
+    "domain": "CAD Data Management and Visualization",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Workspaces"
+    "objective": "Workspaces and Commonspace Control",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Workspaces and Commonspace Control",
+    "misconceptionTag": "Workspace vs commonspace authority",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 331,
@@ -1370,11 +1690,15 @@
     ],
     "correctAnswer": 3,
     "explanation": "Upload loads content to the workspace; check-in commits a managed iteration into commonspace.",
-    "topic": "CAD Data Management",
-    "domain": "CAD Data Management",
+    "topic": "Workspaces and Commonspace Control",
+    "domain": "CAD Data Management and Visualization",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Workspaces"
+    "objective": "Workspaces and Commonspace Control",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Workspaces and Commonspace Control",
+    "misconceptionTag": "Workspace vs commonspace authority",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 332,
@@ -1387,11 +1711,15 @@
     ],
     "correctAnswer": 0,
     "explanation": "Check-in stores a new managed iteration in commonspace.",
-    "topic": "CAD Data Management",
-    "domain": "CAD Data Management",
+    "topic": "Workspaces and Commonspace Control",
+    "domain": "CAD Data Management and Visualization",
     "difficulty": "easy",
     "type": "single",
-    "objective": "Workspaces"
+    "objective": "Workspaces and Commonspace Control",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Workspaces and Commonspace Control",
+    "misconceptionTag": "Workspace vs commonspace authority",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 333,
@@ -1404,11 +1732,15 @@
     ],
     "correctAnswer": 1,
     "explanation": "Collecting dependencies helps ensure a complete and consistent managed design set.",
-    "topic": "CAD Data Management",
-    "domain": "CAD Data Management",
+    "topic": "Workspaces and Commonspace Control",
+    "domain": "CAD Data Management and Visualization",
     "difficulty": "medium",
     "type": "single",
-    "objective": "CAD dependencies"
+    "objective": "Workspaces and Commonspace Control",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Workspaces and Commonspace Control",
+    "misconceptionTag": "Workspace vs commonspace authority",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 334,
@@ -1421,11 +1753,15 @@
     ],
     "correctAnswer": 2,
     "explanation": "Representations support visualization and review but do not replace the source authoring file.",
-    "topic": "CAD Data Management",
-    "domain": "CAD Data Management",
+    "topic": "Visualization and Publishing",
+    "domain": "CAD Data Management and Visualization",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Representations"
+    "objective": "Visualization and Publishing",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Visualization and Publishing",
+    "misconceptionTag": "Visualization pipeline role confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 335,
@@ -1438,11 +1774,15 @@
     ],
     "correctAnswer": 3,
     "explanation": "Viewables let non-CAD stakeholders review product data without needing the source authoring application.",
-    "topic": "CAD Data Management",
-    "domain": "CAD Data Management",
+    "topic": "Visualization and Publishing",
+    "domain": "CAD Data Management and Visualization",
     "difficulty": "easy",
     "type": "single",
-    "objective": "Representations"
+    "objective": "Visualization and Publishing",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Visualization and Publishing",
+    "misconceptionTag": "Visualization pipeline role confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 336,
@@ -1455,11 +1795,15 @@
     ],
     "correctAnswer": 0,
     "explanation": "A queue backlog delays publishing output even if the source data itself is already managed.",
-    "topic": "CAD Data Management",
-    "domain": "CAD Data Management",
+    "topic": "Administrative Utilities and Queues",
+    "domain": "System Administration, Vaulting, and Performance",
     "difficulty": "medium",
     "type": "single",
-    "objective": "WVS"
+    "objective": "Administrative Utilities and Queues",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Administrative Utilities and Queues",
+    "misconceptionTag": "Administration utility purpose confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 337,
@@ -1472,11 +1816,15 @@
     ],
     "correctAnswer": 1,
     "explanation": "Profiles are used to tailor the user experience for a persona or job function; they are about UI experience rather than security enforcement or storage architecture.",
-    "topic": "Business Administration & Contexts",
-    "domain": "Business Administration & Contexts",
+    "topic": "Profiles and Business Administration",
+    "domain": "Contexts, Preferences, and Business Administration",
     "difficulty": "easy",
     "type": "single",
-    "objective": "Profiles"
+    "objective": "Profiles and Business Administration",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Profiles and Business Administration",
+    "misconceptionTag": "Preference, profile, and inheritance confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 338,
@@ -1489,11 +1837,15 @@
     ],
     "correctAnswer": 2,
     "explanation": "Profiles affect the UI experience but do not override access control permissions.",
-    "topic": "Business Administration & Contexts",
-    "domain": "Business Administration & Contexts",
+    "topic": "Profiles and Business Administration",
+    "domain": "Contexts, Preferences, and Business Administration",
     "difficulty": "hard",
     "type": "single",
-    "objective": "Profiles"
+    "objective": "Profiles and Business Administration",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Profiles and Business Administration",
+    "misconceptionTag": "Preference, profile, and inheritance confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 339,
@@ -1506,11 +1858,15 @@
     ],
     "correctAnswer": 3,
     "explanation": "Security auditing reports support traceability and compliance evidence.",
-    "topic": "System Administration & Maintenance",
-    "domain": "System Administration & Maintenance",
+    "topic": "Audit and Usage Reporting",
+    "domain": "System Administration, Vaulting, and Performance",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Audit and usage reporting"
+    "objective": "Audit and Usage Reporting",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Audit and Usage Reporting",
+    "misconceptionTag": "Audit reporting vs operational monitoring confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 340,
@@ -1523,11 +1879,15 @@
     ],
     "correctAnswer": 0,
     "explanation": "Usage reporting helps administrators understand adoption and usage trends.",
-    "topic": "System Administration & Maintenance",
-    "domain": "System Administration & Maintenance",
+    "topic": "Audit and Usage Reporting",
+    "domain": "System Administration, Vaulting, and Performance",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Audit and usage reporting"
+    "objective": "Audit and Usage Reporting",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Audit and Usage Reporting",
+    "misconceptionTag": "Audit reporting vs operational monitoring confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 341,
@@ -1540,11 +1900,15 @@
     ],
     "correctAnswer": 1,
     "explanation": "Context templates help standardize initial configuration for new contexts.",
-    "topic": "Business Administration & Contexts",
-    "domain": "Business Administration & Contexts",
+    "topic": "Context Templates",
+    "domain": "Contexts, Preferences, and Business Administration",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Context templates"
+    "objective": "Context Templates",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Context Templates",
+    "misconceptionTag": "Preference, profile, and inheritance confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 342,
@@ -1557,11 +1921,15 @@
     ],
     "correctAnswer": 2,
     "explanation": "Context templates standardize context setup rather than infrastructure host settings.",
-    "topic": "Business Administration & Contexts",
-    "domain": "Business Administration & Contexts",
+    "topic": "Context Templates",
+    "domain": "Contexts, Preferences, and Business Administration",
     "difficulty": "easy",
     "type": "single",
-    "objective": "Context templates"
+    "objective": "Context Templates",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Context Templates",
+    "misconceptionTag": "Preference, profile, and inheritance confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 343,
@@ -1574,11 +1942,15 @@
     ],
     "correctAnswer": 3,
     "explanation": "Multiple preference levels allow enterprise defaults and local overrides to coexist where appropriate.",
-    "topic": "Business Administration & Contexts",
-    "domain": "Business Administration & Contexts",
+    "topic": "Preferences",
+    "domain": "Contexts, Preferences, and Business Administration",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Preferences"
+    "objective": "Preferences",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Preferences",
+    "misconceptionTag": "Preference, profile, and inheritance confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 344,
@@ -1591,11 +1963,15 @@
     ],
     "correctAnswer": 0,
     "explanation": "Baselines are useful when teams need to preserve an exact BOM snapshot for later comparison or review.",
-    "topic": "PLM Foundations",
-    "domain": "PLM Foundations",
+    "topic": "Baselines and Structure Snapshots",
+    "domain": "Configuration Management and Product Structures",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Baselines"
+    "objective": "Baselines and Structure Snapshots",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Baselines and Structure Snapshots",
+    "misconceptionTag": "Configuration filtering vs structure definition",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 345,
@@ -1608,11 +1984,15 @@
     ],
     "correctAnswer": 1,
     "explanation": "Effectivity describes applicability of product definitions by date, lot, or serial range.",
-    "topic": "PLM Foundations",
-    "domain": "PLM Foundations",
+    "topic": "Effectivity and Applicability",
+    "domain": "Configuration Management and Product Structures",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Effectivity concepts"
+    "objective": "Effectivity and Applicability",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Effectivity and Applicability",
+    "misconceptionTag": "Effectivity and applicability confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 346,
@@ -1625,11 +2005,15 @@
     ],
     "correctAnswer": 2,
     "explanation": "The Promotion Request filter helps teams inspect the candidate set tied to a promotion event.",
-    "topic": "Change Management & Release",
-    "domain": "Change Management & Release",
+    "topic": "Promotion Requests and Release Paths",
+    "domain": "Change and Release Management",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Configuration specifications"
+    "objective": "Promotion Requests and Release Paths",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Promotion Requests and Release Paths",
+    "misconceptionTag": "Promotion request vs change notice confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 347,
@@ -1642,11 +2026,15 @@
     ],
     "correctAnswer": 3,
     "explanation": "Representations enable browser-based visualization and review of managed data.",
-    "topic": "CAD Data Management",
-    "domain": "CAD Data Management",
+    "topic": "Visualization and Publishing",
+    "domain": "CAD Data Management and Visualization",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Representations"
+    "objective": "Visualization and Publishing",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Visualization and Publishing",
+    "misconceptionTag": "Visualization pipeline role confusion",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 348,
@@ -1659,11 +2047,15 @@
     ],
     "correctAnswer": 0,
     "explanation": "Background publishing is preferred when conversion is resource-intensive and would otherwise slow interactive work.",
-    "topic": "CAD Data Management",
-    "domain": "CAD Data Management",
+    "topic": "CAD Documents and Authoring Context",
+    "domain": "CAD Data Management and Visualization",
     "difficulty": "medium",
     "type": "single",
-    "objective": "WVS"
+    "objective": "CAD Documents and Authoring Context",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "CAD Documents and Authoring Context",
+    "misconceptionTag": "Workspace vs commonspace authority",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 349,
@@ -1676,11 +2068,15 @@
     ],
     "correctAnswer": 1,
     "explanation": "A central authoritative vault supports governance, while replication supports distributed access.",
-    "topic": "System Administration & Maintenance",
-    "domain": "System Administration & Maintenance",
+    "topic": "Replication and Distribution",
+    "domain": "System Administration, Vaulting, and Performance",
     "difficulty": "medium",
     "type": "single",
-    "objective": "Replication architecture"
+    "objective": "Replication and Distribution",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Replication and Distribution",
+    "misconceptionTag": "Replication vs vaulting misconception",
+    "releaseVersion": "2026.04"
   },
   {
     "id": 350,
@@ -1693,10 +2089,14 @@
     ],
     "correctAnswer": 2,
     "explanation": "Using these reports together gives administrators a broader picture of system behavior, usage, and traceability.",
-    "topic": "System Administration & Maintenance",
-    "domain": "System Administration & Maintenance",
+    "topic": "Audit and Usage Reporting",
+    "domain": "System Administration, Vaulting, and Performance",
     "difficulty": "hard",
     "type": "single",
-    "objective": "Audit and usage reporting"
+    "objective": "Audit and Usage Reporting",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Audit and Usage Reporting",
+    "misconceptionTag": "Audit reporting vs operational monitoring confusion",
+    "releaseVersion": "2026.04"
   }
 ]

@@ -1,0 +1,708 @@
+{
+  "generatedAt": "2026-04-08T19:03:10.487Z",
+  "questionCount": 500,
+  "domainCount": 11,
+  "objectiveCount": 44,
+  "manualCount": 2,
+  "misconceptionCount": 25,
+  "flaggedDomains": [
+    {
+      "domain": "System Administration, Vaulting, and Performance",
+      "flags": [
+        "domain-too-broad"
+      ],
+      "questionCount": 81,
+      "objectiveCount": 5
+    }
+  ],
+  "lowCoverageObjectives": [
+    {
+      "objective": "Client Access and Web Tier",
+      "count": 1
+    },
+    {
+      "objective": "Enterprise Integration and Authentication",
+      "count": 2
+    },
+    {
+      "objective": "Business Analysis and Configuration Planning",
+      "count": 2
+    },
+    {
+      "objective": "Layouts and Attribute Presentation",
+      "count": 2
+    },
+    {
+      "objective": "Implementation Strategy and Legacy Data",
+      "count": 2
+    },
+    {
+      "objective": "Security Administration and Audit Controls",
+      "count": 3
+    }
+  ],
+  "domains": [
+    {
+      "domain": "System Administration, Vaulting, and Performance",
+      "questionCount": 81,
+      "objectiveCount": 5,
+      "dominantObjective": "Administrative Utilities and Queues",
+      "dominantObjectiveShare": 0.32,
+      "objectives": [
+        {
+          "objective": "Administrative Utilities and Queues",
+          "count": 26
+        },
+        {
+          "objective": "Replication and Distribution",
+          "count": 17
+        },
+        {
+          "objective": "Backup, Vaulting, and Rehost",
+          "count": 15
+        },
+        {
+          "objective": "Audit and Usage Reporting",
+          "count": 15
+        },
+        {
+          "objective": "Performance and Runtime Administration",
+          "count": 8
+        }
+      ],
+      "manuals": [
+        {
+          "manual": "Windchill Technical Essentials course manual.pdf",
+          "count": 66
+        },
+        {
+          "manual": "Windchill Advanced Configuration course manual.pdf",
+          "count": 15
+        }
+      ],
+      "misconceptions": [
+        {
+          "tag": "Administration utility purpose confusion",
+          "count": 49
+        },
+        {
+          "tag": "Replication vs vaulting misconception",
+          "count": 17
+        },
+        {
+          "tag": "Audit reporting vs operational monitoring confusion",
+          "count": 15
+        }
+      ],
+      "flags": [
+        "domain-too-broad"
+      ],
+      "sampleQuestionIds": [
+        21,
+        86,
+        87,
+        88,
+        89,
+        90,
+        92,
+        93,
+        94,
+        95,
+        130,
+        137
+      ]
+    },
+    {
+      "domain": "CAD Data Management and Visualization",
+      "questionCount": 78,
+      "objectiveCount": 3,
+      "dominantObjective": "Visualization and Publishing",
+      "dominantObjectiveShare": 0.45,
+      "objectives": [
+        {
+          "objective": "Visualization and Publishing",
+          "count": 35
+        },
+        {
+          "objective": "Workspaces and Commonspace Control",
+          "count": 24
+        },
+        {
+          "objective": "CAD Documents and Authoring Context",
+          "count": 19
+        }
+      ],
+      "manuals": [
+        {
+          "manual": "Windchill Technical Essentials course manual.pdf",
+          "count": 71
+        },
+        {
+          "manual": "Windchill Advanced Configuration course manual.pdf",
+          "count": 7
+        }
+      ],
+      "misconceptions": [
+        {
+          "tag": "Workspace vs commonspace authority",
+          "count": 43
+        },
+        {
+          "tag": "Visualization pipeline role confusion",
+          "count": 35
+        }
+      ],
+      "flags": [],
+      "sampleQuestionIds": [
+        3,
+        4,
+        79,
+        84,
+        96,
+        97,
+        99,
+        104,
+        108,
+        154,
+        159,
+        175
+      ]
+    },
+    {
+      "domain": "Change and Release Management",
+      "questionCount": 66,
+      "objectiveCount": 5,
+      "dominantObjective": "Change Requests and Notices",
+      "dominantObjectiveShare": 0.38,
+      "objectives": [
+        {
+          "objective": "Change Requests and Notices",
+          "count": 25
+        },
+        {
+          "objective": "Issue Intake and Variance Control",
+          "count": 16
+        },
+        {
+          "objective": "Change Governance and Review",
+          "count": 11
+        },
+        {
+          "objective": "Change Execution and Resulting Objects",
+          "count": 8
+        },
+        {
+          "objective": "Promotion Requests and Release Paths",
+          "count": 6
+        }
+      ],
+      "manuals": [
+        {
+          "manual": "Windchill Technical Essentials course manual.pdf",
+          "count": 40
+        },
+        {
+          "manual": "Windchill Advanced Configuration course manual.pdf",
+          "count": 26
+        }
+      ],
+      "misconceptions": [
+        {
+          "tag": "Change object role and stage confusion",
+          "count": 60
+        },
+        {
+          "tag": "Promotion request vs change notice confusion",
+          "count": 6
+        }
+      ],
+      "flags": [],
+      "sampleQuestionIds": [
+        48,
+        71,
+        72,
+        74,
+        76,
+        77,
+        80,
+        81,
+        83,
+        127,
+        129,
+        132
+      ]
+    },
+    {
+      "domain": "Contexts, Preferences, and Business Administration",
+      "questionCount": 63,
+      "objectiveCount": 6,
+      "dominantObjective": "Organization Setup and Directory Controls",
+      "dominantObjectiveShare": 0.32,
+      "objectives": [
+        {
+          "objective": "Organization Setup and Directory Controls",
+          "count": 20
+        },
+        {
+          "objective": "Preferences",
+          "count": 17
+        },
+        {
+          "objective": "Context Hierarchy and Application Contexts",
+          "count": 12
+        },
+        {
+          "objective": "Profiles and Business Administration",
+          "count": 8
+        },
+        {
+          "objective": "Context Templates",
+          "count": 4
+        },
+        {
+          "objective": "Business Analysis and Configuration Planning",
+          "count": 2
+        }
+      ],
+      "manuals": [
+        {
+          "manual": "Windchill Advanced Configuration course manual.pdf",
+          "count": 37
+        },
+        {
+          "manual": "Windchill Technical Essentials course manual.pdf",
+          "count": 26
+        }
+      ],
+      "misconceptions": [
+        {
+          "tag": "Context hierarchy and organization-scope confusion",
+          "count": 32
+        },
+        {
+          "tag": "Preference, profile, and inheritance confusion",
+          "count": 29
+        },
+        {
+          "tag": "Implementation-document vs runtime-configuration confusion",
+          "count": 2
+        }
+      ],
+      "flags": [],
+      "sampleQuestionIds": [
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        19,
+        20,
+        22,
+        24,
+        39,
+        45
+      ]
+    },
+    {
+      "domain": "Configuration Management and Product Structures",
+      "questionCount": 49,
+      "objectiveCount": 4,
+      "dominantObjective": "Baselines and Structure Snapshots",
+      "dominantObjectiveShare": 0.29,
+      "objectives": [
+        {
+          "objective": "Baselines and Structure Snapshots",
+          "count": 14
+        },
+        {
+          "objective": "Effectivity and Applicability",
+          "count": 14
+        },
+        {
+          "objective": "Structure Usage and Navigation",
+          "count": 11
+        },
+        {
+          "objective": "Configuration Specifications and Filters",
+          "count": 10
+        }
+      ],
+      "manuals": [
+        {
+          "manual": "Windchill Technical Essentials course manual.pdf",
+          "count": 48
+        },
+        {
+          "manual": "Windchill Advanced Configuration course manual.pdf",
+          "count": 1
+        }
+      ],
+      "misconceptions": [
+        {
+          "tag": "Configuration filtering vs structure definition",
+          "count": 24
+        },
+        {
+          "tag": "Effectivity and applicability confusion",
+          "count": 14
+        },
+        {
+          "tag": "Usage link, occurrence, and navigation confusion",
+          "count": 11
+        }
+      ],
+      "flags": [],
+      "sampleQuestionIds": [
+        73,
+        75,
+        223,
+        224,
+        225,
+        249,
+        251,
+        252,
+        253,
+        254,
+        269,
+        271
+      ]
+    },
+    {
+      "domain": "Data Model, Types, and Attributes",
+      "questionCount": 41,
+      "objectiveCount": 4,
+      "dominantObjective": "Core Object Model and Associations",
+      "dominantObjectiveShare": 0.41,
+      "objectives": [
+        {
+          "objective": "Core Object Model and Associations",
+          "count": 17
+        },
+        {
+          "objective": "Attribute Modeling and Reuse",
+          "count": 11
+        },
+        {
+          "objective": "Constraints and Enumerations",
+          "count": 11
+        },
+        {
+          "objective": "Layouts and Attribute Presentation",
+          "count": 2
+        }
+      ],
+      "manuals": [
+        {
+          "manual": "Windchill Advanced Configuration course manual.pdf",
+          "count": 37
+        },
+        {
+          "manual": "Windchill Technical Essentials course manual.pdf",
+          "count": 4
+        }
+      ],
+      "misconceptions": [
+        {
+          "tag": "Object association and master-object confusion",
+          "count": 17
+        },
+        {
+          "tag": "Attribute modeling and inheritance confusion",
+          "count": 13
+        },
+        {
+          "tag": "Constraint behavior and enumeration-scope confusion",
+          "count": 11
+        }
+      ],
+      "flags": [],
+      "sampleQuestionIds": [
+        26,
+        27,
+        28,
+        29,
+        30,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38
+      ]
+    },
+    {
+      "domain": "Lifecycle, Workflow, and Object Initialization",
+      "questionCount": 36,
+      "objectiveCount": 4,
+      "dominantObjective": "Workflow Design and Execution",
+      "dominantObjectiveShare": 0.33,
+      "objectives": [
+        {
+          "objective": "Workflow Design and Execution",
+          "count": 12
+        },
+        {
+          "objective": "Object Initialization Rules",
+          "count": 11
+        },
+        {
+          "objective": "Life Cycle Templates and States",
+          "count": 7
+        },
+        {
+          "objective": "Versioning and Revision Rules",
+          "count": 6
+        }
+      ],
+      "manuals": [
+        {
+          "manual": "Windchill Advanced Configuration course manual.pdf",
+          "count": 36
+        }
+      ],
+      "misconceptions": [
+        {
+          "tag": "Life cycle vs workflow confusion",
+          "count": 25
+        },
+        {
+          "tag": "OIR algorithm purpose confusion",
+          "count": 9
+        },
+        {
+          "tag": "OIR scope and override precedence",
+          "count": 2
+        }
+      ],
+      "flags": [],
+      "sampleQuestionIds": [
+        25,
+        41,
+        43,
+        44,
+        46,
+        49,
+        51,
+        52,
+        53,
+        54,
+        55,
+        57
+      ]
+    },
+    {
+      "domain": "Access Control, Teams, and Security",
+      "questionCount": 30,
+      "objectiveCount": 3,
+      "dominantObjective": "Policy Administration and Access Evaluation",
+      "dominantObjectiveShare": 0.5,
+      "objectives": [
+        {
+          "objective": "Policy Administration and Access Evaluation",
+          "count": 15
+        },
+        {
+          "objective": "Teams, Roles, and Context Groups",
+          "count": 12
+        },
+        {
+          "objective": "Security Administration and Audit Controls",
+          "count": 3
+        }
+      ],
+      "manuals": [
+        {
+          "manual": "Windchill Advanced Configuration course manual.pdf",
+          "count": 30
+        }
+      ],
+      "misconceptions": [
+        {
+          "tag": "Access evaluation and deny-rule confusion",
+          "count": 18
+        },
+        {
+          "tag": "Team membership and role-resolution confusion",
+          "count": 12
+        }
+      ],
+      "flags": [],
+      "sampleQuestionIds": [
+        17,
+        18,
+        23,
+        42,
+        61,
+        62,
+        63,
+        67,
+        69,
+        85,
+        118,
+        128
+      ]
+    },
+    {
+      "domain": "Architecture, Installation, and Integration",
+      "questionCount": 21,
+      "objectiveCount": 4,
+      "dominantObjective": "Installation and Deployment Topology",
+      "dominantObjectiveShare": 0.52,
+      "objectives": [
+        {
+          "objective": "Installation and Deployment Topology",
+          "count": 11
+        },
+        {
+          "objective": "Core Architecture and Services",
+          "count": 7
+        },
+        {
+          "objective": "Enterprise Integration and Authentication",
+          "count": 2
+        },
+        {
+          "objective": "Client Access and Web Tier",
+          "count": 1
+        }
+      ],
+      "manuals": [
+        {
+          "manual": "Windchill Technical Essentials course manual.pdf",
+          "count": 11
+        },
+        {
+          "manual": "Windchill Advanced Configuration course manual.pdf",
+          "count": 10
+        }
+      ],
+      "misconceptions": [
+        {
+          "tag": "Architecture component role confusion",
+          "count": 19
+        },
+        {
+          "tag": "Integration-point and authentication-role confusion",
+          "count": 2
+        }
+      ],
+      "flags": [],
+      "sampleQuestionIds": [
+        1,
+        2,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        91,
+        134,
+        135,
+        136
+      ]
+    },
+    {
+      "domain": "Navigate and Role-Based Consumption",
+      "questionCount": 19,
+      "objectiveCount": 3,
+      "dominantObjective": "Navigate Fundamentals",
+      "dominantObjectiveShare": 0.42,
+      "objectives": [
+        {
+          "objective": "Navigate Fundamentals",
+          "count": 8
+        },
+        {
+          "objective": "Navigate Architecture",
+          "count": 6
+        },
+        {
+          "objective": "Navigate Security and Administration",
+          "count": 5
+        }
+      ],
+      "manuals": [
+        {
+          "manual": "Windchill Technical Essentials course manual.pdf",
+          "count": 19
+        }
+      ],
+      "misconceptions": [
+        {
+          "tag": "Navigate architecture and scope",
+          "count": 19
+        }
+      ],
+      "flags": [],
+      "sampleQuestionIds": [
+        31,
+        146,
+        147,
+        148,
+        149,
+        150,
+        451,
+        452,
+        453,
+        454,
+        455,
+        456
+      ]
+    },
+    {
+      "domain": "PLM Strategy and Foundations",
+      "questionCount": 16,
+      "objectiveCount": 3,
+      "dominantObjective": "PLM Concepts and Business Value",
+      "dominantObjectiveShare": 0.56,
+      "objectives": [
+        {
+          "objective": "PLM Concepts and Business Value",
+          "count": 9
+        },
+        {
+          "objective": "PLM Value and Digital Thread",
+          "count": 5
+        },
+        {
+          "objective": "Implementation Strategy and Legacy Data",
+          "count": 2
+        }
+      ],
+      "manuals": [
+        {
+          "manual": "Windchill Technical Essentials course manual.pdf",
+          "count": 15
+        },
+        {
+          "manual": "Windchill Advanced Configuration course manual.pdf",
+          "count": 1
+        }
+      ],
+      "misconceptions": [
+        {
+          "tag": "Terminology and solution-scope confusion",
+          "count": 16
+        }
+      ],
+      "flags": [],
+      "sampleQuestionIds": [
+        65,
+        101,
+        102,
+        105,
+        106,
+        160,
+        164,
+        167,
+        168,
+        226,
+        230,
+        416
+      ]
+    }
+  ]
+}

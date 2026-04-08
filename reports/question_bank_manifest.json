@@ -1,0 +1,48 @@
+{
+  "generatedAt": "2026-04-08T14:41:29.655Z",
+  "sourceManuals": [
+    "Windchill Advanced Configuration course manual.pdf",
+    "Windchill Technical Essentials course manual.pdf"
+  ],
+  "questionFiles": [
+    "windchill_mock_test_1.json",
+    "windchill_mock_test_2.json",
+    "windchill_mock_test_3.json",
+    "windchill_mock_test_4.json",
+    "windchill_mock_test_5.json"
+  ],
+  "totals": {
+    "questions": 500,
+    "questionFiles": 5,
+    "sourceManuals": 2,
+    "multiResponseQuestions": 60,
+    "singleResponseQuestions": 440
+  },
+  "distributions": {
+    "domains": {
+      "CAD Data Management and Visualization": 106,
+      "System Administration, Vaulting, and Performance": 98,
+      "Change, Configuration, and Release Management": 87,
+      "Lifecycle, Workflow, and Object Initialization": 61,
+      "PLM Strategy and Foundations": 31,
+      "Access Control, Teams, and Security": 30,
+      "Contexts, Preferences, and Business Administration": 27,
+      "Navigate and Role-Based Consumption": 24,
+      "Data Model, Types, and Attributes": 23,
+      "Architecture, Installation, and Integration": 13
+    },
+    "difficulty": {
+      "medium": 308,
+      "easy": 113,
+      "hard": 79
+    }
+  },
+  "metadataCompleteness": {
+    "sourceManualTagged": 500,
+    "sourceSectionTagged": 500,
+    "objectiveTagged": 500,
+    "misconceptionTagged": 500,
+    "releaseVersionTagged": 500
+  },
+  "potentialDuplicateStems": []
+}
