@@ -3,21 +3,29 @@
 ## Core Access
 
 - Open `/`
-- Confirm public home shows only 6 public presets
+- Confirm public home shows 7 public presets
 - Confirm hidden session presets do not appear on home
 - Confirm `My Result History` opens
 - Confirm admin console requires Firebase Authentication
+- Confirm `Sprint 25 - Confidence Builder` is auto-selected by default
+- Confirm `API 10 - Customization Sprint` renders as the last full-width preset card
 
 ## Preset Flow
 
 - Start one public preset exam
 - Confirm certificate eligibility appears only for passed preset attempts
 - Confirm no retest or remediation buttons appear for preset attempts
+- Start `API 10 - Customization Sprint`
+- Confirm:
+  - 10 questions
+  - 5 minute timer
+  - no multi-response questions
 
 ## Random Flow
 
 - Start one random exam
-- Confirm track and experience controls are visible
+- Confirm track controls are visible
+- Confirm no experience controls are visible
 - Confirm remediation or retest actions remain available only for random attempts
 
 ## Session Flow
@@ -46,6 +54,7 @@
 - Look up by email
 - Confirm stored report opens
 - Confirm certificate download works for passed preset or session attempts
+- Confirm summary PDF download works without question content
 
 ## Session Operations
 
@@ -67,6 +76,10 @@
 - Confirm anonymous candidate can:
   - start session
   - submit result
+- Confirm participant browser can not easily:
+  - right click question content
+  - copy question text
+  - print full question pages
 - Confirm signed-in admin can:
   - create, edit, and delete presets
   - create, edit, and delete sessions

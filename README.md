@@ -1,6 +1,6 @@
 # Windchill Implementation Practitioner Mock Exam
 
-A React + TypeScript + Vite mock-test platform for the PTC Windchill Implementation Practitioner exam. The app supports random exams, fixed admin-managed presets, timed quiz sessions, scored results, domain analytics, and an authenticated admin console backed by Firebase.
+A React + TypeScript + Vite mock-test platform for the PTC Windchill Implementation Practitioner exam. The app supports random exams, fixed admin-managed presets, timed quiz sessions, scored results, section analytics, API-focused practice sets, participant-safe report printing, and an authenticated admin console backed by Firebase.
 
 ## Stack
 
@@ -15,41 +15,91 @@ A React + TypeScript + Vite mock-test platform for the PTC Windchill Implementat
 
 ## What The App Does
 
-- Serves a 500-question Windchill mock-exam bank from JSON files in `public/data`
+- Serves a 550-question Windchill mock-exam bank from JSON files in `public/data`
 - Builds random exams using a target difficulty mix and approximately 10% multi-response selection
-- Supports fixed exam presets managed from the admin console
-- Scores exams client-side with per-domain and per-difficulty analytics
+- Supports fixed exam presets managed from the admin console, including a 10-question Java API sprint
+- Scores exams client-side with per-section and per-difficulty analytics
 - Stores exam-result summaries in Firestore
 - Uses Firebase Authentication to protect the admin console
+- Applies participant-side copy/print deterrence during live exams and full report review
+- Generates summary-only printable PDFs without question content
 
 ## Project Structure
 
 ```text
 windchill-exam-v4/
+  api/
+    _lib/
+      firebaseAdmin.ts
+      http.ts
+    admin/
+      write.ts
+    exam/
+      start.ts
+      submit.ts
   public/
     data/
+      built_in_presets.json
+      built_in_sessions.json
       windchill_mock_test_1.json
       windchill_mock_test_2.json
       windchill_mock_test_3.json
       windchill_mock_test_4.json
       windchill_mock_test_5.json
+      windchill_mock_test_6.json
       Windchill Technical Essentials course manual.pdf
       Windchill Advanced Configuration course manual.pdf
+  reports/
+    taxonomy_audit.json
+  scripts/
+    enrich-question-bank-metadata.mjs
+    generate-built-in-presets.mjs
+    generate-question-bank-manifest.mjs
+    generate-session-schedule-assets.mjs
+    generate-taxonomy-audit.mjs
+    validate-question-bank.mjs
   src/
+    components/
+      admin/
+      shared/
+    constants/
+      examStrategy.ts
+    hooks/
+      useContentProtection.ts
     pages/
+      Admin.tsx
+      History.tsx
       Welcome.tsx
       Quiz.tsx
+      SessionEntry.tsx
       Results.tsx
-      Admin.tsx
+      ResultReport.tsx
     services/
+      authz.ts
       firebase.ts
+      presetCatalog.ts
+      sessionCatalog.ts
+      writeGateway.ts
     types/
       index.ts
     utils/
+      certificate.ts
+      email.ts
+      examInsights.ts
       examLogic.ts
+      reportSummary.ts
+      studyPlan.ts
+    App.tsx
+    index.css
+    main.tsx
+  firestore.rules
+  firestore.server.rules
+  DEPLOYMENT_QA_CHECKLIST.md
+  seed-presets.mjs
   question_generation_guardrails.md
   question_bank_consistency_report.md
   question_bank_overlap_map.md
+  vercel.json
 ```
 
 ## Core Flows
@@ -63,6 +113,7 @@ windchill-exam-v4/
 5. User takes the timed exam in [`src/pages/Quiz.tsx`](./src/pages/Quiz.tsx).
 6. Results are evaluated and summarized in [`src/pages/Results.tsx`](./src/pages/Results.tsx).
 7. Result summary is written to Firestore collection `exam_results`.
+8. If needed, the user downloads a summary-only PDF without question content.
 
 ### Admin Flow
 
@@ -79,6 +130,7 @@ Each question JSON entry follows this shape:
 {
   "id": 251,
   "question": "What is the primary purpose of a baseline in Windchill?",
+  "codeSnippet": "QuerySpec qs = new QuerySpec(WTPart.class);",
   "options": [
     "To capture a point-in-time definition of selected objects for later reference",
     "To override object numbering schemes across all contexts",
@@ -101,12 +153,15 @@ Each question JSON entry follows this shape:
   - `correctAnswer` is a number
 - `multiple`
   - `correctAnswer` is an array of numbers
+- `codeSnippet`
+  - optional string rendered as a code block below the question prompt
 
 ### Current Pool
 
-- Total questions: `500`
-- Single-answer: `440`
+- Total questions: `550`
+- Single-answer: `490`
 - Multiple-response: `60`
+- API-focused Java questions: `50`
 
 ## Important Source Files
 
@@ -124,12 +179,16 @@ Each question JSON entry follows this shape:
   - timer
   - navigation
   - answer state
+  - participant content protection
 - [`src/pages/Results.tsx`](./src/pages/Results.tsx)
   - score summary
   - result persistence
+  - summary PDF generation
 - [`src/pages/Admin.tsx`](./src/pages/Admin.tsx)
   - auth-gated admin console
   - reports and preset management
+- [`src/components/shared/QuestionPrompt.tsx`](./src/components/shared/QuestionPrompt.tsx)
+  - shared question/snippet rendering across quiz and reports
 
 ## Local Development
 
@@ -295,12 +354,19 @@ If this project later introduces candidate sign-in, move admin authorization fro
 
 For the current freeware deployment model, `request.auth != null` is sufficient because only admins authenticate.
 
-### Offline Validation
+### Offline Validation And Asset Generation
 
 Run this before releasing question-bank changes:
 
 ```bash
 npm run validate:questions
+```
+
+Regenerate built-in presets and scheduled sessions after changing the question bank:
+
+```bash
+npm run generate:presets
+npm run generate:sessions
 ```
 
 ## Deploying To Vercel
@@ -362,13 +428,30 @@ After the variables are saved, trigger a deployment.
 - Because the app is a client-rendered Vite SPA, Vercel hosting is straightforward.
 - Firebase configuration values are client-side values and are expected to be exposed to the frontend, but Firestore/Auth rules must still be configured correctly.
 
-## Known Follow-Up Recommendations
+## Participant Protection Notes
 
-- Move result submission and admin mutations behind server-side functions
-- Persist in-progress exam state to session storage or local storage
-- Add stronger admin role validation beyond basic client-side auth state handling
-- Replace any remaining UI text encoding artifacts with clean ASCII copy
-- Add automated validation scripts for question-bank schema and concept overlap checks
+- Browser-side protections are deterrents, not absolute security.
+- Current participant-side controls include:
+  - blocked copy/cut/right-click/selection shortcuts during quiz and full-report review
+  - blocked full-page printing of question content for non-admin users
+  - summary-only printable PDF output without question text
+- Admin users remain exempt from those browser-side restrictions.
+- These controls do **not** stop:
+  - screenshots
+  - phone-camera capture
+  - determined devtools inspection
+
+## Current Public Presets
+
+- `Sprint 25 - Confidence Builder`
+- `Sprint 25 - Pressure Test`
+- `Forge 50 - Applied Readiness`
+- `Forge 50 - Expert Challenge`
+- `Summit 75 - Full Preparation`
+- `Summit 75 - Hardline Simulation`
+- `API 10 - Customization Sprint`
+
+Hidden scheduled-session presets remain admin-only and are synced through the admin console.
 
 ## Content Governance Files
 
