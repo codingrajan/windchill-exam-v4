@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { EXPERIENCE_LABELS, TRACK_PROFILES } from '../constants/examStrategy';
+import { TRACK_PROFILES } from '../constants/examStrategy';
 import { fetchBuiltInPresets, fetchFirestorePresets, mergePresetCatalog } from '../services/presetCatalog';
-import type { ExamConfig, ExperienceBand, ExamTrack, Preset } from '../types/index';
+import type { ExamConfig, ExamTrack, Preset } from '../types/index';
+import { isValidEmail, normalizeEmail } from '../utils/email';
 
 const ACTIVE_SESSION_KEY = 'wc_exam_session';
+const API_PRESET_ID = 'builtin-10-api';
+const DEFAULT_PRESET_ID = 'builtin-25-core';
 
 const ALL_DOMAINS = [
   'PLM Strategy and Foundations',
@@ -43,7 +46,6 @@ export default function Welcome() {
   const navigate = useNavigate();
   const [mode, setMode] = useState<'preset' | 'random'>('preset');
   const [track, setTrack] = useState<ExamTrack>('hard_mode');
-  const [experienceBand, setExperienceBand] = useState<ExperienceBand>('2_5');
   const [presets, setPresets] = useState<Preset[]>([]);
   const [selectedPresetId, setSelectedPresetId] = useState('');
   const [randomCount, setRandomCount] = useState<25 | 50 | 75 | 100>(25);
@@ -59,9 +61,21 @@ export default function Welcome() {
     ])
       .then(([firestorePresets, builtInPresets]) => {
         const merged = mergePresetCatalog(firestorePresets, builtInPresets);
-        const homeVisible = merged.filter((preset) => preset.showOnHome !== false);
+        const homeVisible = merged
+          .filter((preset) => preset.showOnHome !== false)
+          .sort((left, right) => {
+            if (left.id === DEFAULT_PRESET_ID) return -1;
+            if (right.id === DEFAULT_PRESET_ID) return 1;
+            if (left.id === API_PRESET_ID) return 1;
+            if (right.id === API_PRESET_ID) return -1;
+            if (left.targetCount !== right.targetCount) return left.targetCount - right.targetCount;
+            return left.name.localeCompare(right.name);
+          });
         setPresets(homeVisible);
-        if (homeVisible.length > 0) setSelectedPresetId(homeVisible[0].id);
+        if (homeVisible.length > 0) {
+          const defaultPreset = homeVisible.find((preset) => preset.id === DEFAULT_PRESET_ID);
+          setSelectedPresetId(defaultPreset?.id ?? homeVisible[0].id);
+        }
         else setMode('random');
       })
       .finally(() => setIsLoading(false));
@@ -81,10 +95,19 @@ export default function Welcome() {
   const selectedPreset = presets.find((preset) => preset.id === selectedPresetId);
   const effectiveTrack = mode === 'preset' ? (selectedPreset?.examTrack ?? 'exam_parity') : track;
   const qCount = mode === 'random' ? randomCount : (selectedPreset?.targetCount ?? 0);
-  const timeLabel = TIME_LABELS[qCount] ?? '--';
+  const timeLabel =
+    mode === 'preset' && selectedPreset?.timeLimitMinutes
+      ? `${selectedPreset.timeLimitMinutes} min`
+      : TIME_LABELS[qCount] ?? '--';
   const isValid = examineeName.trim().length >= 3 && (mode === 'random' || !!selectedPreset);
 
   const handleStart = () => {
+    const normalizedEmail = normalizeEmail(candidateEmail);
+    if (normalizedEmail && !isValidEmail(normalizedEmail)) {
+      window.alert('Enter a valid email address to enable result history.');
+      return;
+    }
+
     const nextConfig: ExamConfig = {
       examineeName: examineeName.trim(),
       mode,
@@ -93,9 +116,9 @@ export default function Welcome() {
       targetCount: qCount,
       presetId: mode === 'preset' ? selectedPresetId : null,
       presetQuestionIds: mode === 'preset' ? (selectedPreset?.questions ?? null) : null,
-      ...(mode === 'random' ? { experienceBand } : {}),
+      ...(mode === 'preset' && selectedPreset?.timeLimitMinutes ? { timeLimitMinutes: selectedPreset.timeLimitMinutes } : {}),
       ...(mode === 'preset' && selectedPreset ? { sessionName: selectedPreset.name } : {}),
-      ...(candidateEmail.trim() ? { candidateEmail: candidateEmail.trim().toLowerCase() } : {}),
+      ...(normalizedEmail ? { candidateEmail: normalizedEmail } : {}),
     };
 
     navigate('/quiz', { state: nextConfig });
@@ -163,6 +186,8 @@ export default function Welcome() {
                   placeholder="your@email.com"
                   value={candidateEmail}
                   onChange={(event) => setCandidateEmail(event.target.value)}
+                  inputMode="email"
+                  autoComplete="email"
                   className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3 text-zinc-900 font-medium text-sm focus:outline-none focus:ring-2 focus:ring-indigo-100 focus:border-indigo-400 transition-all placeholder:text-zinc-300"
                 />
               </div>
@@ -191,7 +216,7 @@ export default function Welcome() {
                 <>
                   <div>
                     <label className="block text-[11px] font-semibold text-zinc-500 uppercase tracking-wider mb-2">
-                      Readiness Track
+                      Exam Track
                     </label>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                       {Object.values(TRACK_PROFILES).map((profile) => (
@@ -214,22 +239,6 @@ export default function Welcome() {
                     </div>
                   </div>
 
-                  <div>
-                    <label className="block text-[11px] font-semibold text-zinc-500 uppercase tracking-wider mb-2">
-                      Experience Band
-                    </label>
-                    <select
-                      value={experienceBand}
-                      onChange={(event) => setExperienceBand(event.target.value as ExperienceBand)}
-                      className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-3 py-2.5 text-zinc-800 text-sm font-medium outline-none focus:border-indigo-400 transition-all"
-                    >
-                      {Object.entries(EXPERIENCE_LABELS).map(([value, label]) => (
-                        <option key={value} value={value}>
-                          {label}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
                 </>
               )}
 
@@ -244,7 +253,7 @@ export default function Welcome() {
                     ) : presets.length > 0 ? (
                       <>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-3">
-                          {presets.map((preset) => (
+                          {presets.filter((preset) => preset.id !== API_PRESET_ID).map((preset) => (
                             <button
                               key={preset.id}
                               type="button"
@@ -269,6 +278,39 @@ export default function Welcome() {
                             </button>
                           ))}
                         </div>
+                        {presets.find((preset) => preset.id === API_PRESET_ID) && (
+                          <button
+                            type="button"
+                            onClick={() => setSelectedPresetId(API_PRESET_ID)}
+                            className={`w-full rounded-2xl border px-4 py-4 text-left transition-all mb-3 ${
+                              selectedPresetId === API_PRESET_ID
+                                ? 'border-indigo-300 bg-indigo-50 shadow-sm'
+                                : 'border-zinc-200 bg-white hover:border-indigo-200'
+                            }`}
+                          >
+                            <div className="flex items-start justify-between gap-3 flex-wrap">
+                              <div className="min-w-0">
+                                <p className="text-sm font-semibold text-zinc-800 leading-snug">
+                                  {presets.find((preset) => preset.id === API_PRESET_ID)?.name}
+                                </p>
+                                <p className="mt-1 text-[11px] font-medium text-zinc-500">
+                                  Focused Java API/customization sprint for implementation-practitioner prep.
+                                </p>
+                              </div>
+                              <div className="flex flex-wrap gap-1.5">
+                                <span className="text-[10px] font-medium bg-zinc-100 text-zinc-600 px-2 py-0.5 rounded-full">
+                                  {presets.find((preset) => preset.id === API_PRESET_ID)?.targetCount}Q
+                                </span>
+                                <span className="text-[10px] font-medium bg-zinc-100 text-zinc-600 px-2 py-0.5 rounded-full">
+                                  5 min
+                                </span>
+                                <span className="text-[10px] font-medium bg-blue-50 text-blue-600 border border-blue-100 px-2 py-0.5 rounded-full">
+                                  Specialist Track
+                                </span>
+                              </div>
+                            </div>
+                          </button>
+                        )}
                         {selectedPreset && (
                           <div className="mt-3 space-y-2">
                             <div className="flex flex-wrap gap-1.5">

@@ -1,12 +1,8 @@
-import { EXPERIENCE_LABELS, TRACK_PROFILES } from '../constants/examStrategy';
-import type { EvaluationSummary, ExamResult, ExamTrack, ExperienceBand } from '../types/index';
+import { TRACK_PROFILES } from '../constants/examStrategy';
+import type { EvaluationSummary, ExamResult, ExamTrack } from '../types/index';
 
 export interface ReadinessInsights {
-  readinessBand: 'high' | 'borderline' | 'developing';
-  benchmarkMessage: string;
-  scoreInterpretation: string;
   focusAreas: string[];
-  summaryNote: string;
 }
 
 export interface HistoryInsights {
@@ -31,28 +27,8 @@ export const getTrackProfile = (track: ExamTrack) => TRACK_PROFILES[track];
 
 export function buildReadinessInsights(
   summary: EvaluationSummary,
-  track: ExamTrack,
-  experienceBand?: ExperienceBand,
+  _track: ExamTrack,
 ): ReadinessInsights {
-  const benchmarkMessage = TRACK_PROFILES[track].benchmarkMessage;
-  const scoreInterpretation =
-    track === 'hard_mode'
-      ? summary.percentage >= 80
-        ? 'Hard Mode score is already above the live-exam pass mark. Treat this as strong readiness.'
-        : summary.percentage >= 72
-          ? 'Hard Mode score is below 80%, but it is still within a credible live-exam readiness band.'
-          : 'Hard Mode score is materially below live-exam readiness. Use recovery drills before the next full mock.'
-      : summary.percentage >= 80
-        ? 'Exam-Parity score is above the live-exam pass mark. Maintain depth and avoid careless misses.'
-        : 'Exam-Parity score is below the live-exam pass mark. Close the gap before relying on exam readiness.';
-  const threshold = track === 'hard_mode' ? 72 : 80;
-  const readinessBand =
-    summary.percentage >= threshold + 8
-      ? 'high'
-      : summary.percentage >= threshold
-        ? 'borderline'
-        : 'developing';
-
   const focusAreas = new Set<string>();
 
   if (summary.weakestTopic.topic !== 'N/A') {
@@ -76,20 +52,8 @@ export function buildReadinessInsights(
     focusAreas.add(`Use ${summary.strongestTopic.topic} as a confidence-maintenance domain, not a revision sink.`);
   }
 
-  const experienceNote = experienceBand ? `Profile: ${EXPERIENCE_LABELS[experienceBand]}.` : 'Profile: experience not specified.';
-  const summaryNote =
-    readinessBand === 'high'
-      ? `${experienceNote} You are operating above the target readiness band for this track.`
-      : readinessBand === 'borderline'
-        ? `${experienceNote} You are near the target band; tighten weak domains before the live exam.`
-        : `${experienceNote} You need another focused cycle before treating yourself as exam-ready.`;
-
   return {
-    readinessBand,
-    benchmarkMessage,
-    scoreInterpretation,
     focusAreas: [...focusAreas].slice(0, 4),
-    summaryNote,
   };
 }
 
@@ -135,20 +99,13 @@ export function buildHistoryInsights(results: ExamResult[]): HistoryInsights | n
     priorityFocus.push(...repeatedWeakest);
   }
 
-  const readinessHeadline =
-    latest.readinessBand === 'high'
-      ? 'Live-exam readiness is strong. Protect the floor and avoid regression.'
-      : latest.readinessBand === 'borderline'
-        ? 'You are close to the target band. Tighten weak domains before the live exam.'
-        : 'Readiness is not stable yet. Use shorter recovery drills before another full attempt.';
-
   return {
     attemptCount: results.length,
     latestScore: latest.scorePercentage,
     bestScore,
     passRate,
     trendLabel,
-    readinessHeadline: latest.scoreInterpretation ?? readinessHeadline,
+    readinessHeadline: latest.examTrack ? TRACK_PROFILES[latest.examTrack].description : 'Performance summary from saved attempts.',
     priorityFocus,
   };
 }

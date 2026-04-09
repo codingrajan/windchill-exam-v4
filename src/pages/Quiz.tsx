@@ -4,6 +4,8 @@ import { AnimatePresence, motion } from 'framer-motion';
 import type { AnswerMap, ExamConfig, Question } from '../types/index';
 import { getTrackProfile } from '../utils/examInsights';
 import { buildRandomExam, getQuestionDomain, isQuestionAnswered, loadQuestionPool, shuffle } from '../utils/examLogic';
+import { useContentProtection } from '../hooks/useContentProtection';
+import QuestionPrompt from '../components/shared/QuestionPrompt';
 
 const SESSION_KEY = 'wc_exam_session';
 
@@ -19,7 +21,8 @@ function buildAttemptId(config: ExamConfig, questions: Question[]): string {
   ].join('::');
 }
 
-function getTimeLimit(count: number): number {
+function getTimeLimit(count: number, timeLimitMinutes?: number): number {
+  if (timeLimitMinutes) return timeLimitMinutes * 60;
   if (count <= 25) return 900;
   if (count <= 50) return 2100;
   if (count <= 75) return 3600;
@@ -43,6 +46,7 @@ export default function Quiz() {
   const [timeLeft, setTimeLeft] = useState(savedSession?.timeLeft ?? 0);
   const [isLoaded, setIsLoaded] = useState(savedSession !== null && !!routerConfig === false ? true : false);
   const [showResumeCue, setShowResumeCue] = useState(savedSession !== null && !routerConfig);
+  useContentProtection(true);
 
   const hasSubmitted = useRef(false);
   const questionTimings = useRef<Record<number, number>>({});
@@ -102,7 +106,7 @@ export default function Quiz() {
         finalSet = buildRandomExam(rawPool, config.targetCount, { track: config.track });
       }
       setQuestions(finalSet);
-      setTimeLeft(getTimeLimit(finalSet.length || config.targetCount));
+      setTimeLeft(getTimeLimit(finalSet.length || config.targetCount, config.timeLimitMinutes));
       setIsLoaded(true);
     };
     void init();
@@ -119,7 +123,7 @@ export default function Quiz() {
         navigate('/results', {
           state: {
             questions, answers,
-            timeTaken: getTimeLimit(questions.length || config.targetCount),
+            timeTaken: getTimeLimit(questions.length || config.targetCount, config.timeLimitMinutes),
             resultAttemptId,
             examineeName: config.examineeName,
             examMode: config.mode,
@@ -151,7 +155,7 @@ export default function Quiz() {
     navigate('/results', {
       state: {
         questions, answers,
-        timeTaken: getTimeLimit(questions.length || config.targetCount) - timeLeft,
+        timeTaken: getTimeLimit(questions.length || config.targetCount, config.timeLimitMinutes) - timeLeft,
         resultAttemptId,
         examineeName: config.examineeName,
         examMode: config.mode,
@@ -314,7 +318,9 @@ export default function Quiz() {
               </button>
             </div>
 
-            <h2 className="text-lg font-semibold text-zinc-900 mb-7 leading-relaxed">{question.question}</h2>
+            <div className="mb-7">
+              <QuestionPrompt question={question} />
+            </div>
 
             <div className="space-y-3">
               {question.options.map((option, oi) => {

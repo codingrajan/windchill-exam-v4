@@ -22,7 +22,7 @@ export const TRACK_PROFILES: Record<ExamTrack, TrackProfile> = {
   },
   hard_mode: {
     id: 'hard_mode',
-    label: 'Hard-Mode Readiness',
+    label: 'Hard Mode Challenge',
     shortLabel: 'Hard Mode',
     description: 'Intentionally tougher mix to overprepare candidates before the actual exam.',
     benchmarkMessage: 'Harder-than-exam benchmark. Lower scores can still indicate near-ready status.',

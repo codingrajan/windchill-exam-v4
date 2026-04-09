@@ -15,6 +15,7 @@ export const QUESTION_POOL_FILES = [
   '/data/windchill_mock_test_3.json',
   '/data/windchill_mock_test_4.json',
   '/data/windchill_mock_test_5.json',
+  '/data/windchill_mock_test_6.json',
 ] as const;
 
 const EMPTY_TOPIC = 'Unclassified';
@@ -77,6 +78,7 @@ const normalizeQuestion = (raw: unknown, sourceFile?: string): Question | null =
     objective: typeof candidate.objective === 'string' ? candidate.objective.trim() : undefined,
     type: Array.isArray(correctAnswer) ? 'multiple' : 'single',
     question: candidate.question.trim(),
+    codeSnippet: typeof candidate.codeSnippet === 'string' ? candidate.codeSnippet : undefined,
     options,
     correctAnswer,
     explanation: candidate.explanation.trim(),

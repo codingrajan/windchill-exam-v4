@@ -7,15 +7,13 @@ import type {
   ExamMode,
   ExamResult,
   ExamTrack,
-  ExperienceBand,
   Question,
   QuestionResult,
   RecentAttemptSnapshot,
-  StudyPlanSnapshot,
 } from '../types/index';
 import { buildReadinessInsights, buildReviewCoachingSummary, getTrackProfile } from '../utils/examInsights';
-import { buildStudyPlan } from '../utils/studyPlan';
 import { buildCertificateHTML } from '../utils/certificate';
+import { buildReportSummaryHTML } from '../utils/reportSummary';
 import {
   buildRemediationExam,
   buildWeakDomainExam,
@@ -25,6 +23,8 @@ import {
   loadQuestionPool,
 } from '../utils/examLogic';
 import { submitExamResult } from '../services/writeGateway';
+import { useContentProtection } from '../hooks/useContentProtection';
+import QuestionPrompt from '../components/shared/QuestionPrompt';
 
 function DiffBadge({ level }: { level: string }) {
   const styles: Record<string, string> = {
@@ -88,10 +88,9 @@ function ReviewItem({
           {statusIcon}
         </span>
         <div className="flex-grow min-w-0">
-          <p className="text-sm font-semibold text-zinc-800 leading-snug line-clamp-2 mb-1.5">
-            <span className="text-zinc-400 mr-1">Q{index + 1}.</span>
-            {question.question}
-          </p>
+          <div className="mb-1.5">
+            <QuestionPrompt question={question} index={index} compact />
+          </div>
           <div className="flex flex-wrap gap-1.5">
             <span className="text-[10px] font-medium bg-zinc-100 text-zinc-500 px-2 py-0.5 rounded-full">
               {getQuestionDomain(question)}
@@ -118,6 +117,11 @@ function ReviewItem({
           >
             <div className="px-5 pb-5 border-t border-zinc-100 pt-4 bg-zinc-50/50">
               <div className="space-y-2 mb-4">
+                {question.codeSnippet && (
+                  <pre className="overflow-x-auto rounded-xl border border-zinc-200 bg-zinc-950 px-4 py-3 text-[12px] leading-6 text-zinc-100">
+                    <code>{question.codeSnippet}</code>
+                  </pre>
+                )}
                 {question.options.map((option, optionIndex) => {
                   const isOptionCorrect = Array.isArray(question.correctAnswer)
                     ? question.correctAnswer.includes(optionIndex)
@@ -179,7 +183,6 @@ export default function Results() {
     examineeName?: string;
     examMode?: ExamMode;
     examTrack?: ExamTrack;
-    experienceBand?: ExperienceBand;
     sessionId?: string;
     sessionName?: string;
     candidateEmail?: string;
@@ -196,7 +199,6 @@ export default function Results() {
   const examineeName = state.examineeName ?? 'Anonymous';
   const examMode = state.examMode ?? 'random';
   const examTrack = state.examTrack ?? 'hard_mode';
-  const experienceBand = state.experienceBand;
   const sessionId = state.sessionId;
   const sessionName = state.sessionName;
   const candidateEmail = state.candidateEmail?.trim().toLowerCase();
@@ -207,11 +209,11 @@ export default function Results() {
   const summary = evaluateExam(questions, answers);
   const trackProfile = getTrackProfile(examTrack);
   const displayExamLabel = examMode === 'preset' ? presetLabel ?? 'Preset Exam' : examMode === 'remediation' ? 'Remediation' : trackProfile.shortLabel;
-  const insights = buildReadinessInsights(summary, examTrack, experienceBand);
+  const insights = buildReadinessInsights(summary, examTrack);
   const [startingRemediation, setStartingRemediation] = useState(false);
-  const [studyPlanSaved, setStudyPlanSaved] = useState(false);
   const [resultDocId, setResultDocId] = useState('');
   const [reviewFilter, setReviewFilter] = useState<ReviewFilter>('all');
+  useContentProtection(true);
   const coachingSummary = buildReviewCoachingSummary(
     summary.evaluatedQuestions.map((entry) => ({
       correct: entry.isCorrect,
@@ -254,16 +256,12 @@ export default function Results() {
       examineeName,
       examMode,
       examTrack,
-      experienceBand,
       scorePercentage: summary.percentage,
       questionsAnsweredCorrectly: summary.correctCount,
       totalQuestions: questions.length,
       passed: summary.passed,
       strongestDomain: summary.strongestTopic.topic,
       weakestDomain: summary.weakestTopic.topic,
-      readinessBand: insights.readinessBand,
-      benchmarkMessage: insights.benchmarkMessage,
-      scoreInterpretation: insights.scoreInterpretation,
       recommendedFocus: insights.focusAreas,
       timeTakenSeconds: timeTaken,
       examDate: submittedAt,
@@ -285,28 +283,13 @@ export default function Results() {
         scorePercentage: summary.percentage,
         passed: summary.passed,
         examTrack,
-        readinessBand: insights.readinessBand,
-        benchmarkMessage: insights.benchmarkMessage,
-        scoreInterpretation: insights.scoreInterpretation,
         weakestDomain: summary.weakestTopic.topic,
         strongestDomain: summary.strongestTopic.topic,
         recommendedFocus: insights.focusAreas,
       };
 
-      const studyPlan: StudyPlanSnapshot = buildStudyPlan({
-        examineeName,
-        examTrack,
-        readinessBand: insights.readinessBand,
-        weakestDomain: summary.weakestTopic.topic,
-        strongestDomain: summary.strongestTopic.topic,
-        focusAreas: insights.focusAreas,
-        scoreInterpretation: insights.scoreInterpretation,
-      });
-
       try {
         window.localStorage.setItem(`windchill:lastAttempt:${candidateEmail}`, JSON.stringify(recentAttempt));
-        window.localStorage.setItem(`windchill:studyPlan:${candidateEmail}`, JSON.stringify(studyPlan));
-        setStudyPlanSaved(true);
       } catch (error) {
         console.error('Local snapshot save error:', error);
       }
@@ -332,11 +315,8 @@ export default function Results() {
     examMode,
     examTrack,
     examineeName,
-    experienceBand,
     candidateEmail,
-    insights.benchmarkMessage,
     insights.focusAreas,
-    insights.readinessBand,
     participantId,
     resultAttemptId,
     questions.length,
@@ -371,6 +351,28 @@ export default function Results() {
     setTimeout(() => win.print(), 600);
   };
 
+  const openSummaryPdf = () => {
+    const win = window.open('', '_blank', 'width=920,height=680');
+    if (!win) return;
+    const html = buildReportSummaryHTML({
+      name: examineeName,
+      score: summary.percentage,
+      passed: summary.passed,
+      date: new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' }),
+      examTitle: sessionName ?? 'PTC x Plural Mock Exam',
+      trackLabel: displayExamLabel,
+      totalQuestions: questions.length,
+      correct: summary.correctCount,
+      timeTakenLabel: `${Math.floor(timeTaken / 60)}m ${timeTaken % 60}s`,
+      strongestDomain: summary.strongestTopic.topic,
+      weakestDomain: summary.weakestTopic.topic,
+      focusAreas: insights.focusAreas,
+    });
+    win.document.write(html);
+    win.document.close();
+    setTimeout(() => win.print(), 600);
+  };
+
   const launchRemediation = async (mode: RecoveryMode) => {
     setStartingRemediation(true);
     try {
@@ -398,7 +400,6 @@ export default function Results() {
           targetCount: remediationQuestions.length,
           presetId: null,
           presetQuestionIds: remediationQuestions.map((question) => question.id),
-          experienceBand,
           candidateEmail,
           sessionName:
             mode === 'wrong_only'
@@ -489,20 +490,6 @@ export default function Results() {
             <p className="text-sm text-zinc-500 mb-4">
               Candidate: <span className="font-semibold text-zinc-800">{examineeName}</span>
             </p>
-            <div className="mb-4 grid grid-cols-1 md:grid-cols-2 gap-3">
-              <div className="bg-blue-50 border border-blue-100 rounded-2xl p-4">
-                <p className="text-[10px] font-semibold text-blue-600 uppercase tracking-wider mb-1">Benchmark</p>
-                <p className="text-sm font-medium text-zinc-700">{insights.benchmarkMessage}</p>
-              </div>
-              <div className="bg-zinc-50 border border-zinc-100 rounded-2xl p-4">
-                <p className="text-[10px] font-semibold text-zinc-500 uppercase tracking-wider mb-1">Readiness View</p>
-                <p className="text-sm font-medium text-zinc-700">{insights.summaryNote}</p>
-              </div>
-            </div>
-            <div className="mb-4 bg-emerald-50 border border-emerald-100 rounded-2xl p-4">
-              <p className="text-[10px] font-semibold text-emerald-600 uppercase tracking-wider mb-1">Score Interpretation</p>
-              <p className="text-sm font-medium text-zinc-700">{insights.scoreInterpretation}</p>
-            </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               <StatBox label="Correct" value={summary.correctCount} color="text-emerald-600" />
               <StatBox label="Incorrect" value={summary.incorrectCount} color="text-red-500" />
@@ -598,39 +585,6 @@ export default function Results() {
               </div>
             )}
           </div>
-        )}
-
-        {candidateEmail && (
-        <div className="mb-10 bg-white border border-zinc-100 rounded-2xl p-5">
-          <div className="flex items-center justify-between gap-3 flex-wrap mb-4">
-            <div>
-              <p className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wider mb-1">Saved Recovery Plan</p>
-              <p className="text-sm font-medium text-zinc-700">
-                {studyPlanSaved ? 'A 7-day revision plan has been saved on this device.' : 'Recovery plan will be saved after this result is processed.'}
-              </p>
-            </div>
-            <span className="text-[11px] font-semibold px-3 py-1 rounded-full border bg-indigo-50 text-indigo-600 border-indigo-100">
-              7-Day Plan
-            </span>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            {buildStudyPlan({
-              examineeName,
-              examTrack,
-              readinessBand: insights.readinessBand,
-              weakestDomain: summary.weakestTopic.topic,
-              strongestDomain: summary.strongestTopic.topic,
-              focusAreas: insights.focusAreas,
-              scoreInterpretation: insights.scoreInterpretation,
-            }).days.slice(0, 4).map((day) => (
-              <div key={day.title} className="bg-zinc-50 border border-zinc-100 rounded-xl px-4 py-3">
-                <p className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wider mb-1">{day.title}</p>
-                <p className="text-sm font-semibold text-zinc-800 mb-1">{day.focus}</p>
-                <p className="text-xs text-zinc-500">{day.action}</p>
-              </div>
-            ))}
-          </div>
-        </div>
         )}
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
@@ -747,6 +701,12 @@ export default function Results() {
                   Download Certificate
                 </button>
               )}
+              <button
+                onClick={openSummaryPdf}
+                className="bg-white border border-zinc-200 text-zinc-700 hover:bg-zinc-50 px-5 py-2.5 rounded-xl text-sm font-semibold transition-colors"
+              >
+                Download Summary PDF
+              </button>
               {resultDocId && (
                 <button
                   onClick={() => navigate(`/result/${resultDocId}`)}

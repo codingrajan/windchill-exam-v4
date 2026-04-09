@@ -21,6 +21,7 @@ export interface Question {
   difficulty: Difficulty;
   type?: QuestionKind;
   question: string;
+  codeSnippet?: string;
   options: string[];
   correctAnswer: AnswerValue;
   explanation: string;
@@ -95,6 +96,7 @@ export interface Preset {
   targetCount: number;
   questions: number[];
   updatedAt: string;
+  timeLimitMinutes?: number;
   examTrack?: ExamTrack;
   difficultyProfile?: 'easy_medium' | 'medium_hard';
   difficultyLabel?: string;
@@ -110,6 +112,7 @@ export interface ExamConfig {
   resultAttemptId?: string;
   presetLabel?: string;
   targetCount: number;
+  timeLimitMinutes?: number;
   presetId?: string | null;
   presetQuestionIds?: number[] | null;
   experienceBand?: ExperienceBand;

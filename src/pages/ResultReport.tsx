@@ -3,9 +3,12 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../services/firebase';
 import { buildCertificateHTML } from '../utils/certificate';
+import { buildReportSummaryHTML } from '../utils/reportSummary';
 import { buildReviewCoachingSummary, getTrackProfile } from '../utils/examInsights';
 import { getQuestionDomain, loadQuestionPool } from '../utils/examLogic';
 import type { AnswerValue, ExamResult, Question, QuestionResult } from '../types/index';
+import { useContentProtection } from '../hooks/useContentProtection';
+import QuestionPrompt from '../components/shared/QuestionPrompt';
 
 function DiffBadge({ level }: { level: string }) {
   const styles: Record<string, string> = {
@@ -62,10 +65,9 @@ function ReviewRow({
           {status === 'correct' ? 'OK' : status === 'skipped' ? '--' : 'NO'}
         </span>
         <div className="flex-grow min-w-0">
-          <p className="text-sm font-semibold text-zinc-800 leading-snug line-clamp-2 mb-1.5">
-            <span className="text-zinc-400 mr-1">Q{index + 1}.</span>
-            {question.question}
-          </p>
+          <div className="mb-1.5">
+            <QuestionPrompt question={question} index={index} compact />
+          </div>
           <div className="flex flex-wrap gap-1.5">
             <span className="text-[10px] font-medium bg-zinc-100 text-zinc-500 px-2 py-0.5 rounded-full">{getQuestionDomain(question)}</span>
             <DiffBadge level={question.difficulty} />
@@ -77,6 +79,11 @@ function ReviewRow({
       {open && (
         <div className="px-5 pb-5 border-t border-zinc-100 pt-4 bg-zinc-50/50">
           <div className="space-y-2 mb-4">
+            {question.codeSnippet && (
+              <pre className="overflow-x-auto rounded-xl border border-zinc-200 bg-zinc-950 px-4 py-3 text-[12px] leading-6 text-zinc-100">
+                <code>{question.codeSnippet}</code>
+              </pre>
+            )}
             {question.options.map((option, optionIndex) => {
               const correct = isCorrectOption(optionIndex);
               const selected = isSelected(optionIndex);
@@ -113,6 +120,7 @@ export default function ResultReport() {
   const [record, setRecord] = useState<ExamResult | null>(null);
   const [questions, setQuestions] = useState<Question[]>([]);
   const [reviewFilter, setReviewFilter] = useState<'all' | 'wrong' | 'skipped'>('all');
+  useContentProtection(true);
 
   useEffect(() => {
     if (!resultId) return;
@@ -203,6 +211,29 @@ export default function ResultReport() {
     setTimeout(() => win.print(), 600);
   };
 
+  const openSummaryPdf = () => {
+    if (!record) return;
+    const win = window.open('', '_blank', 'width=920,height=680');
+    if (!win) return;
+    const html = buildReportSummaryHTML({
+      name: record.examineeName,
+      score: record.scorePercentage,
+      passed: record.passed,
+      date: new Date(record.examDate).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' }),
+      examTitle: record.sessionName ?? 'PTC x Plural Mock Exam',
+      trackLabel,
+      totalQuestions: record.totalQuestions,
+      correct: record.questionsAnsweredCorrectly,
+      timeTakenLabel: `${Math.floor(record.timeTakenSeconds / 60)}m ${record.timeTakenSeconds % 60}s`,
+      strongestDomain: record.strongestDomain,
+      weakestDomain: record.weakestDomain,
+      focusAreas: record.recommendedFocus,
+    });
+    win.document.write(html);
+    win.document.close();
+    setTimeout(() => win.print(), 600);
+  };
+
   if (loading) {
     return <div className="flex h-64 items-center justify-center"><div className="w-7 h-7 border-2 border-indigo-400 border-t-transparent rounded-full animate-spin" /></div>;
   }
@@ -237,6 +268,9 @@ export default function ResultReport() {
                 Download Certificate
               </button>
             )}
+            <button onClick={openSummaryPdf} className="bg-white border border-zinc-200 text-zinc-700 hover:bg-zinc-50 px-5 py-2.5 rounded-xl text-sm font-semibold transition-colors">
+              Download Summary PDF
+            </button>
             <button onClick={() => navigate(-1)} className="bg-white border border-zinc-200 text-zinc-700 hover:bg-zinc-50 px-5 py-2.5 rounded-xl text-sm font-semibold transition-colors">
               Back
             </button>

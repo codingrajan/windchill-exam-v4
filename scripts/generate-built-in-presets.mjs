@@ -4,6 +4,7 @@ import path from 'node:path';
 const dataDir = path.join(process.cwd(), 'public', 'data');
 const outputPath = path.join(dataDir, 'built_in_presets.json');
 const questionFiles = fs.readdirSync(dataDir).filter((file) => /^windchill_mock_test_.*\.json$/.test(file)).sort();
+const API_SOURCE_MANUAL = 'Windchill Java API Practice Set';
 
 const loadQuestions = () =>
   questionFiles.flatMap((file) => JSON.parse(fs.readFileSync(path.join(dataDir, file), 'utf8')));
@@ -67,28 +68,38 @@ const takeRoundRobin = (questions, count, seed, excludeIds = new Set()) => {
 
 const buildPreset = (questions, config) => {
   const allowed = questions.filter((question) => config.allowedDifficulties.includes(String(question.difficulty).toLowerCase()));
+  const apiQuestions = allowed.filter((question) => question.sourceManual === API_SOURCE_MANUAL);
+  const nonApiQuestions = allowed.filter((question) => question.sourceManual !== API_SOURCE_MANUAL);
   const selectedIds = new Set();
   const multiTarget = Math.round(config.targetCount * config.multiSelectRatio);
-  const multiQuestions = allowed.filter((question) => Array.isArray(question.correctAnswer));
-  const singleQuestions = allowed.filter((question) => !Array.isArray(question.correctAnswer));
+  const apiTarget = Math.min(
+    config.apiTargetCount ?? 0,
+    config.targetCount,
+    apiQuestions.length,
+  );
 
-  const selected = [
-    ...takeRoundRobin(multiQuestions, Math.min(multiTarget, multiQuestions.length), `${config.id}:multi`, selectedIds),
-  ];
+  const selected = [];
+  const apiMultiQuestions = apiQuestions.filter((question) => Array.isArray(question.correctAnswer));
+  const apiSingleQuestions = apiQuestions.filter((question) => !Array.isArray(question.correctAnswer));
+  const nonApiMultiQuestions = nonApiQuestions.filter((question) => Array.isArray(question.correctAnswer));
+  const nonApiSingleQuestions = nonApiQuestions.filter((question) => !Array.isArray(question.correctAnswer));
 
-  const remainingCount = config.targetCount - selected.length;
-  selected.push(...takeRoundRobin(singleQuestions, remainingCount, `${config.id}:single`, selectedIds));
+  const apiMultiTarget = Math.min(apiMultiQuestions.length, Math.min(multiTarget, Math.max(1, Math.round(apiTarget * 0.2))));
+  selected.push(...takeRoundRobin(apiMultiQuestions, apiMultiTarget, `${config.id}:api-multi`, selectedIds));
+  selected.push(...takeRoundRobin(apiSingleQuestions, apiTarget - selected.length, `${config.id}:api-single`, selectedIds));
+
+  const nonApiMultiTarget = Math.max(0, multiTarget - selected.filter((question) => Array.isArray(question.correctAnswer)).length);
+  selected.push(...takeRoundRobin(nonApiMultiQuestions, nonApiMultiTarget, `${config.id}:multi`, selectedIds));
+  selected.push(...takeRoundRobin(nonApiSingleQuestions, config.targetCount - selected.length, `${config.id}:single`, selectedIds));
 
   if (selected.length < config.targetCount) {
     const fallbackCount = config.targetCount - selected.length;
-    selected.push(
-      ...takeRoundRobin(
-        multiQuestions.filter((question) => !selectedIds.has(question.id)),
-        fallbackCount,
-        `${config.id}:fallback`,
-        selectedIds,
-      ),
-    );
+    selected.push(...takeRoundRobin(
+      [...nonApiMultiQuestions, ...apiMultiQuestions, ...apiSingleQuestions, ...nonApiSingleQuestions].filter((question) => !selectedIds.has(question.id)),
+      fallbackCount,
+      `${config.id}:fallback`,
+      selectedIds,
+    ));
   }
 
   if (selected.length !== config.targetCount) {
@@ -105,11 +116,23 @@ const buildPreset = (questions, config) => {
     difficultyProfile: config.difficultyProfile,
     difficultyLabel: config.difficultyLabel,
     multiSelectRatio: config.multiSelectRatio,
+    ...(config.timeLimitMinutes ? { timeLimitMinutes: config.timeLimitMinutes } : {}),
     isBuiltIn: true,
   };
 };
 
 const presetsConfig = [
+  {
+    id: 'builtin-10-api',
+    name: 'API 10 - Customization Sprint',
+    targetCount: 10,
+    allowedDifficulties: ['easy', 'medium'],
+    multiSelectRatio: 0,
+    examTrack: 'exam_parity',
+    difficultyLabel: 'Java API Focus',
+    timeLimitMinutes: 5,
+    apiTargetCount: 10,
+  },
   {
     id: 'builtin-25-core',
     name: 'Sprint 25 - Confidence Builder',
@@ -119,6 +142,7 @@ const presetsConfig = [
     examTrack: 'exam_parity',
     difficultyProfile: 'easy_medium',
     difficultyLabel: 'Easy + Medium',
+    apiTargetCount: 2,
   },
   {
     id: 'builtin-25-challenge',
@@ -129,6 +153,7 @@ const presetsConfig = [
     examTrack: 'hard_mode',
     difficultyProfile: 'medium_hard',
     difficultyLabel: 'Medium + Hard',
+    apiTargetCount: 2,
   },
   {
     id: 'builtin-50-core',
@@ -139,6 +164,7 @@ const presetsConfig = [
     examTrack: 'exam_parity',
     difficultyProfile: 'easy_medium',
     difficultyLabel: 'Easy + Medium',
+    apiTargetCount: 5,
   },
   {
     id: 'builtin-50-challenge',
@@ -149,6 +175,7 @@ const presetsConfig = [
     examTrack: 'hard_mode',
     difficultyProfile: 'medium_hard',
     difficultyLabel: 'Medium + Hard',
+    apiTargetCount: 5,
   },
   {
     id: 'builtin-75-core',
@@ -159,6 +186,7 @@ const presetsConfig = [
     examTrack: 'exam_parity',
     difficultyProfile: 'easy_medium',
     difficultyLabel: 'Easy + Medium',
+    apiTargetCount: 8,
   },
   {
     id: 'builtin-75-challenge',
@@ -169,6 +197,7 @@ const presetsConfig = [
     examTrack: 'hard_mode',
     difficultyProfile: 'medium_hard',
     difficultyLabel: 'Medium + Hard',
+    apiTargetCount: 8,
   },
 ];
 

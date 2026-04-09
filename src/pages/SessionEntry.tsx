@@ -6,6 +6,7 @@ import { addDoc, collection, doc, getDoc, getDocs, query, where } from 'firebase
 import { db } from '../services/firebase';
 import { startSessionAttempt } from '../services/writeGateway';
 import type { ExamSession, Preset } from '../types/index';
+import { isValidEmail, normalizeEmail } from '../utils/email';
 
 type PageState = 'loading' | 'ready' | 'invalid' | 'expired' | 'inactive' | 'not_open';
 
@@ -24,7 +25,8 @@ const ERROR_MESSAGES: Record<'invalid' | 'inactive' | 'expired' | 'not_open', { 
 
 const useServerWrites = import.meta.env.VITE_ENABLE_SERVER_WRITES === 'true';
 
-function getTimeLabel(count: number) {
+function getTimeLabel(count: number, timeLimitMinutes?: number) {
+  if (timeLimitMinutes) return `${timeLimitMinutes} min`;
   if (count <= 25) return '15 min';
   if (count <= 50) return '35 min';
   if (count <= 75) return '60 min';
@@ -100,6 +102,11 @@ export default function SessionEntry() {
       setError('Please enter your name.');
       return;
     }
+    const normalizedEmail = normalizeEmail(candidateEmail);
+    if (normalizedEmail && !isValidEmail(normalizedEmail)) {
+      setError('Enter a valid email address for result history.');
+      return;
+    }
     if (accessCode.trim() !== session.accessCode) {
       setError('Incorrect access code. Please try again.');
       return;
@@ -119,7 +126,7 @@ export default function SessionEntry() {
         const response = await startSessionAttempt({
           sessionId: session.id,
           candidateName: candidateName.trim(),
-          candidateEmail: candidateEmail.trim().toLowerCase() || undefined,
+          candidateEmail: normalizedEmail || undefined,
           accessCode: accessCode.trim(),
         });
 
@@ -130,11 +137,12 @@ export default function SessionEntry() {
             track: preset.current.examTrack ?? 'exam_parity',
             presetLabel: preset.current.difficultyLabel ?? 'Preset Exam',
             targetCount: preset.current.targetCount,
+            timeLimitMinutes: preset.current.timeLimitMinutes,
             presetId: session.presetId,
             presetQuestionIds: preset.current.questions,
             sessionId: session.id,
             sessionName: session.name,
-            candidateEmail: candidateEmail.trim().toLowerCase() || undefined,
+            candidateEmail: normalizedEmail || undefined,
             participantId: response.participantId,
           },
         });
@@ -164,7 +172,7 @@ export default function SessionEntry() {
         sessionId: session.id,
         sessionName: session.name,
         candidateName: candidateName.trim(),
-        ...(candidateEmail.trim() ? { candidateEmail: candidateEmail.trim().toLowerCase() } : {}),
+        ...(normalizedEmail ? { candidateEmail: normalizedEmail } : {}),
         startedAt: new Date().toISOString(),
         status: 'in_progress',
         retakeNumber,
@@ -177,11 +185,12 @@ export default function SessionEntry() {
           track: preset.current.examTrack ?? 'exam_parity',
           presetLabel: preset.current.difficultyLabel ?? 'Preset Exam',
           targetCount: preset.current.targetCount,
+          timeLimitMinutes: preset.current.timeLimitMinutes,
           presetId: session.presetId,
           presetQuestionIds: preset.current.questions,
           sessionId: session.id,
           sessionName: session.name,
-          candidateEmail: candidateEmail.trim().toLowerCase() || undefined,
+          candidateEmail: normalizedEmail || undefined,
           participantId: participantRef.id,
         },
       });
@@ -234,7 +243,7 @@ export default function SessionEntry() {
               <div className="text-[9px] font-semibold uppercase tracking-wider text-zinc-400">Questions</div>
             </div>
             <div className="bg-zinc-50 border border-zinc-100 rounded-xl px-3 py-3 text-center">
-              <div className="text-base font-bold text-zinc-900">{getTimeLabel(preset.current!.targetCount)}</div>
+              <div className="text-base font-bold text-zinc-900">{getTimeLabel(preset.current!.targetCount, preset.current!.timeLimitMinutes)}</div>
               <div className="text-[9px] font-semibold uppercase tracking-wider text-zinc-400">Time Limit</div>
             </div>
             <div className="bg-zinc-50 border border-zinc-100 rounded-xl px-3 py-3 text-center">
@@ -259,6 +268,16 @@ export default function SessionEntry() {
             )}
           </div>
 
+          <div className="mb-5 bg-zinc-50 border border-zinc-100 rounded-2xl p-4">
+            <p className="text-[10px] font-semibold text-zinc-500 uppercase tracking-wider mb-2">Session Instructions</p>
+            <ul className="space-y-2 text-[12px] text-zinc-600">
+              <li>1. Use your exact registered name if a candidate roster is enforced for this session.</li>
+              <li>2. Keep the access code private and do not share exam content or screenshots.</li>
+              <li>3. Do not refresh, copy, or print while the exam is active. The attempt stays locked to this device until submission.</li>
+              <li>4. Add a valid email if you want to retrieve the saved report later from result history.</li>
+            </ul>
+          </div>
+
           <form onSubmit={handleStart} className="space-y-4">
             <div>
               <label className="block text-[11px] font-semibold text-zinc-400 uppercase tracking-wider mb-1.5">Your Full Name</label>
@@ -268,7 +287,7 @@ export default function SessionEntry() {
               <label className="block text-[11px] font-semibold text-zinc-400 uppercase tracking-wider mb-1.5">
                 Email <span className="text-zinc-300 normal-case font-normal">(optional but recommended - required for result history)</span>
               </label>
-              <input type="email" value={candidateEmail} onChange={(event) => setCandidateEmail(event.target.value)} placeholder="your@email.com" className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3 text-sm text-zinc-900 font-medium outline-none focus:ring-2 focus:ring-indigo-100 focus:border-indigo-400 transition-all placeholder:text-zinc-300" />
+              <input type="email" value={candidateEmail} onChange={(event) => setCandidateEmail(event.target.value)} placeholder="your@email.com" inputMode="email" autoComplete="email" className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3 text-sm text-zinc-900 font-medium outline-none focus:ring-2 focus:ring-indigo-100 focus:border-indigo-400 transition-all placeholder:text-zinc-300" />
             </div>
             <div>
               <label className="block text-[11px] font-semibold text-zinc-400 uppercase tracking-wider mb-1.5">Access Code</label>

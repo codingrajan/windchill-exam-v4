@@ -7,6 +7,7 @@ import { getQuestionDomain, loadQuestionPool } from '../../utils/examLogic';
 import { fetchBuiltInPresets, fetchFirestorePresets, mergePresetCatalog, syncBuiltInPresetsToFirestore } from '../../services/presetCatalog';
 import DiffBadge from '../shared/DiffBadge';
 import LiteCheckbox from '../shared/LiteCheckbox';
+import QuestionPrompt from '../shared/QuestionPrompt';
 
 type ActiveView = { kind: 'new' } | { kind: 'edit'; preset: Preset };
 
@@ -287,7 +288,12 @@ export default function PresetsTab() {
                           onChange={() => setSelected((prev) => { const next = new Set(prev); next.has(q.id) ? next.delete(q.id) : next.add(q.id); return next; })}
                         />
                         <div className="flex-grow min-w-0">
-                          <p className="text-[13px] font-medium text-zinc-700 leading-snug line-clamp-2">{q.question}</p>
+                          <QuestionPrompt question={q} compact />
+                          {q.codeSnippet && (
+                            <pre className="mt-2 overflow-x-auto rounded-xl border border-zinc-200 bg-zinc-950 px-3 py-3 text-[11px] leading-5 text-zinc-100">
+                              <code>{q.codeSnippet}</code>
+                            </pre>
+                          )}
                           <div className="flex items-center gap-2 mt-1.5 flex-wrap">
                             <span className="text-[10px] font-medium bg-zinc-100 text-zinc-500 px-2 py-0.5 rounded-full">{getQuestionDomain(q)}</span>
                             <DiffBadge level={q.difficulty} />

@@ -1,0 +1,1008 @@
+[
+  {
+    "id": 501,
+    "domain": "Architecture, Installation, and Integration",
+    "topic": "Persistence and Object Resolution",
+    "difficulty": "easy",
+    "objective": "Resolve a persisted business object safely from an OID string",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Persistence and Object Resolution",
+    "misconceptionTag": "oid_string_is_direct_object",
+    "releaseVersion": "2026.04",
+    "question": "A customization receives an OID string such as \"OR:wt.part.WTPart:12345\" and must load the persisted object before any type-specific logic runs. Which API approach is the supported Windchill pattern?",
+    "options": [
+      "Pass the OID string directly into PersistenceHelper.manager.refresh",
+      "Create a QuerySpec with the OID string as a class name",
+      "Use ReferenceFactory.getReference(oid).getObject()",
+      "Use WTPart.newWTPart(oid)"
+    ],
+    "correctAnswer": 2,
+    "explanation": "ReferenceFactory is the standard bridge from an OID string to a Windchill object reference. It lets the code resolve the object first and only then cast after type checks."
+  },
+  {
+    "id": 502,
+    "domain": "Architecture, Installation, and Integration",
+    "topic": "Persistence and Object Resolution",
+    "difficulty": "easy",
+    "objective": "Persist a newly created object through supported APIs",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Persistence and Object Resolution",
+    "misconceptionTag": "service_helper_vs_persistence_helper",
+    "releaseVersion": "2026.04",
+    "question": "A developer has already created and populated a supported Windchill business object and now needs to persist it. Which API is normally used for the store operation itself?",
+    "options": [
+      "VersionControlHelper.service.save(obj)",
+      "PersistenceHelper.manager.store(obj)",
+      "TypeIdentifierHelper.store(obj)",
+      "QuerySpec.store(obj)"
+    ],
+    "correctAnswer": 1,
+    "explanation": "PersistenceHelper.manager.store is the standard persistence call for saving a new or modified object after the correct service-side creation pattern has been followed."
+  },
+  {
+    "id": 503,
+    "domain": "Architecture, Installation, and Integration",
+    "topic": "Query APIs",
+    "difficulty": "easy",
+    "objective": "Identify the standard query-construction API",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Query APIs",
+    "misconceptionTag": "method_server_is_query_api",
+    "releaseVersion": "2026.04",
+    "question": "When a customization must search Windchill objects using class and attribute criteria rather than an OID string, which API construct forms the usual foundation of the query?",
+    "options": [
+      "RemoteMethodServer",
+      "SearchCondition",
+      "QuerySpec",
+      "PersistableAdapter"
+    ],
+    "correctAnswer": 2,
+    "explanation": "QuerySpec is the standard query-building container. SearchCondition is then attached to that QuerySpec to express filters."
+  },
+  {
+    "id": 504,
+    "domain": "Lifecycle, Workflow, and Object Initialization",
+    "topic": "Version and Lifecycle Services",
+    "difficulty": "easy",
+    "objective": "Choose the helper family for revise/version operations",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Version and Lifecycle Services",
+    "misconceptionTag": "lifecycle_helper_handles_revise",
+    "releaseVersion": "2026.04",
+    "question": "A controlled object must be revised using supported Windchill version-control services. Which helper family is most directly associated with revise/version operations?",
+    "options": [
+      "FolderHelper",
+      "VersionControlHelper",
+      "LifeCycleHelper",
+      "ConfigHelper"
+    ],
+    "correctAnswer": 1,
+    "explanation": "VersionControlHelper is the relevant family for revise and version-control behavior. LifeCycleHelper deals with lifecycle state logic, not object revision itself."
+  },
+  {
+    "id": 505,
+    "domain": "Architecture, Installation, and Integration",
+    "topic": "Method Server and Transactions",
+    "difficulty": "medium",
+    "objective": "Recognize supported Method Server invocation and transaction discipline",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Method Server and Transactions",
+    "misconceptionTag": "remote_call_without_transaction_guard",
+    "releaseVersion": "2026.04",
+    "question": "A remote client triggers server-side Windchill logic that will update several business objects in one unit of work. Which single platform construct is most important for keeping the write set atomic if one update fails?",
+    "options": [
+      "Write directly to the database because Windchill transactions add overhead",
+      "SearchCondition",
+      "ReferenceFactory",
+      "Transaction"
+    ],
+    "correctAnswer": 3,
+    "explanation": "When several related writes must succeed or fail together, Transaction is the key platform construct. That is the atomicity control, regardless of how the server-side logic was invoked."
+  },
+  {
+    "id": 506,
+    "domain": "Data Model, Types, and Attributes",
+    "topic": "Attribute and Type Services",
+    "difficulty": "easy",
+    "objective": "Choose the supported approach for soft attribute updates",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Attribute and Type Services",
+    "misconceptionTag": "direct_sql_for_iba",
+    "releaseVersion": "2026.04",
+    "question": "A WTPart customization must read and update soft attributes rather than hard-coded Java fields. Which approach is aligned with supported Windchill customization?",
+    "options": [
+      "Update the underlying attribute tables with JDBC",
+      "Use attribute-container or PersistableAdapter based APIs",
+      "Store the value temporarily in session state and avoid persistence",
+      "Write the attribute into WTPartMaster using a custom column"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Soft attributes should be handled through supported attribute APIs such as PersistableAdapter or other attribute-container mechanisms. Direct SQL and ad hoc schema changes are not the supported route."
+  },
+  {
+    "id": 507,
+    "domain": "Change and Release Management",
+    "topic": "Change Service APIs",
+    "difficulty": "easy",
+    "objective": "Identify the standard helper family for change objects",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Change Service APIs",
+    "misconceptionTag": "promotion_helper_for_change_notice",
+    "releaseVersion": "2026.04",
+    "question": "A customization must work with Change Requests and Change Notices through supported service calls. Which helper family is typically central to that work?",
+    "options": [
+      "ChangeHelper2",
+      "FolderHelper",
+      "ConfigSpecHelper",
+      "NmCommandBean"
+    ],
+    "correctAnswer": 0,
+    "explanation": "ChangeHelper2 is the standard helper family associated with change-domain service operations. The other options are unrelated or UI-oriented."
+  },
+  {
+    "id": 508,
+    "domain": "Access Control, Teams, and Security",
+    "topic": "Access Control and Session Discipline",
+    "difficulty": "medium",
+    "objective": "Recognize risky access-enforcement bypass patterns",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Access Control and Session Discipline",
+    "misconceptionTag": "set_access_enforced_false_without_scope",
+    "releaseVersion": "2026.04",
+    "question": "Review this snippet and identify the strongest concern.",
+    "codeSnippet": "SessionServerHelper.manager.setAccessEnforced(false);\nPersistenceHelper.manager.store(part);",
+    "options": [
+      "store cannot be called after access enforcement changes",
+      "setAccessEnforced(false) is required before every store call",
+      "The code bypasses access checks without showing scoped reset or tight justification",
+      "WTPart cannot be persisted inside a session helper context"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Temporarily disabling access enforcement is highly sensitive. If used at all, it must be tightly scoped, justified, and reset safely. The snippet shows a classic review red flag."
+  },
+  {
+    "id": 509,
+    "domain": "Architecture, Installation, and Integration",
+    "topic": "Query APIs",
+    "difficulty": "medium",
+    "objective": "Spot incomplete QuerySpec usage",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Query APIs",
+    "misconceptionTag": "query_without_search_condition",
+    "releaseVersion": "2026.04",
+    "question": "What is the primary defect in this snippet?",
+    "codeSnippet": "QuerySpec qs = new QuerySpec(WTPart.class);\nQueryResult qr = PersistenceHelper.manager.find(qs);\nWTPart part = (WTPart) qr.nextElement();",
+    "options": [
+      "WTPart cannot be queried through QuerySpec",
+      "QueryResult only returns arrays and never objects",
+      "The query has no filter, so the first returned part is arbitrary and unsafe",
+      "PersistenceHelper.manager.find cannot execute a QuerySpec"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The code executes an unrestricted query and then consumes the first row as if it were the required object. The main design defect is the missing search condition and deterministic selection logic."
+  },
+  {
+    "id": 510,
+    "domain": "Lifecycle, Workflow, and Object Initialization",
+    "topic": "Work In Progress Services",
+    "difficulty": "easy",
+    "objective": "Identify the supported service for checkout",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Work In Progress Services",
+    "misconceptionTag": "store_instead_of_checkout",
+    "releaseVersion": "2026.04",
+    "question": "A user-facing customization must place a working copy under work-in-progress control before edits are made. Which service family is normally used for checkout and checkin behavior?",
+    "options": [
+      "RemoteMethodServer",
+      "TypeIdentifierHelper",
+      "LifeCycleHelper",
+      "WorkInProgressHelper"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Checkout and checkin operations belong to WorkInProgressHelper. They should not be replaced with direct persistence calls."
+  },
+  {
+    "id": 511,
+    "domain": "Data Model, Types, and Attributes",
+    "topic": "Attribute and Type Services",
+    "difficulty": "medium",
+    "objective": "Choose the supported API for soft attribute mutation",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Attribute and Type Services",
+    "misconceptionTag": "iba_update_via_plain_setter",
+    "releaseVersion": "2026.04",
+    "question": "A customization must change a soft attribute on an existing object and then persist the change through supported APIs. Which API is commonly used for that adaptation layer?",
+    "options": [
+      "ReferenceFactory",
+      "FolderHelper",
+      "PersistableAdapter",
+      "StatementSpec"
+    ],
+    "correctAnswer": 2,
+    "explanation": "PersistableAdapter is commonly used when reading or writing modeled and soft attributes in a supported way. It fits the type and attribute layer better than query or folder services."
+  },
+  {
+    "id": 512,
+    "domain": "Lifecycle, Workflow, and Object Initialization",
+    "topic": "Work In Progress Services",
+    "difficulty": "medium",
+    "objective": "Recognize the supported work-in-progress sequence",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Work In Progress Services",
+    "misconceptionTag": "edit_original_instead_of_working_copy",
+    "releaseVersion": "2026.04",
+    "question": "A developer must modify a checked-in object through Java customization. What is the first supported action before changing the business object?",
+    "options": [
+      "Modify the original checked-in object directly and store it",
+      "Skip work-in-progress services when only one attribute changes",
+      "Check in the working copy after the update is complete",
+      "Checkout to obtain a working copy before changes"
+    ],
+    "correctAnswer": 3,
+    "explanation": "For a checked-in controlled object, the supported sequence begins with checkout so the customization works on a working copy. Checkin comes later, after the update is complete."
+  },
+  {
+    "id": 513,
+    "domain": "Architecture, Installation, and Integration",
+    "topic": "Method Server and Transactions",
+    "difficulty": "easy",
+    "objective": "Identify the API associated with Method Server invocation",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Method Server and Transactions",
+    "misconceptionTag": "queryspec_is_remote_invocation_tool",
+    "releaseVersion": "2026.04",
+    "question": "A utility running outside the Method Server must invoke supported server-side Windchill business logic. Which API is specifically associated with that remote invocation model?",
+    "options": [
+      "RemoteMethodServer",
+      "PersistenceServerHelper",
+      "QuerySpec",
+      "RevisionControlled"
+    ],
+    "correctAnswer": 0,
+    "explanation": "RemoteMethodServer is the relevant API for invoking server-side logic from a remote context. QuerySpec and persistence helpers solve different problems."
+  },
+  {
+    "id": 514,
+    "domain": "Architecture, Installation, and Integration",
+    "topic": "Method Server and Transactions",
+    "difficulty": "medium",
+    "objective": "Apply transaction rollback discipline in customization code",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Method Server and Transactions",
+    "misconceptionTag": "transaction_without_rollback",
+    "releaseVersion": "2026.04",
+    "question": "What is the strongest defect in this snippet?",
+    "codeSnippet": "Transaction trx = new Transaction();\ntrx.start();\nPersistenceHelper.manager.store(part);\ntrx.commit();",
+    "options": [
+      "A Transaction cannot be used with PersistenceHelper",
+      "The code is missing rollback and cleanup protection for failure paths",
+      "commit must be called before store",
+      "Transaction is only valid for QuerySpec execution"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The core problem is not starting the transaction; it is the absence of exception handling, rollback discipline, and reliable cleanup. That makes partial failure behavior unsafe."
+  },
+  {
+    "id": 515,
+    "domain": "Data Model, Types, and Attributes",
+    "topic": "Attribute and Type Services",
+    "difficulty": "easy",
+    "objective": "Identify the helper used to inspect Windchill type identity",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Attribute and Type Services",
+    "misconceptionTag": "java_instanceof_is_full_type_model",
+    "releaseVersion": "2026.04",
+    "question": "A customization needs to inspect the Windchill type identity of an object before applying type-specific rules. Which helper family is typically relevant for type identification?",
+    "options": [
+      "TypeIdentifierHelper",
+      "VersionControlHelper",
+      "SessionServerHelper",
+      "ChangeHelper2"
+    ],
+    "correctAnswer": 0,
+    "explanation": "TypeIdentifierHelper is the relevant family when the code must reason about the Windchill type model rather than only Java inheritance."
+  },
+  {
+    "id": 516,
+    "domain": "Lifecycle, Workflow, and Object Initialization",
+    "topic": "Version and Lifecycle Services",
+    "difficulty": "easy",
+    "objective": "Associate lifecycle state changes with the right helper family",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Version and Lifecycle Services",
+    "misconceptionTag": "version_control_helper_for_state_set",
+    "releaseVersion": "2026.04",
+    "question": "A workflow customization needs lifecycle-oriented behavior rather than revise/checkin behavior. Which helper family is the more relevant starting point?",
+    "options": [
+      "ConfigHelper",
+      "LifeCycleHelper",
+      "ReferenceFactory",
+      "Transaction"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Lifecycle logic belongs with LifeCycleHelper. Revision and iteration control are related but distinct concerns handled by version-control services."
+  },
+  {
+    "id": 517,
+    "domain": "Architecture, Installation, and Integration",
+    "topic": "Persistence and Object Resolution",
+    "difficulty": "medium",
+    "objective": "Recognize refresh as the supported way to reload persisted state",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Persistence and Object Resolution",
+    "misconceptionTag": "refresh_vs_find_confusion",
+    "releaseVersion": "2026.04",
+    "question": "A customization already has a persisted object instance but wants the latest database-backed state before further logic executes. Which API best fits that purpose?",
+    "options": [
+      "PersistenceHelper.manager.refresh(obj)",
+      "RemoteMethodServer.invoke(obj)",
+      "TypeIdentifierHelper.refresh(obj)",
+      "ChangeHelper2.service.reload(obj)"
+    ],
+    "correctAnswer": 0,
+    "explanation": "refresh is the supported persistence-level way to synchronize an already-resolved object instance with the latest stored state."
+  },
+  {
+    "id": 518,
+    "domain": "Architecture, Installation, and Integration",
+    "topic": "Persistence and Object Resolution",
+    "difficulty": "easy",
+    "objective": "Identify the standard delete API",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Persistence and Object Resolution",
+    "misconceptionTag": "delete_via_queryspec",
+    "releaseVersion": "2026.04",
+    "question": "A supported cleanup utility must remove a persisted business object through Windchill APIs rather than direct SQL. Which API is normally used for the delete operation?",
+    "options": [
+      "PersistenceHelper.manager.delete(obj)",
+      "QuerySpec.delete(obj)",
+      "VersionControlHelper.service.remove(obj)",
+      "ReferenceFactory.delete(obj)"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Deletion at the persistence layer is performed through PersistenceHelper.manager.delete, assuming the object and business rules make deletion valid."
+  },
+  {
+    "id": 519,
+    "domain": "Architecture, Installation, and Integration",
+    "topic": "Query APIs",
+    "difficulty": "easy",
+    "objective": "Choose the API used to express query predicates",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Query APIs",
+    "misconceptionTag": "queryspec_without_searchcondition",
+    "releaseVersion": "2026.04",
+    "question": "Inside a QuerySpec-based search, which API is typically used to express the actual attribute comparison condition such as number equals a given value?",
+    "options": [
+      "SearchCondition",
+      "PersistableAdapter",
+      "WTContainerRef",
+      "RemoteMethodServer"
+    ],
+    "correctAnswer": 0,
+    "explanation": "SearchCondition is the standard predicate-building API attached to QuerySpec for attribute-based filtering."
+  },
+  {
+    "id": 520,
+    "domain": "Lifecycle, Workflow, and Object Initialization",
+    "topic": "Work In Progress Services",
+    "difficulty": "medium",
+    "objective": "Understand checkout result handling",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Work In Progress Services",
+    "misconceptionTag": "checkout_returns_original_object",
+    "releaseVersion": "2026.04",
+    "question": "Why is this snippet suspicious?",
+    "codeSnippet": "WorkInProgressHelper.service.checkout(part, folder, comment);\npart.setName(\"New Name\");",
+    "options": [
+      "The code ignores the checkout result and keeps editing the original variable",
+      "checkout cannot be called on parts",
+      "A comment cannot be passed during checkout",
+      "setName is forbidden on working copies"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The important issue is the missing handling of the returned checkout result or working-copy object. Editing the original reference after checkout is a common mistake."
+  },
+  {
+    "id": 521,
+    "domain": "Change and Release Management",
+    "topic": "Change Service APIs",
+    "difficulty": "medium",
+    "objective": "Choose the proper service family for traversing change relationships",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Change Service APIs",
+    "misconceptionTag": "query_everything_manually_instead_of_change_helper",
+    "releaseVersion": "2026.04",
+    "question": "A report utility must navigate from a change object to related business objects through supported change-domain APIs instead of custom SQL joins. Which family is the best starting point?",
+    "options": [
+      "PersistableAdapter",
+      "SessionServerHelper",
+      "TypeIdentifierHelper",
+      "ChangeHelper2"
+    ],
+    "correctAnswer": 3,
+    "explanation": "For change-domain navigation and operations, ChangeHelper2 is the correct starting point. It is preferable to bypassing the service layer with database logic."
+  },
+  {
+    "id": 522,
+    "domain": "Access Control, Teams, and Security",
+    "topic": "Access Control and Session Discipline",
+    "difficulty": "medium",
+    "objective": "Recognize supported secure review practice for access enforcement",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Access Control and Session Discipline",
+    "misconceptionTag": "disable_access_as_general_fix",
+    "releaseVersion": "2026.04",
+    "question": "A code review finds a developer using SessionServerHelper.manager.setAccessEnforced(false) to make a failing customization work. What is the best interpretation?",
+    "options": [
+      "It permanently changes access control for the current user account",
+      "It is required whenever QuerySpec is used",
+      "It is the preferred way to solve normal authorization failures",
+      "It is a sensitive technique that should be tightly justified, narrowly scoped, and reset safely"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Disabling access enforcement is not a general fix. It is a sensitive mechanism that should be rare, deliberate, scoped, and reviewed carefully."
+  },
+  {
+    "id": 523,
+    "domain": "Architecture, Installation, and Integration",
+    "topic": "Method Server and Transactions",
+    "difficulty": "medium",
+    "objective": "Identify when transaction scope belongs in a customization",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Method Server and Transactions",
+    "misconceptionTag": "single_store_equals_no_transaction_ever",
+    "releaseVersion": "2026.04",
+    "question": "A service implementation creates one change object, updates two related objects, and writes audit state that must stay consistent. What is the main reason to use a Transaction around the unit of work?",
+    "options": [
+      "Transactions automatically improve query performance",
+      "Transactions make all logging optional",
+      "Transactions keep related writes atomic so partial success does not leave inconsistent business state",
+      "Transactions are only needed for delete operations"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The key reason is atomicity. When several related writes must either all succeed or all fail, Transaction provides the right control point."
+  },
+  {
+    "id": 524,
+    "domain": "Data Model, Types, and Attributes",
+    "topic": "Attribute and Type Services",
+    "difficulty": "medium",
+    "objective": "Differentiate Windchill type identity from plain Java type checks",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Attribute and Type Services",
+    "misconceptionTag": "instanceof_is_enough_for_soft_type_logic",
+    "releaseVersion": "2026.04",
+    "question": "A customization must distinguish subtype-driven business logic inside a configurable type hierarchy. Why is the Windchill type-identification layer often needed instead of relying only on plain Java instanceof checks?",
+    "options": [
+      "Because Java instanceof is unsupported inside the Method Server",
+      "Because TypeIdentifierHelper automatically persists subtype changes",
+      "Because Windchill type metadata can carry business distinctions beyond simple Java inheritance",
+      "Because QuerySpec cannot run unless a type identifier is loaded first"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Windchill type logic can depend on modeled type metadata and subtype configuration, not just Java inheritance. That is why the platform type-identification layer matters."
+  },
+  {
+    "id": 525,
+    "domain": "Architecture, Installation, and Integration",
+    "topic": "Persistence and Object Resolution",
+    "difficulty": "medium",
+    "objective": "Avoid unsupported direct-constructor object creation assumptions",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Persistence and Object Resolution",
+    "misconceptionTag": "plain_constructor_for_business_object_creation",
+    "releaseVersion": "2026.04",
+    "question": "Why should this snippet be reviewed skeptically?",
+    "codeSnippet": "WTPart part = new WTPart();\npart.setName(\"Test Part\");\nPersistenceHelper.manager.store(part);",
+    "options": [
+      "WTPart objects are usually created through supported new-instance or service patterns rather than plain constructor usage alone",
+      "WTPart names can only be set after checkin",
+      "PersistenceHelper cannot store WTPart",
+      "The code must call RemoteMethodServer before creating any part"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The concern is not that Java can never instantiate a part, but that supported business-object creation usually depends on platform-aware creation patterns and required metadata, not a bare constructor plus store."
+  },
+  {
+    "id": 526,
+    "domain": "Lifecycle, Workflow, and Object Initialization",
+    "topic": "Version and Lifecycle Services",
+    "difficulty": "medium",
+    "objective": "Separate lifecycle-state concerns from revision concerns",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Version and Lifecycle Services",
+    "misconceptionTag": "revise_equals_state_change",
+    "releaseVersion": "2026.04",
+    "question": "A new developer argues that revise, lifecycle transition, and checkin are all the same kind of API operation. Which statement is most accurate?",
+    "options": [
+      "All three are handled by QuerySpec and only differ in UI wording",
+      "They are distinct concerns: revision is version control, lifecycle transition is state management, and checkin is work-in-progress finalization",
+      "Only revise is supported; the others are UI-only actions",
+      "Lifecycle transitions automatically create a new revision every time"
+    ],
+    "correctAnswer": 1,
+    "explanation": "These concepts are related in practice but not identical in API terms. Versioning, lifecycle state, and work-in-progress completion each belong to different service concerns."
+  },
+  {
+    "id": 527,
+    "domain": "Architecture, Installation, and Integration",
+    "topic": "Method Server and Transactions",
+    "difficulty": "easy",
+    "objective": "Recognize that client-side code should not bypass Method Server service execution",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Method Server and Transactions",
+    "misconceptionTag": "business_logic_from_plain_client_jvm",
+    "releaseVersion": "2026.04",
+    "question": "A utility is running outside the Windchill server JVM but must execute supported business logic that depends on server services and persistence context. What is the sound architectural reading?",
+    "options": [
+      "Call the Method Server through supported server-side invocation patterns",
+      "Run JDBC directly from the client because it is simpler",
+      "Copy the needed Windchill classes and execute them locally",
+      "Avoid server context because persistence helpers work identically everywhere"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Windchill business logic belongs in the server context. External utilities should invoke supported server-side services rather than reimplementing or bypassing them client-side."
+  },
+  {
+    "id": 528,
+    "domain": "Change and Release Management",
+    "topic": "Change Service APIs",
+    "difficulty": "medium",
+    "objective": "Distinguish change-domain services from generic persistence-only thinking",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Change Service APIs",
+    "misconceptionTag": "store_change_object_without_service_model",
+    "releaseVersion": "2026.04",
+    "question": "A customization for change administration needs to create or manipulate change-domain objects while preserving business semantics. What is the better design choice?",
+    "options": [
+      "Prefer supported change service APIs such as ChangeHelper2 rather than treating change objects as generic rows",
+      "Skip helper services because PersistenceHelper alone captures all business rules",
+      "Use direct SQL because change data has many relationships",
+      "Handle change logic through folder APIs to stay generic"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Change objects are not just generic persisted rows. Their relationships and business semantics are better handled through supported change service APIs."
+  },
+  {
+    "id": 529,
+    "domain": "Data Model, Types, and Attributes",
+    "topic": "Attribute and Type Services",
+    "difficulty": "medium",
+    "objective": "Spot unsupported direct database manipulation of attributes",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Attribute and Type Services",
+    "misconceptionTag": "jdbc_update_for_iba_tables",
+    "releaseVersion": "2026.04",
+    "question": "What is the primary review finding in this snippet?",
+    "codeSnippet": "Connection con = dataSource.getConnection();\nPreparedStatement ps = con.prepareStatement(\"update StringValue set value=? where ida3a4=?\");\nps.setString(1, \"HIGH\");\nps.executeUpdate();",
+    "options": [
+      "PreparedStatement cannot be used in Windchill Java",
+      "The code is bypassing supported Windchill attribute APIs and writing directly to persistence tables",
+      "StringValue is only used for CAD documents",
+      "This is acceptable if wrapped in a Transaction"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The major problem is direct table manipulation. Windchill customizations should use supported attribute and service APIs rather than writing to persistence tables by hand."
+  },
+  {
+    "id": 530,
+    "domain": "Architecture, Installation, and Integration",
+    "topic": "Query APIs",
+    "difficulty": "medium",
+    "objective": "Choose a supported search approach over OID-only thinking",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Query APIs",
+    "misconceptionTag": "reference_factory_for_attribute_search",
+    "releaseVersion": "2026.04",
+    "question": "A utility must find a WTPart by number when no OID string is available yet. Which answer best matches the standard Windchill API approach?",
+    "options": [
+      "Use ReferenceFactory with the part number as if it were an OID",
+      "Build a QuerySpec with a SearchCondition on the number attribute and execute it through the persistence layer",
+      "Use LifeCycleHelper because number is lifecycle data",
+      "Instantiate a WTPart locally and compare values in memory"
+    ],
+    "correctAnswer": 1,
+    "explanation": "When the object is not already identified by OID, the supported approach is query construction through QuerySpec and SearchCondition, followed by persistence-layer execution."
+  },
+  {
+    "id": 531,
+    "domain": "Data Model, Types, and Attributes",
+    "topic": "Attribute and Type Services",
+    "difficulty": "easy",
+    "objective": "Recognize the supported replacement for deprecated normalized-object handling",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Attribute and Type Services",
+    "misconceptionTag": "deprecated_lwcnormalizedobject_usage",
+    "releaseVersion": "2026.04",
+    "question": "A developer wants a supported API for reading and writing modeled or soft attributes without relying on deprecated normalized-object patterns. Which API is the correct replacement direction?",
+    "options": [
+      "QueryResult",
+      "PersistableAdapter",
+      "WTContainerRef",
+      "SearchCondition"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Current PTC guidance positions PersistableAdapter as the supported replacement direction for deprecated normalized-object attribute handling patterns."
+  },
+  {
+    "id": 532,
+    "domain": "Lifecycle, Workflow, and Object Initialization",
+    "topic": "Work In Progress Services",
+    "difficulty": "easy",
+    "objective": "Choose the correct helper family for checkin",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Work In Progress Services",
+    "misconceptionTag": "checkin_via_persistence_helper",
+    "releaseVersion": "2026.04",
+    "question": "A working copy has already been modified successfully and now must be committed back through the supported service layer. Which helper family is normally responsible for checkin?",
+    "options": [
+      "ChangeHelper2",
+      "ReferenceFactory",
+      "LifeCycleHelper",
+      "WorkInProgressHelper"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Checkin belongs with the WorkInProgressHelper service family. It should not be replaced with a plain persistence call."
+  },
+  {
+    "id": 533,
+    "domain": "Architecture, Installation, and Integration",
+    "topic": "Query APIs",
+    "difficulty": "medium",
+    "objective": "Understand the result type returned by persistence-layer queries",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Query APIs",
+    "misconceptionTag": "find_returns_single_object",
+    "releaseVersion": "2026.04",
+    "question": "When a QuerySpec is executed through PersistenceHelper.manager.find, what should the developer expect back before processing the returned objects?",
+    "options": [
+      "A QueryResult to iterate over",
+      "A single Persistable already cast to the target class",
+      "A SearchCondition list",
+      "A WTReference array only"
+    ],
+    "correctAnswer": 0,
+    "explanation": "PersistenceHelper.manager.find returns a QueryResult, which must be inspected and iterated carefully rather than assumed to contain a single ready-to-cast object."
+  },
+  {
+    "id": 534,
+    "domain": "Architecture, Installation, and Integration",
+    "topic": "Query APIs",
+    "difficulty": "medium",
+    "objective": "Recognize why empty-result handling matters after a query",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Query APIs",
+    "misconceptionTag": "assume_queryresult_has_row",
+    "releaseVersion": "2026.04",
+    "question": "A utility queries for a WTPart by number and immediately calls nextElement on the QueryResult without checking anything else. What is the strongest review concern?",
+    "options": [
+      "QueryResult only works for change objects",
+      "nextElement automatically commits the query transaction",
+      "The code assumes a match exists and ignores empty-result handling",
+      "WTPart searches must always use ReferenceFactory instead"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Even with a valid QuerySpec, the code must handle the possibility of no matching rows. Calling nextElement blindly creates an avoidable failure path."
+  },
+  {
+    "id": 535,
+    "domain": "Architecture, Installation, and Integration",
+    "topic": "Method Server and Transactions",
+    "difficulty": "medium",
+    "objective": "Understand rollback behavior in a transaction failure path",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Method Server and Transactions",
+    "misconceptionTag": "commit_only_transaction_pattern",
+    "releaseVersion": "2026.04",
+    "question": "A customization starts a Transaction, stores one object, fails on the second update, and never calls rollback. What is the core engineering risk?",
+    "options": [
+      "The Method Server automatically restores business consistency in every case",
+      "The transaction object becomes permanently unusable system-wide",
+      "The code can leave partial business-state changes instead of a clean all-or-nothing unit",
+      "Rollback is only needed for delete logic"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Without rollback discipline, multi-step updates can leave partial success behind. That is exactly what transactions are supposed to protect against."
+  },
+  {
+    "id": 536,
+    "domain": "Architecture, Installation, and Integration",
+    "topic": "Persistence and Object Resolution",
+    "difficulty": "easy",
+    "objective": "Choose the correct base type immediately after generic object resolution",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Persistence and Object Resolution",
+    "misconceptionTag": "cast_without_type_guard",
+    "releaseVersion": "2026.04",
+    "question": "After resolving an OID string through ReferenceFactory, which base interface is the safe immediate Java type before deciding whether a narrower cast is valid?",
+    "options": [
+      "SearchCondition",
+      "Persistable",
+      "WTPartMaster",
+      "QuerySpec"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The resolved object is handled generically first as a Persistable, then narrowed after type checks. That avoids unsafe assumptions about the actual runtime type."
+  },
+  {
+    "id": 537,
+    "domain": "Lifecycle, Workflow, and Object Initialization",
+    "topic": "Version and Lifecycle Services",
+    "difficulty": "medium",
+    "objective": "Differentiate revise from checkout",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Version and Lifecycle Services",
+    "misconceptionTag": "revise_and_checkout_equivalence",
+    "releaseVersion": "2026.04",
+    "question": "A candidate claims that revise and checkout solve the same problem because both lead to object changes. Which answer is more accurate?",
+    "options": [
+      "Revise creates a new revision lineage position, while checkout creates a working copy for edits within work-in-progress",
+      "Checkout is only for CAD and revise is only for parts",
+      "Revise and checkout are just different UI labels for the same API call",
+      "Checkout automatically changes lifecycle state while revise never does"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Revise and checkout are related but different. Revise concerns revision/version lineage, while checkout concerns editable working-copy control."
+  },
+  {
+    "id": 538,
+    "domain": "Change and Release Management",
+    "topic": "Change Service APIs",
+    "difficulty": "medium",
+    "objective": "Recognize when generic persistence is not enough for change-domain logic",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Change Service APIs",
+    "misconceptionTag": "generic_store_equals_change_business_logic",
+    "releaseVersion": "2026.04",
+    "question": "Why is it usually poor design to treat Change Requests and Change Notices as generic persisted objects and ignore change-domain services entirely?",
+    "options": [
+      "Because change objects can only be handled in JSP",
+      "Because change-domain relationships and semantics are better preserved through supported change services",
+      "Because PersistenceHelper cannot store change-domain classes",
+      "Because change objects never participate in workflow"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The issue is business semantics, not mere persistence. Change-domain services better preserve supported relationships and intent than row-level thinking."
+  },
+  {
+    "id": 539,
+    "domain": "Access Control, Teams, and Security",
+    "topic": "Access Control and Session Discipline",
+    "difficulty": "easy",
+    "objective": "Recognize that authorization defects should not be hidden with broad bypasses",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Access Control and Session Discipline",
+    "misconceptionTag": "authorization_failure_fixed_by_bypass",
+    "releaseVersion": "2026.04",
+    "question": "A customization fails because the executing user lacks access to an object. What is the best engineering posture before reaching for access-enforcement bypass logic?",
+    "options": [
+      "Fix the design or authorization model first rather than masking the issue with a broad bypass",
+      "Always disable access enforcement at the start of every service",
+      "Move the code into a UI layer so security no longer applies",
+      "Write directly to database tables because security is enforced only in Java"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Broad access bypasses are not a normal solution. The first step is to understand and correct the design or authorization path."
+  },
+  {
+    "id": 540,
+    "domain": "Architecture, Installation, and Integration",
+    "topic": "Query APIs",
+    "difficulty": "medium",
+    "objective": "Use SearchCondition for attribute predicates instead of object-resolution APIs",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Query APIs",
+    "misconceptionTag": "reference_factory_for_number_lookup",
+    "releaseVersion": "2026.04",
+    "question": "A customization must locate a WTPart by number and version-independent criteria. Which API concept is the one that actually expresses the attribute-level predicate in the query?",
+    "options": [
+      "ReferenceFactory",
+      "Transaction",
+      "SearchCondition",
+      "WorkInProgressHelper"
+    ],
+    "correctAnswer": 2,
+    "explanation": "ReferenceFactory resolves known references. SearchCondition is the actual predicate mechanism for attribute-based query filtering."
+  },
+  {
+    "id": 541,
+    "domain": "Lifecycle, Workflow, and Object Initialization",
+    "topic": "Work In Progress Services",
+    "difficulty": "medium",
+    "objective": "Spot missing working-copy handling in a checkin sequence",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Work In Progress Services",
+    "misconceptionTag": "checkin_original_not_working_copy",
+    "releaseVersion": "2026.04",
+    "question": "Why is it risky to perform a checkout correctly but later call checkin using the wrong object reference instead of the returned working copy?",
+    "options": [
+      "Because checkin only works for documents, not parts",
+      "Because the API expects the controlled working-copy context, not an arbitrary original reference",
+      "Because checkin can only be executed inside QuerySpec",
+      "Because checkin automatically revises the object"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Work-in-progress APIs operate against the working-copy context. Losing that context and acting on the wrong object reference is a common customization defect."
+  },
+  {
+    "id": 542,
+    "domain": "Architecture, Installation, and Integration",
+    "topic": "Method Server and Transactions",
+    "difficulty": "easy",
+    "objective": "Identify that remote invocation and transaction scope solve different problems",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Method Server and Transactions",
+    "misconceptionTag": "remote_method_server_equals_transaction",
+    "releaseVersion": "2026.04",
+    "question": "Which statement best separates RemoteMethodServer from Transaction in Windchill customization?",
+    "options": [
+      "RemoteMethodServer solves invocation context; Transaction solves atomic write scope",
+      "Both are interchangeable ways to query WTPart",
+      "Transaction is only for UI actions, while RemoteMethodServer is only for lifecycle changes",
+      "RemoteMethodServer makes rollback unnecessary"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The two APIs solve different concerns. RemoteMethodServer is about invoking server-side logic from a remote context, while Transaction is about all-or-nothing write scope."
+  },
+  {
+    "id": 543,
+    "domain": "Data Model, Types, and Attributes",
+    "topic": "Attribute and Type Services",
+    "difficulty": "medium",
+    "objective": "Recognize that direct table updates bypass modeled business behavior",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Attribute and Type Services",
+    "misconceptionTag": "table_update_equals_supported_attribute_change",
+    "releaseVersion": "2026.04",
+    "question": "Why is direct JDBC manipulation of modeled attribute tables especially dangerous even when the SQL statement appears simple and correct?",
+    "options": [
+      "Because JDBC is unsupported in any Java application",
+      "Because it bypasses Windchill service behavior, validation, and supported attribute handling",
+      "Because all attribute data is stored only in memory",
+      "Because PreparedStatement always corrupts Unicode values"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The real problem is bypassing the Windchill service and validation layers. Even a syntactically correct SQL update can violate supported behavior."
+  },
+  {
+    "id": 544,
+    "domain": "Architecture, Installation, and Integration",
+    "topic": "Persistence and Object Resolution",
+    "difficulty": "easy",
+    "objective": "Choose resolution over construction when an identifier already exists",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Persistence and Object Resolution",
+    "misconceptionTag": "construct_new_object_instead_of_resolve_existing",
+    "releaseVersion": "2026.04",
+    "question": "If an existing business object is already known by a stable object reference string, what is the better approach?",
+    "options": [
+      "Create a fresh object instance locally and copy values later",
+      "Resolve the existing object through supported reference APIs",
+      "Use SearchCondition because all identifiers are query predicates",
+      "Skip object resolution and update the database row directly"
+    ],
+    "correctAnswer": 1,
+    "explanation": "When the object already exists and is identified, the correct move is object resolution, not reconstruction or direct database manipulation."
+  },
+  {
+    "id": 545,
+    "domain": "Lifecycle, Workflow, and Object Initialization",
+    "topic": "Version and Lifecycle Services",
+    "difficulty": "medium",
+    "objective": "Recognize when lifecycle APIs are the wrong abstraction for revision work",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Version and Lifecycle Services",
+    "misconceptionTag": "lifecycle_helper_for_revision_logic",
+    "releaseVersion": "2026.04",
+    "question": "A developer reaches for LifeCycleHelper while implementing a revise feature. What is the main architectural concern with that instinct?",
+    "options": [
+      "LifecycleHelper is irrelevant to all managed objects",
+      "Revise belongs primarily to version-control services, not lifecycle-state services",
+      "LifeCycleHelper can only be used from JSP code",
+      "Revision logic should always be implemented with direct SQL"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Lifecycle state and revision lineage are different concerns. Revise behavior belongs with version-control services, not lifecycle-state services."
+  },
+  {
+    "id": 546,
+    "domain": "Architecture, Installation, and Integration",
+    "topic": "Query APIs",
+    "difficulty": "medium",
+    "objective": "Recognize that attribute search and OID resolution are different entry points",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Query APIs",
+    "misconceptionTag": "oid_resolution_and_attribute_search_same_api",
+    "releaseVersion": "2026.04",
+    "question": "Which statement is most accurate about object-resolution APIs versus query APIs in Windchill?",
+    "options": [
+      "ReferenceFactory is for known references, while QuerySpec and SearchCondition are for attribute-based discovery",
+      "QuerySpec is only needed after ReferenceFactory fails",
+      "ReferenceFactory can search all parts by number without a predicate",
+      "SearchCondition can only be used after checkout"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Known references and attribute-based discovery are separate entry points. ReferenceFactory resolves known identities; QuerySpec plus SearchCondition discovers objects by criteria."
+  },
+  {
+    "id": 547,
+    "domain": "Change and Release Management",
+    "topic": "Change Service APIs",
+    "difficulty": "easy",
+    "objective": "Associate helper-family selection with the business domain being automated",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Change Service APIs",
+    "misconceptionTag": "wrong_helper_family_for_domain",
+    "releaseVersion": "2026.04",
+    "question": "A customization is clearly operating in the change-management domain. Which helper family is the most sensible starting point before dropping into lower-level persistence work?",
+    "options": [
+      "ChangeHelper2",
+      "SearchCondition",
+      "ReferenceFactory",
+      "WTContainerRef"
+    ],
+    "correctAnswer": 0,
+    "explanation": "When the business domain is clearly change management, ChangeHelper2 is the sensible service-layer starting point."
+  },
+  {
+    "id": 548,
+    "domain": "Architecture, Installation, and Integration",
+    "topic": "Persistence and Object Resolution",
+    "difficulty": "medium",
+    "objective": "Review safe casting after generic reference resolution",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Persistence and Object Resolution",
+    "misconceptionTag": "blind_cast_after_reference_resolution",
+    "releaseVersion": "2026.04",
+    "question": "After resolving an arbitrary OID from external input, what is the safer practice before casting the returned object to WTPart?",
+    "options": [
+      "Assume all resolved business objects are WTPart because the caller said so",
+      "Check the resolved type before narrowing the cast",
+      "Skip resolution and cast the OID string directly",
+      "Call SearchCondition on the resolved object"
+    ],
+    "correctAnswer": 1,
+    "explanation": "External input should not be trusted blindly. The object should be resolved generically and then type-checked before a specific cast is applied."
+  },
+  {
+    "id": 549,
+    "domain": "Access Control, Teams, and Security",
+    "topic": "Access Control and Session Discipline",
+    "difficulty": "medium",
+    "objective": "Differentiate supported privilege discipline from convenience coding",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Access Control and Session Discipline",
+    "misconceptionTag": "security_bypass_for_convenience",
+    "releaseVersion": "2026.04",
+    "question": "What is the most defensible review position if a customization disables access enforcement mainly because it is faster than redesigning the service path?",
+    "options": [
+      "It is acceptable because performance is more important than authorization design",
+      "It is a red flag because convenience is not a sufficient reason to bypass platform security checks",
+      "It is required for all change-domain services",
+      "It should be moved into a transaction to become safe"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Convenience is not an acceptable justification for bypassing access enforcement. Security-sensitive bypasses require a much stronger, tightly scoped rationale."
+  },
+  {
+    "id": 550,
+    "domain": "Lifecycle, Workflow, and Object Initialization",
+    "topic": "Work In Progress Services",
+    "difficulty": "medium",
+    "objective": "Recognize that work-in-progress services should remain the edit path for controlled objects",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Work In Progress Services",
+    "misconceptionTag": "direct_store_instead_of_working_copy_path",
+    "releaseVersion": "2026.04",
+    "question": "A controlled object needs a content or attribute change inside supported customization logic. Which answer best describes the correct path?",
+    "options": [
+      "Directly store the checked-in object because persistence is faster than work-in-progress",
+      "Always revise first, even for simple iterative edits",
+      "Use work-in-progress services so the change happens on a working copy and is then checked in properly",
+      "Write the desired values into the database and let Windchill discover them later"
+    ],
+    "correctAnswer": 2,
+    "explanation": "For controlled objects, the supported edit path runs through work-in-progress services so the system manages the working copy and final checkin correctly."
+  }
+]

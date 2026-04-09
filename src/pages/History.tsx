@@ -8,6 +8,7 @@ import { TRACK_PROFILES } from '../constants/examStrategy';
 import { buildCertificateHTML } from '../utils/certificate';
 import { buildHistoryInsights } from '../utils/examInsights';
 import type { ExamResult } from '../types/index';
+import { isValidEmail, normalizeEmail } from '../utils/email';
 
 interface HistoryRecord extends ExamResult {
   docId: string;
@@ -41,10 +42,14 @@ export default function History() {
 
   const handleSearch = async (e: FormEvent) => {
     e.preventDefault();
-    const trimmed = email.trim().toLowerCase();
+    const trimmed = normalizeEmail(email);
 
     if (!trimmed) {
       setError('Please enter your email address.');
+      return;
+    }
+    if (!isValidEmail(trimmed)) {
+      setError('Enter a valid email address.');
       return;
     }
 
@@ -112,6 +117,8 @@ export default function History() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="your@email.com"
+            inputMode="email"
+            autoComplete="email"
             required
             autoFocus
             className="flex-1 bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3 text-sm text-zinc-900 font-medium outline-none focus:ring-2 focus:ring-indigo-100 focus:border-indigo-400 transition-all placeholder:text-zinc-300"
@@ -144,7 +151,7 @@ export default function History() {
             <div className="bg-white border border-zinc-100 rounded-3xl shadow-sm p-6">
               <div className="flex items-start justify-between gap-4 flex-wrap mb-5">
                 <div>
-                  <p className="text-[10px] font-semibold text-indigo-600 uppercase tracking-wider mb-1">Readiness Dashboard</p>
+                  <p className="text-[10px] font-semibold text-indigo-600 uppercase tracking-wider mb-1">Performance Dashboard</p>
                   <h3 className="text-lg font-bold text-zinc-900">Attempt trend for {email.trim().toLowerCase()}</h3>
                   <p className="text-sm text-zinc-500 mt-1">{insights.readinessHeadline}</p>
                 </div>
