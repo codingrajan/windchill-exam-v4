@@ -3130,15 +3130,15 @@
   },
   {
     "id": 500,
-    "question": "What is the safest interpretation of the target 500-question design given the current pool already has many multiple-response items?",
+    "question": "In a Windchill-led PLM strategy, what is the strongest reason to maintain a connected digital thread from engineering definition through downstream consumption?",
     "options": [
-      "New batches should stay mostly single-answer so the overall bank moves closer to the desired ratio",
-      "Every fifth question must be converted into code snippets immediately",
-      "All new questions should be multiple-response to match file 2",
-      "The existing bank should ignore the ratio entirely"
+      "It reduces traceability and keeps each function working in isolation",
+      "It creates a connected view of product information so changes can be understood and managed across functions",
+      "It removes the need for formal change control once structures are released",
+      "It guarantees MBOMs always stay identical to EBOMs without process decisions"
     ],
-    "correctAnswer": 0,
-    "explanation": "Because the existing pool already contains many multiple-response questions, keeping new batches mostly single-answer helps move the overall ratio closer to the target.",
+    "correctAnswer": 1,
+    "explanation": "The digital thread matters because it connects product information across engineering and downstream functions, improving traceability and impact understanding when product data changes.",
     "topic": "PLM Value and Digital Thread",
     "domain": "PLM Strategy and Foundations",
     "difficulty": "medium",
@@ -3146,7 +3146,7 @@
     "objective": "PLM Value and Digital Thread",
     "sourceManual": "Windchill Technical Essentials course manual.pdf",
     "sourceSection": "PLM Value and Digital Thread",
-    "misconceptionTag": "Terminology and solution-scope confusion",
+    "misconceptionTag": "Digital thread continuity misunderstanding",
     "releaseVersion": "2026.04"
   }
 ]
