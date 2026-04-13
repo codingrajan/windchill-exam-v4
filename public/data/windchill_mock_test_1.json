@@ -635,9 +635,9 @@
     "difficulty": "hard",
     "question": "An alias attribute in Windchill maps to an attribute on a related object. Which example mapping from the manual navigates from a WTPart to retrieve a Description from a related WTDocument?",
     "options": [
-      "description=title@wt.doc.WTDocument~name",
+      "description=number@wt.doc.WTDocument~number",
       "description=name@wt.part.WTPart~title",
-      "name=description@wt.doc.WTDocument~title",
+      "title=description@wt.doc.WTDocument~number",
       "name=title@wt.doc.WTDocument~description"
     ],
     "correctAnswer": 3,
