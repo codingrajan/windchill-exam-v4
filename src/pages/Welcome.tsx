@@ -32,6 +32,18 @@ const TIME_LABELS: Record<number, string> = {
   100: '75 min',
 };
 
+function getStoredActiveSessionConfig(): ExamConfig | null {
+  try {
+    const raw = window.sessionStorage.getItem(ACTIVE_SESSION_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as { config?: ExamConfig };
+    return parsed.config?.sessionId ? parsed.config : null;
+  } catch (error) {
+    console.error('Active session restore error:', error);
+    return null;
+  }
+}
+
 function StatCard({ icon, label, value }: { icon: string; label: string; value: string | number }) {
   return (
     <div className="bg-white border border-zinc-100 rounded-2xl p-5 text-center shadow-sm">
@@ -52,7 +64,7 @@ export default function Welcome() {
   const [examineeName, setExamineeName] = useState('');
   const [candidateEmail, setCandidateEmail] = useState('');
   const [isLoading, setIsLoading] = useState(true);
-  const [activeSessionConfig, setActiveSessionConfig] = useState<ExamConfig | null>(null);
+  const [activeSessionConfig] = useState<ExamConfig | null>(() => getStoredActiveSessionConfig());
 
   useEffect(() => {
     Promise.all([
@@ -79,17 +91,6 @@ export default function Welcome() {
         else setMode('random');
       })
       .finally(() => setIsLoading(false));
-  }, []);
-
-  useEffect(() => {
-    try {
-      const raw = window.sessionStorage.getItem(ACTIVE_SESSION_KEY);
-      if (!raw) return;
-      const parsed = JSON.parse(raw) as { config?: ExamConfig };
-      if (parsed.config?.sessionId) setActiveSessionConfig(parsed.config);
-    } catch (error) {
-      console.error('Active session restore error:', error);
-    }
   }, []);
 
   const selectedPreset = presets.find((preset) => preset.id === selectedPresetId);
@@ -332,7 +333,7 @@ export default function Welcome() {
                               </span>
                             </div>
                             <p className="text-[11px] text-zinc-500">
-                          Preset mode fixes the difficulty profile automatically. Track and experience settings stay off, and passed preset attempts can unlock a certificate.
+                              Preset mode fixes the difficulty profile automatically. Track and experience settings stay off, and passed preset attempts can unlock a certificate.
                             </p>
                           </div>
                         )}

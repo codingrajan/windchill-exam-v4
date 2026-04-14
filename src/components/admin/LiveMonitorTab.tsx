@@ -32,10 +32,10 @@ export default function LiveMonitorTab() {
 
   useEffect(() => {
     if (!selectedId) return;
-    setIndexError(false);
     const q = query(collection(db, 'session_participants'), where('sessionId', '==', selectedId), orderBy('startedAt', 'desc'));
     const unsub = onSnapshot(q,
       (snap) => {
+        setIndexError(false);
         const list: SessionParticipant[] = [];
         snap.forEach((d) => list.push({ ...(d.data() as SessionParticipant), id: d.id }));
         setParticipants(list);
@@ -92,13 +92,13 @@ export default function LiveMonitorTab() {
 
           {indexError ? (
             <div className="bg-amber-50 border border-amber-200 rounded-2xl p-5 text-center">
-              <p className="text-sm font-semibold text-amber-700 mb-1">Firestore index building…</p>
+              <p className="text-sm font-semibold text-amber-700 mb-1">Firestore index building...</p>
               <p className="text-xs text-amber-600">Check the browser console for a link to create the required index, then refresh this tab.</p>
             </div>
           ) : (
             <div className="bg-white border border-zinc-100 rounded-2xl shadow-sm overflow-hidden">
               <div className="flex items-center justify-between px-5 py-3 bg-zinc-50 border-b border-zinc-100">
-                <p className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wider">Participants — Live</p>
+                <p className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wider">Participants - Live</p>
                 <span className="flex items-center gap-1.5 text-[10px] font-semibold text-emerald-600">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse inline-block" />
                   Real-time

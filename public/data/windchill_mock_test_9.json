@@ -1,0 +1,62 @@
+[
+  {
+    "id": 623,
+    "domain": "Data Model, Types, and Attributes",
+    "topic": "Attribute and Type Services",
+    "difficulty": "easy",
+    "objective": "Recognize supported attribute-service handling over direct schema shortcuts",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Attribute and Type Services",
+    "misconceptionTag": "direct_sql_for_iba_updates",
+    "releaseVersion": "2026.04-tranche3",
+    "question": "When a customization must work with Windchill type or attribute values such as IBAs, what is the safer engineering posture?",
+    "options": [
+      "Use supported attribute-service APIs rather than direct database updates",
+      "Write directly to the database because attribute services are only for UI screens",
+      "Use vault utilities to change attribute values",
+      "Avoid type services because they are only for CAD documents"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Type and attribute behavior should be handled through supported APIs, not direct schema manipulation."
+  },
+  {
+    "id": 624,
+    "domain": "Lifecycle, Workflow, and Object Initialization",
+    "topic": "Life Cycle Templates and States",
+    "difficulty": "easy",
+    "objective": "Identify life cycle templates as the source of allowed state paths",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Life Cycle Templates and States",
+    "misconceptionTag": "workflow_replaces_lifecycle_template",
+    "releaseVersion": "2026.04-tranche3",
+    "question": "What does a life cycle template primarily define for a managed Windchill object?",
+    "options": [
+      "Its LDAP group membership",
+      "Its allowed states and the governed transition path between them",
+      "Its database tables",
+      "Its vault directory structure"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Life cycle templates define the governed state model and allowable progression of managed objects."
+  },
+  {
+    "id": 625,
+    "domain": "Architecture, Installation, and Integration",
+    "topic": "Method Server and Transactions",
+    "difficulty": "easy",
+    "objective": "Recognize the Method Server as the normal server-side execution context for Windchill logic",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Method Server and Transactions",
+    "misconceptionTag": "remote_client_executes_server_logic_directly",
+    "releaseVersion": "2026.04-tranche3",
+    "question": "When code must execute supported Windchill business logic on the server from a remote invocation context, which concept is central?",
+    "options": [
+      "ThingWorx mashup rendering",
+      "Layout inheritance",
+      "Method Server execution",
+      "Vault replication"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Windchill business logic runs in server-side execution contexts associated with the Method Server rather than directly on remote clients."
+  }
+]

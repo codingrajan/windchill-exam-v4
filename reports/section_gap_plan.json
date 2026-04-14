@@ -1,0 +1,1461 @@
+{
+  "summary": {
+    "generatedAt": "2026-04-14T08:57:27.894Z",
+    "totalQuestions": 625,
+    "totalSections": 53,
+    "targetFloor": 8,
+    "sectionsBelowFloor": 0,
+    "totalNewQuestionsNeededToReachFloor": 0
+  },
+  "rows": [
+    {
+      "section": "Access Control and Session Discipline",
+      "total": 8,
+      "gap": 0,
+      "priority": "stable",
+      "currentDifficulty": {
+        "easy": 3,
+        "medium": 5,
+        "hard": 0,
+        "unrated": 0
+      },
+      "recommendedNewQuestions": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 0
+      },
+      "sampleIds": [
+        508,
+        522,
+        539,
+        549,
+        587
+      ],
+      "sourceManuals": [
+        "Windchill Java API Practice Set"
+      ]
+    },
+    {
+      "section": "Attribute and Type Services",
+      "total": 8,
+      "gap": 0,
+      "priority": "stable",
+      "currentDifficulty": {
+        "easy": 4,
+        "medium": 4,
+        "hard": 0,
+        "unrated": 0
+      },
+      "recommendedNewQuestions": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 0
+      },
+      "sampleIds": [
+        506,
+        511,
+        515,
+        524,
+        529
+      ],
+      "sourceManuals": [
+        "Windchill Java API Practice Set"
+      ]
+    },
+    {
+      "section": "Backup and Rehost",
+      "total": 8,
+      "gap": 0,
+      "priority": "stable",
+      "currentDifficulty": {
+        "easy": 2,
+        "medium": 3,
+        "hard": 3,
+        "unrated": 0
+      },
+      "recommendedNewQuestions": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 0
+      },
+      "sampleIds": [
+        89,
+        90,
+        93,
+        144,
+        145
+      ],
+      "sourceManuals": [
+        "Windchill Advanced Configuration course manual.pdf",
+        "Windchill Technical Essentials course manual.pdf"
+      ]
+    },
+    {
+      "section": "Business Analysis and Configuration Planning",
+      "total": 8,
+      "gap": 0,
+      "priority": "stable",
+      "currentDifficulty": {
+        "easy": 3,
+        "medium": 4,
+        "hard": 1,
+        "unrated": 0
+      },
+      "recommendedNewQuestions": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 0
+      },
+      "sampleIds": [
+        20,
+        24,
+        558,
+        559,
+        560
+      ],
+      "sourceManuals": [
+        "Windchill Technical Essentials course manual.pdf"
+      ]
+    },
+    {
+      "section": "Change Execution and Resulting Objects",
+      "total": 8,
+      "gap": 0,
+      "priority": "stable",
+      "currentDifficulty": {
+        "easy": 3,
+        "medium": 5,
+        "hard": 0,
+        "unrated": 0
+      },
+      "recommendedNewQuestions": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 0
+      },
+      "sampleIds": [
+        74,
+        258,
+        291,
+        295,
+        385
+      ],
+      "sourceManuals": [
+        "Windchill Technical Essentials course manual.pdf"
+      ]
+    },
+    {
+      "section": "Change Service APIs",
+      "total": 8,
+      "gap": 0,
+      "priority": "stable",
+      "currentDifficulty": {
+        "easy": 4,
+        "medium": 4,
+        "hard": 0,
+        "unrated": 0
+      },
+      "recommendedNewQuestions": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 0
+      },
+      "sampleIds": [
+        507,
+        521,
+        528,
+        538,
+        547
+      ],
+      "sourceManuals": [
+        "Windchill Java API Practice Set"
+      ]
+    },
+    {
+      "section": "Client Access and Web Tier",
+      "total": 8,
+      "gap": 0,
+      "priority": "stable",
+      "currentDifficulty": {
+        "easy": 4,
+        "medium": 4,
+        "hard": 0,
+        "unrated": 0
+      },
+      "recommendedNewQuestions": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 0
+      },
+      "sampleIds": [
+        238,
+        551,
+        552,
+        553,
+        554
+      ],
+      "sourceManuals": [
+        "Windchill Advanced Configuration course manual.pdf"
+      ]
+    },
+    {
+      "section": "Context Templates",
+      "total": 8,
+      "gap": 0,
+      "priority": "stable",
+      "currentDifficulty": {
+        "easy": 4,
+        "medium": 4,
+        "hard": 0,
+        "unrated": 0
+      },
+      "recommendedNewQuestions": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 0
+      },
+      "sampleIds": [
+        64,
+        162,
+        341,
+        342,
+        591
+      ],
+      "sourceManuals": [
+        "Windchill Advanced Configuration course manual.pdf"
+      ]
+    },
+    {
+      "section": "Core Architecture and Services",
+      "total": 8,
+      "gap": 0,
+      "priority": "stable",
+      "currentDifficulty": {
+        "easy": 2,
+        "medium": 6,
+        "hard": 0,
+        "unrated": 0
+      },
+      "recommendedNewQuestions": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 0
+      },
+      "sampleIds": [
+        2,
+        9,
+        91,
+        139,
+        152
+      ],
+      "sourceManuals": [
+        "Windchill Advanced Configuration course manual.pdf",
+        "Windchill Technical Essentials course manual.pdf"
+      ]
+    },
+    {
+      "section": "Enterprise Integration and Authentication",
+      "total": 8,
+      "gap": 0,
+      "priority": "stable",
+      "currentDifficulty": {
+        "easy": 4,
+        "medium": 3,
+        "hard": 1,
+        "unrated": 0
+      },
+      "recommendedNewQuestions": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 0
+      },
+      "sampleIds": [
+        6,
+        10,
+        564,
+        565,
+        566
+      ],
+      "sourceManuals": [
+        "Windchill Technical Essentials course manual.pdf",
+        "Windchill Advanced Configuration course manual.pdf"
+      ]
+    },
+    {
+      "section": "Implementation Strategy and Legacy Data",
+      "total": 8,
+      "gap": 0,
+      "priority": "stable",
+      "currentDifficulty": {
+        "easy": 3,
+        "medium": 4,
+        "hard": 1,
+        "unrated": 0
+      },
+      "recommendedNewQuestions": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 0
+      },
+      "sampleIds": [
+        65,
+        106,
+        570,
+        571,
+        572
+      ],
+      "sourceManuals": [
+        "Windchill Technical Essentials course manual.pdf"
+      ]
+    },
+    {
+      "section": "Layouts and Attribute Presentation",
+      "total": 8,
+      "gap": 0,
+      "priority": "stable",
+      "currentDifficulty": {
+        "easy": 3,
+        "medium": 4,
+        "hard": 1,
+        "unrated": 0
+      },
+      "recommendedNewQuestions": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 0
+      },
+      "sampleIds": [
+        36,
+        179,
+        576,
+        577,
+        578
+      ],
+      "sourceManuals": [
+        "Windchill Advanced Configuration course manual.pdf"
+      ]
+    },
+    {
+      "section": "Life Cycle Templates and States",
+      "total": 8,
+      "gap": 0,
+      "priority": "stable",
+      "currentDifficulty": {
+        "easy": 3,
+        "medium": 1,
+        "hard": 4,
+        "unrated": 0
+      },
+      "recommendedNewQuestions": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 0
+      },
+      "sampleIds": [
+        25,
+        44,
+        52,
+        70,
+        191
+      ],
+      "sourceManuals": [
+        "Windchill Advanced Configuration course manual.pdf"
+      ]
+    },
+    {
+      "section": "Method Server and Transactions",
+      "total": 8,
+      "gap": 0,
+      "priority": "stable",
+      "currentDifficulty": {
+        "easy": 4,
+        "medium": 4,
+        "hard": 0,
+        "unrated": 0
+      },
+      "recommendedNewQuestions": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 0
+      },
+      "sampleIds": [
+        505,
+        513,
+        514,
+        523,
+        527
+      ],
+      "sourceManuals": [
+        "Windchill Java API Practice Set"
+      ]
+    },
+    {
+      "section": "Navigate Architecture",
+      "total": 8,
+      "gap": 0,
+      "priority": "stable",
+      "currentDifficulty": {
+        "easy": 1,
+        "medium": 5,
+        "hard": 2,
+        "unrated": 0
+      },
+      "recommendedNewQuestions": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 0
+      },
+      "sampleIds": [
+        146,
+        148,
+        149,
+        452,
+        453
+      ],
+      "sourceManuals": [
+        "Windchill Technical Essentials course manual.pdf"
+      ]
+    },
+    {
+      "section": "Navigate Fundamentals",
+      "total": 8,
+      "gap": 0,
+      "priority": "stable",
+      "currentDifficulty": {
+        "easy": 1,
+        "medium": 6,
+        "hard": 1,
+        "unrated": 0
+      },
+      "recommendedNewQuestions": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 0
+      },
+      "sampleIds": [
+        31,
+        147,
+        454,
+        455,
+        456
+      ],
+      "sourceManuals": [
+        "Windchill Technical Essentials course manual.pdf"
+      ]
+    },
+    {
+      "section": "Navigate Security and Administration",
+      "total": 8,
+      "gap": 0,
+      "priority": "stable",
+      "currentDifficulty": {
+        "easy": 4,
+        "medium": 3,
+        "hard": 1,
+        "unrated": 0
+      },
+      "recommendedNewQuestions": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 0
+      },
+      "sampleIds": [
+        150,
+        451,
+        457,
+        458,
+        480
+      ],
+      "sourceManuals": [
+        "Windchill Technical Essentials course manual.pdf"
+      ]
+    },
+    {
+      "section": "Performance and Runtime Administration",
+      "total": 8,
+      "gap": 0,
+      "priority": "stable",
+      "currentDifficulty": {
+        "easy": 3,
+        "medium": 5,
+        "hard": 0,
+        "unrated": 0
+      },
+      "recommendedNewQuestions": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 0
+      },
+      "sampleIds": [
+        88,
+        239,
+        394,
+        490,
+        595
+      ],
+      "sourceManuals": [
+        "Windchill Advanced Configuration course manual.pdf",
+        "Windchill Technical Essentials course manual.pdf"
+      ]
+    },
+    {
+      "section": "Persistence and Object Resolution",
+      "total": 8,
+      "gap": 0,
+      "priority": "stable",
+      "currentDifficulty": {
+        "easy": 5,
+        "medium": 3,
+        "hard": 0,
+        "unrated": 0
+      },
+      "recommendedNewQuestions": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 0
+      },
+      "sampleIds": [
+        501,
+        502,
+        517,
+        518,
+        525
+      ],
+      "sourceManuals": [
+        "Windchill Java API Practice Set"
+      ]
+    },
+    {
+      "section": "PLM Value and Digital Thread",
+      "total": 8,
+      "gap": 0,
+      "priority": "stable",
+      "currentDifficulty": {
+        "easy": 4,
+        "medium": 3,
+        "hard": 1,
+        "unrated": 0
+      },
+      "recommendedNewQuestions": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 0
+      },
+      "sampleIds": [
+        101,
+        102,
+        105,
+        164,
+        500
+      ],
+      "sourceManuals": [
+        "Windchill Technical Essentials course manual.pdf"
+      ]
+    },
+    {
+      "section": "Profiles and Business Administration",
+      "total": 8,
+      "gap": 0,
+      "priority": "stable",
+      "currentDifficulty": {
+        "easy": 3,
+        "medium": 3,
+        "hard": 2,
+        "unrated": 0
+      },
+      "recommendedNewQuestions": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 0
+      },
+      "sampleIds": [
+        337,
+        338,
+        401,
+        402,
+        432
+      ],
+      "sourceManuals": [
+        "Windchill Advanced Configuration course manual.pdf"
+      ]
+    },
+    {
+      "section": "Promotion Requests and Release Paths",
+      "total": 8,
+      "gap": 0,
+      "priority": "stable",
+      "currentDifficulty": {
+        "easy": 1,
+        "medium": 6,
+        "hard": 1,
+        "unrated": 0
+      },
+      "recommendedNewQuestions": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 0
+      },
+      "sampleIds": [
+        133,
+        200,
+        310,
+        346,
+        378
+      ],
+      "sourceManuals": [
+        "Windchill Advanced Configuration course manual.pdf"
+      ]
+    },
+    {
+      "section": "Query APIs",
+      "total": 8,
+      "gap": 0,
+      "priority": "stable",
+      "currentDifficulty": {
+        "easy": 2,
+        "medium": 6,
+        "hard": 0,
+        "unrated": 0
+      },
+      "recommendedNewQuestions": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 0
+      },
+      "sampleIds": [
+        503,
+        509,
+        519,
+        530,
+        533
+      ],
+      "sourceManuals": [
+        "Windchill Java API Practice Set"
+      ]
+    },
+    {
+      "section": "Security Administration and Audit Controls",
+      "total": 8,
+      "gap": 0,
+      "priority": "stable",
+      "currentDifficulty": {
+        "easy": 4,
+        "medium": 3,
+        "hard": 1,
+        "unrated": 0
+      },
+      "recommendedNewQuestions": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 0
+      },
+      "sampleIds": [
+        170,
+        208,
+        462,
+        582,
+        583
+      ],
+      "sourceManuals": [
+        "Windchill Advanced Configuration course manual.pdf"
+      ]
+    },
+    {
+      "section": "Version and Lifecycle Services",
+      "total": 8,
+      "gap": 0,
+      "priority": "stable",
+      "currentDifficulty": {
+        "easy": 4,
+        "medium": 4,
+        "hard": 0,
+        "unrated": 0
+      },
+      "recommendedNewQuestions": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 0
+      },
+      "sampleIds": [
+        504,
+        516,
+        526,
+        537,
+        545
+      ],
+      "sourceManuals": [
+        "Windchill Java API Practice Set"
+      ]
+    },
+    {
+      "section": "Versioning and Revision Rules",
+      "total": 8,
+      "gap": 0,
+      "priority": "stable",
+      "currentDifficulty": {
+        "easy": 2,
+        "medium": 6,
+        "hard": 0,
+        "unrated": 0
+      },
+      "recommendedNewQuestions": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 0
+      },
+      "sampleIds": [
+        43,
+        46,
+        51,
+        55,
+        78
+      ],
+      "sourceManuals": [
+        "Windchill Advanced Configuration course manual.pdf"
+      ]
+    },
+    {
+      "section": "Work In Progress Services",
+      "total": 8,
+      "gap": 0,
+      "priority": "stable",
+      "currentDifficulty": {
+        "easy": 3,
+        "medium": 5,
+        "hard": 0,
+        "unrated": 0
+      },
+      "recommendedNewQuestions": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 0
+      },
+      "sampleIds": [
+        510,
+        512,
+        520,
+        532,
+        541
+      ],
+      "sourceManuals": [
+        "Windchill Java API Practice Set"
+      ]
+    },
+    {
+      "section": "PLM Concepts and Business Value",
+      "total": 9,
+      "gap": 0,
+      "priority": "stable",
+      "currentDifficulty": {
+        "easy": 1,
+        "medium": 7,
+        "hard": 1,
+        "unrated": 0
+      },
+      "recommendedNewQuestions": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 0
+      },
+      "sampleIds": [
+        160,
+        167,
+        168,
+        226,
+        230
+      ],
+      "sourceManuals": [
+        "Windchill Technical Essentials course manual.pdf",
+        "Windchill Advanced Configuration course manual.pdf"
+      ]
+    },
+    {
+      "section": "Configuration Specifications and Filters",
+      "total": 10,
+      "gap": 0,
+      "priority": "stable",
+      "currentDifficulty": {
+        "easy": 1,
+        "medium": 8,
+        "hard": 1,
+        "unrated": 0
+      },
+      "recommendedNewQuestions": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 0
+      },
+      "sampleIds": [
+        75,
+        223,
+        225,
+        249,
+        254
+      ],
+      "sourceManuals": [
+        "Windchill Technical Essentials course manual.pdf",
+        "Windchill Advanced Configuration course manual.pdf"
+      ]
+    },
+    {
+      "section": "Attribute Modeling and Reuse",
+      "total": 11,
+      "gap": 0,
+      "priority": "stable",
+      "currentDifficulty": {
+        "easy": 1,
+        "medium": 7,
+        "hard": 3,
+        "unrated": 0
+      },
+      "recommendedNewQuestions": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 0
+      },
+      "sampleIds": [
+        28,
+        29,
+        30,
+        32,
+        34
+      ],
+      "sourceManuals": [
+        "Windchill Advanced Configuration course manual.pdf"
+      ]
+    },
+    {
+      "section": "Change Governance and Review",
+      "total": 11,
+      "gap": 0,
+      "priority": "stable",
+      "currentDifficulty": {
+        "easy": 4,
+        "medium": 7,
+        "hard": 0,
+        "unrated": 0
+      },
+      "recommendedNewQuestions": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 0
+      },
+      "sampleIds": [
+        71,
+        77,
+        83,
+        193,
+        217
+      ],
+      "sourceManuals": [
+        "Windchill Technical Essentials course manual.pdf",
+        "Windchill Advanced Configuration course manual.pdf"
+      ]
+    },
+    {
+      "section": "Constraints and Enumerations",
+      "total": 11,
+      "gap": 0,
+      "priority": "stable",
+      "currentDifficulty": {
+        "easy": 3,
+        "medium": 5,
+        "hard": 3,
+        "unrated": 0
+      },
+      "recommendedNewQuestions": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 0
+      },
+      "sampleIds": [
+        33,
+        37,
+        38,
+        40,
+        124
+      ],
+      "sourceManuals": [
+        "Windchill Advanced Configuration course manual.pdf"
+      ]
+    },
+    {
+      "section": "Installation and Deployment Topology",
+      "total": 11,
+      "gap": 0,
+      "priority": "stable",
+      "currentDifficulty": {
+        "easy": 5,
+        "medium": 5,
+        "hard": 1,
+        "unrated": 0
+      },
+      "recommendedNewQuestions": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 0
+      },
+      "sampleIds": [
+        1,
+        5,
+        7,
+        8,
+        134
+      ],
+      "sourceManuals": [
+        "Windchill Advanced Configuration course manual.pdf",
+        "Windchill Technical Essentials course manual.pdf"
+      ]
+    },
+    {
+      "section": "Object Initialization Rules",
+      "total": 11,
+      "gap": 0,
+      "priority": "stable",
+      "currentDifficulty": {
+        "easy": 2,
+        "medium": 6,
+        "hard": 3,
+        "unrated": 0
+      },
+      "recommendedNewQuestions": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 0
+      },
+      "sampleIds": [
+        49,
+        57,
+        58,
+        120,
+        121
+      ],
+      "sourceManuals": [
+        "Windchill Advanced Configuration course manual.pdf"
+      ]
+    },
+    {
+      "section": "Structure Usage and Navigation",
+      "total": 11,
+      "gap": 0,
+      "priority": "stable",
+      "currentDifficulty": {
+        "easy": 5,
+        "medium": 6,
+        "hard": 0,
+        "unrated": 0
+      },
+      "recommendedNewQuestions": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 0
+      },
+      "sampleIds": [
+        224,
+        274,
+        275,
+        308,
+        311
+      ],
+      "sourceManuals": [
+        "Windchill Technical Essentials course manual.pdf"
+      ]
+    },
+    {
+      "section": "Context Hierarchy and Application Contexts",
+      "total": 12,
+      "gap": 0,
+      "priority": "stable",
+      "currentDifficulty": {
+        "easy": 4,
+        "medium": 6,
+        "hard": 2,
+        "unrated": 0
+      },
+      "recommendedNewQuestions": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 0
+      },
+      "sampleIds": [
+        16,
+        22,
+        47,
+        56,
+        115
+      ],
+      "sourceManuals": [
+        "Windchill Technical Essentials course manual.pdf",
+        "Windchill Advanced Configuration course manual.pdf"
+      ]
+    },
+    {
+      "section": "Teams, Roles, and Context Groups",
+      "total": 12,
+      "gap": 0,
+      "priority": "stable",
+      "currentDifficulty": {
+        "easy": 1,
+        "medium": 7,
+        "hard": 4,
+        "unrated": 0
+      },
+      "recommendedNewQuestions": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 0
+      },
+      "sampleIds": [
+        18,
+        62,
+        67,
+        69,
+        85
+      ],
+      "sourceManuals": [
+        "Windchill Advanced Configuration course manual.pdf"
+      ]
+    },
+    {
+      "section": "Workflow Design and Execution",
+      "total": 12,
+      "gap": 0,
+      "priority": "stable",
+      "currentDifficulty": {
+        "easy": 1,
+        "medium": 8,
+        "hard": 3,
+        "unrated": 0
+      },
+      "recommendedNewQuestions": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 0
+      },
+      "sampleIds": [
+        41,
+        53,
+        54,
+        131,
+        186
+      ],
+      "sourceManuals": [
+        "Windchill Advanced Configuration course manual.pdf"
+      ]
+    },
+    {
+      "section": "Baselines and Structure Snapshots",
+      "total": 14,
+      "gap": 0,
+      "priority": "stable",
+      "currentDifficulty": {
+        "easy": 2,
+        "medium": 11,
+        "hard": 1,
+        "unrated": 0
+      },
+      "recommendedNewQuestions": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 0
+      },
+      "sampleIds": [
+        73,
+        253,
+        271,
+        272,
+        273
+      ],
+      "sourceManuals": [
+        "Windchill Technical Essentials course manual.pdf"
+      ]
+    },
+    {
+      "section": "Effectivity and Applicability",
+      "total": 14,
+      "gap": 0,
+      "priority": "stable",
+      "currentDifficulty": {
+        "easy": 8,
+        "medium": 6,
+        "hard": 0,
+        "unrated": 0
+      },
+      "recommendedNewQuestions": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 0
+      },
+      "sampleIds": [
+        251,
+        252,
+        269,
+        278,
+        279
+      ],
+      "sourceManuals": [
+        "Windchill Technical Essentials course manual.pdf"
+      ]
+    },
+    {
+      "section": "Audit and Usage Reporting",
+      "total": 15,
+      "gap": 0,
+      "priority": "stable",
+      "currentDifficulty": {
+        "easy": 0,
+        "medium": 14,
+        "hard": 1,
+        "unrated": 0
+      },
+      "recommendedNewQuestions": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 0
+      },
+      "sampleIds": [
+        172,
+        237,
+        263,
+        264,
+        302
+      ],
+      "sourceManuals": [
+        "Windchill Advanced Configuration course manual.pdf",
+        "Windchill Technical Essentials course manual.pdf"
+      ]
+    },
+    {
+      "section": "Policy Administration and Access Evaluation",
+      "total": 15,
+      "gap": 0,
+      "priority": "stable",
+      "currentDifficulty": {
+        "easy": 3,
+        "medium": 7,
+        "hard": 5,
+        "unrated": 0
+      },
+      "recommendedNewQuestions": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 0
+      },
+      "sampleIds": [
+        17,
+        23,
+        42,
+        61,
+        63
+      ],
+      "sourceManuals": [
+        "Windchill Advanced Configuration course manual.pdf"
+      ]
+    },
+    {
+      "section": "Vaulting and Content Maintenance",
+      "total": 15,
+      "gap": 0,
+      "priority": "stable",
+      "currentDifficulty": {
+        "easy": 4,
+        "medium": 7,
+        "hard": 4,
+        "unrated": 0
+      },
+      "recommendedNewQuestions": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 0
+      },
+      "sampleIds": [
+        21,
+        95,
+        142,
+        143,
+        232
+      ],
+      "sourceManuals": [
+        "Windchill Technical Essentials course manual.pdf",
+        "Windchill Advanced Configuration course manual.pdf"
+      ]
+    },
+    {
+      "section": "Issue Intake and Variance Control",
+      "total": 16,
+      "gap": 0,
+      "priority": "stable",
+      "currentDifficulty": {
+        "easy": 5,
+        "medium": 11,
+        "hard": 0,
+        "unrated": 0
+      },
+      "recommendedNewQuestions": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 0
+      },
+      "sampleIds": [
+        72,
+        76,
+        216,
+        255,
+        256
+      ],
+      "sourceManuals": [
+        "Windchill Technical Essentials course manual.pdf"
+      ]
+    },
+    {
+      "section": "Core Object Model and Associations",
+      "total": 17,
+      "gap": 0,
+      "priority": "stable",
+      "currentDifficulty": {
+        "easy": 3,
+        "medium": 10,
+        "hard": 4,
+        "unrated": 0
+      },
+      "recommendedNewQuestions": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 0
+      },
+      "sampleIds": [
+        26,
+        27,
+        98,
+        100,
+        103
+      ],
+      "sourceManuals": [
+        "Windchill Advanced Configuration course manual.pdf",
+        "Windchill Technical Essentials course manual.pdf"
+      ]
+    },
+    {
+      "section": "Preferences",
+      "total": 17,
+      "gap": 0,
+      "priority": "stable",
+      "currentDifficulty": {
+        "easy": 5,
+        "medium": 11,
+        "hard": 1,
+        "unrated": 0
+      },
+      "recommendedNewQuestions": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 0
+      },
+      "sampleIds": [
+        169,
+        281,
+        282,
+        283,
+        319
+      ],
+      "sourceManuals": [
+        "Windchill Advanced Configuration course manual.pdf"
+      ]
+    },
+    {
+      "section": "CAD Documents and Authoring Context",
+      "total": 19,
+      "gap": 0,
+      "priority": "stable",
+      "currentDifficulty": {
+        "easy": 3,
+        "medium": 14,
+        "hard": 2,
+        "unrated": 0
+      },
+      "recommendedNewQuestions": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 0
+      },
+      "sampleIds": [
+        79,
+        84,
+        104,
+        108,
+        222
+      ],
+      "sourceManuals": [
+        "Windchill Technical Essentials course manual.pdf",
+        "Windchill Advanced Configuration course manual.pdf"
+      ]
+    },
+    {
+      "section": "Replication and Distribution",
+      "total": 19,
+      "gap": 0,
+      "priority": "stable",
+      "currentDifficulty": {
+        "easy": 3,
+        "medium": 14,
+        "hard": 2,
+        "unrated": 0
+      },
+      "recommendedNewQuestions": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 0
+      },
+      "sampleIds": [
+        157,
+        259,
+        260,
+        261,
+        262
+      ],
+      "sourceManuals": [
+        "Windchill Technical Essentials course manual.pdf"
+      ]
+    },
+    {
+      "section": "Organization Setup and Directory Controls",
+      "total": 20,
+      "gap": 0,
+      "priority": "stable",
+      "currentDifficulty": {
+        "easy": 6,
+        "medium": 9,
+        "hard": 5,
+        "unrated": 0
+      },
+      "recommendedNewQuestions": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 0
+      },
+      "sampleIds": [
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "sourceManuals": [
+        "Windchill Advanced Configuration course manual.pdf",
+        "Windchill Technical Essentials course manual.pdf"
+      ]
+    },
+    {
+      "section": "Administrative Utilities and Queues",
+      "total": 23,
+      "gap": 0,
+      "priority": "stable",
+      "currentDifficulty": {
+        "easy": 5,
+        "medium": 15,
+        "hard": 3,
+        "unrated": 0
+      },
+      "recommendedNewQuestions": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 0
+      },
+      "sampleIds": [
+        86,
+        87,
+        92,
+        94,
+        130
+      ],
+      "sourceManuals": [
+        "Windchill Advanced Configuration course manual.pdf",
+        "Windchill Technical Essentials course manual.pdf"
+      ]
+    },
+    {
+      "section": "Workspaces and Commonspace Control",
+      "total": 24,
+      "gap": 0,
+      "priority": "stable",
+      "currentDifficulty": {
+        "easy": 4,
+        "medium": 20,
+        "hard": 0,
+        "unrated": 0
+      },
+      "recommendedNewQuestions": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 0
+      },
+      "sampleIds": [
+        96,
+        97,
+        99,
+        175,
+        196
+      ],
+      "sourceManuals": [
+        "Windchill Technical Essentials course manual.pdf",
+        "Windchill Advanced Configuration course manual.pdf"
+      ]
+    },
+    {
+      "section": "Change Requests and Notices",
+      "total": 25,
+      "gap": 0,
+      "priority": "stable",
+      "currentDifficulty": {
+        "easy": 4,
+        "medium": 16,
+        "hard": 5,
+        "unrated": 0
+      },
+      "recommendedNewQuestions": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 0
+      },
+      "sampleIds": [
+        48,
+        80,
+        81,
+        127,
+        129
+      ],
+      "sourceManuals": [
+        "Windchill Advanced Configuration course manual.pdf",
+        "Windchill Technical Essentials course manual.pdf"
+      ]
+    },
+    {
+      "section": "Visualization and Publishing",
+      "total": 35,
+      "gap": 0,
+      "priority": "stable",
+      "currentDifficulty": {
+        "easy": 8,
+        "medium": 22,
+        "hard": 5,
+        "unrated": 0
+      },
+      "recommendedNewQuestions": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 0
+      },
+      "sampleIds": [
+        3,
+        4,
+        154,
+        159,
+        240
+      ],
+      "sourceManuals": [
+        "Windchill Advanced Configuration course manual.pdf",
+        "Windchill Technical Essentials course manual.pdf"
+      ]
+    }
+  ]
+}

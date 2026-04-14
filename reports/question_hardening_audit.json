@@ -1,0 +1,566 @@
+{
+  "summary": {
+    "generatedAt": "2026-04-14T09:41:13.888Z",
+    "totalQuestions": 625,
+    "totalHardQuestions": 79,
+    "totalSnippetQuestions": 6,
+    "thinExplanationCount": 0,
+    "singleAnswerDistribution": {
+      "A": 138,
+      "B": 153,
+      "C": 145,
+      "D": 129
+    }
+  },
+  "thinExplanations": [],
+  "hardReviewQueue": [
+    {
+      "id": 338,
+      "file": "windchill_mock_test_4.json",
+      "topic": "Profiles and Business Administration",
+      "objective": "Profiles and Business Administration",
+      "explanationWordCount": 12,
+      "question": "What is the key limitation of a profile compared with access control?"
+    },
+    {
+      "id": 482,
+      "file": "windchill_mock_test_5.json",
+      "topic": "Configuration Specifications and Filters",
+      "objective": "Configuration Specifications and Filters",
+      "explanationWordCount": 12,
+      "question": "What is one advantage of resolving a structure with different configuration specifications instead of duplicating the BOM?"
+    },
+    {
+      "id": 488,
+      "file": "windchill_mock_test_5.json",
+      "topic": "Preferences",
+      "objective": "Preferences",
+      "explanationWordCount": 12,
+      "question": "What is one implementation takeaway from the preference hierarchy?"
+    },
+    {
+      "id": 326,
+      "file": "windchill_mock_test_4.json",
+      "topic": "Visualization and Publishing",
+      "objective": "Visualization and Publishing",
+      "explanationWordCount": 13,
+      "question": "What do publish rules in a WVS solution primarily control?"
+    },
+    {
+      "id": 409,
+      "file": "windchill_mock_test_5.json",
+      "topic": "Vaulting and Content Maintenance",
+      "objective": "Vaulting and Content Maintenance",
+      "explanationWordCount": 13,
+      "question": "Which product-definition artifacts may be moved along with a selected object when collected by the Move Wizard?"
+    },
+    {
+      "id": 476,
+      "file": "windchill_mock_test_5.json",
+      "topic": "CAD Documents and Authoring Context",
+      "objective": "CAD Documents and Authoring Context",
+      "explanationWordCount": 13,
+      "question": "What is one implementation risk of ignoring publish-rule design?"
+    },
+    {
+      "id": 407,
+      "file": "windchill_mock_test_5.json",
+      "topic": "Policy Administration and Access Evaluation",
+      "objective": "Policy Administration and Access Evaluation",
+      "explanationWordCount": 14,
+      "question": "Which kind of security-related data may be included when moving an object with its related data?"
+    },
+    {
+      "id": 350,
+      "file": "windchill_mock_test_4.json",
+      "topic": "Audit and Usage Reporting",
+      "objective": "Audit and Usage Reporting",
+      "explanationWordCount": 15,
+      "question": "What is the key reason to monitor system activity through throughput, usage, and audit reports together?"
+    },
+    {
+      "id": 132,
+      "file": "windchill_mock_test_2.json",
+      "topic": "Change Requests and Notices",
+      "objective": "Change Requests and Notices",
+      "explanationWordCount": 18,
+      "question": "Which two transition types are strictly associated with the formal Change Management process? (Choose 2)"
+    },
+    {
+      "id": 306,
+      "file": "windchill_mock_test_4.json",
+      "topic": "Visualization and Publishing",
+      "objective": "Visualization and Publishing",
+      "explanationWordCount": 18,
+      "question": "Which type of related object may be collected and moved with the original selection in Windchill?"
+    },
+    {
+      "id": 137,
+      "file": "windchill_mock_test_2.json",
+      "topic": "Administrative Utilities and Queues",
+      "objective": "Administrative Utilities and Queues",
+      "explanationWordCount": 19,
+      "question": "Which two configuration files are managed using the `xconfmanager` utility? (Choose 2)"
+    },
+    {
+      "id": 260,
+      "file": "windchill_mock_test_4.json",
+      "topic": "Replication and Distribution",
+      "objective": "Replication and Distribution",
+      "explanationWordCount": 19,
+      "question": "What is the key distinction between file vaulting and content replication in Windchill?"
+    },
+    {
+      "id": 273,
+      "file": "windchill_mock_test_4.json",
+      "topic": "Baselines and Structure Snapshots",
+      "objective": "Baselines and Structure Snapshots",
+      "explanationWordCount": 19,
+      "question": "What is the key difference between a baseline and a configuration specification in Windchill?"
+    },
+    {
+      "id": 123,
+      "file": "windchill_mock_test_2.json",
+      "topic": "Object Initialization Rules",
+      "objective": "Object Initialization Rules",
+      "explanationWordCount": 20,
+      "question": "Which two XML algorithms can be used within an OIR to set the versioning scheme of a document? (Choose 2)"
+    },
+    {
+      "id": 111,
+      "file": "windchill_mock_test_2.json",
+      "topic": "Core Object Model and Associations",
+      "objective": "Core Object Model and Associations",
+      "explanationWordCount": 22,
+      "question": "Which two statements accurately describe the difference between WTDocument and WTDocumentMaster? (Choose 2)"
+    },
+    {
+      "id": 354,
+      "file": "windchill_mock_test_5.json",
+      "topic": "Visualization and Publishing",
+      "objective": "Visualization and Publishing",
+      "explanationWordCount": 22,
+      "question": "What do publish rules help determine in a WVS implementation?"
+    },
+    {
+      "id": 138,
+      "file": "windchill_mock_test_2.json",
+      "topic": "Administrative Utilities and Queues",
+      "objective": "Administrative Utilities and Queues",
+      "explanationWordCount": 23,
+      "question": "What two mechanisms are used to tune Windchill server memory and cache sizes? (Choose 2)"
+    },
+    {
+      "id": 145,
+      "file": "windchill_mock_test_2.json",
+      "topic": "Backup and Rehost",
+      "objective": "Backup and Rehost",
+      "explanationWordCount": 23,
+      "question": "What two purposes does the `WinRU` (Windchill Rehost Utility) serve? (Choose 2)"
+    },
+    {
+      "id": 112,
+      "file": "windchill_mock_test_2.json",
+      "topic": "Core Object Model and Associations",
+      "objective": "Core Object Model and Associations",
+      "explanationWordCount": 24,
+      "question": "When dealing with Windchill content management, what are two valid ways primary content differs from secondary content? (Choose 2)"
+    },
+    {
+      "id": 130,
+      "file": "windchill_mock_test_2.json",
+      "topic": "Administrative Utilities and Queues",
+      "objective": "Administrative Utilities and Queues",
+      "explanationWordCount": 24,
+      "question": "Which three statements are true regarding Windchill Workflow Expression Robots? (Choose 3)"
+    },
+    {
+      "id": 124,
+      "file": "windchill_mock_test_2.json",
+      "topic": "Constraints and Enumerations",
+      "objective": "Constraints and Enumerations",
+      "explanationWordCount": 25,
+      "question": "When configuring constraints in the Type and Attribute Manager, which two constraints prevent a user from leaving a field blank? (Choose 2)"
+    },
+    {
+      "id": 149,
+      "file": "windchill_mock_test_2.json",
+      "topic": "Navigate Architecture",
+      "objective": "Navigate Architecture",
+      "explanationWordCount": 25,
+      "question": "When tailoring Windchill Navigate, which two actions are supported via the Navigate Administrator console? (Choose 2)"
+    },
+    {
+      "id": 416,
+      "file": "windchill_mock_test_5.json",
+      "topic": "PLM Concepts and Business Value",
+      "objective": "PLM Concepts and Business Value",
+      "explanationWordCount": 25,
+      "question": "Why should worker compatibility be validated during implementation planning?"
+    },
+    {
+      "id": 473,
+      "file": "windchill_mock_test_5.json",
+      "topic": "Visualization and Publishing",
+      "objective": "Visualization and Publishing",
+      "explanationWordCount": 25,
+      "question": "Why should representation strategy be considered during architecture planning?"
+    },
+    {
+      "id": 494,
+      "file": "windchill_mock_test_5.json",
+      "topic": "Visualization and Publishing",
+      "objective": "Visualization and Publishing",
+      "explanationWordCount": 25,
+      "question": "What is one reason to size visualization architecture thoughtfully during deployment?"
+    },
+    {
+      "id": 496,
+      "file": "windchill_mock_test_5.json",
+      "topic": "Change Requests and Notices",
+      "objective": "Change Requests and Notices",
+      "explanationWordCount": 25,
+      "question": "Why should implementation teams distinguish issue capture, change evaluation, and change execution?"
+    },
+    {
+      "id": 131,
+      "file": "windchill_mock_test_2.json",
+      "topic": "Workflow Design and Execution",
+      "objective": "Workflow Design and Execution",
+      "explanationWordCount": 26,
+      "question": "When configuring a workflow task, what two routing options are available in a 'Conditional' routing node? (Choose 2)"
+    },
+    {
+      "id": 144,
+      "file": "windchill_mock_test_2.json",
+      "topic": "Backup and Rehost",
+      "objective": "Backup and Rehost",
+      "explanationWordCount": 26,
+      "question": "To perform a 'hot backup' of a Windchill environment, what two steps must be taken to ensure data consistency? (Choose 2)"
+    },
+    {
+      "id": 459,
+      "file": "windchill_mock_test_5.json",
+      "topic": "Navigate Architecture",
+      "objective": "Navigate Architecture",
+      "explanationWordCount": 26,
+      "question": "What is one architectural advantage of Navigate using ThingWorx plus Windchill REST Services?"
+    },
+    {
+      "id": 42,
+      "file": "windchill_mock_test_1.json",
+      "topic": "Policy Administration and Access Evaluation",
+      "objective": "Policy Administration and Access Evaluation",
+      "explanationWordCount": 27,
+      "question": "When life cycle access control is defined in an Advanced life cycle, which of the following statements accurately describes its behavior?"
+    },
+    {
+      "id": 113,
+      "file": "windchill_mock_test_2.json",
+      "topic": "Core Object Model and Associations",
+      "objective": "Core Object Model and Associations",
+      "explanationWordCount": 27,
+      "question": "Which three association types exist between an EPMDocument and a WTPart? (Choose 3)"
+    },
+    {
+      "id": 150,
+      "file": "windchill_mock_test_2.json",
+      "topic": "Navigate Security and Administration",
+      "objective": "Navigate Security and Administration",
+      "explanationWordCount": 27,
+      "question": "If a user requires access to a Windchill Navigate app, which two security requirements must be met? (Choose 2)"
+    },
+    {
+      "id": 402,
+      "file": "windchill_mock_test_5.json",
+      "topic": "Profiles and Business Administration",
+      "objective": "Profiles and Business Administration",
+      "explanationWordCount": 27,
+      "question": "What can a profile not do by itself?"
+    },
+    {
+      "id": 383,
+      "file": "windchill_mock_test_5.json",
+      "topic": "Change Requests and Notices",
+      "objective": "Change Requests and Notices",
+      "explanationWordCount": 28,
+      "question": "What is the primary value of a Change Request?"
+    },
+    {
+      "id": 475,
+      "file": "windchill_mock_test_5.json",
+      "topic": "CAD Documents and Authoring Context",
+      "objective": "CAD Documents and Authoring Context",
+      "explanationWordCount": 28,
+      "question": "Why is it useful to distinguish source-data governance from viewable-distribution strategy?"
+    },
+    {
+      "id": 233,
+      "file": "windchill_mock_test_3.json",
+      "topic": "Vaulting and Content Maintenance",
+      "objective": "Vaulting and Content Maintenance",
+      "explanationWordCount": 29,
+      "question": "In Windchill file vault configuration, what does the 'file threshold value' determine?"
+    },
+    {
+      "id": 15,
+      "file": "windchill_mock_test_1.json",
+      "topic": "Organization Setup and Directory Controls",
+      "objective": "Organization Setup and Directory Controls",
+      "explanationWordCount": 30,
+      "question": "When creating a new organization in Windchill, what does the 'Subscriber' checkbox control?"
+    },
+    {
+      "id": 21,
+      "file": "windchill_mock_test_1.json",
+      "topic": "Vaulting and Content Maintenance",
+      "objective": "Vaulting and Content Maintenance",
+      "explanationWordCount": 30,
+      "question": "What does the 'Restricted Directory Search' option control when creating a Windchill organization?"
+    },
+    {
+      "id": 118,
+      "file": "windchill_mock_test_2.json",
+      "topic": "Teams, Roles, and Context Groups",
+      "objective": "Teams, Roles, and Context Groups",
+      "explanationWordCount": 30,
+      "question": "Which three statements regarding context teams and shared teams are true? (Choose 3)"
+    },
+    {
+      "id": 261,
+      "file": "windchill_mock_test_4.json",
+      "topic": "Replication and Distribution",
+      "objective": "Replication and Distribution",
+      "explanationWordCount": 30,
+      "question": "What does a Windchill replication rule primarily define?"
+    },
+    {
+      "id": 25,
+      "file": "windchill_mock_test_1.json",
+      "topic": "Life Cycle Templates and States",
+      "objective": "Life Cycle Templates and States",
+      "explanationWordCount": 31,
+      "question": "Which administrator type can create a new promotion preference assigned to a specific destination life cycle state in Windchill?"
+    },
+    {
+      "id": 53,
+      "file": "windchill_mock_test_1.json",
+      "topic": "Workflow Design and Execution",
+      "objective": "Workflow Design and Execution",
+      "explanationWordCount": 31,
+      "question": "Adding custom roles to Windchill for use in workflows and life cycles requires adding an entry to which custom modeled enumeration?"
+    },
+    {
+      "id": 125,
+      "file": "windchill_mock_test_2.json",
+      "topic": "Attribute Modeling and Reuse",
+      "objective": "Attribute Modeling and Reuse",
+      "explanationWordCount": 31,
+      "question": "Which three actions are permitted on an alias attribute in Windchill? (Choose 3)"
+    },
+    {
+      "id": 105,
+      "file": "windchill_mock_test_2.json",
+      "topic": "PLM Value and Digital Thread",
+      "objective": "PLM Value and Digital Thread",
+      "explanationWordCount": 32,
+      "question": "When defining closed-loop quality in Windchill, which two modules are typically utilized to capture and correct field issues? (Choose 2)"
+    },
+    {
+      "id": 18,
+      "file": "windchill_mock_test_1.json",
+      "topic": "Teams, Roles, and Context Groups",
+      "objective": "Teams, Roles, and Context Groups",
+      "explanationWordCount": 33,
+      "question": "The site context in Windchill contains which of the following out-of-the-box configuration elements? (Select the most complete answer.)"
+    },
+    {
+      "id": 200,
+      "file": "windchill_mock_test_3.json",
+      "topic": "Promotion Requests and Release Paths",
+      "objective": "Promotion Requests and Release Paths",
+      "explanationWordCount": 33,
+      "question": "In Windchill, what is an OOTB 'promotion scheme' and what does it define?"
+    },
+    {
+      "id": 10,
+      "file": "windchill_mock_test_1.json",
+      "topic": "Enterprise Integration and Authentication",
+      "objective": "Enterprise Integration and Authentication",
+      "explanationWordCount": 34,
+      "question": "Which ERP system is specifically mentioned in the Windchill course scenario as being used by Mech Solutions prior to Windchill implementation?"
+    },
+    {
+      "id": 20,
+      "file": "windchill_mock_test_1.json",
+      "topic": "Business Analysis and Configuration Planning",
+      "objective": "Business Analysis and Configuration Planning",
+      "explanationWordCount": 34,
+      "question": "Which configuration driver analysis activity is the FIRST step in identifying Windchill business configuration requirements?"
+    },
+    {
+      "id": 208,
+      "file": "windchill_mock_test_3.json",
+      "topic": "Security Administration and Audit Controls",
+      "objective": "Security Administration and Audit Controls",
+      "explanationWordCount": 35,
+      "question": "The Windchill 'private domain architecture' is primarily associated with which data management scenario?"
+    },
+    {
+      "id": 68,
+      "file": "windchill_mock_test_1.json",
+      "topic": "Organization Setup and Directory Controls",
+      "objective": "Organization Setup and Directory Controls",
+      "explanationWordCount": 36,
+      "question": "Custom roles added via the 'Add Roles to Organization' utility can be used for which purpose in Windchill?"
+    }
+  ],
+  "snippetReviewQueue": [
+    {
+      "id": 508,
+      "file": "windchill_mock_test_6.json",
+      "topic": "Access Control and Session Discipline",
+      "difficulty": "medium",
+      "question": "Review this snippet and identify the strongest concern.",
+      "explanationWordCount": 28,
+      "codeSnippetLineCount": 2
+    },
+    {
+      "id": 509,
+      "file": "windchill_mock_test_6.json",
+      "topic": "Query APIs",
+      "difficulty": "medium",
+      "question": "What is the primary defect in this snippet?",
+      "explanationWordCount": 32,
+      "codeSnippetLineCount": 3
+    },
+    {
+      "id": 514,
+      "file": "windchill_mock_test_6.json",
+      "topic": "Method Server and Transactions",
+      "difficulty": "medium",
+      "question": "What is the strongest defect in this snippet?",
+      "explanationWordCount": 26,
+      "codeSnippetLineCount": 4
+    },
+    {
+      "id": 520,
+      "file": "windchill_mock_test_6.json",
+      "topic": "Work In Progress Services",
+      "difficulty": "medium",
+      "question": "Why is this snippet suspicious?",
+      "explanationWordCount": 25,
+      "codeSnippetLineCount": 2
+    },
+    {
+      "id": 525,
+      "file": "windchill_mock_test_6.json",
+      "topic": "Persistence and Object Resolution",
+      "difficulty": "medium",
+      "question": "Why should this snippet be reviewed skeptically?",
+      "explanationWordCount": 31,
+      "codeSnippetLineCount": 3
+    },
+    {
+      "id": 529,
+      "file": "windchill_mock_test_6.json",
+      "topic": "Attribute and Type Services",
+      "difficulty": "medium",
+      "question": "What is the primary review finding in this snippet?",
+      "explanationWordCount": 24,
+      "codeSnippetLineCount": 4
+    }
+  ],
+  "perFileAnswerDistribution": [
+    {
+      "file": "windchill_mock_test_1.json",
+      "totalSingleAnswerQuestions": 100,
+      "answerDistribution": {
+        "A": 18,
+        "B": 31,
+        "C": 31,
+        "D": 20
+      }
+    },
+    {
+      "file": "windchill_mock_test_2.json",
+      "totalSingleAnswerQuestions": 0,
+      "answerDistribution": {
+        "A": 0,
+        "B": 0,
+        "C": 0,
+        "D": 0
+      }
+    },
+    {
+      "file": "windchill_mock_test_3.json",
+      "totalSingleAnswerQuestions": 90,
+      "answerDistribution": {
+        "A": 23,
+        "B": 23,
+        "C": 22,
+        "D": 22
+      }
+    },
+    {
+      "file": "windchill_mock_test_4.json",
+      "totalSingleAnswerQuestions": 100,
+      "answerDistribution": {
+        "A": 25,
+        "B": 25,
+        "C": 25,
+        "D": 25
+      }
+    },
+    {
+      "file": "windchill_mock_test_5.json",
+      "totalSingleAnswerQuestions": 150,
+      "answerDistribution": {
+        "A": 37,
+        "B": 38,
+        "C": 37,
+        "D": 38
+      }
+    },
+    {
+      "file": "windchill_mock_test_6.json",
+      "totalSingleAnswerQuestions": 50,
+      "answerDistribution": {
+        "A": 16,
+        "B": 17,
+        "C": 11,
+        "D": 6
+      }
+    },
+    {
+      "file": "windchill_mock_test_7.json",
+      "totalSingleAnswerQuestions": 48,
+      "answerDistribution": {
+        "A": 12,
+        "B": 12,
+        "C": 12,
+        "D": 12
+      }
+    },
+    {
+      "file": "windchill_mock_test_8.json",
+      "totalSingleAnswerQuestions": 24,
+      "answerDistribution": {
+        "A": 6,
+        "B": 6,
+        "C": 6,
+        "D": 6
+      }
+    },
+    {
+      "file": "windchill_mock_test_9.json",
+      "totalSingleAnswerQuestions": 3,
+      "answerDistribution": {
+        "A": 1,
+        "B": 1,
+        "C": 1,
+        "D": 0
+      }
+    }
+  ]
+}

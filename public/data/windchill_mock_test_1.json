@@ -635,9 +635,9 @@
     "difficulty": "hard",
     "question": "An alias attribute in Windchill maps to an attribute on a related object. Which example mapping from the manual navigates from a WTPart to retrieve a Description from a related WTDocument?",
     "options": [
-      "description=number@wt.doc.WTDocument~number",
+      "number=name@wt.part.WTPartMaster~name",
       "description=name@wt.part.WTPart~title",
-      "title=description@wt.doc.WTDocument~number",
+      "title=number@wt.doc.WTDocument~name",
       "name=title@wt.doc.WTDocument~description"
     ],
     "correctAnswer": 3,
@@ -1246,7 +1246,7 @@
     "options": [
       "The organization-level rule always takes precedence",
       "Rules are merged equally",
-      "The site-level rule always takes precedence",
+      "The most recently edited rule always takes precedence regardless of hierarchy",
       "The subtype rule at a lower context level overrides context parents and class hierarchy parents"
     ],
     "correctAnswer": 3,

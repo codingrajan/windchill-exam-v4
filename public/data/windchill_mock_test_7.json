@@ -1,0 +1,962 @@
+[
+  {
+    "id": 551,
+    "domain": "Architecture, Installation, and Integration",
+    "topic": "Client Access and Web Tier",
+    "difficulty": "easy",
+    "objective": "Identify the web-tier component that fronts browser access to Windchill",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Client Access and Web Tier",
+    "misconceptionTag": "web_tier_vs_method_server_confusion",
+    "releaseVersion": "2026.04-tranche1",
+    "question": "In a standard Windchill deployment, which component normally receives the browser request first before application-tier processing continues?",
+    "options": [
+      "The Apache web server",
+      "The Oracle listener",
+      "The background queue processor",
+      "The file vault"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Browser traffic first lands at the web tier, typically Apache, before it is routed into Windchill application services."
+  },
+  {
+    "id": 552,
+    "domain": "Architecture, Installation, and Integration",
+    "topic": "Client Access and Web Tier",
+    "difficulty": "easy",
+    "objective": "Recognize the role of the Method Server in request processing",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Client Access and Web Tier",
+    "misconceptionTag": "method_server_vs_browser_role_confusion",
+    "releaseVersion": "2026.04-tranche1",
+    "question": "Which statement best describes the Windchill Method Server in day-to-day request handling?",
+    "options": [
+      "It serves only reporting traffic and not normal UI requests",
+      "It executes application logic after the request passes through the web tier",
+      "It stores all vault content directly on the client workstation",
+      "It replaces the need for a database instance"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The Method Server is the main application-processing component. It runs Windchill business logic after the web tier accepts and routes the request."
+  },
+  {
+    "id": 553,
+    "domain": "Architecture, Installation, and Integration",
+    "topic": "Client Access and Web Tier",
+    "difficulty": "easy",
+    "objective": "Distinguish browser access from authoring-client access patterns",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Client Access and Web Tier",
+    "misconceptionTag": "client_channel_confusion",
+    "releaseVersion": "2026.04-tranche1",
+    "question": "Which client type is the standard zero-install entry point for broad Windchill participation across roles?",
+    "options": [
+      "A vault file-system mount",
+      "A queue monitor shell",
+      "A web browser",
+      "A database SQL console"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Browser-based access is the standard entry point for broad Windchill usage, especially outside CAD authoring roles."
+  },
+  {
+    "id": 554,
+    "domain": "Architecture, Installation, and Integration",
+    "topic": "Client Access and Web Tier",
+    "difficulty": "medium",
+    "objective": "Interpret the purpose of the web tier in a layered Windchill topology",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Client Access and Web Tier",
+    "misconceptionTag": "web_tier_vs_application_tier_confusion",
+    "releaseVersion": "2026.04-tranche1",
+    "question": "A team proposes removing the web tier and allowing end users to connect directly to the application layer from browsers. What is the strongest architectural objection in normal Windchill topology terms?",
+    "options": [
+      "Windchill browsers communicate only with the database listener",
+      "The web tier is needed only for CAD workers, not browser users",
+      "Removing the web tier affects vault replication only",
+      "The application layer is intended to sit behind the web tier rather than replace it"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Windchill is designed with a web tier fronting the application tier. Treating the Method Server as a direct browser endpoint breaks the intended layered topology."
+  },
+  {
+    "id": 555,
+    "domain": "Architecture, Installation, and Integration",
+    "topic": "Client Access and Web Tier",
+    "difficulty": "medium",
+    "objective": "Identify the operational boundary between UI access and background services",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Client Access and Web Tier",
+    "misconceptionTag": "ui_service_vs_background_service_confusion",
+    "releaseVersion": "2026.04-tranche1",
+    "question": "Which pairing correctly belongs to interactive user access rather than background processing?",
+    "options": [
+      "Browser request through Apache to Method Server",
+      "Queue retry through WVS worker to vault cleanup",
+      "Replication package through file server to remote site",
+      "Index update through report scheduler to cache service"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Interactive user access flows through the web tier into the application tier. The other options describe background or infrastructure operations."
+  },
+  {
+    "id": 556,
+    "domain": "Architecture, Installation, and Integration",
+    "topic": "Client Access and Web Tier",
+    "difficulty": "medium",
+    "objective": "Recognize why web-tier service health matters to browser access",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Client Access and Web Tier",
+    "misconceptionTag": "browser_access_depends_only_on_method_server",
+    "releaseVersion": "2026.04-tranche1",
+    "question": "If browser users cannot even reach the Windchill login page, which layer should be checked immediately before concluding the Method Server itself is the only fault?",
+    "options": [
+      "The life cycle template definitions",
+      "The web tier service and routing path",
+      "The local Creo cache",
+      "Only the vault host share permissions"
+    ],
+    "correctAnswer": 1,
+    "explanation": "If the login page is not reachable, web-tier availability and routing are immediate suspects before narrowing the issue to deeper application logic."
+  },
+  {
+    "id": 557,
+    "domain": "Architecture, Installation, and Integration",
+    "topic": "Client Access and Web Tier",
+    "difficulty": "medium",
+    "objective": "Separate browser-facing infrastructure from storage infrastructure",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Client Access and Web Tier",
+    "misconceptionTag": "vault_storage_vs_web_access_confusion",
+    "releaseVersion": "2026.04-tranche1",
+    "question": "Which statement best separates the web tier from vaulting infrastructure in Windchill?",
+    "options": [
+      "Only the vault layer is required for normal browser navigation",
+      "The web tier stores primary content files while vaults render browser pages",
+      "Vaults manage content storage while the web tier handles inbound browser access",
+      "Both serve the same purpose and are interchangeable"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Vaulting manages content storage and distribution. The web tier is the browser-facing entry point for HTTP access."
+  },
+  {
+    "id": 558,
+    "domain": "Contexts, Preferences, and Business Administration",
+    "topic": "Business Analysis and Configuration Planning",
+    "difficulty": "easy",
+    "objective": "Recognize why business analysis precedes detailed configuration",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Business Analysis and Configuration Planning",
+    "misconceptionTag": "configure_first_analyze_later",
+    "releaseVersion": "2026.04-tranche1",
+    "question": "Why should business-analysis activities happen before deep Windchill configuration work starts?",
+    "options": [
+      "Because context templates can only be created after production go-live",
+      "Because Windchill automatically generates the design document after installation",
+      "Because hardware sizing cannot be estimated until workflow code is written",
+      "Because implementation decisions should be driven by product, process, and organizational requirements first"
+    ],
+    "correctAnswer": 3,
+    "explanation": "The implementation should be shaped by business requirements. Configuring first and rationalizing later increases rework and design drift."
+  },
+  {
+    "id": 559,
+    "domain": "Contexts, Preferences, and Business Administration",
+    "topic": "Business Analysis and Configuration Planning",
+    "difficulty": "easy",
+    "objective": "Identify the purpose of a functional design artifact",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Business Analysis and Configuration Planning",
+    "misconceptionTag": "fdd_vs_runtime_config_confusion",
+    "releaseVersion": "2026.04-tranche1",
+    "question": "In an implementation context, what is the main purpose of a Functional Definition Document or equivalent solution-design artifact?",
+    "options": [
+      "To capture how the Windchill solution should behave for approved business requirements",
+      "To replace all administrative preferences in production",
+      "To define database backup commands for Oracle",
+      "To act as the live OIR source file for every subtype"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The functional design artifact documents how approved requirements will be implemented in the solution. It is not itself a runtime configuration file."
+  },
+  {
+    "id": 560,
+    "domain": "Contexts, Preferences, and Business Administration",
+    "topic": "Business Analysis and Configuration Planning",
+    "difficulty": "easy",
+    "objective": "Connect product development stages to requirement analysis",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Business Analysis and Configuration Planning",
+    "misconceptionTag": "stages_vs_data_mapping_confusion",
+    "releaseVersion": "2026.04-tranche1",
+    "question": "When scoping a Windchill implementation, why are product development stages worth identifying early?",
+    "options": [
+      "They are used only after user training is complete",
+      "They help organize process, maturity, and data needs across the product lifecycle",
+      "They eliminate the need for type and attribute design",
+      "They determine the vault directory structure automatically"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Development stages help anchor process analysis, maturity expectations, and data requirements across the implementation."
+  },
+  {
+    "id": 561,
+    "domain": "Contexts, Preferences, and Business Administration",
+    "topic": "Business Analysis and Configuration Planning",
+    "difficulty": "medium",
+    "objective": "Differentiate business requirements from technical implementation detail",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Business Analysis and Configuration Planning",
+    "misconceptionTag": "requirement_vs_solution_design_confusion",
+    "releaseVersion": "2026.04-tranche1",
+    "question": "Which statement is the strongest example of a business requirement rather than a low-level implementation detail?",
+    "options": [
+      "The Apache worker count must be set to a specific value",
+      "Every subtype must have a blue icon",
+      "The system must route released design data through an approved maturity process before downstream use",
+      "The site.xconf file must be edited on line 42"
+    ],
+    "correctAnswer": 2,
+    "explanation": "A business requirement describes the needed behavior and control objective. The other options are implementation details or arbitrary design choices."
+  },
+  {
+    "id": 562,
+    "domain": "Contexts, Preferences, and Business Administration",
+    "topic": "Business Analysis and Configuration Planning",
+    "difficulty": "medium",
+    "objective": "Recognize the cost of skipping early solution-design discipline",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Business Analysis and Configuration Planning",
+    "misconceptionTag": "big_bang_configuration_without_design",
+    "releaseVersion": "2026.04-tranche1",
+    "question": "What is the most likely outcome when a project skips disciplined business analysis and jumps straight into extensive Windchill configuration?",
+    "options": [
+      "Automatic alignment between EBOM and MBOM structures",
+      "Lower total cost because redesign is avoided",
+      "A cleaner digital thread because fewer design decisions are documented",
+      "Higher rework and more customization drift because configuration is not anchored to validated needs"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Skipping analysis usually creates avoidable rework, unclear governance, and customization decisions that are not tied to real business priorities."
+  },
+  {
+    "id": 563,
+    "domain": "Contexts, Preferences, and Business Administration",
+    "topic": "Business Analysis and Configuration Planning",
+    "difficulty": "medium",
+    "objective": "Interpret the role of requirement traceability in implementation delivery",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Business Analysis and Configuration Planning",
+    "misconceptionTag": "design_docs_are_optional_after_kickoff",
+    "releaseVersion": "2026.04-tranche1",
+    "question": "Why is requirement traceability useful during a Windchill implementation review?",
+    "options": [
+      "It links delivered configuration decisions back to approved business needs and design intent",
+      "It removes the need for testing",
+      "It guarantees all legacy data should be migrated",
+      "It proves every queue entry has been retried"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Traceability helps confirm that configured behavior maps back to validated requirements rather than ad hoc implementation choices."
+  },
+  {
+    "id": 564,
+    "domain": "Architecture, Installation, and Integration",
+    "topic": "Enterprise Integration and Authentication",
+    "difficulty": "easy",
+    "objective": "Recognize integration as a distinct concern from browser access",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Enterprise Integration and Authentication",
+    "misconceptionTag": "integration_client_vs_end_user_client_confusion",
+    "releaseVersion": "2026.04-tranche1",
+    "question": "In Windchill program planning, what makes an ERP connection such as SAP different from a normal browser client?",
+    "options": [
+      "It exists only in project contexts",
+      "It is an enterprise integration point rather than a general interactive end-user client",
+      "It replaces the need for user authentication entirely",
+      "It is the primary vaulting mechanism for content files"
+    ],
+    "correctAnswer": 1,
+    "explanation": "ERP connectivity is treated as an enterprise integration concern. A browser remains the standard end-user access client."
+  },
+  {
+    "id": 565,
+    "domain": "Architecture, Installation, and Integration",
+    "topic": "Enterprise Integration and Authentication",
+    "difficulty": "easy",
+    "objective": "Identify LDAP or directory integration as an authentication concern",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Enterprise Integration and Authentication",
+    "misconceptionTag": "ldap_vs_windchill_group_confusion",
+    "releaseVersion": "2026.04-tranche1",
+    "question": "Which integration concern is most directly associated with user sign-in and identity sourcing in a typical Windchill deployment?",
+    "options": [
+      "Creo View publish rules",
+      "Config spec resolution",
+      "LDAP or enterprise directory integration",
+      "Vault replication package transfer"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Authentication and user identity commonly rely on enterprise directory integration, not vaulting or visualization features."
+  },
+  {
+    "id": 566,
+    "domain": "Architecture, Installation, and Integration",
+    "topic": "Enterprise Integration and Authentication",
+    "difficulty": "easy",
+    "objective": "Separate SSO concerns from authorization policy concerns",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Enterprise Integration and Authentication",
+    "misconceptionTag": "sso_equals_authorization",
+    "releaseVersion": "2026.04-tranche1",
+    "question": "What does single sign-on primarily solve in a Windchill landscape?",
+    "options": [
+      "It revises WTParts without version-control services",
+      "It replaces all access policies",
+      "It defines context team membership automatically",
+      "It simplifies user authentication across participating systems"
+    ],
+    "correctAnswer": 3,
+    "explanation": "SSO addresses authentication convenience and identity flow. It does not replace authorization modeling inside Windchill."
+  },
+  {
+    "id": 567,
+    "domain": "Architecture, Installation, and Integration",
+    "topic": "Enterprise Integration and Authentication",
+    "difficulty": "medium",
+    "objective": "Recognize why integration design should be treated explicitly during implementation",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Enterprise Integration and Authentication",
+    "misconceptionTag": "integration_can_be_deferred_without_impact",
+    "releaseVersion": "2026.04-tranche1",
+    "question": "Why should ERP and identity integration requirements be treated explicitly during the implementation design phase instead of being left as a late infrastructure detail?",
+    "options": [
+      "Because they influence object flow, user experience, and operational design decisions early",
+      "Because they matter only after all life cycle templates are frozen",
+      "Because Windchill cannot be installed before every ERP interface is coded",
+      "Because they are relevant only in SaaS deployments"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Integration decisions affect how data moves, how users authenticate, and how the solution is governed. Deferring them often creates redesign."
+  },
+  {
+    "id": 568,
+    "domain": "Architecture, Installation, and Integration",
+    "topic": "Enterprise Integration and Authentication",
+    "difficulty": "medium",
+    "objective": "Identify authentication troubleshooting as distinct from authorization troubleshooting",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Enterprise Integration and Authentication",
+    "misconceptionTag": "login_failure_equals_policy_failure",
+    "releaseVersion": "2026.04-tranche1",
+    "question": "A user cannot sign in at all, but administrators know the access policies for the target context are correct. Which area should be investigated first?",
+    "options": [
+      "Life cycle transitions on the affected objects",
+      "Directory, SSO, or authentication integration behavior",
+      "Structure baselines",
+      "OIR numbering rules"
+    ],
+    "correctAnswer": 1,
+    "explanation": "If the user cannot sign in, authentication flow is the first concern. Authorization policies matter after identity has already been established."
+  },
+  {
+    "id": 569,
+    "domain": "Architecture, Installation, and Integration",
+    "topic": "Enterprise Integration and Authentication",
+    "difficulty": "medium",
+    "objective": "Differentiate identity federation from application business logic",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Enterprise Integration and Authentication",
+    "misconceptionTag": "sso_is_business_process_engine",
+    "releaseVersion": "2026.04-tranche1",
+    "question": "Which statement best captures the boundary between authentication integration and core Windchill business logic?",
+    "options": [
+      "Business logic decides whether a password is valid",
+      "Authentication integration replaces workflow routing",
+      "Authentication integration identifies and validates the user, while business logic governs what the user can do in the application",
+      "Authentication integration is used only for CAD publishing"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Authentication establishes identity. Windchill business logic and policies then control behavior and access inside the application."
+  },
+  {
+    "id": 570,
+    "domain": "PLM Strategy and Foundations",
+    "topic": "Implementation Strategy and Legacy Data",
+    "difficulty": "easy",
+    "objective": "Recognize selective migration as a best-practice mindset",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Implementation Strategy and Legacy Data",
+    "misconceptionTag": "migrate_everything_by_default",
+    "releaseVersion": "2026.04-tranche1",
+    "question": "Which legacy-data approach is most consistent with sound Windchill implementation practice?",
+    "options": [
+      "Load all old data into the site context for easier administration",
+      "Skip validation because Windchill will correct bad legacy data automatically",
+      "Migrate every historical record regardless of quality or business value",
+      "Move only data that is still needed and make sure it is cleansed first"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Selective migration with cleansing and validation reduces noise, cost, and downstream governance problems."
+  },
+  {
+    "id": 571,
+    "domain": "PLM Strategy and Foundations",
+    "topic": "Implementation Strategy and Legacy Data",
+    "difficulty": "easy",
+    "objective": "Connect phased implementation with lower delivery risk",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Implementation Strategy and Legacy Data",
+    "misconceptionTag": "big_bang_is_always_best",
+    "releaseVersion": "2026.04-tranche1",
+    "question": "Why is a phased implementation often safer than a large uncontrolled big-bang rollout?",
+    "options": [
+      "Because it reduces rollout risk by allowing learning and correction in stages",
+      "Because Windchill cannot support more than one context at a time",
+      "Because it removes the need for migration planning",
+      "Because it lowers the need for any business decisions"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Phased delivery allows controlled learning, stakeholder adjustment, and issue correction before broader rollout."
+  },
+  {
+    "id": 572,
+    "domain": "PLM Strategy and Foundations",
+    "topic": "Implementation Strategy and Legacy Data",
+    "difficulty": "easy",
+    "objective": "Recognize over-customization as a strategic cost driver",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Implementation Strategy and Legacy Data",
+    "misconceptionTag": "customization_has_no_tco_impact",
+    "releaseVersion": "2026.04-tranche1",
+    "question": "Why is heavy customization usually treated cautiously in a Windchill implementation strategy?",
+    "options": [
+      "Because customization automatically removes the need for testing",
+      "Because it can raise long-term upgrade cost and operational complexity",
+      "Because Windchill forbids all customization",
+      "Because only profiles can be changed safely"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Heavy customization increases lifecycle cost, upgrade friction, and long-term maintenance exposure compared with disciplined OOTB use."
+  },
+  {
+    "id": 573,
+    "domain": "PLM Strategy and Foundations",
+    "topic": "Implementation Strategy and Legacy Data",
+    "difficulty": "medium",
+    "objective": "Interpret legacy-data cleansing as a business-control activity",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Implementation Strategy and Legacy Data",
+    "misconceptionTag": "migration_is_only_technical_load",
+    "releaseVersion": "2026.04-tranche1",
+    "question": "Why should legacy-data cleansing be treated as more than just a technical loading exercise?",
+    "options": [
+      "Because vaults cannot store migrated content",
+      "Because Windchill ignores migrated metadata during search",
+      "Because bad source data can propagate poor quality and governance into the new PLM environment",
+      "Because cleansing is required only after go-live"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Migration quality is a governance issue as much as a technical issue. Poor data quality weakens the value of the new implementation."
+  },
+  {
+    "id": 574,
+    "domain": "PLM Strategy and Foundations",
+    "topic": "Implementation Strategy and Legacy Data",
+    "difficulty": "medium",
+    "objective": "Connect OOTB-first thinking to long-term implementation sustainability",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Implementation Strategy and Legacy Data",
+    "misconceptionTag": "ootb_means_no_fit_to_business",
+    "releaseVersion": "2026.04-tranche1",
+    "question": "What is the strongest reason an implementation team should challenge every requested customization against an OOTB-first strategy?",
+    "options": [
+      "OOTB-first guarantees every business process will match without any tradeoff analysis",
+      "OOTB-first means user training is unnecessary",
+      "OOTB-first eliminates the need for access policies",
+      "OOTB-first helps preserve upgradeability and reduces avoidable lifecycle cost"
+    ],
+    "correctAnswer": 3,
+    "explanation": "OOTB-first is about sustainable fit, not blind acceptance. It reduces unnecessary custom code and keeps the platform easier to evolve."
+  },
+  {
+    "id": 575,
+    "domain": "PLM Strategy and Foundations",
+    "topic": "Implementation Strategy and Legacy Data",
+    "difficulty": "medium",
+    "objective": "Recognize structured migration tooling as preferable for larger migration programs",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Implementation Strategy and Legacy Data",
+    "misconceptionTag": "manual_loading_scales_for_all_migrations",
+    "releaseVersion": "2026.04-tranche1",
+    "question": "For a large legacy-data migration program, why is a structured migration approach preferred over ad hoc manual loading?",
+    "options": [
+      "It provides repeatability, validation discipline, and better control at scale",
+      "It disables the need for source-data review",
+      "It converts every old object directly into a released WTPart",
+      "It is useful only for vault replication"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Structured migration approaches improve repeatability and governance, especially when data volume and complexity increase."
+  },
+  {
+    "id": 576,
+    "domain": "Data Model, Types, and Attributes",
+    "topic": "Layouts and Attribute Presentation",
+    "difficulty": "easy",
+    "objective": "Differentiate attribute visibility from layout placement",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Layouts and Attribute Presentation",
+    "misconceptionTag": "visibility_equals_layout_position",
+    "releaseVersion": "2026.04-tranche1",
+    "question": "In type and attribute administration, what does attribute visibility primarily control?",
+    "options": [
+      "Which users can approve a workflow task",
+      "How attributes are seen in the user interface",
+      "Whether a number sequence restarts",
+      "How a vault replica is scheduled"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Visibility governs whether and how an attribute is shown in the interface. It is different from life cycle, numbering, or vault behavior."
+  },
+  {
+    "id": 577,
+    "domain": "Data Model, Types, and Attributes",
+    "topic": "Layouts and Attribute Presentation",
+    "difficulty": "easy",
+    "objective": "Identify layouts as presentation constructs rather than data-model definitions",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Layouts and Attribute Presentation",
+    "misconceptionTag": "layout_changes_object_model",
+    "releaseVersion": "2026.04-tranche1",
+    "question": "What is the main role of a layout in Windchill type administration?",
+    "options": [
+      "To create database tables",
+      "To control vault replication schedules",
+      "To define presentation structure for object pages and forms",
+      "To replace the underlying object type hierarchy"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Layouts are presentation artifacts. They organize how information appears to users without replacing the object model."
+  },
+  {
+    "id": 578,
+    "domain": "Data Model, Types, and Attributes",
+    "topic": "Layouts and Attribute Presentation",
+    "difficulty": "easy",
+    "objective": "Separate attribute presentation concerns from authorization concerns",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Layouts and Attribute Presentation",
+    "misconceptionTag": "ui_visibility_equals_access_policy",
+    "releaseVersion": "2026.04-tranche1",
+    "question": "Which statement is most accurate about layouts and security in Windchill?",
+    "options": [
+      "Layouts are used only for queue administration",
+      "Layouts are valid only in project contexts",
+      "Changing a layout automatically changes all access policies",
+      "Layouts influence presentation, while access control is handled through policy and security configuration"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Layouts shape what the UI presents, but they do not replace access-control policy design."
+  },
+  {
+    "id": 579,
+    "domain": "Data Model, Types, and Attributes",
+    "topic": "Layouts and Attribute Presentation",
+    "difficulty": "medium",
+    "objective": "Recognize inheritance impact when subtype layouts are customized",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Layouts and Attribute Presentation",
+    "misconceptionTag": "single_layout_override_only",
+    "releaseVersion": "2026.04-tranche1",
+    "question": "Why should an administrator be careful when introducing subtype-specific layout overrides?",
+    "options": [
+      "Because subtype layout changes can affect inherited behavior and should be planned deliberately",
+      "Because Windchill forbids subtype layouts entirely",
+      "Because layouts can only be changed through SQL scripts",
+      "Because layout changes are applied only during check-in"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Layout inheritance and overrides require deliberate administration. Unplanned overrides can create presentation inconsistency across the model."
+  },
+  {
+    "id": 580,
+    "domain": "Data Model, Types, and Attributes",
+    "topic": "Layouts and Attribute Presentation",
+    "difficulty": "medium",
+    "objective": "Distinguish page layout organization from attribute semantic design",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Layouts and Attribute Presentation",
+    "misconceptionTag": "layout_grouping_changes_attribute_semantics",
+    "releaseVersion": "2026.04-tranche1",
+    "question": "An administrator moves an attribute to a different section of the page layout. What is the most accurate interpretation?",
+    "options": [
+      "The attribute meaning and type are rewritten automatically",
+      "The change primarily affects presentation organization rather than the business meaning of the attribute",
+      "The attribute is removed from all search indexing",
+      "The change applies only to vault content"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Repositioning within a layout affects presentation and usability. It does not inherently redefine the attribute's business semantics."
+  },
+  {
+    "id": 581,
+    "domain": "Data Model, Types, and Attributes",
+    "topic": "Layouts and Attribute Presentation",
+    "difficulty": "medium",
+    "objective": "Recognize when layout refinement is preferable to unnecessary type proliferation",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Layouts and Attribute Presentation",
+    "misconceptionTag": "new_subtype_needed_for_every_ui_difference",
+    "releaseVersion": "2026.04-tranche1",
+    "question": "If the only issue is that users need information grouped more clearly on a page, what should be considered before creating a brand-new subtype?",
+    "options": [
+      "Whether all workflows should be rebuilt first",
+      "Whether every preference should be moved to site scope",
+      "Whether a layout refinement can solve the presentation need without expanding the type model unnecessarily",
+      "Whether the vault needs another replica"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Not every UI concern justifies type-model expansion. Layout refinement is often the cleaner administrative response to presentation-only needs."
+  },
+  {
+    "id": 582,
+    "domain": "Access Control, Teams, and Security",
+    "topic": "Security Administration and Audit Controls",
+    "difficulty": "easy",
+    "objective": "Recognize license administration as an administrative governance activity",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Security Administration and Audit Controls",
+    "misconceptionTag": "license_server_install_equals_license_admin",
+    "releaseVersion": "2026.04-tranche1",
+    "question": "Which activity best fits normal Windchill license administration responsibility?",
+    "options": [
+      "Writing every custom workflow robot in Java",
+      "Defining OIR number sequences for all objects",
+      "Publishing CAD representations to Creo View",
+      "Assigning users to license groups and reviewing usage information"
+    ],
+    "correctAnswer": 3,
+    "explanation": "License administration is about entitlement and usage oversight, not workflow coding or unrelated configuration areas."
+  },
+  {
+    "id": 583,
+    "domain": "Access Control, Teams, and Security",
+    "topic": "Security Administration and Audit Controls",
+    "difficulty": "easy",
+    "objective": "Recognize audit and administration controls as governance tools",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Security Administration and Audit Controls",
+    "misconceptionTag": "audit_controls_are_reporting_only",
+    "releaseVersion": "2026.04-tranche1",
+    "question": "Why are audit-oriented security controls valuable in a governed PLM environment?",
+    "options": [
+      "They provide visibility into administrative and access-related behavior that may need review",
+      "They automatically revise objects when policies change",
+      "They eliminate the need for user roles",
+      "They replace all report-writing needs"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Audit-oriented controls help administrators review behavior and trace actions. They are part of governance, not a substitute for core security design."
+  },
+  {
+    "id": 584,
+    "domain": "Access Control, Teams, and Security",
+    "topic": "Security Administration and Audit Controls",
+    "difficulty": "easy",
+    "objective": "Differentiate private-domain behavior from generic workspace behavior",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Security Administration and Audit Controls",
+    "misconceptionTag": "private_domain_equals_workspace",
+    "releaseVersion": "2026.04-tranche1",
+    "question": "What is the clearest interpretation of Windchill private-domain architecture in access modeling terms?",
+    "options": [
+      "It is the same thing as a context template",
+      "It is tied to private context-domain behavior rather than ordinary checked-out workspace storage",
+      "It means the database is moved to a local desktop",
+      "It is another name for a publish queue"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Private-domain architecture concerns access-domain behavior in contexts. It is not the same as normal workspace storage mechanics."
+  },
+  {
+    "id": 585,
+    "domain": "Access Control, Teams, and Security",
+    "topic": "Security Administration and Audit Controls",
+    "difficulty": "medium",
+    "objective": "Separate profile simplification from underlying security policy",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Security Administration and Audit Controls",
+    "misconceptionTag": "profiles_replace_security",
+    "releaseVersion": "2026.04-tranche1",
+    "question": "Why should profiles not be mistaken for a complete security model?",
+    "options": [
+      "Profiles work only for administrators",
+      "Profiles automatically create context teams",
+      "Profiles simplify the interface for certain users, but policy and role design still govern true access behavior",
+      "Profiles are used only for vault replication"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Profiles can reduce UI complexity, but they do not replace access policies, roles, and domain-based security administration."
+  },
+  {
+    "id": 586,
+    "domain": "Access Control, Teams, and Security",
+    "topic": "Security Administration and Audit Controls",
+    "difficulty": "medium",
+    "objective": "Recognize why governance reviews should include security-administration posture",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Security Administration and Audit Controls",
+    "misconceptionTag": "security_admin_is_set_once_and_ignore",
+    "releaseVersion": "2026.04-tranche1",
+    "question": "Why should security-administration settings and audit behavior be reviewed periodically instead of being treated as one-time setup only?",
+    "options": [
+      "Because access policies expire every night",
+      "Because Windchill deletes domain rules monthly",
+      "Because audit settings convert project contexts into product contexts",
+      "Because user roles, risk exposure, and administrative usage patterns evolve over time"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Governance controls need periodic review because organizations, usage patterns, and risk posture change after initial implementation."
+  },
+  {
+    "id": 587,
+    "domain": "Access Control, Teams, and Security",
+    "topic": "Access Control and Session Discipline",
+    "difficulty": "easy",
+    "objective": "Recognize least-privilege posture before bypass logic",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Access Control and Session Discipline",
+    "misconceptionTag": "bypass_before_design_review",
+    "releaseVersion": "2026.04-tranche1",
+    "question": "If a customization fails due to authorization, what should be reviewed first before considering any access-enforcement bypass logic?",
+    "options": [
+      "The intended design and least-privilege authorization model",
+      "The vault free-space percentage only",
+      "The report export settings",
+      "The WVS worker operating system"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The first step is to verify whether the design and authorization model are correct. Broad bypass logic is not a normal first-line fix."
+  },
+  {
+    "id": 588,
+    "domain": "Access Control, Teams, and Security",
+    "topic": "Access Control and Session Discipline",
+    "difficulty": "easy",
+    "objective": "Interpret session-scoped access changes as sensitive operations",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Access Control and Session Discipline",
+    "misconceptionTag": "session_helper_change_is_harmless",
+    "releaseVersion": "2026.04-tranche1",
+    "question": "Why is a session-level change such as disabling access enforcement treated as sensitive in code review?",
+    "options": [
+      "Because it replaces all access policies",
+      "Because it can weaken intended security behavior if it is not tightly scoped and reset",
+      "Because it is required in all QuerySpec calls",
+      "Because it improves performance only when left enabled permanently"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Session-scoped security changes can have broad impact if they are not tightly constrained, justified, and safely reset."
+  },
+  {
+    "id": 589,
+    "domain": "Access Control, Teams, and Security",
+    "topic": "Access Control and Session Discipline",
+    "difficulty": "medium",
+    "objective": "Recognize disciplined review criteria for access-enforcement exceptions",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Access Control and Session Discipline",
+    "misconceptionTag": "disable_access_is_standard_pattern",
+    "releaseVersion": "2026.04-tranche1",
+    "question": "Which review outcome is strongest when a developer claims an access-enforcement bypass is needed?",
+    "options": [
+      "Replace the code with direct database updates",
+      "Accept it immediately because production issues justify any workaround",
+      "Require narrow scope, explicit justification, and safe reset discipline before accepting it",
+      "Move the code into JavaScript so the issue disappears"
+    ],
+    "correctAnswer": 2,
+    "explanation": "If an exception is ever accepted, it should be tightly constrained and carefully reviewed. It is not a default engineering shortcut."
+  },
+  {
+    "id": 590,
+    "domain": "Access Control, Teams, and Security",
+    "topic": "Access Control and Session Discipline",
+    "difficulty": "medium",
+    "objective": "Separate access-enforcement concerns from ordinary persistence concerns",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Access Control and Session Discipline",
+    "misconceptionTag": "store_requires_access_disabled",
+    "releaseVersion": "2026.04-tranche1",
+    "question": "Which statement is most accurate about object persistence and access enforcement in Windchill custom code?",
+    "options": [
+      "store works only when called from the UI layer",
+      "Access checks apply only to QuerySpec and never to persistence services",
+      "Every store call should begin by disabling access enforcement",
+      "Persistence and access-enforcement decisions are separate concerns; disabling checks is not a routine prerequisite for store operations"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Persistence operations do not inherently require bypassing security. Authorization design should be correct before resorting to any exception pattern."
+  },
+  {
+    "id": 591,
+    "domain": "Contexts, Preferences, and Business Administration",
+    "topic": "Context Templates",
+    "difficulty": "easy",
+    "objective": "Recognize context templates as standardization tools",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Context Templates",
+    "misconceptionTag": "template_equals_preference_only",
+    "releaseVersion": "2026.04-tranche1",
+    "question": "Why are context templates useful in Windchill administration?",
+    "options": [
+      "They help standardize initial context setup such as teams, folders, and defaults",
+      "They replace access policies entirely",
+      "They are used only for CAD publishing",
+      "They define the physical database schema"
+    ],
+    "correctAnswer": 0,
+    "explanation": "They help standardize initial context setup such as teams, folders, and defaults is correct because context templates standardize new contexts so teams do not manually rebuild the same setup each time. This question is testing the administrative meaning of context templates, not a generic UI action or local workaround."
+  },
+  {
+    "id": 592,
+    "domain": "Contexts, Preferences, and Business Administration",
+    "topic": "Context Templates",
+    "difficulty": "easy",
+    "objective": "Identify the administrative value of reusable context setup",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Context Templates",
+    "misconceptionTag": "every_context_should_be_manual",
+    "releaseVersion": "2026.04-tranche1",
+    "question": "What is the main administrative benefit of creating new contexts from a well-designed template instead of configuring each one manually from scratch?",
+    "options": [
+      "It converts project contexts into libraries automatically",
+      "It promotes consistency and reduces repeated setup effort",
+      "It disables the need for context managers",
+      "It removes the requirement for teams"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Templates help administrators create contexts consistently and efficiently, especially when many similar contexts are needed."
+  },
+  {
+    "id": 593,
+    "domain": "Contexts, Preferences, and Business Administration",
+    "topic": "Context Templates",
+    "difficulty": "medium",
+    "objective": "Differentiate template-based setup from post-creation operational administration",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Context Templates",
+    "misconceptionTag": "template_replaces_context_admin",
+    "releaseVersion": "2026.04-tranche1",
+    "question": "Which statement best reflects the role of a context template after a new context has been created?",
+    "options": [
+      "The template prevents any further folder or role updates",
+      "The template is used only for vault replication",
+      "The template helps with initial setup, but normal context administration still continues after creation",
+      "The template permanently replaces the context team"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Templates standardize initial structure and defaults, but they do not eliminate the need for ongoing context administration."
+  },
+  {
+    "id": 594,
+    "domain": "Contexts, Preferences, and Business Administration",
+    "topic": "Context Templates",
+    "difficulty": "medium",
+    "objective": "Connect context-template design with governance quality",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Context Templates",
+    "misconceptionTag": "template_quality_has_little_impact",
+    "releaseVersion": "2026.04-tranche1",
+    "question": "Why should context templates be governed carefully instead of being treated as a minor convenience artifact?",
+    "options": [
+      "Because templates control Oracle patching",
+      "Because templates are required only in pilot systems",
+      "Because templates decide CAD worker hardware sizing",
+      "Because poor template design can spread inconsistent setup patterns across many contexts"
+    ],
+    "correctAnswer": 3,
+    "explanation": "A template can multiply good or bad administrative decisions across many contexts, so its design quality matters."
+  },
+  {
+    "id": 595,
+    "domain": "System Administration, Utilities, and Monitoring",
+    "topic": "Performance and Runtime Administration",
+    "difficulty": "easy",
+    "objective": "Recognize xconf management as part of controlled administration",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Performance and Runtime Administration",
+    "misconceptionTag": "site_xconf_is_runtime_report_file",
+    "releaseVersion": "2026.04-tranche1",
+    "question": "Why is disciplined handling of site.xconf important in Windchill administration?",
+    "options": [
+      "Because it is a central configuration source that influences server behavior",
+      "Because it stores all released CAD files",
+      "Because it replaces LDAP integration settings entirely",
+      "Because it is used only for Creo View publishing"
+    ],
+    "correctAnswer": 0,
+    "explanation": "site.xconf is a central configuration artifact. Uncontrolled changes there can alter system behavior in significant ways."
+  },
+  {
+    "id": 596,
+    "domain": "System Administration, Utilities, and Monitoring",
+    "topic": "Performance and Runtime Administration",
+    "difficulty": "easy",
+    "objective": "Interpret WAN optimization as user-experience infrastructure",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Performance and Runtime Administration",
+    "misconceptionTag": "wan_accelerator_equals_db_tuning_only",
+    "releaseVersion": "2026.04-tranche1",
+    "question": "What problem is a WAN accelerator primarily intended to address in a Windchill landscape?",
+    "options": [
+      "Improper context template inheritance",
+      "Slow user experience over wide-area network access paths",
+      "Incorrect OIR numbering",
+      "Missing life cycle states"
+    ],
+    "correctAnswer": 1,
+    "explanation": "WAN acceleration is about improving user experience across slower network links, not fixing business-configuration issues."
+  },
+  {
+    "id": 597,
+    "domain": "System Administration, Utilities, and Monitoring",
+    "topic": "Performance and Runtime Administration",
+    "difficulty": "medium",
+    "objective": "Separate usage reporting from transaction-specific debugging",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Performance and Runtime Administration",
+    "misconceptionTag": "usage_report_equals_transaction_trace",
+    "releaseVersion": "2026.04-tranche1",
+    "question": "Which question is a usage report best suited to answer?",
+    "options": [
+      "Which exact OIR clause generated an object number",
+      "Which single queue entry failed at a specific stack-trace line",
+      "Whether a feature or area of the system is seeing meaningful adoption",
+      "Which JDBC statement ran last on the database"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Usage reports are best for adoption and consumption patterns, not low-level transaction debugging."
+  },
+  {
+    "id": 598,
+    "domain": "System Administration, Utilities, and Monitoring",
+    "topic": "Performance and Runtime Administration",
+    "difficulty": "medium",
+    "objective": "Recognize performance administration as an operational discipline rather than a one-time setting",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Performance and Runtime Administration",
+    "misconceptionTag": "performance_tuning_is_one_time",
+    "releaseVersion": "2026.04-tranche1",
+    "question": "Why should runtime performance administration be treated as an ongoing operational discipline rather than a one-time installation activity?",
+    "options": [
+      "Because Windchill performance depends only on life cycle templates",
+      "Because queue settings cannot be revisited after production start",
+      "Because performance monitoring is relevant only in test systems",
+      "Because workload patterns, user behavior, and infrastructure conditions can change after go-live"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Performance posture changes with real usage, infrastructure conditions, and operational growth, so monitoring and tuning remain ongoing responsibilities."
+  }
+]

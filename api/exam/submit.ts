@@ -1,4 +1,5 @@
 import { adminDb } from '../_lib/firebaseAdmin';
+import type { ApiRequestLike, ApiResponseLike } from '../_lib/http';
 import { readJson, sendMethodNotAllowed } from '../_lib/http';
 
 interface ExamResultPayload {
@@ -67,7 +68,7 @@ const resolveParticipantId = async (payload: ExamResultPayload): Promise<string 
   return undefined;
 };
 
-export default async function handler(req: any, res: any) {
+export default async function handler(req: ApiRequestLike, res: ApiResponseLike) {
   if (req.method !== 'POST') {
     sendMethodNotAllowed(res);
     return;

@@ -1,0 +1,40 @@
+{
+  "generatedAt": "2026-04-14T08:57:28.036Z",
+  "targetFloor": 8,
+  "totalNewQuestionsNeededToReachFloor": 0,
+  "tranches": [
+    {
+      "name": "Tranche 1 - Critical And High Sections",
+      "sectionCount": 0,
+      "newQuestions": 0,
+      "recommendedMix": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 0
+      },
+      "items": []
+    },
+    {
+      "name": "Tranche 2 - Medium Sections",
+      "sectionCount": 0,
+      "newQuestions": 0,
+      "recommendedMix": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 0
+      },
+      "items": []
+    },
+    {
+      "name": "Tranche 3 - Low Sections",
+      "sectionCount": 0,
+      "newQuestions": 0,
+      "recommendedMix": {
+        "easy": 0,
+        "medium": 0,
+        "hard": 0
+      },
+      "items": []
+    }
+  ]
+}

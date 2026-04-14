@@ -13,7 +13,12 @@
     "enrich:questions": "node scripts/enrich-question-bank-metadata.mjs",
     "generate:presets": "node scripts/generate-built-in-presets.mjs",
     "generate:sessions": "node scripts/generate-session-schedule-assets.mjs",
-    "audit:taxonomy": "node scripts/generate-taxonomy-audit.mjs"
+    "rebalance:options": "node scripts/rebalance-option-order.mjs",
+    "audit:taxonomy": "node scripts/generate-taxonomy-audit.mjs",
+    "audit:quality": "node scripts/generate-question-quality-audit.mjs",
+    "audit:hardening": "node scripts/generate-question-hardening-audit.mjs",
+    "plan:sections": "node scripts/generate-section-gap-plan.mjs",
+    "plan:tranches": "node scripts/generate-authoring-tranche-plan.mjs"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.2.2",

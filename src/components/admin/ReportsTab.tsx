@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { collection, getDocs, orderBy, query } from 'firebase/firestore';
@@ -42,7 +42,7 @@ export default function ReportsTab() {
     return [...seen.values()];
   };
 
-  const fetchRecords = () => {
+  const fetchRecords = useCallback(() => {
     setLoading(true);
     getDocs(query(collection(db, 'exam_results'), orderBy('examDate', 'desc')))
       .then((snap) => {
@@ -52,11 +52,11 @@ export default function ReportsTab() {
       })
       .catch((err) => console.error('Fetch error:', err))
       .finally(() => setLoading(false));
-  };
+  }, []);
 
   useEffect(() => {
     fetchRecords();
-  }, []);
+  }, [fetchRecords]);
 
   const sessionNames = useMemo(
     () => [...new Set(records.filter((record) => record.sessionName).map((record) => record.sessionName!))].sort(),
@@ -207,7 +207,8 @@ export default function ReportsTab() {
                         onChange={() =>
                           setSelected((previous) => {
                             const next = new Set(previous);
-                            next.has(record.docId) ? next.delete(record.docId) : next.add(record.docId);
+                            if (next.has(record.docId)) next.delete(record.docId);
+                            else next.add(record.docId);
                             return next;
                           })
                         }

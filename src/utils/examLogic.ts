@@ -16,6 +16,9 @@ export const QUESTION_POOL_FILES = [
   '/data/windchill_mock_test_4.json',
   '/data/windchill_mock_test_5.json',
   '/data/windchill_mock_test_6.json',
+  '/data/windchill_mock_test_7.json',
+  '/data/windchill_mock_test_8.json',
+  '/data/windchill_mock_test_9.json',
 ] as const;
 
 const EMPTY_TOPIC = 'Unclassified';
@@ -159,7 +162,9 @@ export const buildRandomExam = (
   options: { track?: ExamTrack } = {},
 ): Question[] => {
   const track = options.track ?? 'hard_mode';
-  let { easyNeeded, medNeeded, hardNeeded, unratedNeeded, multiNeeded } = allocateCounts(targetCount, track);
+  const allocation = allocateCounts(targetCount, track);
+  const { multiNeeded } = allocation;
+  let { easyNeeded, medNeeded, hardNeeded, unratedNeeded } = allocation;
   const multiPool = pool.filter(isMultiAnswerQuestion);
   const singlePool = pool.filter((question) => !isMultiAnswerQuestion(question));
   const selectedQuestions: Question[] = [];

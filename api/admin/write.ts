@@ -1,4 +1,5 @@
 import { adminDb } from '../_lib/firebaseAdmin';
+import type { ApiRequestLike, ApiResponseLike } from '../_lib/http';
 import { readJson, requireAdmin, sendMethodNotAllowed } from '../_lib/http';
 
 type AdminWriteAction =
@@ -33,7 +34,7 @@ async function logAdminAction(
   });
 }
 
-export default async function handler(req: any, res: any) {
+export default async function handler(req: ApiRequestLike, res: ApiResponseLike) {
   if (req.method !== 'POST') {
     sendMethodNotAllowed(res);
     return;

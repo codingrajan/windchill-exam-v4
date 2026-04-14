@@ -18,25 +18,30 @@ export interface HistoryInsights {
 export interface ReviewCoachingSummary {
   wrongCount: number;
   skippedCount: number;
-  topMisconceptions: Array<{ label: string; count: number }>;
-  topObjectives: Array<{ label: string; count: number }>;
-  coachingActions: string[];
+  lossDrivers: Array<{ title: string; evidence: string }>;
+  studyMap: Array<{ section: string; manual: string; sourceSection: string; missed: number; total: number; accuracy: number }>;
+  misconceptionPatterns: Array<{ label: string; count: number; action: string }>;
+  nextActions: Array<{ title: string; evidence: string; action: string }>;
+  nextTest: { label: string; reason: string } | null;
 }
 
 export const getTrackProfile = (track: ExamTrack) => TRACK_PROFILES[track];
 
-export function buildReadinessInsights(
-  summary: EvaluationSummary,
-  _track: ExamTrack,
-): ReadinessInsights {
-  const focusAreas = new Set<string>();
+export function buildReadinessInsights(summary: EvaluationSummary): ReadinessInsights {
+  const focusAreas: string[] = [];
+  const totalAnswered = summary.correctCount + summary.incorrectCount + summary.skippedCount;
 
   if (summary.weakestTopic.topic !== 'N/A') {
-    focusAreas.add(`Rework ${summary.weakestTopic.topic} first.`);
+    const weakestStats = summary.topicStats[summary.weakestTopic.topic];
+    if (weakestStats) {
+      focusAreas.push(
+        `Repair ${summary.weakestTopic.topic}: ${weakestStats.correct}/${weakestStats.total} correct (${summary.weakestTopic.percentage}%).`,
+      );
+    }
   }
 
-  if (summary.skippedCount >= Math.max(3, Math.round((summary.correctCount + summary.incorrectCount + summary.skippedCount) * 0.08))) {
-    focusAreas.add('Run a timed drill to reduce skips under pressure.');
+  if (summary.skippedCount >= Math.max(3, Math.round(totalAnswered * 0.08))) {
+    focusAreas.push(`Cut skips under pressure: ${summary.skippedCount} question${summary.skippedCount === 1 ? '' : 's'} left unanswered.`);
   }
 
   const hardAccuracy =
@@ -45,15 +50,15 @@ export function buildReadinessInsights(
       : null;
 
   if (hardAccuracy !== null && hardAccuracy < 60) {
-    focusAreas.add('Prioritize hard questions around architecture, OIR precedence, and workflow nuance.');
+    focusAreas.push(`Raise hard-question control: ${summary.difficultyStats.hard.correct}/${summary.difficultyStats.hard.total} correct (${hardAccuracy}%).`);
   }
 
   if (summary.strongestTopic.topic !== 'N/A') {
-    focusAreas.add(`Use ${summary.strongestTopic.topic} as a confidence-maintenance domain, not a revision sink.`);
+    focusAreas.push(`Maintain ${summary.strongestTopic.topic} as a strength anchor (${summary.strongestTopic.percentage}%).`);
   }
 
   return {
-    focusAreas: [...focusAreas].slice(0, 4),
+    focusAreas: focusAreas.slice(0, 4),
   };
 }
 
@@ -117,64 +122,223 @@ export function buildReviewCoachingSummary(
     objective?: string;
     misconceptionTag?: string;
     domain?: string;
+    sourceManual?: string;
+    sourceSection?: string;
+    difficulty?: 'easy' | 'medium' | 'hard' | 'unrated';
   }>,
+  options: { scorePercentage?: number } = {},
 ): ReviewCoachingSummary {
+  const normalizeLabel = (value: string | undefined) =>
+    (value ?? '')
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, ' ')
+      .trim();
   const wrongItems = items.filter((item) => !item.correct && !item.skipped);
   const skippedItems = items.filter((item) => item.skipped);
   const misconceptionCounts = new Map<string, number>();
-  const objectiveCounts = new Map<string, number>();
-  const domainCounts = new Map<string, number>();
+  const objectiveCounts = new Map<string, { count: number; manual?: string; sourceSection?: string }>();
+  const domainStats = new Map<string, { wrong: number; skipped: number; total: number; correct: number }>();
+  const studyMapStats = new Map<string, { section: string; manual: string; sourceSection: string; missed: number; total: number; correct: number }>();
+  const hardStats = { wrong: 0, total: 0 };
+  const scorePercentage = options.scorePercentage ?? 0;
 
   [...wrongItems, ...skippedItems].forEach((item) => {
     if (item.misconceptionTag) {
       misconceptionCounts.set(item.misconceptionTag, (misconceptionCounts.get(item.misconceptionTag) ?? 0) + 1);
     }
     if (item.objective) {
-      objectiveCounts.set(item.objective, (objectiveCounts.get(item.objective) ?? 0) + 1);
-    }
-    if (item.domain) {
-      domainCounts.set(item.domain, (domainCounts.get(item.domain) ?? 0) + 1);
+      const previous = objectiveCounts.get(item.objective) ?? { count: 0, manual: item.sourceManual, sourceSection: item.sourceSection };
+      objectiveCounts.set(item.objective, {
+        count: previous.count + 1,
+        manual: previous.manual ?? item.sourceManual,
+        sourceSection: previous.sourceSection ?? item.sourceSection,
+      });
     }
   });
 
-  const topMisconceptions = [...misconceptionCounts.entries()]
-    .sort((left, right) => right[1] - left[1])
+  items.forEach((item) => {
+    if (item.domain) {
+      const stats = domainStats.get(item.domain) ?? { wrong: 0, skipped: 0, total: 0, correct: 0 };
+      stats.total += 1;
+      if (item.correct) stats.correct += 1;
+      else if (item.skipped) stats.skipped += 1;
+      else stats.wrong += 1;
+      domainStats.set(item.domain, stats);
+    }
+    const manual = item.sourceManual || 'Manual section mapping unavailable';
+    const sourceSection = item.sourceSection || item.domain || 'Section mapping unavailable';
+    const studyKey = `${item.domain || 'Unclassified'}__${manual}__${sourceSection}`;
+    const studyStats = studyMapStats.get(studyKey) ?? {
+      section: item.domain || 'Unclassified',
+      manual,
+      sourceSection,
+      missed: 0,
+      total: 0,
+      correct: 0,
+    };
+    studyStats.total += 1;
+    if (item.correct) studyStats.correct += 1;
+    else studyStats.missed += 1;
+    studyMapStats.set(studyKey, studyStats);
+
+    if (item.difficulty === 'hard') {
+      hardStats.total += 1;
+      if (!item.correct) hardStats.wrong += 1;
+    }
+  });
+
+  const objectiveMap = [...objectiveCounts.entries()]
+    .sort((left, right) => right[1].count - left[1].count)
     .slice(0, 3)
-    .map(([label, count]) => ({ label, count }));
+    .map(([label, detail]) => ({
+      label,
+      count: detail.count,
+      manual: detail.manual || 'Manual section mapping unavailable',
+      sourceSection: detail.sourceSection || 'Section mapping unavailable',
+      action: 'Rework the governing rule and then test yourself on when this objective applies versus the nearest look-alike concept.',
+    }));
 
-  const topObjectives = [...objectiveCounts.entries()]
+  const topSections = [...domainStats.entries()]
+    .map(([label, stats]) => ({
+      label,
+      wrong: stats.wrong,
+      skipped: stats.skipped,
+      total: stats.total,
+      accuracy: stats.total === 0 ? 0 : Math.round((stats.correct / stats.total) * 100),
+    }))
+    .sort((left, right) => (right.wrong + right.skipped) - (left.wrong + left.skipped) || left.accuracy - right.accuracy)
+    .slice(0, 3);
+
+  const studyMap = [...studyMapStats.values()]
+    .map((item) => ({
+      section: item.section,
+      manual: item.manual,
+      sourceSection: item.sourceSection,
+      missed: item.missed,
+      total: item.total,
+      accuracy: item.total === 0 ? 0 : Math.round((item.correct / item.total) * 100),
+    }))
+    .filter((item) => item.missed > 0)
+    .sort((left, right) => right.missed - left.missed || left.accuracy - right.accuracy)
+    .slice(0, 4);
+  const studyTokens = new Set(
+    studyMap.flatMap((item) => [normalizeLabel(item.section), normalizeLabel(item.sourceSection)]).filter(Boolean),
+  );
+  const objectiveTokens = new Set(objectiveMap.map((item) => normalizeLabel(item.label)).filter(Boolean));
+  const misconceptionPatterns = [...misconceptionCounts.entries()]
     .sort((left, right) => right[1] - left[1])
+    .filter(([label]) => {
+      const token = normalizeLabel(label);
+      if (!token) return false;
+      if (studyTokens.has(token) || objectiveTokens.has(token)) return false;
+      return ![...studyTokens, ...objectiveTokens].some((existing) => existing.includes(token) || token.includes(existing));
+    })
     .slice(0, 3)
-    .map(([label, count]) => ({ label, count }));
+    .map(([label, count]) => ({
+      label,
+      count,
+      action: 'Contrast the correct rule against the look-alike distractor and write down the deciding condition.',
+    }));
 
-  const topDomains = [...domainCounts.entries()]
-    .sort((left, right) => right[1] - left[1])
-    .slice(0, 2)
-    .map(([label]) => label);
-
-  const coachingActions = new Set<string>();
-
-  if (topDomains.length > 0) {
-    coachingActions.add(`Re-run a focused drill on ${topDomains.join(' and ')}.`);
+  const lossDrivers: Array<{ title: string; evidence: string }> = [];
+  if (topSections[0]) {
+    lossDrivers.push({
+      title: `Section weakness: ${topSections[0].label}`,
+      evidence: `${topSections[0].wrong} wrong and ${topSections[0].skipped} skipped answers came from this section at ${topSections[0].accuracy}% accuracy.`,
+    });
   }
-
-  if (topObjectives.length > 0) {
-    coachingActions.add(`Review objective coverage around ${topObjectives[0].label}.`);
+  if (misconceptionPatterns[0]) {
+    lossDrivers.push({
+      title: `Repeated misconception: ${misconceptionPatterns[0].label}`,
+      evidence: `${misconceptionPatterns[0].count} mistakes followed the same misunderstanding pattern.`,
+    });
   }
-
-  if (topMisconceptions.length > 0) {
-    coachingActions.add(`Challenge the misconception pattern: ${topMisconceptions[0].label}.`);
-  }
-
   if (skippedItems.length >= 3) {
-    coachingActions.add('Run a timed recovery set to reduce decision-time skips.');
+    lossDrivers.push({
+      title: 'Completion pressure',
+      evidence: `${skippedItems.length} questions were left unanswered, which indicates time loss or low-confidence decision making.`,
+    });
+  } else if (hardStats.total > 0 && hardStats.wrong >= Math.ceil(hardStats.total / 2)) {
+    lossDrivers.push({
+      title: 'Hard-question judgement',
+      evidence: `${hardStats.wrong} of ${hardStats.total} hard questions were missed or skipped.`,
+    });
+  }
+
+  const nextActions: Array<{ title: string; evidence: string; action: string }> = [];
+  if (studyMap[0]) {
+    nextActions.push({
+      title: `Study ${studyMap[0].section}`,
+      evidence: `${studyMap[0].missed} missed or skipped questions map to ${studyMap[0].manual} -> ${studyMap[0].sourceSection}.`,
+      action: 'Read this manual section first, then do a short drill focused on the same section before attempting another full mock.',
+    });
+  }
+  if (objectiveMap[0] && normalizeLabel(objectiveMap[0].label) !== normalizeLabel(studyMap[0]?.section) && normalizeLabel(objectiveMap[0].label) !== normalizeLabel(studyMap[0]?.sourceSection)) {
+    nextActions.push({
+      title: `Repair objective: ${objectiveMap[0].label}`,
+      evidence: `${objectiveMap[0].count} misses point back to ${objectiveMap[0].manual} -> ${objectiveMap[0].sourceSection}.`,
+      action: objectiveMap[0].action,
+    });
+  }
+  if (misconceptionPatterns[0]) {
+    nextActions.push({
+      title: `Fix misconception: ${misconceptionPatterns[0].label}`,
+      evidence: `${misconceptionPatterns[0].count} questions were lost to the same distractor family.`,
+      action: misconceptionPatterns[0].action,
+    });
+  }
+  if (skippedItems.length >= 3) {
+    nextActions.push({
+      title: 'Reduce unanswered questions',
+      evidence: `${skippedItems.length} question${skippedItems.length === 1 ? '' : 's'} were skipped.`,
+      action: 'Run one timed recovery set and force a decision on every question within the first pass.',
+    });
+  } else if (hardStats.total > 0 && hardStats.wrong >= Math.ceil(hardStats.total / 2)) {
+    nextActions.push({
+      title: 'Strengthen hard-question judgement',
+      evidence: `${hardStats.wrong} of ${hardStats.total} hard questions were missed or skipped.`,
+      action: 'Prioritize harder workflow, architecture, configuration, and precedence questions before the next mock.',
+    });
+  }
+
+  let nextTest: { label: string; reason: string } | null = null;
+  const apiSignal =
+    studyMap.some((item) => /api|method server|customization|service/i.test(item.section) || /api|service|method/i.test(item.sourceSection)) ||
+    objectiveMap.some((item) => /api|service|method/i.test(item.label));
+  if (apiSignal) {
+    nextTest = {
+      label: 'API 10 - Customization Sprint',
+      reason: 'Your misses show Java API or service-level weakness. Use the short API sprint to isolate that gap before another full exam.',
+    };
+  } else if (skippedItems.length >= 3 || scorePercentage < 60) {
+    nextTest = {
+      label: 'Sprint 25 - Confidence Builder',
+      reason: 'You need a shorter reset focused on completion and core fundamentals before taking another longer paper.',
+    };
+  } else if (hardStats.total > 0 && hardStats.wrong >= Math.ceil(hardStats.total / 2)) {
+    nextTest = {
+      label: scorePercentage >= 75 ? 'Summit 75 - Hardline Simulation' : 'Forge 50 - Expert Challenge',
+      reason: 'Your main gap is judgement under harder questions, so the next test should deliberately keep that pressure on.',
+    };
+  } else if (scorePercentage >= 80) {
+    nextTest = {
+      label: 'Summit 75 - Full Preparation',
+      reason: 'You are close enough to benefit from a broader long-form validation pass across more sections.',
+    };
+  } else {
+    nextTest = {
+      label: 'Forge 50 - Applied Readiness',
+      reason: 'You need another balanced rehearsal that is longer than a sprint but not yet the hardest simulation.',
+    };
   }
 
   return {
     wrongCount: wrongItems.length,
     skippedCount: skippedItems.length,
-    topMisconceptions,
-    topObjectives,
-    coachingActions: [...coachingActions].slice(0, 4),
+    lossDrivers: lossDrivers.slice(0, 3),
+    studyMap,
+    misconceptionPatterns,
+    nextActions: nextActions.slice(0, 4),
+    nextTest,
   };
 }

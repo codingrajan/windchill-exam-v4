@@ -1,0 +1,482 @@
+[
+  {
+    "id": 599,
+    "domain": "Change and Release Management",
+    "topic": "Change Service APIs",
+    "difficulty": "easy",
+    "objective": "Recognize change-domain services as the supported entry point for change customizations",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Change Service APIs",
+    "misconceptionTag": "change_domain_through_generic_sql",
+    "releaseVersion": "2026.04-tranche2",
+    "question": "When a customization needs to work with Change Requests and Change Notices while preserving supported business behavior, what is the right starting posture?",
+    "options": [
+      "Prefer change-domain service APIs rather than bypassing them with generic persistence-only logic",
+      "Use folder helpers because they are more generic",
+      "Work only through JSP actions",
+      "Treat change objects as flat database rows"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Change objects participate in business rules and relationships that are better handled through supported change-domain services."
+  },
+  {
+    "id": 600,
+    "domain": "Change and Release Management",
+    "topic": "Change Service APIs",
+    "difficulty": "easy",
+    "objective": "Identify ChangeHelper2 as the common helper family for change-domain navigation",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Change Service APIs",
+    "misconceptionTag": "promotion_helper_for_change_navigation",
+    "releaseVersion": "2026.04-tranche2",
+    "question": "A Java report must navigate relationships around a Change Notice using supported Windchill services. Which helper family is the normal starting point?",
+    "options": [
+      "NmCommandBean",
+      "ChangeHelper2",
+      "ConfigSpecHelper",
+      "ReferenceFactory"
+    ],
+    "correctAnswer": 1,
+    "explanation": "ChangeHelper2 is the standard change-domain helper family for working with change objects and related business semantics."
+  },
+  {
+    "id": 601,
+    "domain": "Change and Release Management",
+    "topic": "Change Service APIs",
+    "difficulty": "medium",
+    "objective": "Recognize why service-layer traversal is preferable to hand-built relational shortcuts in change logic",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Change Service APIs",
+    "misconceptionTag": "manual_join_preferred_for_change_semantics",
+    "releaseVersion": "2026.04-tranche2",
+    "question": "Why is it usually better to traverse change relationships through supported APIs instead of assembling custom SQL-style logic for every related object?",
+    "options": [
+      "Because QuerySpec cannot be used in the change domain",
+      "Because SQL is forbidden in all integrations",
+      "Because supported services preserve change semantics and reduce brittle relationship handling",
+      "Because change objects never relate to other business objects"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Supported change services better preserve business semantics and are less brittle than reconstructing change relationships manually."
+  },
+  {
+    "id": 602,
+    "domain": "Navigate and Role-Based Consumption",
+    "topic": "Navigate Security and Administration",
+    "difficulty": "easy",
+    "objective": "Recognize Navigate as a simplified experience that still depends on Windchill security",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Navigate Security and Administration",
+    "misconceptionTag": "navigate_bypasses_windchill_security",
+    "releaseVersion": "2026.04-tranche2",
+    "question": "Which statement is most accurate about user access in Windchill Navigate?",
+    "options": [
+      "Navigate grants view rights automatically if the app is installed",
+      "Navigate replaces the need for a Windchill user account",
+      "Navigate ignores context-level read permissions",
+      "Navigate data visibility is still governed by underlying Windchill identity and access permissions"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Navigate simplifies the user experience, but the actual data visibility still depends on Windchill authentication and authorization."
+  },
+  {
+    "id": 603,
+    "domain": "Navigate and Role-Based Consumption",
+    "topic": "Navigate Security and Administration",
+    "difficulty": "easy",
+    "objective": "Identify the value of Navigate for casual consumers without overstating its role",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Navigate Security and Administration",
+    "misconceptionTag": "navigate_replaces_authoring_tools",
+    "releaseVersion": "2026.04-tranche2",
+    "question": "What is the strongest reason Navigate is attractive for casual business users?",
+    "options": [
+      "It offers a focused task-oriented experience instead of the full Windchill interface",
+      "It disables all access-control checks for viewers",
+      "It eliminates the need for identity management",
+      "It replaces authoring tools for full engineering creation work"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Navigate is valuable because it provides simplified, role-focused experiences for users who do not need the full Windchill interface."
+  },
+  {
+    "id": 604,
+    "domain": "Navigate and Role-Based Consumption",
+    "topic": "Navigate Security and Administration",
+    "difficulty": "medium",
+    "objective": "Separate app experience from security enforcement in Navigate",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Navigate Security and Administration",
+    "misconceptionTag": "navigate_app_install_equals_data_entitlement",
+    "releaseVersion": "2026.04-tranche2",
+    "question": "A team assumes that assigning a user to a Navigate app is enough to let the user see any related PLM data. What is the correct correction?",
+    "options": [
+      "App assignment is enough because Navigate handles authorization independently",
+      "Navigate access still depends on the user's Windchill account and the relevant read permissions",
+      "Only ThingWorx permissions matter after app assignment",
+      "The user needs CAD worker access instead"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Navigate surfaces data through Windchill-backed services, so the user's underlying Windchill account and permissions still matter."
+  },
+  {
+    "id": 605,
+    "domain": "PLM Strategy and Foundations",
+    "topic": "PLM Value and Digital Thread",
+    "difficulty": "easy",
+    "objective": "Recognize single-source-of-truth value as a core PLM benefit",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "PLM Value and Digital Thread",
+    "misconceptionTag": "plm_equals_financial_erp_replacement",
+    "releaseVersion": "2026.04-tranche2",
+    "question": "Which statement best reflects a primary PLM value that Windchill is meant to deliver?",
+    "options": [
+      "Automatic elimination of all engineering change governance",
+      "Direct execution of shop-floor machine control",
+      "A controlled product-data backbone that supports a single source of truth",
+      "Replacement of financial accounting systems"
+    ],
+    "correctAnswer": 2,
+    "explanation": "A core PLM value is establishing a governed product-data backbone rather than replacing unrelated enterprise systems."
+  },
+  {
+    "id": 606,
+    "domain": "PLM Strategy and Foundations",
+    "topic": "PLM Value and Digital Thread",
+    "difficulty": "easy",
+    "objective": "Connect digital thread thinking to cross-system continuity",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "PLM Value and Digital Thread",
+    "misconceptionTag": "digital_thread_is_only_cad_storage",
+    "releaseVersion": "2026.04-tranche2",
+    "question": "What does digital-thread thinking primarily emphasize in a Windchill context?",
+    "options": [
+      "Exclusive use of CAD-native files without enterprise integration",
+      "Replacement of all manufacturing systems",
+      "Storing every object only in the site context",
+      "Continuity of trusted product information across functions and downstream consumers"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Digital-thread thinking is about controlled continuity of product information across lifecycle functions, not just CAD storage."
+  },
+  {
+    "id": 607,
+    "domain": "PLM Strategy and Foundations",
+    "topic": "PLM Value and Digital Thread",
+    "difficulty": "medium",
+    "objective": "Interpret downstream plant handoff as a digital-thread capability rather than a pure infrastructure feature",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "PLM Value and Digital Thread",
+    "misconceptionTag": "distribution_target_equals_vault_replication_only",
+    "releaseVersion": "2026.04-tranche2",
+    "question": "Why is plant-specific distribution of approved product data a digital-thread capability rather than just an infrastructure convenience?",
+    "options": [
+      "Because it helps the right downstream teams consume governed product information in context",
+      "Because it replaces all access-control policies",
+      "Because it is only another name for backup",
+      "Because it eliminates the need for product structures"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Distribution-target behavior supports controlled downstream consumption of product information, which is a key digital-thread outcome."
+  },
+  {
+    "id": 608,
+    "domain": "Lifecycle, Workflow, and Object Initialization",
+    "topic": "Version and Lifecycle Services",
+    "difficulty": "easy",
+    "objective": "Differentiate lifecycle state management from version-control behavior",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Version and Lifecycle Services",
+    "misconceptionTag": "lifecycle_and_revision_are_same_api_concern",
+    "releaseVersion": "2026.04-tranche2",
+    "question": "Which helper family is the more natural starting point when a customization needs lifecycle state behavior rather than revise behavior?",
+    "options": [
+      "ReferenceFactory",
+      "LifeCycleHelper",
+      "VersionControlHelper",
+      "WorkInProgressHelper"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Lifecycle state management is a different concern from revise/version behavior, so LifeCycleHelper is the right starting family."
+  },
+  {
+    "id": 609,
+    "domain": "Lifecycle, Workflow, and Object Initialization",
+    "topic": "Version and Lifecycle Services",
+    "difficulty": "easy",
+    "objective": "Separate revise from checkout in Windchill service thinking",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Version and Lifecycle Services",
+    "misconceptionTag": "revise_equals_checkout",
+    "releaseVersion": "2026.04-tranche2",
+    "question": "Which statement correctly distinguishes revise from checkout?",
+    "options": [
+      "Checkout is used only for workflows and revise only for folders",
+      "Revise automatically disables access enforcement",
+      "Revise creates a new revision position, while checkout creates a working copy for edit",
+      "Both are just two labels for the same operation"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Revise changes revision lineage, while checkout creates a working copy within the work-in-progress model."
+  },
+  {
+    "id": 610,
+    "domain": "Lifecycle, Workflow, and Object Initialization",
+    "topic": "Version and Lifecycle Services",
+    "difficulty": "medium",
+    "objective": "Recognize that lifecycle transition and revise are distinct business operations",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Version and Lifecycle Services",
+    "misconceptionTag": "state_change_automatically_revises",
+    "releaseVersion": "2026.04-tranche2",
+    "question": "A developer assumes every lifecycle transition should also create a new revision. What is the correct response?",
+    "options": [
+      "That is correct only for folders",
+      "That is required whenever QuerySpec is used",
+      "That is correct because lifecycle state changes and revision are the same operation",
+      "That is incorrect because lifecycle transitions and revision are distinct concerns in Windchill"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Lifecycle state changes and revision are separate business concerns. A state transition does not automatically mean a new revision should be created."
+  },
+  {
+    "id": 611,
+    "domain": "Vaulting, Replication, and Data Maintenance",
+    "topic": "Backup and Rehost",
+    "difficulty": "easy",
+    "objective": "Recognize cold backup as a stopped-services backup pattern",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Backup and Rehost",
+    "misconceptionTag": "cold_backup_without_shutdown",
+    "releaseVersion": "2026.04-tranche2",
+    "question": "Which backup approach normally requires Windchill services to be stopped before the backup is taken?",
+    "options": [
+      "Cold backup",
+      "Incremental backup only",
+      "Report export backup",
+      "Representation publish backup"
+    ],
+    "correctAnswer": 0,
+    "explanation": "A cold backup is taken with the relevant services stopped so the environment is quiescent."
+  },
+  {
+    "id": 612,
+    "domain": "Vaulting, Replication, and Data Maintenance",
+    "topic": "Backup and Rehost",
+    "difficulty": "medium",
+    "objective": "Interpret background-queue suspension as a consistency safeguard during backup operations",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Backup and Rehost",
+    "misconceptionTag": "queue_suspend_is_only_for_speed",
+    "releaseVersion": "2026.04-tranche2",
+    "question": "Why are background queues often suspended before certain backup operations?",
+    "options": [
+      "Only to reduce CPU usage so backup files are smaller",
+      "To help preserve system consistency by preventing ongoing changes during the backup window",
+      "To force every checked-out object to be revised",
+      "To rebuild all indexes first"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Suspending queues is about consistency control during the backup window, not just performance."
+  },
+  {
+    "id": 613,
+    "domain": "Architecture, Installation, and Integration",
+    "topic": "Core Architecture and Services",
+    "difficulty": "easy",
+    "objective": "Identify the indexing service as the search-enablement component",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Core Architecture and Services",
+    "misconceptionTag": "db_server_is_full_text_indexer",
+    "releaseVersion": "2026.04-tranche2",
+    "question": "Which Windchill architecture component is associated most directly with full-text search capability?",
+    "options": [
+      "The CAD worker",
+      "The context template engine",
+      "The indexing service",
+      "The vault root"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Full-text search is associated with indexing services, not vaulting or CAD publishing components."
+  },
+  {
+    "id": 614,
+    "domain": "Architecture, Installation, and Integration",
+    "topic": "Core Architecture and Services",
+    "difficulty": "medium",
+    "objective": "Recognize service-start dependencies in Windchill initialization",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Core Architecture and Services",
+    "misconceptionTag": "windchill_before_db_and_directory",
+    "releaseVersion": "2026.04-tranche2",
+    "question": "Why must foundational services such as the database and directory be available before Windchill starts cleanly?",
+    "options": [
+      "Because Apache cannot start otherwise",
+      "Because vault replication must finish first",
+      "Because all contexts are created during server boot",
+      "Because Windchill depends on them during initialization for core persistence and identity behavior"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Windchill initialization depends on core persistence and identity infrastructure being available before the application can fully start."
+  },
+  {
+    "id": 615,
+    "domain": "Navigate and Role-Based Consumption",
+    "topic": "Navigate Architecture",
+    "difficulty": "easy",
+    "objective": "Recognize ThingWorx Foundation as a core Navigate platform element",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Navigate Architecture",
+    "misconceptionTag": "navigate_runs_without_platform_layer",
+    "releaseVersion": "2026.04-tranche2",
+    "question": "What role does ThingWorx Foundation play in Windchill Navigate architecture?",
+    "options": [
+      "It provides the application platform used to deliver Navigate experiences",
+      "It replaces the need for Windchill REST services",
+      "It stores native CAD files instead of Windchill vaults",
+      "It acts as the directory server for all users"
+    ],
+    "correctAnswer": 0,
+    "explanation": "ThingWorx Foundation is part of the platform layer used to deliver Navigate applications."
+  },
+  {
+    "id": 616,
+    "domain": "Navigate and Role-Based Consumption",
+    "topic": "Navigate Architecture",
+    "difficulty": "medium",
+    "objective": "Separate Navigate architecture from authoring-system misconceptions",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Navigate Architecture",
+    "misconceptionTag": "navigate_is_cad_authoring_platform",
+    "releaseVersion": "2026.04-tranche2",
+    "question": "Which description best captures Navigate architecture in practice?",
+    "options": [
+      "A vault-only reporting console",
+      "A role-based app experience built on platform components and Windchill-connected services",
+      "A replacement for heavy CAD authoring tools",
+      "A database schema editor for context templates"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Navigate is an app-based consumption layer, not a CAD authoring replacement or database design tool."
+  },
+  {
+    "id": 617,
+    "domain": "Change and Release Management",
+    "topic": "Promotion Requests and Release Paths",
+    "difficulty": "easy",
+    "objective": "Recognize promotion requests as release-governance artifacts rather than generic filters only",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Promotion Requests and Release Paths",
+    "misconceptionTag": "promotion_request_equals_change_notice",
+    "releaseVersion": "2026.04-tranche2",
+    "question": "What is a promotion request primarily used for in Windchill?",
+    "options": [
+      "To define vault replication schedules",
+      "To create new organization contexts",
+      "To move selected data through a controlled maturity or release review path",
+      "To revise every object in a product automatically"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Promotion requests are used to manage controlled review and release movement for selected product data."
+  },
+  {
+    "id": 618,
+    "domain": "Change and Release Management",
+    "topic": "Promotion Requests and Release Paths",
+    "difficulty": "medium",
+    "objective": "Differentiate promotion schemes from direct lifecycle state definitions",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Promotion Requests and Release Paths",
+    "misconceptionTag": "promotion_scheme_equals_state_set_menu",
+    "releaseVersion": "2026.04-tranche2",
+    "question": "Which statement best describes an out-of-the-box promotion scheme?",
+    "options": [
+      "It is the same thing as a manual set-state list",
+      "It determines directory-server startup order",
+      "It replaces change notices in all release processes",
+      "It defines the workflow process and related settings available when a promotion request is created"
+    ],
+    "correctAnswer": 3,
+    "explanation": "A promotion scheme defines the workflow-driven promotion-request behavior, not just a generic state menu."
+  },
+  {
+    "id": 619,
+    "domain": "Lifecycle, Workflow, and Object Initialization",
+    "topic": "Versioning and Revision Rules",
+    "difficulty": "easy",
+    "objective": "Recognize revise as the transition type associated with creating a new version",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Versioning and Revision Rules",
+    "misconceptionTag": "promote_creates_revision",
+    "releaseVersion": "2026.04-tranche2",
+    "question": "Which transition type is associated with creating a new version of an object?",
+    "options": [
+      "Revise",
+      "Promote",
+      "Set State",
+      "Demote"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Revision creation is tied to revise behavior, not to ordinary state promotion or demotion."
+  },
+  {
+    "id": 620,
+    "domain": "Lifecycle, Workflow, and Object Initialization",
+    "topic": "Versioning and Revision Rules",
+    "difficulty": "medium",
+    "objective": "Interpret state-based versioning as distinct from simple lifecycle movement",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Versioning and Revision Rules",
+    "misconceptionTag": "version_series_changes_on_every_state_change",
+    "releaseVersion": "2026.04-tranche2",
+    "question": "When does the version series change in state-based versioning terms?",
+    "options": [
+      "On every lifecycle state change",
+      "When a new revision is created according to the versioning rules, not merely because the object moved state",
+      "Whenever the life cycle template is edited",
+      "Whenever a workflow task is reassigned"
+    ],
+    "correctAnswer": 1,
+    "explanation": "State movement and revision-series changes are related but not identical. A version series changes when revision rules trigger a new revision."
+  },
+  {
+    "id": 621,
+    "domain": "Lifecycle, Workflow, and Object Initialization",
+    "topic": "Work In Progress Services",
+    "difficulty": "easy",
+    "objective": "Recognize checkout as the supported precursor to editing checked-in objects",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Work In Progress Services",
+    "misconceptionTag": "edit_checked_in_object_directly",
+    "releaseVersion": "2026.04-tranche2",
+    "question": "What is the supported first step before modifying a checked-in object through Java customization?",
+    "options": [
+      "Disable access enforcement permanently",
+      "Revise the object every time",
+      "Checkout to obtain a working copy",
+      "Store the original object directly"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Checked-in objects should be edited through the work-in-progress model by checking out a working copy first."
+  },
+  {
+    "id": 622,
+    "domain": "Lifecycle, Workflow, and Object Initialization",
+    "topic": "Work In Progress Services",
+    "difficulty": "medium",
+    "objective": "Recognize the risk of ignoring the checkout result object",
+    "sourceManual": "Windchill Java API Practice Set",
+    "sourceSection": "Work In Progress Services",
+    "misconceptionTag": "checkout_result_ignored",
+    "releaseVersion": "2026.04-tranche2",
+    "question": "Why is it risky if code performs a checkout call and then continues editing the original object variable instead of the returned working-copy result?",
+    "options": [
+      "Because checkout returns only a string identifier",
+      "Because working copies cannot be checked in later",
+      "Because checkout is valid only for folders",
+      "Because it may ignore the actual working copy that should be modified inside the work-in-progress model"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Checkout is intended to produce a working copy. Ignoring that result risks updating the wrong object reference."
+  }
+]

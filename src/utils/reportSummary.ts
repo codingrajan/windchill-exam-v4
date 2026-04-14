@@ -10,11 +10,26 @@ export function buildReportSummaryHTML(opts: {
   timeTakenLabel: string;
   strongestDomain: string;
   weakestDomain: string;
-  benchmarkMessage?: string;
-  focusAreas?: string[];
+  lossDrivers?: string[];
+  studyMap?: Array<{ section: string; manual: string; sourceSection: string; missed: number }>;
+  nextTest?: { label: string; reason: string } | null;
+  actions?: string[];
 }): string {
-  const focusItems = (opts.focusAreas ?? [])
+  const lossDriverItems = (opts.lossDrivers ?? [])
     .map((item) => `<li>${item}</li>`)
+    .join('');
+  const actionItems = (opts.actions ?? [])
+    .map((item) => `<li>${item}</li>`)
+    .join('');
+  const studyRows = (opts.studyMap ?? [])
+    .map(
+      (item) => `<tr>
+        <td>${item.section}</td>
+        <td>${item.manual}</td>
+        <td>${item.sourceSection}</td>
+        <td>${item.missed}</td>
+      </tr>`,
+    )
     .join('');
 
   return `<!DOCTYPE html>
@@ -37,6 +52,9 @@ export function buildReportSummaryHTML(opts: {
   .panel h2 { font-size: 14px; text-transform: uppercase; letter-spacing: .04em; color: #52525b; margin: 0 0 10px; }
   ul { margin: 8px 0 0 18px; padding: 0; }
   li { margin: 0 0 6px; }
+  table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+  th, td { text-align: left; border-top: 1px solid #e4e4e7; padding: 8px 6px; font-size: 12px; vertical-align: top; }
+  th { color: #71717a; font-size: 11px; text-transform: uppercase; }
 </style>
 </head>
 <body>
@@ -55,8 +73,10 @@ export function buildReportSummaryHTML(opts: {
       <p><strong>Strongest:</strong> ${opts.strongestDomain}</p>
       <p><strong>Weakest:</strong> ${opts.weakestDomain}</p>
     </div>
-    ${opts.benchmarkMessage ? `<div class="panel"><h2>Benchmark</h2><p>${opts.benchmarkMessage}</p></div>` : ''}
-    ${focusItems ? `<div class="panel"><h2>Next Focus</h2><ul>${focusItems}</ul></div>` : ''}
+    ${lossDriverItems ? `<div class="panel"><h2>What Hurt Your Score</h2><ul>${lossDriverItems}</ul></div>` : ''}
+    ${studyRows ? `<div class="panel"><h2>Where To Study</h2><table><thead><tr><th>Section</th><th>Manual</th><th>Source Section</th><th>Missed</th></tr></thead><tbody>${studyRows}</tbody></table></div>` : ''}
+    ${actionItems ? `<div class="panel"><h2>What To Do Next</h2><ul>${actionItems}</ul></div>` : ''}
+    ${opts.nextTest ? `<div class="panel"><h2>Recommended Next Test</h2><p><strong>${opts.nextTest.label}</strong></p><p>${opts.nextTest.reason}</p></div>` : ''}
   </div>
 </body>
 </html>`;

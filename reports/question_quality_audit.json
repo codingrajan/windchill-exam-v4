@@ -1,0 +1,14 @@
+{
+  "summary": {
+    "generatedAt": "2026-04-14T09:41:13.906Z",
+    "totalQuestions": 625,
+    "duplicateOptionPairs": 0,
+    "similarOptionPairs": 0,
+    "multiAnswerMismatch": 0,
+    "textHygieneIssues": 0
+  },
+  "duplicateOptions": [],
+  "similarOptions": [],
+  "multiAnswerMismatch": [],
+  "textHygiene": []
+}

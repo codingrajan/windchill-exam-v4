@@ -280,12 +280,26 @@ export default function PresetsTab() {
                     {filtered.map((q) => (
                       <div
                         key={q.id}
-                        onClick={() => setSelected((prev) => { const next = new Set(prev); next.has(q.id) ? next.delete(q.id) : next.add(q.id); return next; })}
+                        onClick={() =>
+                          setSelected((prev) => {
+                            const next = new Set(prev);
+                            if (next.has(q.id)) next.delete(q.id);
+                            else next.add(q.id);
+                            return next;
+                          })
+                        }
                         className={`flex items-start gap-3 px-4 py-3.5 cursor-pointer transition-colors ${selected.has(q.id) ? 'bg-indigo-50/50' : 'hover:bg-zinc-50'}`}
                       >
                         <LiteCheckbox
                           checked={selected.has(q.id)}
-                          onChange={() => setSelected((prev) => { const next = new Set(prev); next.has(q.id) ? next.delete(q.id) : next.add(q.id); return next; })}
+                          onChange={() =>
+                            setSelected((prev) => {
+                              const next = new Set(prev);
+                              if (next.has(q.id)) next.delete(q.id);
+                              else next.add(q.id);
+                              return next;
+                            })
+                          }
                         />
                         <div className="flex-grow min-w-0">
                           <QuestionPrompt question={q} compact />

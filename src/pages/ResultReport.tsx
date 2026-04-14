@@ -186,9 +186,24 @@ export default function ResultReport() {
           objective: entry.question.objective,
           misconceptionTag: entry.question.misconceptionTag,
           domain: getQuestionDomain(entry.question),
+          sourceManual: entry.question.sourceManual,
+          sourceSection: entry.question.sourceSection,
+          difficulty: entry.question.difficulty,
         })),
+        { scorePercentage: record?.scorePercentage ?? 0 },
       ),
-    [reviewRows],
+    [record?.scorePercentage, reviewRows],
+  );
+  const summaryFocusAreas = useMemo(
+    () =>
+      coachingSummary.nextActions.length > 0
+        ? coachingSummary.nextActions.map((item) => `${item.title}: ${item.action}`)
+        : (record?.recommendedFocus ?? []),
+    [coachingSummary.nextActions, record?.recommendedFocus],
+  );
+  const lossDriverSummaries = useMemo(
+    () => coachingSummary.lossDrivers.map((item) => `${item.title}: ${item.evidence}`),
+    [coachingSummary.lossDrivers],
   );
 
   const openCertificate = () => {
@@ -227,7 +242,15 @@ export default function ResultReport() {
       timeTakenLabel: `${Math.floor(record.timeTakenSeconds / 60)}m ${record.timeTakenSeconds % 60}s`,
       strongestDomain: record.strongestDomain,
       weakestDomain: record.weakestDomain,
-      focusAreas: record.recommendedFocus,
+      lossDrivers: lossDriverSummaries,
+      studyMap: coachingSummary.studyMap.map((item) => ({
+        section: item.section,
+        manual: item.manual,
+        sourceSection: item.sourceSection,
+        missed: item.missed,
+      })),
+      actions: summaryFocusAreas,
+      nextTest: coachingSummary.nextTest,
     });
     win.document.write(html);
     win.document.close();
@@ -295,41 +318,63 @@ export default function ResultReport() {
           </div>
         </div>
 
-        {record.recommendedFocus && record.recommendedFocus.length > 0 && (
-          <div className="mb-8 bg-amber-50 border border-amber-100 rounded-2xl p-5">
-            <p className="text-[10px] font-semibold text-amber-600 uppercase tracking-wider mb-3">Improvement Focus</p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-              {record.recommendedFocus.map((focus) => (
-                <div key={focus} className="text-sm font-medium text-zinc-700 bg-white/70 border border-amber-100 rounded-xl px-4 py-3">
-                  {focus}
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {(coachingSummary.topMisconceptions.length > 0 || coachingSummary.topObjectives.length > 0) && (
+        {(coachingSummary.lossDrivers.length > 0 || coachingSummary.studyMap.length > 0 || coachingSummary.nextActions.length > 0) && (
           <div className="mb-8 bg-white border border-zinc-100 rounded-2xl p-5">
             <div className="flex items-start justify-between gap-4 flex-wrap mb-4">
               <div>
-                <p className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wider mb-1">Coaching Summary</p>
+                <p className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wider mb-1">Report Coaching</p>
                 <p className="text-sm font-medium text-zinc-700">
-                  {coachingSummary.wrongCount} wrong and {coachingSummary.skippedCount} skipped answers drove this attempt.
+                  {coachingSummary.wrongCount} wrong and {coachingSummary.skippedCount} skipped answers were reduced into a study guide. Start with the loss drivers, then use where to study and the recommended actions.
                 </p>
               </div>
               <span className="text-[11px] font-semibold px-3 py-1 rounded-full border bg-red-50 text-red-600 border-red-100">
-                Review Driver
+                Evidence View
               </span>
             </div>
+            {coachingSummary.lossDrivers.length > 0 && (
+              <div className="bg-red-50 border border-red-100 rounded-xl p-4 mb-4">
+                <p className="text-[10px] font-semibold text-red-600 uppercase tracking-wider mb-2">What Hurt Your Score</p>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                  {coachingSummary.lossDrivers.map((item) => (
+                    <div key={item.title} className="bg-white/80 border border-red-100 rounded-xl px-4 py-3">
+                      <p className="text-sm font-semibold text-zinc-800">{item.title}</p>
+                      <p className="text-[12px] text-zinc-600 mt-1">{item.evidence}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
               <div className="bg-zinc-50 border border-zinc-100 rounded-xl p-4">
-                <p className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wider mb-2">Top Misconceptions</p>
-                {coachingSummary.topMisconceptions.length > 0 ? (
+                <p className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wider mb-2">Where To Study</p>
+                {coachingSummary.studyMap.length > 0 ? (
                   <div className="space-y-2">
-                    {coachingSummary.topMisconceptions.map((item) => (
-                      <div key={item.label} className="flex items-center justify-between gap-3 text-sm">
-                        <span className="font-medium text-zinc-700">{item.label}</span>
-                        <span className="text-xs font-semibold text-red-600 bg-red-50 border border-red-100 px-2 py-0.5 rounded-full">{item.count}</span>
+                    {coachingSummary.studyMap.map((item) => (
+                      <div key={`${item.section}-${item.sourceSection}`} className="text-sm">
+                        <div className="flex items-center justify-between gap-3">
+                          <span className="font-medium text-zinc-700">{item.section}</span>
+                          <span className="text-xs font-semibold text-red-600 bg-red-50 border border-red-100 px-2 py-0.5 rounded-full">{item.missed} miss</span>
+                        </div>
+                        <p className="text-[11px] text-zinc-500 mt-1">{item.manual}</p>
+                        <p className="text-[11px] text-zinc-500">{item.sourceSection} · {item.accuracy}% accuracy</p>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="text-sm text-zinc-400">No study hotspot detected.</p>
+                )}
+              </div>
+              <div className="bg-zinc-50 border border-zinc-100 rounded-xl p-4">
+                <p className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wider mb-2">Misconception Patterns</p>
+                {coachingSummary.misconceptionPatterns.length > 0 ? (
+                  <div className="space-y-2">
+                    {coachingSummary.misconceptionPatterns.map((item) => (
+                      <div key={item.label} className="text-sm">
+                        <div className="flex items-center justify-between gap-3">
+                          <span className="font-medium text-zinc-700">{item.label}</span>
+                          <span className="text-xs font-semibold text-red-600 bg-red-50 border border-red-100 px-2 py-0.5 rounded-full">{item.count}</span>
+                        </div>
+                        <p className="text-[11px] text-zinc-500 mt-1">{item.action}</p>
                       </div>
                     ))}
                   </div>
@@ -337,32 +382,26 @@ export default function ResultReport() {
                   <p className="text-sm text-zinc-400">No repeated misconception cluster detected.</p>
                 )}
               </div>
-              <div className="bg-zinc-50 border border-zinc-100 rounded-xl p-4">
-                <p className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wider mb-2">Objectives To Revisit</p>
-                {coachingSummary.topObjectives.length > 0 ? (
-                  <div className="space-y-2">
-                    {coachingSummary.topObjectives.map((item) => (
-                      <div key={item.label} className="flex items-center justify-between gap-3 text-sm">
-                        <span className="font-medium text-zinc-700">{item.label}</span>
-                        <span className="text-xs font-semibold text-amber-700 bg-amber-50 border border-amber-100 px-2 py-0.5 rounded-full">{item.count}</span>
-                      </div>
-                    ))}
-                  </div>
-                ) : (
-                  <p className="text-sm text-zinc-400">No repeated objective weakness detected.</p>
-                )}
-              </div>
             </div>
-            {coachingSummary.coachingActions.length > 0 && (
+            {coachingSummary.nextActions.length > 0 && (
               <div className="bg-indigo-50 border border-indigo-100 rounded-xl p-4">
-                <p className="text-[10px] font-semibold text-indigo-500 uppercase tracking-wider mb-2">Next Coaching Actions</p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                  {coachingSummary.coachingActions.map((action) => (
-                    <div key={action} className="text-sm font-medium text-zinc-700 bg-white/80 border border-indigo-100 rounded-xl px-4 py-3">
-                      {action}
+                <p className="text-[10px] font-semibold text-indigo-500 uppercase tracking-wider mb-2">Recommended Actions</p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
+                  {coachingSummary.nextActions.map((item) => (
+                    <div key={item.title} className="bg-white/80 border border-indigo-100 rounded-xl px-4 py-3">
+                      <p className="text-sm font-semibold text-zinc-800">{item.title}</p>
+                      <p className="text-[11px] text-zinc-500 mt-1">{item.evidence}</p>
+                      <p className="text-[12px] font-medium text-zinc-700 mt-2">{item.action}</p>
                     </div>
                   ))}
                 </div>
+                {coachingSummary.nextTest && (
+                  <div className="bg-white/80 border border-indigo-100 rounded-xl px-4 py-3">
+                    <p className="text-[10px] font-semibold text-indigo-500 uppercase tracking-wider mb-1">Recommended Next Test</p>
+                    <p className="text-sm font-semibold text-zinc-800">{coachingSummary.nextTest.label}</p>
+                    <p className="text-[12px] text-zinc-600 mt-1">{coachingSummary.nextTest.reason}</p>
+                  </div>
+                )}
               </div>
             )}
           </div>

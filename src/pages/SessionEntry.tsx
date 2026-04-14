@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { FormEvent } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -44,13 +44,10 @@ export default function SessionEntry() {
   const [accessCode, setAccessCode] = useState('');
   const [error, setError] = useState('');
   const [starting, setStarting] = useState(false);
-  const preset = useRef<Preset | null>(null);
+  const [preset, setPreset] = useState<Preset | null>(null);
 
   useEffect(() => {
-    if (!sessionId) {
-      setPageState('invalid');
-      return;
-    }
+    if (!sessionId) return;
 
     const load = async () => {
       try {
@@ -81,7 +78,7 @@ export default function SessionEntry() {
           return;
         }
 
-        preset.current = presetSnap.data() as Preset;
+        setPreset(presetSnap.data() as Preset);
         setSession(data);
         setPageState('ready');
       } catch (loadError) {
@@ -95,7 +92,7 @@ export default function SessionEntry() {
 
   const handleStart = async (event: FormEvent) => {
     event.preventDefault();
-    if (!session || !preset.current) return;
+    if (!session || !preset) return;
 
     setError('');
     if (!candidateName.trim()) {
@@ -134,12 +131,12 @@ export default function SessionEntry() {
           state: {
             examineeName: candidateName.trim(),
             mode: 'preset',
-            track: preset.current.examTrack ?? 'exam_parity',
-            presetLabel: preset.current.difficultyLabel ?? 'Preset Exam',
-            targetCount: preset.current.targetCount,
-            timeLimitMinutes: preset.current.timeLimitMinutes,
+            track: preset.examTrack ?? 'exam_parity',
+            presetLabel: preset.difficultyLabel ?? 'Preset Exam',
+            targetCount: preset.targetCount,
+            timeLimitMinutes: preset.timeLimitMinutes,
             presetId: session.presetId,
-            presetQuestionIds: preset.current.questions,
+            presetQuestionIds: preset.questions,
             sessionId: session.id,
             sessionName: session.name,
             candidateEmail: normalizedEmail || undefined,
@@ -182,12 +179,12 @@ export default function SessionEntry() {
         state: {
           examineeName: candidateName.trim(),
           mode: 'preset',
-          track: preset.current.examTrack ?? 'exam_parity',
-          presetLabel: preset.current.difficultyLabel ?? 'Preset Exam',
-          targetCount: preset.current.targetCount,
-          timeLimitMinutes: preset.current.timeLimitMinutes,
+          track: preset.examTrack ?? 'exam_parity',
+          presetLabel: preset.difficultyLabel ?? 'Preset Exam',
+          targetCount: preset.targetCount,
+          timeLimitMinutes: preset.timeLimitMinutes,
           presetId: session.presetId,
-          presetQuestionIds: preset.current.questions,
+          presetQuestionIds: preset.questions,
           sessionId: session.id,
           sessionName: session.name,
           candidateEmail: normalizedEmail || undefined,
@@ -205,6 +202,21 @@ export default function SessionEntry() {
     return <div className="flex h-64 items-center justify-center"><div className="w-7 h-7 border-2 border-indigo-400 border-t-transparent rounded-full animate-spin" /></div>;
   }
 
+  if (!sessionId) {
+    const message = ERROR_MESSAGES.invalid;
+    return (
+      <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="flex items-center justify-center min-h-[70vh] px-4">
+        <div className="text-center max-w-sm">
+          <div className="inline-flex items-center justify-center w-14 h-14 bg-red-50 border border-red-100 rounded-2xl mb-4">
+            <span className="text-2xl">&#x26A0;</span>
+          </div>
+          <h2 className="text-xl font-bold text-zinc-900 mb-2">{message.title}</h2>
+          <p className="text-sm text-zinc-500 font-medium">{message.body()}</p>
+        </div>
+      </motion.div>
+    );
+  }
+
   if (pageState !== 'ready') {
     const message = ERROR_MESSAGES[pageState as keyof typeof ERROR_MESSAGES];
     return (
@@ -220,6 +232,12 @@ export default function SessionEntry() {
     );
   }
 
+  if (!session || !preset) {
+    return <div className="flex h-64 items-center justify-center"><div className="w-7 h-7 border-2 border-indigo-400 border-t-transparent rounded-full animate-spin" /></div>;
+  }
+
+  const maxRetakes = session.maxRetakes ?? 0;
+
   return (
     <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="flex items-center justify-center min-h-[70vh] px-4">
       <div className="w-full max-w-sm">
@@ -229,41 +247,41 @@ export default function SessionEntry() {
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
             </svg>
           </div>
-          <h2 className="text-2xl font-bold text-zinc-900 tracking-tight">{session!.name}</h2>
+          <h2 className="text-2xl font-bold text-zinc-900 tracking-tight">{session.name}</h2>
           <p className="text-zinc-500 text-sm font-medium mt-1">
-            {preset.current!.targetCount} Questions &middot; Secured Exam
-            {(session!.maxRetakes ?? 0) > 0 && <> &middot; Max {session!.maxRetakes} attempt{session!.maxRetakes! > 1 ? 's' : ''}</>}
+            {preset.targetCount} Questions &middot; Secured Exam
+            {maxRetakes > 0 && <> &middot; Max {maxRetakes} attempt{maxRetakes > 1 ? 's' : ''}</>}
           </p>
         </div>
 
         <div className="bg-white border border-zinc-100 rounded-3xl shadow-sm p-8">
           <div className="grid grid-cols-3 gap-2 mb-5">
             <div className="bg-zinc-50 border border-zinc-100 rounded-xl px-3 py-3 text-center">
-              <div className="text-base font-bold text-zinc-900">{preset.current!.targetCount}</div>
+              <div className="text-base font-bold text-zinc-900">{preset.targetCount}</div>
               <div className="text-[9px] font-semibold uppercase tracking-wider text-zinc-400">Questions</div>
             </div>
             <div className="bg-zinc-50 border border-zinc-100 rounded-xl px-3 py-3 text-center">
-              <div className="text-base font-bold text-zinc-900">{getTimeLabel(preset.current!.targetCount, preset.current!.timeLimitMinutes)}</div>
+              <div className="text-base font-bold text-zinc-900">{getTimeLabel(preset.targetCount, preset.timeLimitMinutes)}</div>
               <div className="text-[9px] font-semibold uppercase tracking-wider text-zinc-400">Time Limit</div>
             </div>
             <div className="bg-zinc-50 border border-zinc-100 rounded-xl px-3 py-3 text-center">
-              <div className="text-base font-bold text-zinc-900">{preset.current!.difficultyLabel ?? 'Preset'}</div>
+              <div className="text-base font-bold text-zinc-900">{preset.difficultyLabel ?? 'Preset'}</div>
               <div className="text-[9px] font-semibold uppercase tracking-wider text-zinc-400">Profile</div>
             </div>
           </div>
 
           <div className="mb-5 flex flex-wrap gap-2">
-            {typeof preset.current!.multiSelectRatio === 'number' && (
+            {typeof preset.multiSelectRatio === 'number' && (
               <span className="text-[10px] font-medium bg-indigo-50 text-indigo-600 border border-indigo-100 px-2.5 py-1 rounded-full">
-                {Math.round(preset.current!.multiSelectRatio * 100)}% multiple response
+                {Math.round(preset.multiSelectRatio * 100)}% multiple response
               </span>
             )}
             <span className="text-[10px] font-medium bg-emerald-50 text-emerald-600 border border-emerald-100 px-2.5 py-1 rounded-full">
               80% pass threshold
             </span>
-            {(session!.maxRetakes ?? 0) > 0 && (
+            {maxRetakes > 0 && (
               <span className="text-[10px] font-medium bg-amber-50 text-amber-600 border border-amber-100 px-2.5 py-1 rounded-full">
-                Max {session!.maxRetakes} attempt{session!.maxRetakes! > 1 ? 's' : ''}
+                Max {maxRetakes} attempt{maxRetakes > 1 ? 's' : ''}
               </span>
             )}
           </div>

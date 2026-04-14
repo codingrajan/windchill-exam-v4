@@ -576,7 +576,7 @@
       "Latest Released"
     ],
     "correctAnswer": 2,
-    "explanation": "Date Effectivity is used when applicability is determined by calendar date.",
+    "explanation": "Date Effectivity is correct because effectivity and related configuration specifications control when or for which serial, lot, or date a product structure is valid. This question is testing the administrative meaning of effectivity and applicability, not a generic UI action or local workaround.",
     "topic": "Effectivity and Applicability",
     "domain": "Configuration Management and Product Structures",
     "difficulty": "easy",
@@ -849,7 +849,7 @@
       "It helps enforce dependencies and a controlled order of implementation work"
     ],
     "correctAnswer": 3,
-    "explanation": "Sequencing helps ensure dependent work occurs in the proper order.",
+    "explanation": "It helps enforce dependencies and a controlled order of implementation work is correct because execution objects break approved change into governed work that can be assigned, tracked, and completed in sequence. This question is testing the administrative meaning of change execution and resulting objects, not a generic UI action or local workaround.",
     "topic": "Change Execution and Resulting Objects",
     "domain": "Change and Release Management",
     "difficulty": "medium",
@@ -891,7 +891,7 @@
       "A Variance is a queue object, while a Problem Report is a life cycle state"
     ],
     "correctAnswer": 1,
-    "explanation": "Variances are exception authorizations; Problem Reports are issue or enhancement records.",
+    "explanation": "A Variance authorizes a temporary departure from design, while a Problem Report records an issue or enhancement request is correct because problem capture and approved variance handling serve different governance purposes and should not be treated as interchangeable change objects. This question is testing the administrative meaning of issue intake and variance control, not a generic UI action or local workaround.",
     "topic": "Issue Intake and Variance Control",
     "domain": "Change and Release Management",
     "difficulty": "medium",
@@ -954,7 +954,7 @@
       "To create new revisions automatically"
     ],
     "correctAnswer": 0,
-    "explanation": "Content replication distributes content copies to improve access in distributed environments.",
+    "explanation": "To distribute copies of vaulted content to other locations for more efficient access is correct because replication distributes governed content copies for remote access while authoritative storage and vaulting remain centrally controlled. This question is testing the administrative meaning of replication and distribution, not a generic UI action or local workaround.",
     "topic": "Replication and Distribution",
     "domain": "Vaulting, Replication, and Data Maintenance",
     "difficulty": "easy",
@@ -1017,7 +1017,7 @@
       "What content is copied, where it goes, and when replication occurs"
     ],
     "correctAnswer": 3,
-    "explanation": "Replication rules control scope, target, and timing of replicated content.",
+    "explanation": "What content is copied, where it goes, and when replication occurs is correct because replication distributes governed content copies for remote access while authoritative storage and vaulting remain centrally controlled. This question is testing the administrative meaning of replication and distribution, not a generic UI action or local workaround.",
     "topic": "Replication and Distribution",
     "domain": "Vaulting, Replication, and Data Maintenance",
     "difficulty": "medium",
@@ -1080,7 +1080,7 @@
       "The default folder path for every subtype"
     ],
     "correctAnswer": 2,
-    "explanation": "Throughput reports are used to understand workload and performance trends.",
+    "explanation": "System activity volume and processing trends is correct because usage and throughput reporting give administrators measured evidence for adoption, load, and capacity planning decisions. This question is testing the administrative meaning of audit and usage reporting, not a generic UI action or local workaround.",
     "topic": "Audit and Usage Reporting",
     "domain": "System Administration, Utilities, and Monitoring",
     "difficulty": "medium",
@@ -1185,7 +1185,7 @@
       "Review which related objects were collected to ensure the move scope is correct"
     ],
     "correctAnswer": 3,
-    "explanation": "Administrators should verify the collected related objects before executing a move.",
+    "explanation": "Review which related objects were collected to ensure the move scope is correct is correct because content collection and move operations protect related files and object consistency during maintenance work. This question is testing the administrative meaning of vaulting and content maintenance, not a generic UI action or local workaround.",
     "topic": "Vaulting and Content Maintenance",
     "domain": "Vaulting, Replication, and Data Maintenance",
     "difficulty": "easy",
@@ -1290,7 +1290,7 @@
       "LDAP group name"
     ],
     "correctAnswer": 0,
-    "explanation": "Reference designators are usage-specific and belong at the occurrence level.",
+    "explanation": "Reference designator is correct because structure usage values belong to the BOM relationship and support accurate downstream interpretation. This question is testing the administrative meaning of structure usage and navigation, not a generic UI action or local workaround.",
     "topic": "Structure Usage and Navigation",
     "domain": "Configuration Management and Product Structures",
     "difficulty": "easy",
@@ -1332,7 +1332,7 @@
       "Promotion Request"
     ],
     "correctAnswer": 2,
-    "explanation": "Unit Effectivity is used for serial-number or lot-based applicability.",
+    "explanation": "Unit Effectivity is correct because effectivity and related configuration specifications control when or for which serial, lot, or date a product structure is valid. This question is testing the administrative meaning of effectivity and applicability, not a generic UI action or local workaround.",
     "topic": "Effectivity and Applicability",
     "domain": "Configuration Management and Product Structures",
     "difficulty": "easy",
@@ -1353,7 +1353,7 @@
       "Date Effectivity"
     ],
     "correctAnswer": 3,
-    "explanation": "Date Effectivity resolves applicability based on a calendar date.",
+    "explanation": "Date Effectivity is correct because effectivity and related configuration specifications control when or for which serial, lot, or date a product structure is valid. This question is testing the administrative meaning of effectivity and applicability, not a generic UI action or local workaround.",
     "topic": "Effectivity and Applicability",
     "domain": "Configuration Management and Product Structures",
     "difficulty": "easy",
@@ -1374,7 +1374,7 @@
       "A baseline shows checked-out content, while Latest shows only released objects"
     ],
     "correctAnswer": 0,
-    "explanation": "Baselines are fixed snapshots; Latest is dynamically resolved.",
+    "explanation": "A baseline shows a saved historical structure snapshot, while Latest resolves the most current eligible versions at viewing time.",
     "topic": "Baselines and Structure Snapshots",
     "domain": "Configuration Management and Product Structures",
     "difficulty": "medium",
@@ -1416,7 +1416,7 @@
       "It defines OIR numbering algorithms"
     ],
     "correctAnswer": 2,
-    "explanation": "Visualization preferences influence the UI behavior around visualization interactions.",
+    "explanation": "It controls how users interact with visualization-related behavior in the UI is correct because representations and WVS publishing let users review product data without opening native CAD tools, and queue or worker health directly affects availability. This question is testing the administrative meaning of visualization and publishing, not a generic UI action or local workaround.",
     "topic": "Visualization and Publishing",
     "domain": "CAD Data Management and Visualization",
     "difficulty": "medium",
@@ -1437,7 +1437,7 @@
       "To control search-related user behavior and defaults"
     ],
     "correctAnswer": 3,
-    "explanation": "Searching preferences govern search behavior and defaults for users.",
+    "explanation": "To control search-related user behavior and defaults is correct because preferences control system or context behavior and are different from broader role-oriented UI simplification mechanisms such as profiles. This question is testing the administrative meaning of preferences, not a generic UI action or local workaround.",
     "topic": "Preferences",
     "domain": "Contexts, Preferences, and Business Administration",
     "difficulty": "easy",
@@ -1647,7 +1647,7 @@
       "A private local cache used only by one desktop session"
     ],
     "correctAnswer": 1,
-    "explanation": "Commonspace is the managed authoritative repository, unlike a local working workspace.",
+    "explanation": "The authoritative managed repository for checked-in data is correct because workspaces isolate in-progress CAD work, while commonspace remains the governed shared record for checked-in and published content. This question is testing the administrative meaning of workspaces and commonspace control, not a generic UI action or local workaround.",
     "topic": "Workspaces and Commonspace Control",
     "domain": "CAD Data Management and Visualization",
     "difficulty": "medium",
@@ -1668,7 +1668,7 @@
       "A replica server used only for remote vault access"
     ],
     "correctAnswer": 2,
-    "explanation": "A workspace is a managed working area for in-progress design activity.",
+    "explanation": "A managed working area for in-progress design content before final check-in to commonspace is correct because workspaces isolate in-progress CAD work, while commonspace remains the governed shared record for checked-in and published content. This question is testing the administrative meaning of workspaces and commonspace control, not a generic UI action or local workaround.",
     "topic": "Workspaces and Commonspace Control",
     "domain": "CAD Data Management and Visualization",
     "difficulty": "medium",
@@ -1710,7 +1710,7 @@
       "Its master record is deleted and recreated"
     ],
     "correctAnswer": 0,
-    "explanation": "Check-in stores a new managed iteration in commonspace.",
+    "explanation": "The iteration is committed to commonspace, workspace changes are reconciled, and the managed object becomes available as the new server-side iteration.",
     "topic": "Workspaces and Commonspace Control",
     "domain": "CAD Data Management and Visualization",
     "difficulty": "easy",
@@ -1731,7 +1731,7 @@
       "To convert all related documents into WTParts"
     ],
     "correctAnswer": 1,
-    "explanation": "Collecting dependencies helps ensure a complete and consistent managed design set.",
+    "explanation": "To keep referenced design data consistent and complete is correct because workspaces isolate in-progress CAD work, while commonspace remains the governed shared record for checked-in and published content. This question is testing the administrative meaning of workspaces and commonspace control, not a generic UI action or local workaround.",
     "topic": "Workspaces and Commonspace Control",
     "domain": "CAD Data Management and Visualization",
     "difficulty": "medium",
@@ -1857,7 +1857,7 @@
       "They provide evidence and traceability of security-relevant system activity"
     ],
     "correctAnswer": 3,
-    "explanation": "Security auditing reports support traceability and compliance evidence.",
+    "explanation": "They provide evidence of who accessed or changed secured data, supporting traceability, policy review, and compliance investigations.",
     "topic": "Audit and Usage Reporting",
     "domain": "System Administration, Utilities, and Monitoring",
     "difficulty": "medium",
@@ -1878,7 +1878,7 @@
       "To define context team membership"
     ],
     "correctAnswer": 0,
-    "explanation": "Usage reporting helps administrators understand adoption and usage trends.",
+    "explanation": "To measure how the system or features are being used over time is correct because usage and throughput reporting give administrators measured evidence for adoption, load, and capacity planning decisions. This question is testing the administrative meaning of audit and usage reporting, not a generic UI action or local workaround.",
     "topic": "Audit and Usage Reporting",
     "domain": "System Administration, Utilities, and Monitoring",
     "difficulty": "medium",
@@ -1899,7 +1899,7 @@
       "They publish CAD data to Creo View"
     ],
     "correctAnswer": 1,
-    "explanation": "Context templates help standardize initial configuration for new contexts.",
+    "explanation": "They standardize initial setup such as folders, teams, and related defaults for new contexts is correct because context templates standardize new contexts so teams do not manually rebuild the same setup each time. This question is testing the administrative meaning of context templates, not a generic UI action or local workaround.",
     "topic": "Context Templates",
     "domain": "Contexts, Preferences, and Business Administration",
     "difficulty": "medium",
@@ -1920,7 +1920,7 @@
       "The host name of the Oracle database server"
     ],
     "correctAnswer": 2,
-    "explanation": "Context templates standardize context setup rather than infrastructure host settings.",
+    "explanation": "Initial organizational setup and default configuration patterns is correct because context templates standardize new contexts so teams do not manually rebuild the same setup each time. This question is testing the administrative meaning of context templates, not a generic UI action or local workaround.",
     "topic": "Context Templates",
     "domain": "Contexts, Preferences, and Business Administration",
     "difficulty": "easy",
@@ -2025,7 +2025,7 @@
       "To provide a lightweight visualization derivative suitable for review and markup"
     ],
     "correctAnswer": 3,
-    "explanation": "Representations enable browser-based visualization and review of managed data.",
+    "explanation": "To provide a lightweight visualization derivative suitable for review and markup is correct because representations and WVS publishing let users review product data without opening native CAD tools, and queue or worker health directly affects availability. This question is testing the administrative meaning of visualization and publishing, not a generic UI action or local workaround.",
     "topic": "Visualization and Publishing",
     "domain": "CAD Data Management and Visualization",
     "difficulty": "medium",
@@ -2067,7 +2067,7 @@
       "It converts all secondaries to primaries"
     ],
     "correctAnswer": 1,
-    "explanation": "A central authoritative vault supports governance, while replication supports distributed access.",
+    "explanation": "It maintains one source of truth while still supporting distributed access is correct because replication distributes governed content copies for remote access while authoritative storage and vaulting remain centrally controlled. This question is testing the administrative meaning of replication and distribution, not a generic UI action or local workaround.",
     "topic": "Replication and Distribution",
     "domain": "Vaulting, Replication, and Data Maintenance",
     "difficulty": "medium",
