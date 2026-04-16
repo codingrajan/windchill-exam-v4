@@ -66,7 +66,7 @@
     "id": 4,
     "topic": "Visualization and Publishing",
     "difficulty": "easy",
-    "question": "Which enterprise system can be integrated with Windchill to maintain a single username and password across all enterprise applications?",
+    "question": "Which enterprise system is typically integrated with Windchill to provide centralized user authentication across enterprise applications?",
     "options": [
       "An ERP system such as SAP",
       "A CAD authoring application such as Creo Parametric",
@@ -74,7 +74,7 @@
       "A visualization publication worker"
     ],
     "correctAnswer": 2,
-    "explanation": "The course manual identifies an enterprise directory server such as Microsoft Active Directory as the enterprise system used to maintain a single username and password across enterprise applications. ERP, CAD authoring tools, and visualization workers serve different roles in the Windchill architecture.",
+    "explanation": "Windchill commonly integrates with an enterprise directory service such as Microsoft Active Directory to centralize authentication. ERP systems, CAD authoring tools, and visualization workers serve different roles and do not provide the directory-based identity source.",
     "objective": "Visualization and Publishing",
     "domain": "CAD Data Management and Visualization",
     "type": "single",
@@ -1641,7 +1641,7 @@
     "id": 79,
     "topic": "CAD Documents and Authoring Context",
     "difficulty": "medium",
-    "question": "In a BOM structure, what do 'occurrences' represent in Windchill?",
+    "question": "In a Windchill BOM, what does an occurrence represent?",
     "options": [
       "The number of active change notices affecting a specific part",
       "Specific instances or usages of a component within an assembly, enabling position-specific data",
@@ -1649,7 +1649,7 @@
       "The total count of a part across all revisions in the database"
     ],
     "correctAnswer": 1,
-    "explanation": "The Technical Essentials manual section 'Identify occurrences of a part in a BOM' and 'Activity: Create occurrences in a BOM' demonstrate that occurrences represent specific instances of a part usage in an assembly, allowing occurrence-specific attributes and position data.",
+    "explanation": "An occurrence represents a specific instance of a part usage in a structure. Occurrences support occurrence-level attributes and position-oriented data that belong to the usage, not only to the reused part itself.",
     "objective": "CAD Documents and Authoring Context",
     "domain": "CAD Data Management and Visualization",
     "type": "single",
@@ -1746,7 +1746,7 @@
     "id": 84,
     "topic": "CAD Documents and Authoring Context",
     "difficulty": "easy",
-    "question": "In Windchill, what are the two primary approaches to product development for managing CAD data and parts?",
+    "question": "What are the two primary product-development approaches described in Windchill for managing CAD data and parts?",
     "options": [
       "Top-down design and bottom-up design",
       "Document-centric approach and BOM-centric approach",
@@ -1754,7 +1754,7 @@
       "Part-centric approach and CAD-centric approach"
     ],
     "correctAnswer": 3,
-    "explanation": "The Technical Essentials manual explicitly covers 'Describe the part-centric approach to product development' and 'Describe the CAD-centric approach to product development' as two distinct methodologies for managing product data in Windchill.",
+    "explanation": "Windchill distinguishes part-centric and CAD-centric development approaches. The difference is in which object drives product structure and downstream relationships, not in whether CAD data exists in the system.",
     "objective": "CAD Documents and Authoring Context",
     "domain": "CAD Data Management and Visualization",
     "type": "single",

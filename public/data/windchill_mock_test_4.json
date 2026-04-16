@@ -295,7 +295,7 @@
   },
   {
     "id": 265,
-    "question": "What is the Windchill Configuration Assistant (WCA) primarily used for?",
+    "question": "What is the primary purpose of the Windchill Configuration Assistant (WCA)?",
     "options": [
       "Designing workflow templates for change objects",
       "Evaluating and adjusting system settings and configuration-related values",
@@ -303,7 +303,7 @@
       "Authoring CAD models directly in the browser"
     ],
     "correctAnswer": 1,
-    "explanation": "WCA is used to review and adjust Windchill system settings, making it a system-administration utility rather than a business-administration or authoring tool.",
+    "explanation": "WCA is an administration utility used to review and adjust Windchill system settings. It is not a business-object administration tool and it is not part of end-user authoring workflows.",
     "topic": "Administrative Utilities and Queues",
     "domain": "System Administration, Utilities, and Monitoring",
     "difficulty": "easy",
@@ -576,7 +576,7 @@
       "Latest Released"
     ],
     "correctAnswer": 2,
-    "explanation": "Date Effectivity is correct because effectivity and related configuration specifications control when or for which serial, lot, or date a product structure is valid. This question is testing the administrative meaning of effectivity and applicability, not a generic UI action or local workaround.",
+    "explanation": "Effectivity and related configuration specifications control when or for which serial, lot, or date a product structure is valid.",
     "topic": "Effectivity and Applicability",
     "domain": "Configuration Management and Product Structures",
     "difficulty": "easy",
@@ -849,7 +849,7 @@
       "It helps enforce dependencies and a controlled order of implementation work"
     ],
     "correctAnswer": 3,
-    "explanation": "It helps enforce dependencies and a controlled order of implementation work is correct because execution objects break approved change into governed work that can be assigned, tracked, and completed in sequence. This question is testing the administrative meaning of change execution and resulting objects, not a generic UI action or local workaround.",
+    "explanation": "Execution objects break approved change into governed work that can be assigned, tracked, and completed in sequence.",
     "topic": "Change Execution and Resulting Objects",
     "domain": "Change and Release Management",
     "difficulty": "medium",
@@ -891,7 +891,7 @@
       "A Variance is a queue object, while a Problem Report is a life cycle state"
     ],
     "correctAnswer": 1,
-    "explanation": "A Variance authorizes a temporary departure from design, while a Problem Report records an issue or enhancement request is correct because problem capture and approved variance handling serve different governance purposes and should not be treated as interchangeable change objects. This question is testing the administrative meaning of issue intake and variance control, not a generic UI action or local workaround.",
+    "explanation": "Problem capture and approved variance handling serve different governance purposes and should not be treated as interchangeable change objects.",
     "topic": "Issue Intake and Variance Control",
     "domain": "Change and Release Management",
     "difficulty": "medium",
@@ -954,7 +954,7 @@
       "To create new revisions automatically"
     ],
     "correctAnswer": 0,
-    "explanation": "To distribute copies of vaulted content to other locations for more efficient access is correct because replication distributes governed content copies for remote access while authoritative storage and vaulting remain centrally controlled. This question is testing the administrative meaning of replication and distribution, not a generic UI action or local workaround.",
+    "explanation": "Replication distributes governed content copies for remote access while authoritative storage and vaulting remain centrally controlled.",
     "topic": "Replication and Distribution",
     "domain": "Vaulting, Replication, and Data Maintenance",
     "difficulty": "easy",
@@ -1017,7 +1017,7 @@
       "What content is copied, where it goes, and when replication occurs"
     ],
     "correctAnswer": 3,
-    "explanation": "What content is copied, where it goes, and when replication occurs is correct because replication distributes governed content copies for remote access while authoritative storage and vaulting remain centrally controlled. This question is testing the administrative meaning of replication and distribution, not a generic UI action or local workaround.",
+    "explanation": "Replication distributes governed content copies for remote access while authoritative storage and vaulting remain centrally controlled.",
     "topic": "Replication and Distribution",
     "domain": "Vaulting, Replication, and Data Maintenance",
     "difficulty": "medium",
@@ -1080,7 +1080,7 @@
       "The default folder path for every subtype"
     ],
     "correctAnswer": 2,
-    "explanation": "System activity volume and processing trends is correct because usage and throughput reporting give administrators measured evidence for adoption, load, and capacity planning decisions. This question is testing the administrative meaning of audit and usage reporting, not a generic UI action or local workaround.",
+    "explanation": "Usage and throughput reporting give administrators measured evidence for adoption, load, and capacity planning decisions.",
     "topic": "Audit and Usage Reporting",
     "domain": "System Administration, Utilities, and Monitoring",
     "difficulty": "medium",
@@ -1185,7 +1185,7 @@
       "Review which related objects were collected to ensure the move scope is correct"
     ],
     "correctAnswer": 3,
-    "explanation": "Review which related objects were collected to ensure the move scope is correct is correct because content collection and move operations protect related files and object consistency during maintenance work. This question is testing the administrative meaning of vaulting and content maintenance, not a generic UI action or local workaround.",
+    "explanation": "Content collection and move operations protect related files and object consistency during maintenance work.",
     "topic": "Vaulting and Content Maintenance",
     "domain": "Vaulting, Replication, and Data Maintenance",
     "difficulty": "easy",
@@ -1290,7 +1290,7 @@
       "LDAP group name"
     ],
     "correctAnswer": 0,
-    "explanation": "Reference designator is correct because structure usage values belong to the BOM relationship and support accurate downstream interpretation. This question is testing the administrative meaning of structure usage and navigation, not a generic UI action or local workaround.",
+    "explanation": "Structure usage values belong to the BOM relationship and support accurate downstream interpretation.",
     "topic": "Structure Usage and Navigation",
     "domain": "Configuration Management and Product Structures",
     "difficulty": "easy",
@@ -1332,7 +1332,7 @@
       "Promotion Request"
     ],
     "correctAnswer": 2,
-    "explanation": "Unit Effectivity is correct because effectivity and related configuration specifications control when or for which serial, lot, or date a product structure is valid. This question is testing the administrative meaning of effectivity and applicability, not a generic UI action or local workaround.",
+    "explanation": "Effectivity and related configuration specifications control when or for which serial, lot, or date a product structure is valid.",
     "topic": "Effectivity and Applicability",
     "domain": "Configuration Management and Product Structures",
     "difficulty": "easy",
@@ -1353,7 +1353,7 @@
       "Date Effectivity"
     ],
     "correctAnswer": 3,
-    "explanation": "Date Effectivity is correct because effectivity and related configuration specifications control when or for which serial, lot, or date a product structure is valid. This question is testing the administrative meaning of effectivity and applicability, not a generic UI action or local workaround.",
+    "explanation": "Effectivity and related configuration specifications control when or for which serial, lot, or date a product structure is valid.",
     "topic": "Effectivity and Applicability",
     "domain": "Configuration Management and Product Structures",
     "difficulty": "easy",
@@ -1416,7 +1416,7 @@
       "It defines OIR numbering algorithms"
     ],
     "correctAnswer": 2,
-    "explanation": "It controls how users interact with visualization-related behavior in the UI is correct because representations and WVS publishing let users review product data without opening native CAD tools, and queue or worker health directly affects availability. This question is testing the administrative meaning of visualization and publishing, not a generic UI action or local workaround.",
+    "explanation": "Representations and WVS publishing let users review product data without opening native CAD tools, and queue or worker health directly affects availability.",
     "topic": "Visualization and Publishing",
     "domain": "CAD Data Management and Visualization",
     "difficulty": "medium",
@@ -1437,7 +1437,7 @@
       "To control search-related user behavior and defaults"
     ],
     "correctAnswer": 3,
-    "explanation": "To control search-related user behavior and defaults is correct because preferences control system or context behavior and are different from broader role-oriented UI simplification mechanisms such as profiles. This question is testing the administrative meaning of preferences, not a generic UI action or local workaround.",
+    "explanation": "Preferences control system or context behavior and are different from broader role-oriented UI simplification mechanisms such as profiles.",
     "topic": "Preferences",
     "domain": "Contexts, Preferences, and Business Administration",
     "difficulty": "easy",
@@ -1513,7 +1513,7 @@
   },
   {
     "id": 323,
-    "question": "What is the role of a CAD worker in a WVS architecture?",
+    "question": "What role does a CAD worker perform in a WVS architecture?",
     "options": [
       "To host supported authoring applications for file conversion tasks",
       "To apply access control rules during login",
@@ -1521,7 +1521,7 @@
       "To use native authoring software to convert source files into viewable output"
     ],
     "correctAnswer": 3,
-    "explanation": "CAD workers perform the actual file conversion for WVS using supported authoring software; merely hosting the software is not the full role.",
+    "explanation": "A CAD worker performs the actual conversion of supported source files into published viewables. Hosting the authoring application is only part of the setup; the worker?s role is the controlled conversion step in the publishing pipeline.",
     "topic": "Visualization and Publishing",
     "domain": "CAD Data Management and Visualization",
     "difficulty": "medium",
@@ -1534,7 +1534,7 @@
   },
   {
     "id": 324,
-    "question": "Why must a CAD worker host usually have the relevant authoring application installed?",
+    "question": "Why does a CAD worker host typically need the relevant authoring application installed?",
     "options": [
       "Because the worker relies on that application to open and convert the source files",
       "Because Windchill stores all metadata inside the authoring tool",
@@ -1542,7 +1542,7 @@
       "Because queue processing is performed only in the CAD desktop client"
     ],
     "correctAnswer": 0,
-    "explanation": "CAD workers typically require the native authoring application to convert source files into viewables.",
+    "explanation": "The worker host usually needs the relevant authoring application because the conversion process depends on supported native interpretation of the source file format in order to generate viewables correctly.",
     "topic": "Visualization and Publishing",
     "domain": "CAD Data Management and Visualization",
     "difficulty": "medium",
@@ -1618,7 +1618,7 @@
   },
   {
     "id": 328,
-    "question": "What is the primary role of a Workgroup Manager integration?",
+    "question": "What is the primary role of Workgroup Manager integration in Windchill?",
     "options": [
       "To connect an authoring application to Windchill for managed file interactions",
       "To define organization templates",
@@ -1626,7 +1626,7 @@
       "To run database backups"
     ],
     "correctAnswer": 0,
-    "explanation": "Workgroup Manager acts as the integration layer between supported authoring tools and Windchill.",
+    "explanation": "Workgroup Manager provides the managed integration layer between supported non-native authoring tools and Windchill. It is the bridge that supports governed interaction between the authoring environment and the PLM system.",
     "topic": "CAD Documents and Authoring Context",
     "domain": "CAD Data Management and Visualization",
     "difficulty": "medium",
@@ -1647,7 +1647,7 @@
       "A private local cache used only by one desktop session"
     ],
     "correctAnswer": 1,
-    "explanation": "The authoritative managed repository for checked-in data is correct because workspaces isolate in-progress CAD work, while commonspace remains the governed shared record for checked-in and published content. This question is testing the administrative meaning of workspaces and commonspace control, not a generic UI action or local workaround.",
+    "explanation": "Workspaces isolate in-progress CAD work, while commonspace remains the governed shared record for checked-in and published content.",
     "topic": "Workspaces and Commonspace Control",
     "domain": "CAD Data Management and Visualization",
     "difficulty": "medium",
@@ -1668,7 +1668,7 @@
       "A replica server used only for remote vault access"
     ],
     "correctAnswer": 2,
-    "explanation": "A managed working area for in-progress design content before final check-in to commonspace is correct because workspaces isolate in-progress CAD work, while commonspace remains the governed shared record for checked-in and published content. This question is testing the administrative meaning of workspaces and commonspace control, not a generic UI action or local workaround.",
+    "explanation": "Workspaces isolate in-progress CAD work, while commonspace remains the governed shared record for checked-in and published content.",
     "topic": "Workspaces and Commonspace Control",
     "domain": "CAD Data Management and Visualization",
     "difficulty": "medium",
@@ -1731,7 +1731,7 @@
       "To convert all related documents into WTParts"
     ],
     "correctAnswer": 1,
-    "explanation": "To keep referenced design data consistent and complete is correct because workspaces isolate in-progress CAD work, while commonspace remains the governed shared record for checked-in and published content. This question is testing the administrative meaning of workspaces and commonspace control, not a generic UI action or local workaround.",
+    "explanation": "Workspaces isolate in-progress CAD work, while commonspace remains the governed shared record for checked-in and published content.",
     "topic": "Workspaces and Commonspace Control",
     "domain": "CAD Data Management and Visualization",
     "difficulty": "medium",
@@ -1744,7 +1744,7 @@
   },
   {
     "id": 334,
-    "question": "Which statement best describes a representation relative to the source CAD file?",
+    "question": "Which statement best describes a representation relative to its source CAD file?",
     "options": [
       "It exists only inside the local workspace",
       "It is the only file Windchill preserves after check-in",
@@ -1752,7 +1752,7 @@
       "It always contains editable modeling intelligence equal to the source"
     ],
     "correctAnswer": 2,
-    "explanation": "Representations support visualization and review but do not replace the source authoring file.",
+    "explanation": "A representation is a derived viewable used for review and downstream consumption. It does not replace the native source CAD file, which remains the authoritative authoring content.",
     "topic": "Visualization and Publishing",
     "domain": "CAD Data Management and Visualization",
     "difficulty": "medium",
@@ -1765,7 +1765,7 @@
   },
   {
     "id": 335,
-    "question": "Why are representations valuable to non-CAD users?",
+    "question": "Why are representations especially valuable to users who do not author CAD?",
     "options": [
       "They automatically create change objects",
       "They let any user revise the source model directly",
@@ -1773,7 +1773,7 @@
       "They allow product data review without requiring the native authoring application"
     ],
     "correctAnswer": 3,
-    "explanation": "Viewables let non-CAD stakeholders review product data without needing the source authoring application.",
+    "explanation": "Representations allow non-CAD users to review product geometry and related information without needing the native authoring application. That is why they are central to broader downstream participation.",
     "topic": "Visualization and Publishing",
     "domain": "CAD Data Management and Visualization",
     "difficulty": "easy",
@@ -1878,7 +1878,7 @@
       "To define context team membership"
     ],
     "correctAnswer": 0,
-    "explanation": "To measure how the system or features are being used over time is correct because usage and throughput reporting give administrators measured evidence for adoption, load, and capacity planning decisions. This question is testing the administrative meaning of audit and usage reporting, not a generic UI action or local workaround.",
+    "explanation": "Usage and throughput reporting give administrators measured evidence for adoption, load, and capacity planning decisions.",
     "topic": "Audit and Usage Reporting",
     "domain": "System Administration, Utilities, and Monitoring",
     "difficulty": "medium",
@@ -1899,7 +1899,7 @@
       "They publish CAD data to Creo View"
     ],
     "correctAnswer": 1,
-    "explanation": "They standardize initial setup such as folders, teams, and related defaults for new contexts is correct because context templates standardize new contexts so teams do not manually rebuild the same setup each time. This question is testing the administrative meaning of context templates, not a generic UI action or local workaround.",
+    "explanation": "Context templates standardize new contexts so teams do not manually rebuild the same setup each time.",
     "topic": "Context Templates",
     "domain": "Contexts, Preferences, and Business Administration",
     "difficulty": "medium",
@@ -1920,7 +1920,7 @@
       "The host name of the Oracle database server"
     ],
     "correctAnswer": 2,
-    "explanation": "Initial organizational setup and default configuration patterns is correct because context templates standardize new contexts so teams do not manually rebuild the same setup each time. This question is testing the administrative meaning of context templates, not a generic UI action or local workaround.",
+    "explanation": "Context templates standardize new contexts so teams do not manually rebuild the same setup each time.",
     "topic": "Context Templates",
     "domain": "Contexts, Preferences, and Business Administration",
     "difficulty": "easy",
@@ -2025,7 +2025,7 @@
       "To provide a lightweight visualization derivative suitable for review and markup"
     ],
     "correctAnswer": 3,
-    "explanation": "To provide a lightweight visualization derivative suitable for review and markup is correct because representations and WVS publishing let users review product data without opening native CAD tools, and queue or worker health directly affects availability. This question is testing the administrative meaning of visualization and publishing, not a generic UI action or local workaround.",
+    "explanation": "Representations and WVS publishing let users review product data without opening native CAD tools, and queue or worker health directly affects availability.",
     "topic": "Visualization and Publishing",
     "domain": "CAD Data Management and Visualization",
     "difficulty": "medium",
@@ -2038,7 +2038,7 @@
   },
   {
     "id": 348,
-    "question": "What is one sign that background publishing is preferable to synchronous conversion?",
+    "question": "What situation most clearly indicates that background publishing is preferable to synchronous conversion?",
     "options": [
       "The conversion workload is heavy enough that user transactions should not wait for it to finish",
       "The object has no life cycle template",
@@ -2046,7 +2046,7 @@
       "The organization has only one context"
     ],
     "correctAnswer": 0,
-    "explanation": "Background publishing is preferred when conversion is resource-intensive and would otherwise slow interactive work.",
+    "explanation": "Background publishing is preferable when conversion work is heavy enough that doing it inline would slow or block interactive user activity. The point is to keep the user transaction path responsive.",
     "topic": "CAD Documents and Authoring Context",
     "domain": "CAD Data Management and Visualization",
     "difficulty": "medium",
@@ -2067,7 +2067,7 @@
       "It converts all secondaries to primaries"
     ],
     "correctAnswer": 1,
-    "explanation": "It maintains one source of truth while still supporting distributed access is correct because replication distributes governed content copies for remote access while authoritative storage and vaulting remain centrally controlled. This question is testing the administrative meaning of replication and distribution, not a generic UI action or local workaround.",
+    "explanation": "Replication distributes governed content copies for remote access while authoritative storage and vaulting remain centrally controlled.",
     "topic": "Replication and Distribution",
     "domain": "Vaulting, Replication, and Data Maintenance",
     "difficulty": "medium",

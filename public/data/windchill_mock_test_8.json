@@ -89,7 +89,7 @@
     "sourceSection": "Navigate Security and Administration",
     "misconceptionTag": "navigate_replaces_authoring_tools",
     "releaseVersion": "2026.04-tranche2",
-    "question": "What is the strongest reason Navigate is attractive for casual business users?",
+    "question": "Why is Navigate often attractive for casual business users?",
     "options": [
       "It offers a focused task-oriented experience instead of the full Windchill interface",
       "It disables all access-control checks for viewers",
@@ -97,7 +97,7 @@
       "It replaces authoring tools for full engineering creation work"
     ],
     "correctAnswer": 0,
-    "explanation": "Navigate is valuable because it provides simplified, role-focused experiences for users who do not need the full Windchill interface."
+    "explanation": "Navigate is attractive for casual business users because it gives them focused, role-based experiences instead of exposing the full Windchill interface when they only need a limited business task set."
   },
   {
     "id": 604,
@@ -349,7 +349,7 @@
     "sourceSection": "Navigate Architecture",
     "misconceptionTag": "navigate_is_cad_authoring_platform",
     "releaseVersion": "2026.04-tranche2",
-    "question": "Which description best captures Navigate architecture in practice?",
+    "question": "Which description best reflects Navigate architecture in practice?",
     "options": [
       "A vault-only reporting console",
       "A role-based app experience built on platform components and Windchill-connected services",
@@ -357,7 +357,7 @@
       "A database schema editor for context templates"
     ],
     "correctAnswer": 1,
-    "explanation": "Navigate is an app-based consumption layer, not a CAD authoring replacement or database design tool."
+    "explanation": "Navigate is an app-based consumption layer built for role-focused access to Windchill-governed data. It is not a CAD authoring replacement and it is not a separate data-governance platform."
   },
   {
     "id": 617,

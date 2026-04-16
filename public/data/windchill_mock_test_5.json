@@ -9,7 +9,7 @@
       "To provide generated viewables for product review without requiring native authoring tools"
     ],
     "correctAnswer": 3,
-    "explanation": "To provide generated viewables for product review without requiring native authoring tools is correct because representations and WVS publishing let users review product data without opening native CAD tools, and queue or worker health directly affects availability. This question is testing the administrative meaning of visualization and publishing, not a generic UI action or local workaround.",
+    "explanation": "Representations and WVS publishing let users review product data without opening native CAD tools, and queue or worker health directly affects availability.",
     "topic": "Visualization and Publishing",
     "domain": "CAD Data Management and Visualization",
     "difficulty": "medium",
@@ -30,7 +30,7 @@
       "To execute all workflow approvals for CAD objects"
     ],
     "correctAnswer": 0,
-    "explanation": "To convert source authoring files into publishable visualization outputs is correct because representations and WVS publishing let users review product data without opening native CAD tools, and queue or worker health directly affects availability. This question is testing the administrative meaning of visualization and publishing, not a generic UI action or local workaround.",
+    "explanation": "Representations and WVS publishing let users review product data without opening native CAD tools, and queue or worker health directly affects availability.",
     "topic": "Visualization and Publishing",
     "domain": "CAD Data Management and Visualization",
     "difficulty": "medium",
@@ -43,7 +43,7 @@
   },
   {
     "id": 353,
-    "question": "Why must the worker host typically be compatible with the authoring file type it processes?",
+    "question": "Why must a worker host usually be compatible with the authoring file type it processes?",
     "options": [
       "Because the LDAP server runs locally on every worker",
       "Because the worker relies on supported conversion capability for that source format",
@@ -51,7 +51,7 @@
       "Because access control rules are stored in the authoring file"
     ],
     "correctAnswer": 1,
-    "explanation": "Workers need compatible conversion capability for the source file type they process.",
+    "explanation": "Worker compatibility matters because the host must be able to interpret and convert the source file type correctly. Unsupported or mismatched environments lead directly to failed or unreliable publishing.",
     "topic": "CAD Documents and Authoring Context",
     "domain": "CAD Data Management and Visualization",
     "difficulty": "medium",
@@ -93,7 +93,7 @@
       "The representation is a viewable derivative, while the source file remains the authoritative authoring content"
     ],
     "correctAnswer": 3,
-    "explanation": "The representation is a viewable derivative, while the source file remains the authoritative authoring content is correct because representations and WVS publishing let users review product data without opening native CAD tools, and queue or worker health directly affects availability. This question is testing the administrative meaning of visualization and publishing, not a generic UI action or local workaround.",
+    "explanation": "Representations and WVS publishing let users review product data without opening native CAD tools, and queue or worker health directly affects availability.",
     "topic": "Visualization and Publishing",
     "domain": "CAD Data Management and Visualization",
     "difficulty": "medium",
@@ -114,7 +114,7 @@
       "They can bypass role-based access checks"
     ],
     "correctAnswer": 0,
-    "explanation": "They can review product data without needing the original CAD application is correct because representations and WVS publishing let users review product data without opening native CAD tools, and queue or worker health directly affects availability. This question is testing the administrative meaning of visualization and publishing, not a generic UI action or local workaround.",
+    "explanation": "Representations and WVS publishing let users review product data without opening native CAD tools, and queue or worker health directly affects availability.",
     "topic": "Visualization and Publishing",
     "domain": "CAD Data Management and Visualization",
     "difficulty": "easy",
@@ -135,7 +135,7 @@
       "The change is ignored because published viewables are immutable"
     ],
     "correctAnswer": 1,
-    "explanation": "The existing representation may become outdated until it is republished is correct because representations and WVS publishing let users review product data without opening native CAD tools, and queue or worker health directly affects availability. This question is testing the administrative meaning of visualization and publishing, not a generic UI action or local workaround.",
+    "explanation": "Representations and WVS publishing let users review product data without opening native CAD tools, and queue or worker health directly affects availability.",
     "topic": "Visualization and Publishing",
     "domain": "CAD Data Management and Visualization",
     "difficulty": "medium",
@@ -177,7 +177,7 @@
       "To keep resource-intensive conversion work out of the interactive user transaction path"
     ],
     "correctAnswer": 3,
-    "explanation": "To keep resource-intensive conversion work out of the interactive user transaction path is correct because background queues and monitoring tools keep expensive processing off the user transaction path and expose operational tuning signals. This question is testing the administrative meaning of administrative utilities and queues, not a generic UI action or local workaround.",
+    "explanation": "Background queues and monitoring tools keep expensive processing off the user transaction path and expose operational tuning signals.",
     "topic": "Administrative Utilities and Queues",
     "domain": "System Administration, Utilities, and Monitoring",
     "difficulty": "medium",
@@ -190,7 +190,7 @@
   },
   {
     "id": 360,
-    "question": "What is one common criterion used to select the right worker for a publish job?",
+    "question": "What is a common criterion for routing a publish job to the correct worker?",
     "options": [
       "The source file type and required conversion capability",
       "The organization role of the object creator",
@@ -198,7 +198,7 @@
       "The last queue processed by JMX"
     ],
     "correctAnswer": 0,
-    "explanation": "The source file type and required conversion capability is correct because cAD publishing and downstream review depend on the right authoring context, workers, and related dependency set. This question is testing the administrative meaning of cad documents and authoring context, not a generic UI action or local workaround.",
+    "explanation": "The source file type and required conversion capability are common routing criteria. Worker selection must match the authoring format and the type of published output required.",
     "topic": "CAD Documents and Authoring Context",
     "domain": "CAD Data Management and Visualization",
     "difficulty": "medium",
@@ -211,7 +211,7 @@
   },
   {
     "id": 361,
-    "question": "Why is Workgroup Manager important in a non-native CAD or office-authoring integration with Windchill?",
+    "question": "Why is Workgroup Manager important for non-native CAD or office-authoring integration with Windchill?",
     "options": [
       "To replace the need for the Method Server",
       "To mediate managed interactions between the authoring application and Windchill",
@@ -219,7 +219,7 @@
       "To generate security audit reports"
     ],
     "correctAnswer": 1,
-    "explanation": "Workgroup Manager matters because it provides the managed integration layer between supported authoring tools and Windchill.",
+    "explanation": "Workgroup Manager is important because it supplies the managed integration layer between supported authoring tools and Windchill. Without that layer, the authoring environment is not participating in governed Windchill data management properly.",
     "topic": "CAD Documents and Authoring Context",
     "domain": "CAD Data Management and Visualization",
     "difficulty": "medium",
@@ -240,7 +240,7 @@
       "Only archived queue entries"
     ],
     "correctAnswer": 2,
-    "explanation": "The user working set of in-progress managed design data is correct because workspaces isolate in-progress CAD work, while commonspace remains the governed shared record for checked-in and published content. This question is testing the administrative meaning of workspaces and commonspace control, not a generic UI action or local workaround.",
+    "explanation": "Workspaces isolate in-progress CAD work, while commonspace remains the governed shared record for checked-in and published content.",
     "topic": "Workspaces and Commonspace Control",
     "domain": "CAD Data Management and Visualization",
     "difficulty": "medium",
@@ -324,7 +324,7 @@
       "It avoids all need for access control"
     ],
     "correctAnswer": 2,
-    "explanation": "It helps preserve a complete and consistent managed design set is correct because workspaces isolate in-progress CAD work, while commonspace remains the governed shared record for checked-in and published content. This question is testing the administrative meaning of workspaces and commonspace control, not a generic UI action or local workaround.",
+    "explanation": "Workspaces isolate in-progress CAD work, while commonspace remains the governed shared record for checked-in and published content.",
     "topic": "Workspaces and Commonspace Control",
     "domain": "CAD Data Management and Visualization",
     "difficulty": "medium",
@@ -337,7 +337,7 @@
   },
   {
     "id": 367,
-    "question": "What is one risk of checking in only a top-level CAD file without needed dependencies?",
+    "question": "What is one risk of checking in only a top-level CAD file without its required dependencies?",
     "options": [
       "The database enters backup mode",
       "The shared team is deleted",
@@ -345,7 +345,7 @@
       "The managed design set can become incomplete or inconsistent"
     ],
     "correctAnswer": 3,
-    "explanation": "The managed design set can become incomplete or inconsistent is correct because cAD publishing and downstream review depend on the right authoring context, workers, and related dependency set. This question is testing the administrative meaning of cad documents and authoring context, not a generic UI action or local workaround.",
+    "explanation": "Checking in only the top-level file can leave the managed design set incomplete or inconsistent. Downstream structure interpretation, publishing, and reuse depend on the related dependency set being governed together.",
     "topic": "CAD Documents and Authoring Context",
     "domain": "CAD Data Management and Visualization",
     "difficulty": "medium",
@@ -366,7 +366,7 @@
       "Representations bypass all licensing requirements for Windchill"
     ],
     "correctAnswer": 0,
-    "explanation": "Representations are optimized for review and do not require the native authoring application is correct because representations and WVS publishing let users review product data without opening native CAD tools, and queue or worker health directly affects availability. This question is testing the administrative meaning of visualization and publishing, not a generic UI action or local workaround.",
+    "explanation": "Representations and WVS publishing let users review product data without opening native CAD tools, and queue or worker health directly affects availability.",
     "topic": "Visualization and Publishing",
     "domain": "CAD Data Management and Visualization",
     "difficulty": "easy",
@@ -387,7 +387,7 @@
       "All checked-in data is converted to Released automatically"
     ],
     "correctAnswer": 1,
-    "explanation": "Viewables appear later than expected even though source objects already exist is correct because representations and WVS publishing let users review product data without opening native CAD tools, and queue or worker health directly affects availability. This question is testing the administrative meaning of visualization and publishing, not a generic UI action or local workaround.",
+    "explanation": "Representations and WVS publishing let users review product data without opening native CAD tools, and queue or worker health directly affects availability.",
     "topic": "Visualization and Publishing",
     "domain": "CAD Data Management and Visualization",
     "difficulty": "medium",
@@ -408,7 +408,7 @@
       "To prevent the assembly from having a WTPart link"
     ],
     "correctAnswer": 2,
-    "explanation": "Background publishing is preferred for heavy conversions that should not block interactive activity.",
+    "explanation": "Large assembly conversion is resource-intensive, so background publishing keeps that load off the interactive user path. The goal is stable user response time while still producing the required viewables.",
     "topic": "CAD Documents and Authoring Context",
     "domain": "CAD Data Management and Visualization",
     "difficulty": "medium",
@@ -450,7 +450,7 @@
       "At the representation level"
     ],
     "correctAnswer": 0,
-    "explanation": "At the parent-child usage level within the structure is correct because structure usage values belong to the BOM relationship and support accurate downstream interpretation. This question is testing the administrative meaning of structure usage and navigation, not a generic UI action or local workaround.",
+    "explanation": "Structure usage values belong to the BOM relationship and support accurate downstream interpretation.",
     "topic": "Structure Usage and Navigation",
     "domain": "Configuration Management and Product Structures",
     "difficulty": "medium",
@@ -492,7 +492,7 @@
       "To determine whether a user can override a preference"
     ],
     "correctAnswer": 2,
-    "explanation": "To identify or order a usage occurrence within the parent structure is correct because structure usage values belong to the BOM relationship and support accurate downstream interpretation. This question is testing the administrative meaning of structure usage and navigation, not a generic UI action or local workaround.",
+    "explanation": "Structure usage values belong to the BOM relationship and support accurate downstream interpretation.",
     "topic": "Structure Usage and Navigation",
     "domain": "Configuration Management and Product Structures",
     "difficulty": "medium",
@@ -513,7 +513,7 @@
       "It preserves the exact set of data being reviewed at that moment"
     ],
     "correctAnswer": 3,
-    "explanation": "It preserves the exact set of data being reviewed at that moment is correct because baselines preserve a point-in-time structure for review, comparison, audit, and release evidence. This question is testing the administrative meaning of baselines and structure snapshots, not a generic UI action or local workaround.",
+    "explanation": "Baselines preserve a point-in-time structure for review, comparison, audit, and release evidence.",
     "topic": "Baselines and Structure Snapshots",
     "domain": "Configuration Management and Product Structures",
     "difficulty": "medium",
@@ -576,7 +576,7 @@
       "To change the product numbering scheme"
     ],
     "correctAnswer": 2,
-    "explanation": "To inspect the set of data associated with a specific promotion event is correct because promotion requests are release-control mechanisms used to evaluate and move candidates through governed release paths. This question is testing the administrative meaning of promotion requests and release paths, not a generic UI action or local workaround.",
+    "explanation": "Promotion requests are release-control mechanisms used to evaluate and move candidates through governed release paths.",
     "topic": "Promotion Requests and Release Paths",
     "domain": "Change and Release Management",
     "difficulty": "medium",
@@ -639,7 +639,7 @@
       "How a queue entry is retried"
     ],
     "correctAnswer": 1,
-    "explanation": "Applicability of one version or configuration versus another is correct because effectivity and related configuration specifications control when or for which serial, lot, or date a product structure is valid. This question is testing the administrative meaning of effectivity and applicability, not a generic UI action or local workaround.",
+    "explanation": "Effectivity and related configuration specifications control when or for which serial, lot, or date a product structure is valid.",
     "topic": "Effectivity and Applicability",
     "domain": "Configuration Management and Product Structures",
     "difficulty": "medium",
@@ -744,7 +744,7 @@
       "To schedule WVS publishing"
     ],
     "correctAnswer": 2,
-    "explanation": "To authorize a controlled exception from the designed configuration for limited use is correct because problem capture and approved variance handling serve different governance purposes and should not be treated as interchangeable change objects. This question is testing the administrative meaning of issue intake and variance control, not a generic UI action or local workaround.",
+    "explanation": "Problem capture and approved variance handling serve different governance purposes and should not be treated as interchangeable change objects.",
     "topic": "Issue Intake and Variance Control",
     "domain": "Change and Release Management",
     "difficulty": "medium",
@@ -786,7 +786,7 @@
       "Automatic replication of content after every check-in"
     ],
     "correctAnswer": 0,
-    "explanation": "Formal release of new or revised data through the change process is correct because change requests justify and scope change before implementation, while downstream execution objects carry out approved work. This question is testing the administrative meaning of change requests and notices, not a generic UI action or local workaround.",
+    "explanation": "Change requests justify and scope change before implementation, while downstream execution objects carry out approved work.",
     "topic": "Change Requests and Notices",
     "domain": "Change and Release Management",
     "difficulty": "medium",
@@ -807,7 +807,7 @@
       "It replaces the need for ACL rules"
     ],
     "correctAnswer": 1,
-    "explanation": "It moves tasks to the right participants without requiring manual handoff at every step is correct because the correct choice aligns with the governed Windchill behavior for that object, service, or administrative feature. This question is testing the administrative meaning of teams, roles, and context groups, not a generic UI action or local workaround.",
+    "explanation": "The correct choice aligns with the governed Windchill behavior for that object, service, or administrative feature.",
     "topic": "Teams, Roles, and Context Groups",
     "domain": "Access Control, Teams, and Security",
     "difficulty": "medium",
@@ -820,7 +820,7 @@
   },
   {
     "id": 390,
-    "question": "What is the purpose of sequencing Change Tasks?",
+    "question": "What is the purpose of sequencing Change Tasks in Windchill?",
     "options": [
       "To force all tasks into one shared team",
       "To convert each task into a problem report",
@@ -828,7 +828,7 @@
       "To let users bypass change approval entirely"
     ],
     "correctAnswer": 2,
-    "explanation": "Sequencing enforces implementation order when one change task depends on another before resulting object updates can be completed or released.",
+    "explanation": "Sequencing Change Tasks enforces the required implementation order when one change activity depends on another. It helps ensure resulting-object updates occur in the correct governed sequence.",
     "topic": "CAD Documents and Authoring Context",
     "domain": "CAD Data Management and Visualization",
     "difficulty": "medium",
@@ -933,7 +933,7 @@
       "It provides a controlled way to review configuration-related settings"
     ],
     "correctAnswer": 3,
-    "explanation": "It provides a controlled way to review configuration-related settings is correct because background queues and monitoring tools keep expensive processing off the user transaction path and expose operational tuning signals. This question is testing the administrative meaning of administrative utilities and queues, not a generic UI action or local workaround.",
+    "explanation": "Background queues and monitoring tools keep expensive processing off the user transaction path and expose operational tuning signals.",
     "topic": "Administrative Utilities and Queues",
     "domain": "System Administration, Utilities, and Monitoring",
     "difficulty": "medium",
@@ -996,7 +996,7 @@
       "They make baselines update automatically"
     ],
     "correctAnswer": 2,
-    "explanation": "They let administrators and users tune workspace-related behavior without altering core code is correct because workspaces isolate in-progress CAD work, while commonspace remains the governed shared record for checked-in and published content. This question is testing the administrative meaning of workspaces and commonspace control, not a generic UI action or local workaround.",
+    "explanation": "Workspaces isolate in-progress CAD work, while commonspace remains the governed shared record for checked-in and published content.",
     "topic": "Workspaces and Commonspace Control",
     "domain": "CAD Data Management and Visualization",
     "difficulty": "medium",
@@ -1059,7 +1059,7 @@
       "To determine the database backup mode"
     ],
     "correctAnswer": 1,
-    "explanation": "To simplify and tailor the user interface for a particular persona is correct because profiles simplify the interface and actions shown to targeted users so they are not overloaded with irrelevant functionality. This question is testing the administrative meaning of profiles and business administration, not a generic UI action or local workaround.",
+    "explanation": "Profiles simplify the interface and actions shown to targeted users so they are not overloaded with irrelevant functionality.",
     "topic": "Profiles and Business Administration",
     "domain": "Contexts, Preferences, and Business Administration",
     "difficulty": "easy",
@@ -1122,7 +1122,7 @@
       "Which replica servers are online"
     ],
     "correctAnswer": 0,
-    "explanation": "Which predefined templates are available for the user to choose from is correct because context hierarchy and template choices determine how new contexts inherit and standardize setup. This question is testing the administrative meaning of context hierarchy and application contexts, not a generic UI action or local workaround.",
+    "explanation": "Context hierarchy and template choices determine how new contexts inherit and standardize setup.",
     "topic": "Context Hierarchy and Application Contexts",
     "domain": "Contexts, Preferences, and Business Administration",
     "difficulty": "easy",
@@ -1143,7 +1143,7 @@
       "To force all users into the same profile"
     ],
     "correctAnswer": 1,
-    "explanation": "To support local behavior within that context while preserving enterprise defaults elsewhere is correct because preferences control system or context behavior and are different from broader role-oriented UI simplification mechanisms such as profiles. This question is testing the administrative meaning of preferences, not a generic UI action or local workaround.",
+    "explanation": "Preferences control system or context behavior and are different from broader role-oriented UI simplification mechanisms such as profiles.",
     "topic": "Preferences",
     "domain": "Contexts, Preferences, and Business Administration",
     "difficulty": "medium",
@@ -1164,7 +1164,7 @@
       "Representations from being published asynchronously"
     ],
     "correctAnswer": 2,
-    "explanation": "Accidentally moving an object without reviewing important related data that should move with it is correct because content collection and move operations protect related files and object consistency during maintenance work. This question is testing the administrative meaning of vaulting and content maintenance, not a generic UI action or local workaround.",
+    "explanation": "Content collection and move operations protect related files and object consistency during maintenance work.",
     "topic": "Vaulting and Content Maintenance",
     "domain": "Vaulting, Replication, and Data Maintenance",
     "difficulty": "medium",
@@ -1206,7 +1206,7 @@
       "The end user's local Creo trail files"
     ],
     "correctAnswer": 0,
-    "explanation": "Discussions, topics, and postings is correct because content collection and move operations protect related files and object consistency during maintenance work. This question is testing the administrative meaning of vaulting and content maintenance, not a generic UI action or local workaround.",
+    "explanation": "Content collection and move operations protect related files and object consistency during maintenance work.",
     "topic": "Vaulting and Content Maintenance",
     "domain": "Vaulting, Replication, and Data Maintenance",
     "difficulty": "medium",
@@ -1269,7 +1269,7 @@
       "Slow access to large content across distributed locations"
     ],
     "correctAnswer": 3,
-    "explanation": "Slow access to large content across distributed locations is correct because replication distributes governed content copies for remote access while authoritative storage and vaulting remain centrally controlled. This question is testing the administrative meaning of replication and distribution, not a generic UI action or local workaround.",
+    "explanation": "Replication distributes governed content copies for remote access while authoritative storage and vaulting remain centrally controlled.",
     "topic": "Replication and Distribution",
     "domain": "Vaulting, Replication, and Data Maintenance",
     "difficulty": "medium",
@@ -1311,7 +1311,7 @@
       "Vaulting is only for metadata, while replication is only for CAD"
     ],
     "correctAnswer": 1,
-    "explanation": "Vaulting defines authoritative storage, while replication distributes copies of that stored content is correct because replication distributes governed content copies for remote access while authoritative storage and vaulting remain centrally controlled. This question is testing the administrative meaning of replication and distribution, not a generic UI action or local workaround.",
+    "explanation": "Replication distributes governed content copies for remote access while authoritative storage and vaulting remain centrally controlled.",
     "topic": "Replication and Distribution",
     "domain": "Vaulting, Replication, and Data Maintenance",
     "difficulty": "medium",
@@ -1345,7 +1345,7 @@
   },
   {
     "id": 415,
-    "question": "What does a publish failure most directly affect?",
+    "question": "What does a publish failure most directly affect in Windchill?",
     "options": [
       "Site preference inheritance",
       "Organization-template pick lists",
@@ -1353,7 +1353,7 @@
       "Availability of the expected viewable output"
     ],
     "correctAnswer": 3,
-    "explanation": "A publish failure affects viewable generation, not the existence of the object master.",
+    "explanation": "A publish failure most directly affects the generation or availability of the viewable output. It does not remove the object master itself from the system.",
     "topic": "CAD Documents and Authoring Context",
     "domain": "CAD Data Management and Visualization",
     "difficulty": "medium",
@@ -1374,7 +1374,7 @@
       "It chooses the library context hierarchy"
     ],
     "correctAnswer": 0,
-    "explanation": "Worker compatibility must be validated early because unsupported or mismatched authoring environments can break conversion fidelity, create publish failures, and undermine visualization reliability at go-live.",
+    "explanation": "Worker compatibility should be validated during implementation planning because unsupported or mismatched authoring environments can cause publish failures, incorrect conversions, and unstable visualization service behavior at go-live.",
     "topic": "PLM Concepts and Business Value",
     "domain": "PLM Strategy and Foundations",
     "difficulty": "hard",
@@ -1395,7 +1395,7 @@
       "Queued publishing disables all ACL evaluation"
     ],
     "correctAnswer": 1,
-    "explanation": "Queued publishing scales better and avoids tying up interactive transactions is correct because representations and WVS publishing let users review product data without opening native CAD tools, and queue or worker health directly affects availability. This question is testing the administrative meaning of visualization and publishing, not a generic UI action or local workaround.",
+    "explanation": "Representations and WVS publishing let users review product data without opening native CAD tools, and queue or worker health directly affects availability.",
     "topic": "Visualization and Publishing",
     "domain": "CAD Data Management and Visualization",
     "difficulty": "medium",
@@ -1408,7 +1408,7 @@
   },
   {
     "id": 418,
-    "question": "Why might a manual republish be necessary after a worker or rule fix?",
+    "question": "Why might a manual republish be required after a worker or publish-rule correction?",
     "options": [
       "To rewrite the object master number",
       "To create a new Change Notice automatically",
@@ -1416,7 +1416,7 @@
       "To move the object to another context"
     ],
     "correctAnswer": 2,
-    "explanation": "To regenerate viewables that failed or were produced under the earlier incorrect configuration is correct because cAD publishing and downstream review depend on the right authoring context, workers, and related dependency set. This question is testing the administrative meaning of cad documents and authoring context, not a generic UI action or local workaround.",
+    "explanation": "A manual republish may be required because earlier viewables were generated under the wrong worker setup or publish rules. Republishing is needed to regenerate output under the corrected configuration.",
     "topic": "CAD Documents and Authoring Context",
     "domain": "CAD Data Management and Visualization",
     "difficulty": "medium",
@@ -1437,7 +1437,7 @@
       "It lets stakeholders inspect product data without requiring full CAD authoring capability"
     ],
     "correctAnswer": 3,
-    "explanation": "It lets stakeholders inspect product data without requiring full CAD authoring capability is correct because cAD publishing and downstream review depend on the right authoring context, workers, and related dependency set. This question is testing the administrative meaning of cad documents and authoring context, not a generic UI action or local workaround.",
+    "explanation": "A browser viewable lets downstream stakeholders inspect product data without requiring native CAD authoring capability. That is what makes cross-functional review feasible outside engineering authoring roles.",
     "topic": "CAD Documents and Authoring Context",
     "domain": "CAD Data Management and Visualization",
     "difficulty": "easy",
@@ -1458,7 +1458,7 @@
       "It is where security audits are generated"
     ],
     "correctAnswer": 0,
-    "explanation": "It lets designers work on in-progress changes before committing them to commonspace is correct because workspaces isolate in-progress CAD work, while commonspace remains the governed shared record for checked-in and published content. This question is testing the administrative meaning of workspaces and commonspace control, not a generic UI action or local workaround.",
+    "explanation": "Workspaces isolate in-progress CAD work, while commonspace remains the governed shared record for checked-in and published content.",
     "topic": "Workspaces and Commonspace Control",
     "domain": "CAD Data Management and Visualization",
     "difficulty": "medium",
@@ -1479,7 +1479,7 @@
       "Because upload bypasses OIRs"
     ],
     "correctAnswer": 1,
-    "explanation": "Because check-in commits a managed iteration to the authoritative repository is correct because workspaces isolate in-progress CAD work, while commonspace remains the governed shared record for checked-in and published content. This question is testing the administrative meaning of workspaces and commonspace control, not a generic UI action or local workaround.",
+    "explanation": "Workspaces isolate in-progress CAD work, while commonspace remains the governed shared record for checked-in and published content.",
     "topic": "Workspaces and Commonspace Control",
     "domain": "CAD Data Management and Visualization",
     "difficulty": "medium",
@@ -1500,7 +1500,7 @@
       "To move data into a Project context"
     ],
     "correctAnswer": 2,
-    "explanation": "To preserve an exact reference set of the data under review is correct because baselines preserve a point-in-time structure for review, comparison, audit, and release evidence. This question is testing the administrative meaning of baselines and structure snapshots, not a generic UI action or local workaround.",
+    "explanation": "Baselines preserve a point-in-time structure for review, comparison, audit, and release evidence.",
     "topic": "Baselines and Structure Snapshots",
     "domain": "Configuration Management and Product Structures",
     "difficulty": "medium",
@@ -1584,7 +1584,7 @@
       "It removes the need for released states"
     ],
     "correctAnswer": 2,
-    "explanation": "It aligns applicability to a known calendar date is correct because effectivity and related configuration specifications control when or for which serial, lot, or date a product structure is valid. This question is testing the administrative meaning of effectivity and applicability, not a generic UI action or local workaround.",
+    "explanation": "Effectivity and related configuration specifications control when or for which serial, lot, or date a product structure is valid.",
     "topic": "Effectivity and Applicability",
     "domain": "Configuration Management and Product Structures",
     "difficulty": "medium",
@@ -1605,7 +1605,7 @@
       "Because its role is to authorize a controlled deviation, not simply record an issue"
     ],
     "correctAnswer": 3,
-    "explanation": "Because its role is to authorize a controlled deviation, not simply record an issue is correct because problem capture and approved variance handling serve different governance purposes and should not be treated as interchangeable change objects. This question is testing the administrative meaning of issue intake and variance control, not a generic UI action or local workaround.",
+    "explanation": "Problem capture and approved variance handling serve different governance purposes and should not be treated as interchangeable change objects.",
     "topic": "Issue Intake and Variance Control",
     "domain": "Change and Release Management",
     "difficulty": "medium",
@@ -1710,7 +1710,7 @@
       "Queue execution time"
     ],
     "correctAnswer": 0,
-    "explanation": "Interface complexity is correct because profiles simplify the interface and actions shown to targeted users so they are not overloaded with irrelevant functionality. This question is testing the administrative meaning of profiles and business administration, not a generic UI action or local workaround.",
+    "explanation": "Profiles simplify the interface and actions shown to targeted users so they are not overloaded with irrelevant functionality.",
     "topic": "Profiles and Business Administration",
     "domain": "Contexts, Preferences, and Business Administration",
     "difficulty": "easy",
@@ -1773,7 +1773,7 @@
       "To support the needs of that product while keeping the broader organizational default intact"
     ],
     "correctAnswer": 3,
-    "explanation": "To support the needs of that product while keeping the broader organizational default intact is correct because preferences control system or context behavior and are different from broader role-oriented UI simplification mechanisms such as profiles. This question is testing the administrative meaning of preferences, not a generic UI action or local workaround.",
+    "explanation": "Preferences control system or context behavior and are different from broader role-oriented UI simplification mechanisms such as profiles.",
     "topic": "Preferences",
     "domain": "Contexts, Preferences, and Business Administration",
     "difficulty": "medium",
@@ -1815,7 +1815,7 @@
       "It guarantees faster queue throughput"
     ],
     "correctAnswer": 1,
-    "explanation": "It preserves a required standard where local override would be risky is correct because central governance decisions reduce local inconsistency and improve cross-functional traceability. This question is testing the administrative meaning of plm concepts and business value, not a generic UI action or local workaround.",
+    "explanation": "Central governance decisions reduce local inconsistency and improve cross-functional traceability.",
     "topic": "PLM Concepts and Business Value",
     "domain": "PLM Strategy and Foundations",
     "difficulty": "medium",
@@ -1836,7 +1836,7 @@
       "Queue retry intervals"
     ],
     "correctAnswer": 2,
-    "explanation": "User behavior related to handling or displaying content is correct because preferences control system or context behavior and are different from broader role-oriented UI simplification mechanisms such as profiles. This question is testing the administrative meaning of preferences, not a generic UI action or local workaround.",
+    "explanation": "Preferences control system or context behavior and are different from broader role-oriented UI simplification mechanisms such as profiles.",
     "topic": "Preferences",
     "domain": "Contexts, Preferences, and Business Administration",
     "difficulty": "medium",
@@ -1878,7 +1878,7 @@
       "They determine the next promotion state"
     ],
     "correctAnswer": 0,
-    "explanation": "They help reveal workload patterns and possible bottlenecks is correct because usage and throughput reporting give administrators measured evidence for adoption, load, and capacity planning decisions. This question is testing the administrative meaning of audit and usage reporting, not a generic UI action or local workaround.",
+    "explanation": "Usage and throughput reporting give administrators measured evidence for adoption, load, and capacity planning decisions.",
     "topic": "Audit and Usage Reporting",
     "domain": "System Administration, Utilities, and Monitoring",
     "difficulty": "medium",
@@ -1920,7 +1920,7 @@
       "It replaces the need for database backups"
     ],
     "correctAnswer": 2,
-    "explanation": "It exposes runtime information in a form external monitoring tools can consume is correct because background queues and monitoring tools keep expensive processing off the user transaction path and expose operational tuning signals. This question is testing the administrative meaning of administrative utilities and queues, not a generic UI action or local workaround.",
+    "explanation": "Background queues and monitoring tools keep expensive processing off the user transaction path and expose operational tuning signals.",
     "topic": "Administrative Utilities and Queues",
     "domain": "System Administration, Utilities, and Monitoring",
     "difficulty": "medium",
@@ -1941,7 +1941,7 @@
       "It gives administrators a focused utility for examining system settings"
     ],
     "correctAnswer": 3,
-    "explanation": "It gives administrators a focused utility for examining system settings is correct because background queues and monitoring tools keep expensive processing off the user transaction path and expose operational tuning signals. This question is testing the administrative meaning of administrative utilities and queues, not a generic UI action or local workaround.",
+    "explanation": "Background queues and monitoring tools keep expensive processing off the user transaction path and expose operational tuning signals.",
     "topic": "Administrative Utilities and Queues",
     "domain": "System Administration, Utilities, and Monitoring",
     "difficulty": "easy",
@@ -1962,7 +1962,7 @@
       "The baseline deletes stale representations"
     ],
     "correctAnswer": 0,
-    "explanation": "Teams can return to the exact approved snapshot later is correct because baselines preserve a point-in-time structure for review, comparison, audit, and release evidence. This question is testing the administrative meaning of baselines and structure snapshots, not a generic UI action or local workaround.",
+    "explanation": "Baselines preserve a point-in-time structure for review, comparison, audit, and release evidence.",
     "topic": "Baselines and Structure Snapshots",
     "domain": "Configuration Management and Product Structures",
     "difficulty": "medium",
@@ -1983,7 +1983,7 @@
       "They move data between contexts"
     ],
     "correctAnswer": 1,
-    "explanation": "They let users resolve structures dynamically for different scenarios is correct because configuration specifications resolve structures dynamically from rules, unlike fixed snapshots such as baselines. This question is testing the administrative meaning of configuration specifications and filters, not a generic UI action or local workaround.",
+    "explanation": "Configuration specifications resolve structures dynamically from rules, unlike fixed snapshots such as baselines.",
     "topic": "Configuration Specifications and Filters",
     "domain": "Configuration Management and Product Structures",
     "difficulty": "medium",
@@ -2004,7 +2004,7 @@
       "Queue-entry deletion policies"
     ],
     "correctAnswer": 2,
-    "explanation": "Applicability of configuration over time or unit range is correct because effectivity and related configuration specifications control when or for which serial, lot, or date a product structure is valid. This question is testing the administrative meaning of effectivity and applicability, not a generic UI action or local workaround.",
+    "explanation": "Effectivity and related configuration specifications control when or for which serial, lot, or date a product structure is valid.",
     "topic": "Effectivity and Applicability",
     "domain": "Configuration Management and Product Structures",
     "difficulty": "easy",
@@ -2025,7 +2025,7 @@
       "It provides a formal step to assess and justify the proposed change"
     ],
     "correctAnswer": 3,
-    "explanation": "It provides a formal step to assess and justify the proposed change is correct because change requests justify and scope change before implementation, while downstream execution objects carry out approved work. This question is testing the administrative meaning of change requests and notices, not a generic UI action or local workaround.",
+    "explanation": "Change requests justify and scope change before implementation, while downstream execution objects carry out approved work.",
     "topic": "Change Requests and Notices",
     "domain": "Change and Release Management",
     "difficulty": "medium",
@@ -2046,7 +2046,7 @@
       "It immediately authorizes production deviation"
     ],
     "correctAnswer": 0,
-    "explanation": "It formalizes issue capture and creates traceability for later evaluation is correct because problem capture and approved variance handling serve different governance purposes and should not be treated as interchangeable change objects. This question is testing the administrative meaning of issue intake and variance control, not a generic UI action or local workaround.",
+    "explanation": "Problem capture and approved variance handling serve different governance purposes and should not be treated as interchangeable change objects.",
     "topic": "Issue Intake and Variance Control",
     "domain": "Change and Release Management",
     "difficulty": "medium",
@@ -2088,7 +2088,7 @@
       "It removes the need for all review and audit activity"
     ],
     "correctAnswer": 2,
-    "explanation": "It translates the approved plan into accountable implementation work is correct because execution objects break approved change into governed work that can be assigned, tracked, and completed in sequence. This question is testing the administrative meaning of change execution and resulting objects, not a generic UI action or local workaround.",
+    "explanation": "Execution objects break approved change into governed work that can be assigned, tracked, and completed in sequence.",
     "topic": "Change Execution and Resulting Objects",
     "domain": "Change and Release Management",
     "difficulty": "medium",
@@ -2193,7 +2193,7 @@
       "Which attributes are visible to the user in that app"
     ],
     "correctAnswer": 3,
-    "explanation": "Which attributes are visible to the user in that app is correct because navigate delivers focused role-based experiences on top of Windchill data and governance; it is not a replacement for full administrative capability. This question is testing the administrative meaning of navigate fundamentals, not a generic UI action or local workaround.",
+    "explanation": "Navigate delivers focused role-based experiences on top of Windchill data and governance; it is not a replacement for full administrative capability.",
     "topic": "Navigate Fundamentals",
     "domain": "Navigate and Role-Based Consumption",
     "difficulty": "medium",
@@ -2214,7 +2214,7 @@
       "Because it requires a CAD worker to launch"
     ],
     "correctAnswer": 0,
-    "explanation": "Because it is designed for focused app experiences, not every deep administration workflow is correct because navigate delivers focused role-based experiences on top of Windchill data and governance; it is not a replacement for full administrative capability. This question is testing the administrative meaning of navigate fundamentals, not a generic UI action or local workaround.",
+    "explanation": "Navigate delivers focused role-based experiences on top of Windchill data and governance; it is not a replacement for full administrative capability.",
     "topic": "Navigate Fundamentals",
     "domain": "Navigate and Role-Based Consumption",
     "difficulty": "medium",
@@ -2235,7 +2235,7 @@
       "The number of baselines stored in the product"
     ],
     "correctAnswer": 1,
-    "explanation": "Underlying Windchill account and access permissions is correct because navigate access still depends on Windchill security and account governance rather than bypassing the core platform controls. This question is testing the administrative meaning of navigate security and administration, not a generic UI action or local workaround.",
+    "explanation": "Navigate access still depends on Windchill security and account governance rather than bypassing the core platform controls.",
     "topic": "Navigate Security and Administration",
     "domain": "Navigate and Role-Based Consumption",
     "difficulty": "medium",
@@ -2256,7 +2256,7 @@
       "Because queue monitoring requires a separate identity system"
     ],
     "correctAnswer": 2,
-    "explanation": "Because Navigate users still authenticate as Windchill users is correct because navigate access still depends on Windchill security and account governance rather than bypassing the core platform controls. This question is testing the administrative meaning of navigate security and administration, not a generic UI action or local workaround.",
+    "explanation": "Navigate access still depends on Windchill security and account governance rather than bypassing the core platform controls.",
     "topic": "Navigate Security and Administration",
     "domain": "Navigate and Role-Based Consumption",
     "difficulty": "easy",
@@ -2298,7 +2298,7 @@
       "Navigate cannot display attributes"
     ],
     "correctAnswer": 0,
-    "explanation": "Some deeper Windchill administration and authoring workflows still require the full platform UI is correct because navigate delivers focused role-based experiences on top of Windchill data and governance; it is not a replacement for full administrative capability. This question is testing the administrative meaning of navigate fundamentals, not a generic UI action or local workaround.",
+    "explanation": "Navigate delivers focused role-based experiences on top of Windchill data and governance; it is not a replacement for full administrative capability.",
     "topic": "Navigate Fundamentals",
     "domain": "Navigate and Role-Based Consumption",
     "difficulty": "medium",
@@ -2319,7 +2319,7 @@
       "A preference controls ACLs, while a profile stores CAD source files"
     ],
     "correctAnswer": 1,
-    "explanation": "A preference sets behavior defaults, while a profile tailors the visible user experience is correct because preferences control system or context behavior and are different from broader role-oriented UI simplification mechanisms such as profiles. This question is testing the administrative meaning of preferences, not a generic UI action or local workaround.",
+    "explanation": "Preferences control system or context behavior and are different from broader role-oriented UI simplification mechanisms such as profiles.",
     "topic": "Preferences",
     "domain": "Contexts, Preferences, and Business Administration",
     "difficulty": "medium",
@@ -2340,7 +2340,7 @@
       "Vault replication delays over WAN"
     ],
     "correctAnswer": 2,
-    "explanation": "Excess interface complexity for specific user personas is correct because security and profile controls reduce exposure while keeping user access and interface behavior intentional. This question is testing the administrative meaning of security administration and audit controls, not a generic UI action or local workaround.",
+    "explanation": "Security and profile controls reduce exposure while keeping user access and interface behavior intentional.",
     "topic": "Security Administration and Audit Controls",
     "domain": "Access Control, Teams, and Security",
     "difficulty": "easy",
@@ -2382,7 +2382,7 @@
       "It prevents users from logging in until preferences are set"
     ],
     "correctAnswer": 0,
-    "explanation": "It creates a consistent enterprise baseline from which exceptions can be managed is correct because baselines preserve a point-in-time structure for review, comparison, audit, and release evidence. This question is testing the administrative meaning of baselines and structure snapshots, not a generic UI action or local workaround.",
+    "explanation": "Baselines preserve a point-in-time structure for review, comparison, audit, and release evidence.",
     "topic": "Baselines and Structure Snapshots",
     "domain": "Configuration Management and Product Structures",
     "difficulty": "medium",
@@ -2403,7 +2403,7 @@
       "It allows users to bypass queue errors"
     ],
     "correctAnswer": 1,
-    "explanation": "It clarifies where teams can adapt behavior and where standards must remain consistent is correct because preferences control system or context behavior and are different from broader role-oriented UI simplification mechanisms such as profiles. This question is testing the administrative meaning of preferences, not a generic UI action or local workaround.",
+    "explanation": "Preferences control system or context behavior and are different from broader role-oriented UI simplification mechanisms such as profiles.",
     "topic": "Preferences",
     "domain": "Contexts, Preferences, and Business Administration",
     "difficulty": "medium",
@@ -2424,7 +2424,7 @@
       "One replaces security auditing and the other replaces WCA"
     ],
     "correctAnswer": 2,
-    "explanation": "One shows adoption patterns while the other shows processing workload patterns is correct because usage and throughput reporting give administrators measured evidence for adoption, load, and capacity planning decisions. This question is testing the administrative meaning of audit and usage reporting, not a generic UI action or local workaround.",
+    "explanation": "Usage and throughput reporting give administrators measured evidence for adoption, load, and capacity planning decisions.",
     "topic": "Audit and Usage Reporting",
     "domain": "System Administration, Utilities, and Monitoring",
     "difficulty": "medium",
@@ -2466,7 +2466,7 @@
       "It creates template pick lists"
     ],
     "correctAnswer": 0,
-    "explanation": "It supports integration with broader enterprise monitoring platforms is correct because background queues and monitoring tools keep expensive processing off the user transaction path and expose operational tuning signals. This question is testing the administrative meaning of administrative utilities and queues, not a generic UI action or local workaround.",
+    "explanation": "Background queues and monitoring tools keep expensive processing off the user transaction path and expose operational tuning signals.",
     "topic": "Administrative Utilities and Queues",
     "domain": "System Administration, Utilities, and Monitoring",
     "difficulty": "medium",
@@ -2529,7 +2529,7 @@
       "It allows predictable control over network and system load"
     ],
     "correctAnswer": 3,
-    "explanation": "It allows predictable control over network and system load is correct because replication distributes governed content copies for remote access while authoritative storage and vaulting remain centrally controlled. This question is testing the administrative meaning of replication and distribution, not a generic UI action or local workaround.",
+    "explanation": "Replication distributes governed content copies for remote access while authoritative storage and vaulting remain centrally controlled.",
     "topic": "Replication and Distribution",
     "domain": "Vaulting, Replication, and Data Maintenance",
     "difficulty": "medium",
@@ -2550,7 +2550,7 @@
       "It gives every viewer direct modify authority"
     ],
     "correctAnswer": 0,
-    "explanation": "It lowers the barrier to product-data review for non-authoring stakeholders is correct because representations and WVS publishing let users review product data without opening native CAD tools, and queue or worker health directly affects availability. This question is testing the administrative meaning of visualization and publishing, not a generic UI action or local workaround.",
+    "explanation": "Representations and WVS publishing let users review product data without opening native CAD tools, and queue or worker health directly affects availability.",
     "topic": "Visualization and Publishing",
     "domain": "CAD Data Management and Visualization",
     "difficulty": "easy",
@@ -2592,7 +2592,7 @@
       "Worker capacity only affects LDAP login times"
     ],
     "correctAnswer": 2,
-    "explanation": "Insufficient worker capacity can create publish backlogs and slow viewable availability is correct because representations and WVS publishing let users review product data without opening native CAD tools, and queue or worker health directly affects availability. This question is testing the administrative meaning of visualization and publishing, not a generic UI action or local workaround.",
+    "explanation": "Representations and WVS publishing let users review product data without opening native CAD tools, and queue or worker health directly affects availability.",
     "topic": "Visualization and Publishing",
     "domain": "CAD Data Management and Visualization",
     "difficulty": "medium",
@@ -2605,7 +2605,7 @@
   },
   {
     "id": 475,
-    "question": "Why is it useful to distinguish source-data governance from viewable-distribution strategy?",
+    "question": "Why is it useful to separate source-data governance from viewable-distribution strategy?",
     "options": [
       "Because governance is handled only by ThingWorx",
       "Because source files never need ACLs if viewables exist",
@@ -2613,7 +2613,7 @@
       "Because authoritative source management and broad downstream review have different technical needs"
     ],
     "correctAnswer": 3,
-    "explanation": "Source-data governance and viewable-distribution strategy solve different problems: one protects the authoritative engineering record, while the other enables broader downstream review without exposing or changing native source control.",
+    "explanation": "Source-data governance protects the authoritative engineering record, while viewable-distribution strategy governs how broader users consume derived information. They solve different problems and should not be treated as the same control layer.",
     "topic": "CAD Documents and Authoring Context",
     "domain": "CAD Data Management and Visualization",
     "difficulty": "hard",
@@ -2626,7 +2626,7 @@
   },
   {
     "id": 476,
-    "question": "What is one implementation risk of ignoring publish-rule design?",
+    "question": "What implementation risk comes from ignoring publish-rule design?",
     "options": [
       "Viewables may be missing, excessive, or generated at the wrong times",
       "Preferences may become immutable automatically",
@@ -2634,7 +2634,7 @@
       "Shared teams may disappear from Products"
     ],
     "correctAnswer": 0,
-    "explanation": "Poor publish-rule design can produce the wrong amount or timing of published output.",
+    "explanation": "Ignoring publish-rule design can produce the wrong viewables, the wrong timing of publishing, or both. Publish behavior must be intentional because it directly affects downstream visibility and load.",
     "topic": "CAD Documents and Authoring Context",
     "domain": "CAD Data Management and Visualization",
     "difficulty": "hard",
@@ -2655,7 +2655,7 @@
       "Because queue monitoring replaces CAD workers"
     ],
     "correctAnswer": 1,
-    "explanation": "Because queue health directly affects publication timeliness and user-visible viewables is correct because representations and WVS publishing let users review product data without opening native CAD tools, and queue or worker health directly affects availability. This question is testing the administrative meaning of visualization and publishing, not a generic UI action or local workaround.",
+    "explanation": "Representations and WVS publishing let users review product data without opening native CAD tools, and queue or worker health directly affects availability.",
     "topic": "Visualization and Publishing",
     "domain": "CAD Data Management and Visualization",
     "difficulty": "medium",
@@ -2697,7 +2697,7 @@
       "They reduce training burden and distraction for users who need only specific tasks"
     ],
     "correctAnswer": 3,
-    "explanation": "They reduce training burden and distraction for users who need only specific tasks is correct because navigate delivers focused role-based experiences on top of Windchill data and governance; it is not a replacement for full administrative capability. This question is testing the administrative meaning of navigate fundamentals, not a generic UI action or local workaround.",
+    "explanation": "Navigate delivers focused role-based experiences on top of Windchill data and governance; it is not a replacement for full administrative capability.",
     "topic": "Navigate Fundamentals",
     "domain": "Navigate and Role-Based Consumption",
     "difficulty": "medium",
@@ -2710,7 +2710,7 @@
   },
   {
     "id": 480,
-    "question": "What is one reason to treat Navigate app access separately from CAD authoring capability?",
+    "question": "Why should Navigate app access be treated separately from CAD authoring capability?",
     "options": [
       "Because task-focused viewing and deep design authoring are different user needs",
       "Because Navigate replaces all CAD tools",
@@ -2718,7 +2718,7 @@
       "Because Navigate cannot read released data"
     ],
     "correctAnswer": 0,
-    "explanation": "Because task-focused viewing and deep design authoring are different user needs is correct because navigate access still depends on Windchill security and account governance rather than bypassing the core platform controls. This question is testing the administrative meaning of navigate security and administration, not a generic UI action or local workaround.",
+    "explanation": "Navigate app access serves focused consumption use cases, while CAD authoring capability serves deep creation and modification workflows. They reflect different user responsibilities and should not be governed as if they were the same privilege.",
     "topic": "Navigate Security and Administration",
     "domain": "Navigate and Role-Based Consumption",
     "difficulty": "medium",
@@ -2739,7 +2739,7 @@
       "Changing the object owner to the auditor"
     ],
     "correctAnswer": 1,
-    "explanation": "Providing an immutable reference point for later comparison or audit is correct because context hierarchy and template choices determine how new contexts inherit and standardize setup. This question is testing the administrative meaning of context hierarchy and application contexts, not a generic UI action or local workaround.",
+    "explanation": "Context hierarchy and template choices determine how new contexts inherit and standardize setup.",
     "topic": "Context Hierarchy and Application Contexts",
     "domain": "Contexts, Preferences, and Business Administration",
     "difficulty": "medium",
@@ -2802,7 +2802,7 @@
       "Because it directly authorizes production deviation"
     ],
     "correctAnswer": 0,
-    "explanation": "Because it captures a need for evaluation whether the driver is a problem or an improvement request is correct because problem capture and approved variance handling serve different governance purposes and should not be treated as interchangeable change objects. This question is testing the administrative meaning of issue intake and variance control, not a generic UI action or local workaround.",
+    "explanation": "Problem capture and approved variance handling serve different governance purposes and should not be treated as interchangeable change objects.",
     "topic": "Issue Intake and Variance Control",
     "domain": "Change and Release Management",
     "difficulty": "medium",
@@ -2928,7 +2928,7 @@
       "It changes object masters into iterations"
     ],
     "correctAnswer": 2,
-    "explanation": "It provides trend and evidence data that may not be obvious from a momentary manual check is correct because reports and runtime monitoring provide objective evidence before broad tuning changes are made. This question is testing the administrative meaning of performance and runtime administration, not a generic UI action or local workaround.",
+    "explanation": "Reports and runtime monitoring provide objective evidence before broad tuning changes are made.",
     "topic": "Performance and Runtime Administration",
     "domain": "System Administration, Utilities, and Monitoring",
     "difficulty": "medium",
@@ -2970,7 +2970,7 @@
       "Because replicas are only for queue logs"
     ],
     "correctAnswer": 0,
-    "explanation": "Because governance is anchored to the authoritative source copy even when distribution copies exist is correct because replication distributes governed content copies for remote access while authoritative storage and vaulting remain centrally controlled. This question is testing the administrative meaning of replication and distribution, not a generic UI action or local workaround.",
+    "explanation": "Replication distributes governed content copies for remote access while authoritative storage and vaulting remain centrally controlled.",
     "topic": "Replication and Distribution",
     "domain": "Vaulting, Replication, and Data Maintenance",
     "difficulty": "medium",
@@ -3033,7 +3033,7 @@
       "Because commonspace remains the authoritative managed repository for committed data"
     ],
     "correctAnswer": 3,
-    "explanation": "Because commonspace remains the authoritative managed repository for committed data is correct because workspaces isolate in-progress CAD work, while commonspace remains the governed shared record for checked-in and published content. This question is testing the administrative meaning of workspaces and commonspace control, not a generic UI action or local workaround.",
+    "explanation": "Workspaces isolate in-progress CAD work, while commonspace remains the governed shared record for checked-in and published content.",
     "topic": "Workspaces and Commonspace Control",
     "domain": "CAD Data Management and Visualization",
     "difficulty": "medium",
@@ -3075,7 +3075,7 @@
       "One object is technically incapable of storing any metadata"
     ],
     "correctAnswer": 1,
-    "explanation": "Windchill separates responsibilities so traceability and approvals remain clear is correct because change requests justify and scope change before implementation, while downstream execution objects carry out approved work. This question is testing the administrative meaning of change requests and notices, not a generic UI action or local workaround.",
+    "explanation": "Change requests justify and scope change before implementation, while downstream execution objects carry out approved work.",
     "topic": "Change Requests and Notices",
     "domain": "Change and Release Management",
     "difficulty": "medium",

@@ -1523,7 +1523,7 @@
     "topic": "CAD Documents and Authoring Context",
     "difficulty": "medium",
     "type": "single",
-    "question": "According to the Technical Essentials manual, what is a 'redline' best used for in Windchill change management?",
+    "question": "In Windchill change management, what is a redline primarily used to understand?",
     "options": [
       "Marking up a CAD drawing image without changing the underlying managed object structure",
       "Flagging implementation tasks that failed review in the audit stage",
@@ -1531,7 +1531,7 @@
       "Planning and visualizing concurrent changes against the same affected objects across overlapping change notices"
     ],
     "correctAnswer": 3,
-    "explanation": "In this context, redlining is used to understand and manage overlapping concurrent changes against the same affected objects. It is not just a drawing-markup concept or an audit-stage flag.",
+    "explanation": "In this change-management context, redlining helps teams understand overlapping or concurrent proposed changes against the same affected objects. It is broader than simple drawing markup.",
     "objective": "CAD Documents and Authoring Context",
     "domain": "CAD Data Management and Visualization",
     "sourceManual": "Windchill Technical Essentials course manual.pdf",
@@ -1988,7 +1988,7 @@
     "topic": "CAD Documents and Authoring Context",
     "difficulty": "medium",
     "type": "single",
-    "question": "What is the purpose of a 'CAD document template' stored in Windchill, as covered in the Technical Essentials manual?",
+    "question": "What is the purpose of a CAD document template stored in Windchill?",
     "options": [
       "It provides a pre-configured CAD file (with standard geometry, parameters, or attributes) that users can use as a starting point when creating new CAD documents in the Creo integration",
       "It specifies the metadata attributes required when a user checks in a CAD document to Windchill",
@@ -1996,7 +1996,7 @@
       "It defines the visual layout used when printing or plotting CAD drawings from the Windchill interface"
     ],
     "correctAnswer": 0,
-    "explanation": "The Technical Essentials manual covers 'Create a CAD document from a template' and 'Activity: Create a CAD part using a template stored in Windchill.' CAD templates stored in Windchill provide standard starting-point CAD files (with pre-set parameters, standard geometry, title blocks, etc.) that ensure consistency when engineers create new CAD documents using Creo.",
+    "explanation": "A CAD document template stored in Windchill gives engineers a controlled starting file with standard content such as parameters, title blocks, or model setup. It supports consistency when creating new CAD documents in the managed environment.",
     "domain": "CAD Data Management and Visualization",
     "sourceManual": "Windchill Technical Essentials course manual.pdf",
     "sourceSection": "CAD Documents and Authoring Context",

@@ -49,7 +49,7 @@
     "sourceSection": "Client Access and Web Tier",
     "misconceptionTag": "client_channel_confusion",
     "releaseVersion": "2026.04-tranche1",
-    "question": "Which client type is the standard zero-install entry point for broad Windchill participation across roles?",
+    "question": "Which client type is the standard zero-install entry point for broad Windchill participation?",
     "options": [
       "A vault file-system mount",
       "A queue monitor shell",
@@ -57,7 +57,7 @@
       "A database SQL console"
     ],
     "correctAnswer": 2,
-    "explanation": "Browser-based access is the standard entry point for broad Windchill usage, especially outside CAD authoring roles."
+    "explanation": "Browser-based access is the standard zero-install entry point for broad Windchill participation, especially for users outside native CAD authoring roles."
   },
   {
     "id": 554,
@@ -817,7 +817,7 @@
       "They define the physical database schema"
     ],
     "correctAnswer": 0,
-    "explanation": "They help standardize initial context setup such as teams, folders, and defaults is correct because context templates standardize new contexts so teams do not manually rebuild the same setup each time. This question is testing the administrative meaning of context templates, not a generic UI action or local workaround."
+    "explanation": "Context templates standardize new contexts so teams do not manually rebuild the same setup each time."
   },
   {
     "id": 592,
@@ -897,7 +897,7 @@
       "Because it is used only for Creo View publishing"
     ],
     "correctAnswer": 0,
-    "explanation": "site.xconf is a central configuration artifact. Uncontrolled changes there can alter system behavior in significant ways."
+    "explanation": "Site.xconf is a central configuration artifact. Uncontrolled changes there can alter system behavior in significant ways."
   },
   {
     "id": 596,
