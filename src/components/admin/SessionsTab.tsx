@@ -87,6 +87,34 @@ export default function SessionsTab() {
 
   const fileInputRef = useRef<Record<string, HTMLInputElement | null>>({});
 
+  const getPresetTimeLimitSeconds = useCallback((presetId: string) => {
+    const preset = presets.find((entry) => entry.id === presetId);
+    if (!preset) return 900;
+    if (preset.timeLimitMinutes) return preset.timeLimitMinutes * 60;
+    if (preset.targetCount <= 25) return 900;
+    if (preset.targetCount <= 50) return 2100;
+    if (preset.targetCount <= 75) return 3600;
+    return 4500;
+  }, [presets]);
+
+  const getEffectiveParticipantStatus = (participant: SessionParticipant) => {
+    if (participant.status === 'completed') {
+      return 'completed' as const;
+    }
+
+    const session = sessions.find((entry) => entry.id === participant.sessionId);
+    if (!session) {
+      return participant.status;
+    }
+
+    const timeoutAt = new Date(participant.startedAt).getTime() + getPresetTimeLimitSeconds(session.presetId) * 1000;
+    if (Date.now() > timeoutAt) {
+      return 'timed_out' as const;
+    }
+
+    return 'in_progress' as const;
+  };
+
   const toDateTimeLocalValue = (iso?: string) => {
     if (!iso) return '';
     const date = new Date(iso);
@@ -182,6 +210,18 @@ export default function SessionsTab() {
           participant.score = matchedResult.scorePercentage;
           participant.passed = matchedResult.passed;
         });
+
+        const parentSession = sessions.find((entry) => entry.id === sessionId);
+        if (!parentSession) return;
+
+        participants.forEach((participant) => {
+          if (participant.status === 'completed') return;
+          const timeoutAt = new Date(participant.startedAt).getTime() + getPresetTimeLimitSeconds(parentSession.presetId) * 1000;
+          if (Date.now() > timeoutAt) {
+            participant.status = 'timed_out';
+            participant.submittedAt = participant.submittedAt ?? new Date(timeoutAt).toISOString();
+          }
+        });
       });
 
       Object.values(nextParticipants).forEach((list) => list.sort((left, right) => right.startedAt.localeCompare(left.startedAt)));
@@ -192,7 +232,7 @@ export default function SessionsTab() {
     } catch (error) {
       console.error('Session activity fetch error:', error);
     }
-  }, []);
+  }, [getPresetTimeLimitSeconds, sessions]);
 
   const loadPresets = useCallback(async (seedBuiltIns = false) => {
     try {
@@ -339,16 +379,17 @@ export default function SessionsTab() {
   const getSessionStats = (sessionId: string) => {
     const participants = participantsBySession[sessionId] ?? [];
     const results = resultsBySession[sessionId] ?? [];
-    const completed = participants.filter((participant) => participant.status === 'completed').length;
-    const inProgress = Math.max(0, participants.length - completed);
+    const completed = participants.filter((participant) => getEffectiveParticipantStatus(participant) === 'completed').length;
+    const timedOut = participants.filter((participant) => getEffectiveParticipantStatus(participant) === 'timed_out').length;
+    const inProgress = participants.filter((participant) => getEffectiveParticipantStatus(participant) === 'in_progress').length;
     const passed = results.filter((result) => result.passed).length;
-    return { participants, results, completed, inProgress, passed };
+    return { participants, results, completed, inProgress, timedOut, passed };
   };
 
   const getLeaderboard = (sessionId: string) => {
     const participants = participantsBySession[sessionId] ?? [];
     return participants
-      .filter((participant) => participant.status === 'completed' && typeof participant.score === 'number')
+      .filter((participant) => getEffectiveParticipantStatus(participant) === 'completed' && typeof participant.score === 'number')
       .sort((left, right) => {
         if ((right.score ?? -1) !== (left.score ?? -1)) {
           return (right.score ?? -1) - (left.score ?? -1);
@@ -729,6 +770,10 @@ export default function SessionsTab() {
                                     <p className="text-lg font-bold text-emerald-600">{stats.completed}</p>
                                   </div>
                                   <div className="bg-white border border-zinc-100 rounded-xl px-4 py-3">
+                                    <p className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wider mb-1">Timed Out</p>
+                                    <p className="text-lg font-bold text-amber-600">{stats.timedOut}</p>
+                                  </div>
+                                  <div className="bg-white border border-zinc-100 rounded-xl px-4 py-3">
                                     <p className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wider mb-1">Pass Rate</p>
                                     <p className="text-lg font-bold text-blue-600">{passRate ?? 0}%</p>
                                   </div>
@@ -822,8 +867,18 @@ export default function SessionsTab() {
                                             <td className="px-4 py-3 font-semibold text-zinc-800 whitespace-nowrap">{participant.candidateName}</td>
                                             <td className="px-4 py-3 text-zinc-500 text-[12px]">{participant.candidateEmail ?? '--'}</td>
                                             <td className="px-4 py-3">
-                                              <span className={`text-[11px] font-semibold px-2.5 py-1 rounded-full border ${participant.status === 'completed' ? 'bg-emerald-50 text-emerald-600 border-emerald-100' : 'bg-indigo-50 text-indigo-600 border-indigo-100'}`}>
-                                                {participant.status === 'completed' ? 'Completed' : 'In Progress'}
+                                              <span className={`text-[11px] font-semibold px-2.5 py-1 rounded-full border ${
+                                                getEffectiveParticipantStatus(participant) === 'completed'
+                                                  ? 'bg-emerald-50 text-emerald-600 border-emerald-100'
+                                                  : getEffectiveParticipantStatus(participant) === 'timed_out'
+                                                    ? 'bg-amber-50 text-amber-700 border-amber-100'
+                                                    : 'bg-indigo-50 text-indigo-600 border-indigo-100'
+                                              }`}>
+                                                {getEffectiveParticipantStatus(participant) === 'completed'
+                                                  ? 'Completed'
+                                                  : getEffectiveParticipantStatus(participant) === 'timed_out'
+                                                    ? 'Timed Out'
+                                                    : 'In Progress'}
                                               </span>
                                             </td>
                                             <td className="px-4 py-3 text-sm font-bold text-zinc-800">{participant.score ?? '--'}{participant.score !== undefined ? '%' : ''}</td>

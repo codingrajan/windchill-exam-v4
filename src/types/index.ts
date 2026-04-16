@@ -69,7 +69,7 @@ export interface SessionParticipant {
   candidateEmail?: string;
   startedAt: string;
   submittedAt?: string;
-  status: 'in_progress' | 'completed';
+  status: 'in_progress' | 'completed' | 'timed_out';
   retakeNumber: number;
   score?: number;
   passed?: boolean;

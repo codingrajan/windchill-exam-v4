@@ -8,7 +8,18 @@ import { isValidEmail, normalizeEmail } from '../utils/email';
 
 const ACTIVE_SESSION_KEY = 'wc_exam_session';
 const API_PRESET_ID = 'builtin-10-api';
+const SCENARIO_PRESET_ID = 'builtin-scn-30-lab';
 const DEFAULT_PRESET_ID = 'builtin-25-core';
+const PUBLIC_PRESET_ORDER = [
+  'builtin-25-core',
+  'builtin-25-challenge',
+  'builtin-50-core',
+  'builtin-50-challenge',
+  'builtin-75-core',
+  'builtin-75-challenge',
+  'builtin-scn-30-lab',
+  'builtin-10-api',
+] as const;
 
 const ALL_DOMAINS = [
   'PLM Strategy and Foundations',
@@ -32,9 +43,23 @@ const TIME_LABELS: Record<number, string> = {
   100: '75 min',
 };
 
+function getPresetTimeLabel(preset: Preset) {
+  if (preset.timeLimitMinutes) return `${preset.timeLimitMinutes} min`;
+  return TIME_LABELS[preset.targetCount] ?? '--';
+}
+
+function isSpecialistPreset(presetId: string) {
+  return presetId === API_PRESET_ID || presetId === SCENARIO_PRESET_ID;
+}
+
+function getPublicPresetOrderIndex(presetId: string) {
+  const index = PUBLIC_PRESET_ORDER.indexOf(presetId as (typeof PUBLIC_PRESET_ORDER)[number]);
+  return index === -1 ? Number.MAX_SAFE_INTEGER : index;
+}
+
 function getStoredActiveSessionConfig(): ExamConfig | null {
   try {
-    const raw = window.sessionStorage.getItem(ACTIVE_SESSION_KEY);
+    const raw = window.localStorage.getItem(ACTIVE_SESSION_KEY) ?? window.sessionStorage.getItem(ACTIVE_SESSION_KEY);
     if (!raw) return null;
     const parsed = JSON.parse(raw) as { config?: ExamConfig };
     return parsed.config?.sessionId ? parsed.config : null;
@@ -76,10 +101,9 @@ export default function Welcome() {
         const homeVisible = merged
           .filter((preset) => preset.showOnHome !== false)
           .sort((left, right) => {
-            if (left.id === DEFAULT_PRESET_ID) return -1;
-            if (right.id === DEFAULT_PRESET_ID) return 1;
-            if (left.id === API_PRESET_ID) return 1;
-            if (right.id === API_PRESET_ID) return -1;
+            const leftIndex = getPublicPresetOrderIndex(left.id);
+            const rightIndex = getPublicPresetOrderIndex(right.id);
+            if (leftIndex !== rightIndex) return leftIndex - rightIndex;
             if (left.targetCount !== right.targetCount) return left.targetCount - right.targetCount;
             return left.name.localeCompare(right.name);
           });
@@ -94,6 +118,7 @@ export default function Welcome() {
   }, []);
 
   const selectedPreset = presets.find((preset) => preset.id === selectedPresetId);
+  const hasOddPresetCount = presets.length % 2 === 1;
   const effectiveTrack = mode === 'preset' ? (selectedPreset?.examTrack ?? 'exam_parity') : track;
   const qCount = mode === 'random' ? randomCount : (selectedPreset?.targetCount ?? 0);
   const timeLabel =
@@ -253,65 +278,54 @@ export default function Welcome() {
                       <p className="text-zinc-300 text-sm animate-pulse">Loading presets...</p>
                     ) : presets.length > 0 ? (
                       <>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-3">
-                          {presets.filter((preset) => preset.id !== API_PRESET_ID).map((preset) => (
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
+                          {presets.map((preset, index) => {
+                            const isLastOddCard = hasOddPresetCount && index === presets.length - 1;
+                            return (
                             <button
                               key={preset.id}
                               type="button"
                               onClick={() => setSelectedPresetId(preset.id)}
-                              className={`rounded-2xl border px-4 py-3 text-left transition-all ${
+                              className={`rounded-2xl border px-4 py-4 text-left transition-all ${isLastOddCard ? 'sm:col-span-2' : ''} ${
                                 selectedPresetId === preset.id
                                   ? 'border-indigo-300 bg-indigo-50 shadow-sm'
                                   : 'border-zinc-200 bg-white hover:border-indigo-200'
                               }`}
                             >
-                              <p className="text-sm font-semibold text-zinc-800 leading-snug">{preset.name}</p>
-                              <div className="mt-2 flex flex-wrap gap-1.5">
-                                <span className="text-[10px] font-medium bg-zinc-100 text-zinc-600 px-2 py-0.5 rounded-full">
-                                  {preset.targetCount}Q
-                                </span>
-                                {preset.difficultyLabel && (
+                              <div className={`flex h-full gap-3 ${isLastOddCard ? 'sm:items-start sm:justify-between' : 'flex-col'}`}>
+                                <div className={`min-w-0 ${isLastOddCard ? 'sm:max-w-[52%]' : ''}`}>
+                                  <p className="text-[15px] font-semibold text-zinc-800 leading-snug break-words">
+                                    {preset.name}
+                                  </p>
+                                </div>
+                                <div className={`flex flex-wrap gap-1.5 ${isLastOddCard ? 'sm:justify-end' : 'mt-auto'}`}>
                                   <span className="text-[10px] font-medium bg-zinc-100 text-zinc-600 px-2 py-0.5 rounded-full">
-                                    {preset.difficultyLabel}
+                                    {preset.targetCount}Q
                                   </span>
-                                )}
+                                  <span className="text-[10px] font-medium bg-zinc-100 text-zinc-600 px-2 py-0.5 rounded-full">
+                                    {getPresetTimeLabel(preset)}
+                                  </span>
+                                  {preset.difficultyLabel && (
+                                    <span className="text-[10px] font-medium bg-zinc-100 text-zinc-600 px-2 py-0.5 rounded-full">
+                                      {preset.difficultyLabel}
+                                    </span>
+                                  )}
+                                  {preset.roleFocus && (
+                                    <span className="text-[10px] font-medium bg-zinc-100 text-zinc-600 px-2 py-0.5 rounded-full capitalize">
+                                      {preset.roleFocus}
+                                    </span>
+                                  )}
+                                  {isSpecialistPreset(preset.id) && (
+                                    <span className="text-[10px] font-medium bg-blue-50 text-blue-600 border border-blue-100 px-2 py-0.5 rounded-full">
+                                      Specialist Track
+                                    </span>
+                                  )}
+                                </div>
                               </div>
                             </button>
-                          ))}
+                            );
+                          })}
                         </div>
-                        {presets.find((preset) => preset.id === API_PRESET_ID) && (
-                          <button
-                            type="button"
-                            onClick={() => setSelectedPresetId(API_PRESET_ID)}
-                            className={`w-full rounded-2xl border px-4 py-4 text-left transition-all mb-3 ${
-                              selectedPresetId === API_PRESET_ID
-                                ? 'border-indigo-300 bg-indigo-50 shadow-sm'
-                                : 'border-zinc-200 bg-white hover:border-indigo-200'
-                            }`}
-                          >
-                            <div className="flex items-start justify-between gap-3 flex-wrap">
-                              <div className="min-w-0">
-                                <p className="text-sm font-semibold text-zinc-800 leading-snug">
-                                  {presets.find((preset) => preset.id === API_PRESET_ID)?.name}
-                                </p>
-                                <p className="mt-1 text-[11px] font-medium text-zinc-500">
-                                  Focused Java API/customization sprint for implementation-practitioner prep.
-                                </p>
-                              </div>
-                              <div className="flex flex-wrap gap-1.5">
-                                <span className="text-[10px] font-medium bg-zinc-100 text-zinc-600 px-2 py-0.5 rounded-full">
-                                  {presets.find((preset) => preset.id === API_PRESET_ID)?.targetCount}Q
-                                </span>
-                                <span className="text-[10px] font-medium bg-zinc-100 text-zinc-600 px-2 py-0.5 rounded-full">
-                                  5 min
-                                </span>
-                                <span className="text-[10px] font-medium bg-blue-50 text-blue-600 border border-blue-100 px-2 py-0.5 rounded-full">
-                                  Specialist Track
-                                </span>
-                              </div>
-                            </div>
-                          </button>
-                        )}
                         {selectedPreset && (
                           <div className="mt-3 space-y-2">
                             <div className="flex flex-wrap gap-1.5">

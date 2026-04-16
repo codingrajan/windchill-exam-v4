@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import type { FormEvent } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
-import { addDoc, collection, doc, getDoc, getDocs, query, where } from 'firebase/firestore';
+import { addDoc, collection, doc, getDoc } from 'firebase/firestore';
 import { db } from '../services/firebase';
 import { startSessionAttempt } from '../services/writeGateway';
 import type { ExamSession, Preset } from '../types/index';
@@ -33,6 +33,22 @@ function getTimeLabel(count: number, timeLimitMinutes?: number) {
   return '75 min';
 }
 
+function getTimeLimitMinutes(count: number, timeLimitMinutes?: number) {
+  if (timeLimitMinutes) return timeLimitMinutes;
+  if (count <= 25) return 15;
+  if (count <= 50) return 35;
+  if (count <= 75) return 60;
+  return 75;
+}
+
+function formatSessionDateTime(value?: string) {
+  if (!value) return 'Not set';
+  return new Date(value).toLocaleString('en-IN', {
+    dateStyle: 'long',
+    timeStyle: 'short',
+  });
+}
+
 export default function SessionEntry() {
   const { sessionId } = useParams<{ sessionId: string }>();
   const navigate = useNavigate();
@@ -45,6 +61,7 @@ export default function SessionEntry() {
   const [error, setError] = useState('');
   const [starting, setStarting] = useState(false);
   const [preset, setPreset] = useState<Preset | null>(null);
+  const [nowTimestamp, setNowTimestamp] = useState(() => Date.now());
 
   useEffect(() => {
     if (!sessionId) return;
@@ -89,6 +106,14 @@ export default function SessionEntry() {
 
     void load();
   }, [sessionId]);
+
+  useEffect(() => {
+    const interval = window.setInterval(() => {
+      setNowTimestamp(Date.now());
+    }, 30000);
+
+    return () => window.clearInterval(interval);
+  }, []);
 
   const handleStart = async (event: FormEvent) => {
     event.preventDefault();
@@ -146,25 +171,6 @@ export default function SessionEntry() {
         return;
       }
 
-      const maxRetakes = session.maxRetakes ?? 0;
-      let retakeNumber = 1;
-      const participantSnap = await getDocs(
-        query(
-          collection(db, 'session_participants'),
-          where('sessionId', '==', session.id),
-          where('candidateName', '==', candidateName.trim()),
-        ),
-      );
-
-      const completed = participantSnap.docs.filter((entry) => entry.data().status === 'completed').length;
-      retakeNumber = completed + 1;
-
-      if (maxRetakes > 0 && completed >= maxRetakes) {
-        setError(`You have used all ${maxRetakes} attempt${maxRetakes > 1 ? 's' : ''} for this session.`);
-        setStarting(false);
-        return;
-      }
-
       const participantRef = await addDoc(collection(db, 'session_participants'), {
         sessionId: session.id,
         sessionName: session.name,
@@ -172,7 +178,7 @@ export default function SessionEntry() {
         ...(normalizedEmail ? { candidateEmail: normalizedEmail } : {}),
         startedAt: new Date().toISOString(),
         status: 'in_progress',
-        retakeNumber,
+        retakeNumber: 1,
       });
 
       navigate('/quiz', {
@@ -237,6 +243,20 @@ export default function SessionEntry() {
   }
 
   const maxRetakes = session.maxRetakes ?? 0;
+  const timeLimitMinutes = getTimeLimitMinutes(preset.targetCount, preset.timeLimitMinutes);
+  const startsAtLabel = formatSessionDateTime(session.startsAt);
+  const expiresAtLabel = formatSessionDateTime(session.expiresAt);
+  const remainingSessionMinutes = session.expiresAt
+    ? Math.floor((new Date(session.expiresAt).getTime() - nowTimestamp) / 60000)
+    : null;
+  const showStartSoonWarning =
+    remainingSessionMinutes !== null &&
+    remainingSessionMinutes > timeLimitMinutes &&
+    remainingSessionMinutes <= timeLimitMinutes + 10;
+  const showOverrunWarning =
+    remainingSessionMinutes !== null &&
+    remainingSessionMinutes > 0 &&
+    remainingSessionMinutes <= timeLimitMinutes;
 
   return (
     <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="flex items-center justify-center min-h-[70vh] px-4">
@@ -269,6 +289,29 @@ export default function SessionEntry() {
               <div className="text-[9px] font-semibold uppercase tracking-wider text-zinc-400">Profile</div>
             </div>
           </div>
+
+          <div className="grid grid-cols-2 gap-2 mb-5">
+            <div className="bg-zinc-50 border border-zinc-100 rounded-xl px-3 py-3">
+              <div className="text-[10px] font-semibold uppercase tracking-wider text-zinc-400 mb-1">Available From</div>
+              <div className="text-[12px] font-semibold text-zinc-700">{startsAtLabel}</div>
+            </div>
+            <div className="bg-zinc-50 border border-zinc-100 rounded-xl px-3 py-3">
+              <div className="text-[10px] font-semibold uppercase tracking-wider text-zinc-400 mb-1">Available Until</div>
+              <div className="text-[12px] font-semibold text-zinc-700">{expiresAtLabel}</div>
+            </div>
+          </div>
+
+          {showStartSoonWarning && (
+            <div className="mb-5 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-[12px] font-medium text-amber-700">
+              Start soon. Only about {remainingSessionMinutes} minutes remain before this session window closes, which leaves less than a 10-minute buffer over the exam duration.
+            </div>
+          )}
+
+          {showOverrunWarning && (
+            <div className="mb-5 rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-[12px] font-medium text-rose-700">
+              This session window closes in about {remainingSessionMinutes} minutes. If you start now, the session link will expire before your personal exam timer ends.
+            </div>
+          )}
 
           <div className="mb-5 flex flex-wrap gap-2">
             {typeof preset.multiSelectRatio === 'number' && (

@@ -9,6 +9,14 @@ import QuestionPrompt from '../components/shared/QuestionPrompt';
 
 const SESSION_KEY = 'wc_exam_session';
 
+interface StoredExamSession {
+  config: ExamConfig;
+  questions: Question[];
+  answers: AnswerMap;
+  timeLeft: number;
+  deadlineTimestamp?: number;
+}
+
 function buildAttemptId(config: ExamConfig, questions: Question[]): string {
   const questionFingerprint = questions.map((question) => question.id).join('-');
   const candidateKey = (config.candidateEmail ?? config.examineeName).trim().toLowerCase().replace(/\s+/g, '_');
@@ -35,22 +43,25 @@ export default function Quiz() {
 
   // Prefer router state; fall back to sessionStorage for back-button recovery
   const routerConfig = location.state as ExamConfig | undefined;
-  const savedRaw = sessionStorage.getItem(SESSION_KEY);
-  const savedSession = savedRaw ? JSON.parse(savedRaw) as { config: ExamConfig; questions: Question[]; answers: AnswerMap; timeLeft: number } : null;
+  const savedRaw = window.localStorage.getItem(SESSION_KEY) ?? window.sessionStorage.getItem(SESSION_KEY);
+  const savedSession = savedRaw ? JSON.parse(savedRaw) as StoredExamSession : null;
+  const restoredDeadlineTimestamp = savedSession?.deadlineTimestamp ?? (savedSession ? Date.now() + savedSession.timeLeft * 1000 : 0);
   const config: ExamConfig | undefined = routerConfig ?? savedSession?.config;
 
   const [questions, setQuestions] = useState<Question[]>(savedSession?.questions ?? []);
   const [currentIdx, setCurrentIdx] = useState(0);
   const [answers, setAnswers] = useState<AnswerMap>(savedSession?.answers ?? {});
   const [flagged, setFlagged] = useState<Record<number, boolean>>({});
-  const [timeLeft, setTimeLeft] = useState(savedSession?.timeLeft ?? 0);
+  const [timeLeft, setTimeLeft] = useState(savedSession ? Math.max(0, Math.ceil((restoredDeadlineTimestamp - Date.now()) / 1000)) : 0);
   const [isLoaded, setIsLoaded] = useState(savedSession !== null && !!routerConfig === false ? true : false);
   const [showResumeCue, setShowResumeCue] = useState(savedSession !== null && !routerConfig);
+  const [deadlineTimestamp, setDeadlineTimestamp] = useState(restoredDeadlineTimestamp);
   useContentProtection(true);
 
   const hasSubmitted = useRef(false);
   const questionTimings = useRef<Record<number, number>>({});
   const questionStartTime = useRef<number>(Date.now());
+  const restoredExpiredAttempt = useRef(false);
 
   // Record time spent on a question before navigating away
   const recordCurrentTime = (idx: number) => {
@@ -88,9 +99,12 @@ export default function Quiz() {
 
   // Persist to sessionStorage on every answer / timeLeft change (for back-button recovery)
   useEffect(() => {
-    if (!isLoaded || !config) return;
-    sessionStorage.setItem(SESSION_KEY, JSON.stringify({ config, questions, answers, timeLeft }));
-  }, [answers, timeLeft, isLoaded, config, questions]);
+    if (!isLoaded || !config || !deadlineTimestamp) return;
+    const snapshot: StoredExamSession = { config, questions, answers, timeLeft, deadlineTimestamp };
+    const serialized = JSON.stringify(snapshot);
+    window.localStorage.setItem(SESSION_KEY, serialized);
+    window.sessionStorage.setItem(SESSION_KEY, serialized);
+  }, [answers, timeLeft, isLoaded, config, questions, deadlineTimestamp]);
 
   useEffect(() => {
     if (!config) { navigate('/'); return; }
@@ -104,12 +118,40 @@ export default function Quiz() {
       } else {
         finalSet = buildRandomExam(rawPool, config.targetCount, { track: config.track });
       }
+      const initialTimeLimit = getTimeLimit(finalSet.length || config.targetCount, config.timeLimitMinutes);
       setQuestions(finalSet);
-      setTimeLeft(getTimeLimit(finalSet.length || config.targetCount, config.timeLimitMinutes));
+      setTimeLeft(initialTimeLimit);
+      setDeadlineTimestamp(Date.now() + initialTimeLimit * 1000);
       setIsLoaded(true);
     };
     void init();
   }, [config, navigate, isLoaded]);
+
+  useEffect(() => {
+    if (!config || !isLoaded || !deadlineTimestamp || timeLeft > 0 || restoredExpiredAttempt.current || hasSubmitted.current) return;
+    restoredExpiredAttempt.current = true;
+    hasSubmitted.current = true;
+    recordCurrentTime(currentIdx);
+    window.localStorage.removeItem(SESSION_KEY);
+    window.sessionStorage.removeItem(SESSION_KEY);
+    const resultAttemptId = buildAttemptId(config, questions);
+    navigate('/results', {
+      state: {
+        questions, answers,
+        timeTaken: getTimeLimit(questions.length || config.targetCount, config.timeLimitMinutes),
+        resultAttemptId,
+        examineeName: config.examineeName,
+        examMode: config.mode,
+        examTrack: config.track,
+        experienceBand: config.experienceBand,
+        sessionId: config.sessionId,
+        sessionName: config.sessionName,
+        candidateEmail: config.candidateEmail,
+        participantId: config.participantId,
+        questionTimings: questionTimings.current,
+      },
+    });
+  }, [answers, config, currentIdx, deadlineTimestamp, isLoaded, navigate, questions, timeLeft]);
 
   useEffect(() => {
     if (!config || !isLoaded) return;
@@ -117,7 +159,8 @@ export default function Quiz() {
       if (!hasSubmitted.current) {
         hasSubmitted.current = true;
         recordCurrentTime(currentIdx);
-        sessionStorage.removeItem(SESSION_KEY);
+        window.localStorage.removeItem(SESSION_KEY);
+        window.sessionStorage.removeItem(SESSION_KEY);
         const resultAttemptId = buildAttemptId(config, questions);
         navigate('/results', {
           state: {
@@ -149,7 +192,8 @@ export default function Quiz() {
     if (!config || hasSubmitted.current) return;
     hasSubmitted.current = true;
     recordCurrentTime(currentIdx);
-    sessionStorage.removeItem(SESSION_KEY);
+    window.localStorage.removeItem(SESSION_KEY);
+    window.sessionStorage.removeItem(SESSION_KEY);
     const resultAttemptId = buildAttemptId(config, questions);
     navigate('/results', {
       state: {

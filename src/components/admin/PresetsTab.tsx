@@ -106,22 +106,14 @@ export default function PresetsTab() {
     try {
       const currentPreset = activeView?.kind === 'edit' ? activeView.preset : null;
       const payload = {
-        ...(currentPreset ? {
-          timeLimitMinutes: currentPreset.timeLimitMinutes,
-          examTrack: currentPreset.examTrack,
-          difficultyProfile: currentPreset.difficultyProfile,
-          difficultyLabel: currentPreset.difficultyLabel,
-          multiSelectRatio: currentPreset.multiSelectRatio,
-          isBuiltIn: currentPreset.isBuiltIn,
-          assessmentType: currentPreset.assessmentType,
-          roleFocus: currentPreset.roleFocus,
-        } : {}),
+        ...(currentPreset ? { ...currentPreset } : {}),
         name: presetName.trim(),
         questions: [...selected],
         targetCount,
         showOnHome,
         updatedAt: new Date().toISOString(),
       };
+      delete (payload as Partial<Preset>).id;
       if (activeView?.kind === 'edit') {
         const id = activeView.preset.id;
         const updated = await upsertPreset(payload, id);
@@ -136,7 +128,7 @@ export default function PresetsTab() {
       }
     } catch (err) {
       console.error('Save error:', err);
-      setMessage('Error saving preset.');
+      setMessage(err instanceof Error ? err.message : 'Error saving preset.');
     } finally { setSaving(false); }
   };
 
