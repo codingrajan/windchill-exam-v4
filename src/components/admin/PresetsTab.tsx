@@ -170,6 +170,8 @@ export default function PresetsTab() {
                       <span className="text-[11px] text-zinc-400">{p.targetCount}Q</span>
                       {p.isBuiltIn && <span className="text-[10px] font-semibold text-indigo-500 bg-indigo-50 border border-indigo-100 px-2 py-0.5 rounded-full">Built-In</span>}
                       {p.showOnHome === false && <span className="text-[10px] font-semibold text-amber-600 bg-amber-50 border border-amber-100 px-2 py-0.5 rounded-full">Admin Only</span>}
+                      {p.assessmentType === 'interview' && <span className="text-[10px] font-semibold text-red-600 bg-red-50 border border-red-100 px-2 py-0.5 rounded-full">Interview</span>}
+                      {p.roleFocus && <span className="text-[10px] font-semibold text-zinc-600 bg-zinc-100 border border-zinc-200 px-2 py-0.5 rounded-full capitalize">{p.roleFocus}</span>}
                     </div>
                   </div>
                   <span className="shrink-0 text-[10px] font-semibold text-emerald-600 bg-emerald-50 border border-emerald-100 px-2 py-0.5 rounded-full whitespace-nowrap">{p.difficultyLabel ?? 'Active'}</span>

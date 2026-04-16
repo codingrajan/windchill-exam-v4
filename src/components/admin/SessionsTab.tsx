@@ -420,7 +420,7 @@ export default function SessionsTab() {
               <option value="">Select a preset exam...</option>
               {presets.map((preset) => (
                 <option key={preset.id} value={preset.id}>
-                  {preset.name} ({preset.targetCount}Q)
+                  {preset.assessmentType === 'interview' ? '[Interview] ' : ''}{preset.name} ({preset.targetCount}Q)
                 </option>
               ))}
             </select>

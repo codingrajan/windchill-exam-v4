@@ -3109,22 +3109,22 @@
   },
   {
     "id": 499,
-    "question": "What is one reason to generate the next question batches from a protected concept inventory?",
+    "question": "What is one strategic benefit of managing product information in a connected PLM system instead of across disconnected departmental tools?",
     "options": [
-      "It removes the need for manual review",
-      "It converts single-answer questions into multiple-response questions",
-      "It guarantees every new question will be hard",
-      "It reduces the chance of writing new questions that repeat the same tested concept"
+      "It removes the need for controlled release and change processes",
+      "It reduces cross-functional traceability because each team keeps its own isolated view",
+      "It improves consistency and traceability as product information moves across functions and lifecycle stages",
+      "It guarantees every downstream structure will always match engineering intent without governance decisions"
     ],
-    "correctAnswer": 3,
-    "explanation": "A protected concept inventory helps prevent concept repetition across the growing bank.",
-    "topic": "PLM Concepts and Business Value",
+    "correctAnswer": 2,
+    "explanation": "A connected PLM system improves consistency and traceability by keeping product information linked as it moves across functions and lifecycle stages. It does not eliminate governance, and it does not guarantee downstream alignment without controlled processes.",
+    "topic": "PLM Value and Digital Thread",
     "domain": "PLM Strategy and Foundations",
     "difficulty": "medium",
     "type": "single",
-    "objective": "PLM Concepts and Business Value",
+    "objective": "PLM Value and Digital Thread",
     "sourceManual": "Windchill Technical Essentials course manual.pdf",
-    "sourceSection": "PLM Concepts and Business Value",
+    "sourceSection": "PLM Value and Digital Thread",
     "misconceptionTag": "Terminology and solution-scope confusion",
     "releaseVersion": "2026.04"
   },

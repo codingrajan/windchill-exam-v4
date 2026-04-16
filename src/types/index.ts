@@ -103,6 +103,8 @@ export interface Preset {
   multiSelectRatio?: number;
   isBuiltIn?: boolean;
   showOnHome?: boolean;
+  assessmentType?: 'mock' | 'interview';
+  roleFocus?: 'functional' | 'technical' | 'architect' | 'mixed';
 }
 
 export interface ExamConfig {

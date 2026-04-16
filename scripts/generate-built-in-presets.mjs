@@ -83,19 +83,28 @@ const buildPreset = (questions, config) => {
   const apiSingleQuestions = apiQuestions.filter((question) => !Array.isArray(question.correctAnswer));
   const nonApiMultiQuestions = nonApiQuestions.filter((question) => Array.isArray(question.correctAnswer));
   const nonApiSingleQuestions = nonApiQuestions.filter((question) => !Array.isArray(question.correctAnswer));
+  const allowMulti = config.allowMulti !== false;
 
-  const apiMultiTarget = Math.min(apiMultiQuestions.length, Math.min(multiTarget, Math.max(1, Math.round(apiTarget * 0.2))));
+  const apiMultiTarget = allowMulti
+    ? Math.min(apiMultiQuestions.length, Math.min(multiTarget, Math.max(1, Math.round(apiTarget * 0.2))))
+    : 0;
   selected.push(...takeRoundRobin(apiMultiQuestions, apiMultiTarget, `${config.id}:api-multi`, selectedIds));
   selected.push(...takeRoundRobin(apiSingleQuestions, apiTarget - selected.length, `${config.id}:api-single`, selectedIds));
 
-  const nonApiMultiTarget = Math.max(0, multiTarget - selected.filter((question) => Array.isArray(question.correctAnswer)).length);
+  const nonApiMultiTarget = allowMulti
+    ? Math.max(0, multiTarget - selected.filter((question) => Array.isArray(question.correctAnswer)).length)
+    : 0;
   selected.push(...takeRoundRobin(nonApiMultiQuestions, nonApiMultiTarget, `${config.id}:multi`, selectedIds));
   selected.push(...takeRoundRobin(nonApiSingleQuestions, config.targetCount - selected.length, `${config.id}:single`, selectedIds));
 
   if (selected.length < config.targetCount) {
     const fallbackCount = config.targetCount - selected.length;
     selected.push(...takeRoundRobin(
-      [...nonApiMultiQuestions, ...apiMultiQuestions, ...apiSingleQuestions, ...nonApiSingleQuestions].filter((question) => !selectedIds.has(question.id)),
+      [
+        ...nonApiSingleQuestions,
+        ...apiSingleQuestions,
+        ...(allowMulti ? [...nonApiMultiQuestions, ...apiMultiQuestions] : []),
+      ].filter((question) => !selectedIds.has(question.id)),
       fallbackCount,
       `${config.id}:fallback`,
       selectedIds,
@@ -118,6 +127,8 @@ const buildPreset = (questions, config) => {
     multiSelectRatio: config.multiSelectRatio,
     ...(config.timeLimitMinutes ? { timeLimitMinutes: config.timeLimitMinutes } : {}),
     isBuiltIn: true,
+    assessmentType: config.assessmentType ?? 'mock',
+    ...(config.roleFocus ? { roleFocus: config.roleFocus } : {}),
   };
 };
 
@@ -132,6 +143,7 @@ const presetsConfig = [
     difficultyLabel: 'Java API Focus',
     timeLimitMinutes: 5,
     apiTargetCount: 10,
+    allowMulti: false,
   },
   {
     id: 'builtin-25-core',
@@ -143,6 +155,7 @@ const presetsConfig = [
     difficultyProfile: 'easy_medium',
     difficultyLabel: 'Easy + Medium',
     apiTargetCount: 2,
+    allowMulti: true,
   },
   {
     id: 'builtin-25-challenge',
@@ -154,6 +167,7 @@ const presetsConfig = [
     difficultyProfile: 'medium_hard',
     difficultyLabel: 'Medium + Hard',
     apiTargetCount: 2,
+    allowMulti: true,
   },
   {
     id: 'builtin-50-core',
@@ -165,6 +179,7 @@ const presetsConfig = [
     difficultyProfile: 'easy_medium',
     difficultyLabel: 'Easy + Medium',
     apiTargetCount: 5,
+    allowMulti: true,
   },
   {
     id: 'builtin-50-challenge',
@@ -176,6 +191,7 @@ const presetsConfig = [
     difficultyProfile: 'medium_hard',
     difficultyLabel: 'Medium + Hard',
     apiTargetCount: 5,
+    allowMulti: true,
   },
   {
     id: 'builtin-75-core',
@@ -187,6 +203,7 @@ const presetsConfig = [
     difficultyProfile: 'easy_medium',
     difficultyLabel: 'Easy + Medium',
     apiTargetCount: 8,
+    allowMulti: true,
   },
   {
     id: 'builtin-75-challenge',
@@ -198,14 +215,82 @@ const presetsConfig = [
     difficultyProfile: 'medium_hard',
     difficultyLabel: 'Medium + Hard',
     apiTargetCount: 8,
+    allowMulti: true,
+  },
+];
+
+const hiddenInterviewPresetsConfig = [
+  {
+    id: 'builtin-int-15-foundation',
+    name: 'Interview 15 - Foundation Screen',
+    targetCount: 15,
+    allowedDifficulties: ['easy', 'medium'],
+    multiSelectRatio: 0,
+    examTrack: 'exam_parity',
+    difficultyLabel: 'Interview · Fundamentals',
+    timeLimitMinutes: 12,
+    apiTargetCount: 0,
+    allowMulti: false,
+    assessmentType: 'interview',
+    roleFocus: 'functional',
+    showOnHome: false,
+  },
+  {
+    id: 'builtin-int-20-core',
+    name: 'Interview 20 - Practitioner Core',
+    targetCount: 20,
+    allowedDifficulties: ['medium', 'hard'],
+    multiSelectRatio: 0,
+    examTrack: 'hard_mode',
+    difficultyLabel: 'Interview · Core Judgement',
+    timeLimitMinutes: 18,
+    apiTargetCount: 2,
+    allowMulti: false,
+    assessmentType: 'interview',
+    roleFocus: 'mixed',
+    showOnHome: false,
+  },
+  {
+    id: 'builtin-int-25-tech',
+    name: 'Interview 25 - Technical Deep Dive',
+    targetCount: 25,
+    allowedDifficulties: ['medium', 'hard'],
+    multiSelectRatio: 0,
+    examTrack: 'hard_mode',
+    difficultyLabel: 'Interview · Technical',
+    timeLimitMinutes: 22,
+    apiTargetCount: 6,
+    allowMulti: false,
+    assessmentType: 'interview',
+    roleFocus: 'technical',
+    showOnHome: false,
+  },
+  {
+    id: 'builtin-int-10-api',
+    name: 'Interview 10 - API Screen',
+    targetCount: 10,
+    allowedDifficulties: ['easy', 'medium'],
+    multiSelectRatio: 0,
+    examTrack: 'exam_parity',
+    difficultyLabel: 'Interview · Java API',
+    timeLimitMinutes: 10,
+    apiTargetCount: 10,
+    allowMulti: false,
+    assessmentType: 'interview',
+    roleFocus: 'technical',
+    showOnHome: false,
   },
 ];
 
 const questions = loadQuestions();
 const presets = presetsConfig.map((config) => buildPreset(questions, config));
+const interviewPresets = hiddenInterviewPresetsConfig.map((config) => ({
+  ...buildPreset(questions, config),
+  showOnHome: false,
+}));
 const existingHiddenPresets = fs.existsSync(outputPath)
-  ? JSON.parse(fs.readFileSync(outputPath, 'utf8')).filter((preset) => preset.showOnHome === false)
+  ? JSON.parse(fs.readFileSync(outputPath, 'utf8')).filter((preset) => preset.showOnHome === false && !hiddenInterviewPresetsConfig.some((config) => config.id === preset.id))
   : [];
 
-fs.writeFileSync(outputPath, `${JSON.stringify([...presets.map((preset) => ({ ...preset, showOnHome: true })), ...existingHiddenPresets], null, 2)}\n`, 'utf8');
+fs.writeFileSync(outputPath, `${JSON.stringify([...presets.map((preset) => ({ ...preset, showOnHome: true })), ...interviewPresets, ...existingHiddenPresets], null, 2)}\n`, 'utf8');
 console.log(`Built-in presets written to ${path.relative(process.cwd(), outputPath)}`);
