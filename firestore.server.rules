@@ -27,5 +27,10 @@ service cloud.firestore {
     match /audit_logs/{document=**} {
       allow read, write: if signedIn();
     }
+
+    match /question_overrides/{document=**} {
+      allow read: if true;
+      allow write: if signedIn();
+    }
   }
 }

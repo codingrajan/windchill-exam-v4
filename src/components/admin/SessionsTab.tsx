@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import type { ChangeEvent, FormEvent } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { collection, getDocs } from 'firebase/firestore';
@@ -75,6 +75,8 @@ export default function SessionsTab() {
   const [candidateWarnings, setCandidateWarnings] = useState<Record<string, string>>({});
   const [participantsBySession, setParticipantsBySession] = useState<Record<string, SessionParticipant[]>>({});
   const [resultsBySession, setResultsBySession] = useState<Record<string, ExamResult[]>>({});
+  const [windowDrafts, setWindowDrafts] = useState<Record<string, { startsAt: string; expiresAt: string }>>({});
+  const [savingWindowId, setSavingWindowId] = useState<string | null>(null);
 
   const [formName, setFormName] = useState('');
   const [formPresetId, setFormPresetId] = useState('');
@@ -85,7 +87,15 @@ export default function SessionsTab() {
 
   const fileInputRef = useRef<Record<string, HTMLInputElement | null>>({});
 
-  const fetchSessions = async () => {
+  const toDateTimeLocalValue = (iso?: string) => {
+    if (!iso) return '';
+    const date = new Date(iso);
+    const offset = date.getTimezoneOffset();
+    const local = new Date(date.getTime() - offset * 60_000);
+    return local.toISOString().slice(0, 16);
+  };
+
+  const fetchSessions = useCallback(async () => {
     setLoading(true);
     try {
       const [firestoreSessions, builtInSessions] = await Promise.all([
@@ -106,18 +116,24 @@ export default function SessionsTab() {
       setSessions(list);
 
       const initial: Record<string, string> = {};
+      const nextWindowDrafts: Record<string, { startsAt: string; expiresAt: string }> = {};
       list.forEach((session) => {
         initial[session.id] = (session.allowedCandidates ?? []).join('\n');
+        nextWindowDrafts[session.id] = {
+          startsAt: toDateTimeLocalValue(session.startsAt),
+          expiresAt: toDateTimeLocalValue(session.expiresAt),
+        };
       });
       setCandidateText(initial);
+      setWindowDrafts(nextWindowDrafts);
     } catch (error) {
       console.error('Session fetch error:', error);
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
-  const fetchSessionActivity = async () => {
+  const fetchSessionActivity = useCallback(async () => {
     try {
       const [participantSnap, resultSnap] = await Promise.all([
         getDocs(collection(db, 'session_participants')),
@@ -176,9 +192,9 @@ export default function SessionsTab() {
     } catch (error) {
       console.error('Session activity fetch error:', error);
     }
-  };
+  }, []);
 
-  const loadPresets = async (seedBuiltIns = false) => {
+  const loadPresets = useCallback(async (seedBuiltIns = false) => {
     try {
       const [firestorePresets, builtInPresets] = await Promise.all([
         fetchFirestorePresets().catch(() => [] as Preset[]),
@@ -201,13 +217,13 @@ export default function SessionsTab() {
       console.error('Session preset load error:', error);
       setPresets([]);
     }
-  };
+  }, []);
 
   useEffect(() => {
     void fetchSessions();
     void loadPresets(true);
     void fetchSessionActivity();
-  }, []);
+  }, [fetchSessionActivity, fetchSessions, loadPresets]);
 
   const handleCreate = async (event: FormEvent) => {
     event.preventDefault();
@@ -397,6 +413,43 @@ export default function SessionsTab() {
         })
       : '--';
 
+  const saveWindow = async (session: ExamSession) => {
+    const draft = windowDrafts[session.id] ?? { startsAt: '', expiresAt: '' };
+    setSavingWindowId(session.id);
+    setMessage('');
+    try {
+      const startsAt = draft.startsAt ? new Date(draft.startsAt).toISOString() : null;
+      const expiresAt = draft.expiresAt ? new Date(draft.expiresAt).toISOString() : null;
+      await patchExamSession(
+        session.id,
+        {
+          startsAt: startsAt ?? undefined,
+          expiresAt: expiresAt ?? undefined,
+        },
+        {
+          name: session.name,
+          startsAt,
+          expiresAt,
+        },
+      );
+      setSessions((prev) => prev.map((entry) => (
+        entry.id === session.id
+          ? {
+              ...entry,
+              ...(startsAt ? { startsAt } : { startsAt: undefined }),
+              ...(expiresAt ? { expiresAt } : { expiresAt: undefined }),
+            }
+          : entry
+      )));
+      setMessage(`Session window updated for "${session.name}".`);
+    } catch (error) {
+      console.error('Save session window error:', error);
+      setMessage('Error updating session window.');
+    } finally {
+      setSavingWindowId(null);
+    }
+  };
+
   return (
     <div className="grid grid-cols-1 xl:grid-cols-3 gap-5">
       <div className="xl:col-span-1">
@@ -564,6 +617,53 @@ export default function SessionsTab() {
                         className="overflow-hidden border-t border-zinc-100"
                       >
                         <div className="px-5 py-4 bg-zinc-50/60">
+                          <div className="mb-5 rounded-2xl border border-zinc-100 bg-white p-4">
+                            <p className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wider mb-3">Session Window</p>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                              <div>
+                                <label className="block text-[11px] font-medium text-zinc-400 mb-1">Opens At</label>
+                                <input
+                                  type="datetime-local"
+                                  value={windowDrafts[session.id]?.startsAt ?? ''}
+                                  onChange={(event) => setWindowDrafts((prev) => ({
+                                    ...prev,
+                                    [session.id]: {
+                                      startsAt: event.target.value,
+                                      expiresAt: prev[session.id]?.expiresAt ?? '',
+                                    },
+                                  }))}
+                                  className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-3 py-2.5 text-sm text-zinc-800 font-medium outline-none focus:border-indigo-400 transition-all"
+                                />
+                              </div>
+                              <div>
+                                <label className="block text-[11px] font-medium text-zinc-400 mb-1">Expires At</label>
+                                <input
+                                  type="datetime-local"
+                                  value={windowDrafts[session.id]?.expiresAt ?? ''}
+                                  onChange={(event) => setWindowDrafts((prev) => ({
+                                    ...prev,
+                                    [session.id]: {
+                                      startsAt: prev[session.id]?.startsAt ?? '',
+                                      expiresAt: event.target.value,
+                                    },
+                                  }))}
+                                  className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-3 py-2.5 text-sm text-zinc-800 font-medium outline-none focus:border-indigo-400 transition-all"
+                                />
+                              </div>
+                            </div>
+                            <div className="mt-3 flex items-center gap-3 flex-wrap">
+                              <button
+                                onClick={() => void saveWindow(session)}
+                                disabled={savingWindowId === session.id}
+                                className="text-[11px] font-semibold px-4 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white transition-all disabled:opacity-50"
+                              >
+                                {savingWindowId === session.id ? 'Saving...' : 'Save Window'}
+                              </button>
+                              <span className="text-[11px] text-zinc-400">
+                                Updates time window only. Session link and preset mapping remain unchanged.
+                              </span>
+                            </div>
+                          </div>
                           <p className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wider mb-3">Registered Candidates (Bulk Import)</p>
                           <p className="text-[11px] text-zinc-500 mb-3">Enter one name per line, or upload a CSV/TXT file. If this list is non-empty, only these candidates can take the exam.</p>
                           <textarea

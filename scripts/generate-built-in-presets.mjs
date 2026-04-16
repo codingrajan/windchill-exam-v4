@@ -67,7 +67,10 @@ const takeRoundRobin = (questions, count, seed, excludeIds = new Set()) => {
 };
 
 const buildPreset = (questions, config) => {
-  const allowed = questions.filter((question) => config.allowedDifficulties.includes(String(question.difficulty).toLowerCase()));
+  const scopedQuestions = Array.isArray(config.allowedQuestionIds)
+    ? questions.filter((question) => config.allowedQuestionIds.includes(question.id))
+    : questions;
+  const allowed = scopedQuestions.filter((question) => config.allowedDifficulties.includes(String(question.difficulty).toLowerCase()));
   const apiQuestions = allowed.filter((question) => question.sourceManual === API_SOURCE_MANUAL);
   const nonApiQuestions = allowed.filter((question) => question.sourceManual !== API_SOURCE_MANUAL);
   const selectedIds = new Set();
@@ -282,15 +285,42 @@ const hiddenInterviewPresetsConfig = [
   },
 ];
 
+const hiddenScenarioPresetsConfig = [
+  {
+    id: 'builtin-scn-30-lab',
+    name: 'Scenario 30 - Decision Lab',
+    targetCount: 30,
+    allowedDifficulties: ['medium', 'hard'],
+    multiSelectRatio: 0,
+    examTrack: 'hard_mode',
+    difficultyLabel: 'Scenario · Medium + Hard',
+    timeLimitMinutes: 30,
+    apiTargetCount: 0,
+    allowMulti: false,
+    assessmentType: 'mock',
+    roleFocus: 'mixed',
+    showOnHome: false,
+    allowedQuestionIds: Array.from({ length: 50 }, (_, index) => 626 + index),
+  },
+];
+
 const questions = loadQuestions();
 const presets = presetsConfig.map((config) => buildPreset(questions, config));
 const interviewPresets = hiddenInterviewPresetsConfig.map((config) => ({
   ...buildPreset(questions, config),
   showOnHome: false,
 }));
+const scenarioPresets = hiddenScenarioPresetsConfig.map((config) => ({
+  ...buildPreset(questions, config),
+  showOnHome: false,
+}));
 const existingHiddenPresets = fs.existsSync(outputPath)
-  ? JSON.parse(fs.readFileSync(outputPath, 'utf8')).filter((preset) => preset.showOnHome === false && !hiddenInterviewPresetsConfig.some((config) => config.id === preset.id))
+  ? JSON.parse(fs.readFileSync(outputPath, 'utf8')).filter((preset) =>
+      preset.showOnHome === false
+      && !hiddenInterviewPresetsConfig.some((config) => config.id === preset.id)
+      && !hiddenScenarioPresetsConfig.some((config) => config.id === preset.id),
+    )
   : [];
 
-fs.writeFileSync(outputPath, `${JSON.stringify([...presets.map((preset) => ({ ...preset, showOnHome: true })), ...interviewPresets, ...existingHiddenPresets], null, 2)}\n`, 'utf8');
+fs.writeFileSync(outputPath, `${JSON.stringify([...presets.map((preset) => ({ ...preset, showOnHome: true })), ...interviewPresets, ...scenarioPresets, ...existingHiddenPresets], null, 2)}\n`, 'utf8');
 console.log(`Built-in presets written to ${path.relative(process.cwd(), outputPath)}`);

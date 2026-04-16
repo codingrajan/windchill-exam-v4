@@ -1,0 +1,1002 @@
+[
+  {
+    "id": 626,
+    "domain": "Contexts, Preferences, and Business Administration",
+    "topic": "Organization Setup and Directory Controls",
+    "difficulty": "medium",
+    "objective": "Identify organization context setup as a prerequisite for delegated business administration",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Organization Setup and Directory Controls",
+    "misconceptionTag": "products_can_absorb_org_admin_gaps",
+    "releaseVersion": "2026.04-scenario1",
+    "question": "A company creates multiple product contexts but never finishes organization-level participant and business-admin setup. Project leads now expect each product to manage team templates and business administration independently. What is the most likely root problem?",
+    "options": [
+      "Product contexts can never inherit organization structures",
+      "Organization context administration was not established before delegating responsibilities downstream",
+      "The vault host must be rebuilt before teams can be configured",
+      "Only site administrators are allowed to create product teams"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Business administration and reusable organizational structures are established at the organization level, then consumed by product or library contexts. Skipping that foundation creates downstream administration gaps."
+  },
+  {
+    "id": 627,
+    "domain": "Contexts, Preferences, and Business Administration",
+    "topic": "Context Templates and Reuse",
+    "difficulty": "medium",
+    "objective": "Recognize context templates as a governance tool for repeatable setup",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Context Templates and Reuse",
+    "misconceptionTag": "manual_context_setup_scales_cleanly",
+    "releaseVersion": "2026.04-scenario1",
+    "question": "A rollout team keeps creating new product contexts manually. After ten launches, each context has slight differences in folders, team roles, and lifecycle assignments. Which corrective action best addresses the problem?",
+    "options": [
+      "Create a context template so new contexts inherit the approved baseline configuration",
+      "Move every product into one shared library so they all use the same folders",
+      "Disable access control until all products are aligned",
+      "Replace lifecycles with preferences to reduce configuration effort"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Context templates exist to standardize repeatable context setup. They reduce drift across products by applying an approved baseline rather than relying on manual recreation."
+  },
+  {
+    "id": 628,
+    "domain": "Data Model, Types, and Attributes",
+    "topic": "Soft Attributes and Layouts",
+    "difficulty": "medium",
+    "objective": "Distinguish attribute definition from attribute presentation",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Soft Attributes and Layouts",
+    "misconceptionTag": "attribute_exists_because_layout_shows_it",
+    "releaseVersion": "2026.04-scenario1",
+    "question": "An administrator says a new soft attribute was 'created' because it now appears on the create page. Users later report the attribute is missing from searches and reports. What most likely happened?",
+    "options": [
+      "The attribute was added to a layout, but the underlying type or attribute definition was not implemented correctly for broader use",
+      "Searches cannot use soft attributes in Windchill",
+      "Layouts automatically remove attributes from reports",
+      "Only CAD documents support soft attributes in searches"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Presentation in a layout is not the same as a correct attribute definition and deployment. Attributes must exist in the type model and be configured appropriately for broader platform use."
+  },
+  {
+    "id": 629,
+    "domain": "Data Model, Types, and Attributes",
+    "topic": "Type and Attribute Governance",
+    "difficulty": "hard",
+    "objective": "Evaluate the governance impact of over-customizing type hierarchies",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Type and Attribute Governance",
+    "misconceptionTag": "new_type_for_every_team_request",
+    "releaseVersion": "2026.04-scenario1",
+    "question": "Every business unit asks for its own object subtype because it wants slightly different labels and one or two local attributes. Six months later, reporting and lifecycle administration are difficult to maintain. What should have been challenged earlier?",
+    "options": [
+      "Whether presentation differences and limited local metadata really justified new subtype proliferation",
+      "Whether Windchill allows more than five subtypes under one parent",
+      "Whether lifecycles can be used with typed objects",
+      "Whether only site administrators should approve folder templates"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Subtype sprawl creates governance, reporting, and maintenance overhead. Minor presentation or attribute differences often should not become a new managed type unless the business behavior truly diverges."
+  },
+  {
+    "id": 630,
+    "domain": "Lifecycle, Workflow, and Object Initialization",
+    "topic": "Object Initialization Rules",
+    "difficulty": "hard",
+    "objective": "Identify OIRs as the source of initial metadata, identity, and placement behavior",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Object Initialization Rules",
+    "misconceptionTag": "workflow_should_assign_numbering",
+    "releaseVersion": "2026.04-scenario1",
+    "question": "A team wants objects to enter the system with the correct numbering pattern, default lifecycle, and folder placement. A consultant proposes solving all of that in workflow. Why is that design weak?",
+    "options": [
+      "Workflow cannot run on newly created objects",
+      "Initial identity and defaulting behavior belongs primarily in OIR design, not delayed workflow correction",
+      "Folder placement is controlled only by access control rules",
+      "Numbering can only be assigned in the database"
+    ],
+    "correctAnswer": 1,
+    "explanation": "OIRs exist to define initialization behavior at creation time. Using workflow to repair basic object identity or default placement is late, brittle, and harder to govern."
+  },
+  {
+    "id": 631,
+    "domain": "Lifecycle, Workflow, and Object Initialization",
+    "topic": "Life Cycle Templates and States",
+    "difficulty": "medium",
+    "objective": "Differentiate lifecycle state management from workflow task routing",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Life Cycle Templates and States",
+    "misconceptionTag": "workflow_replaces_lifecycle_state_model",
+    "releaseVersion": "2026.04-scenario1",
+    "question": "A project manager says, 'We do not need lifecycle templates because our workflow already routes approvals.' What key distinction is being missed?",
+    "options": [
+      "Lifecycle templates define governed object states, while workflow routes process tasks around those states",
+      "Workflow cannot be used with controlled objects",
+      "Lifecycle templates only apply to libraries, not products",
+      "Approval routing automatically sets all access rules"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Workflow and lifecycle solve different problems. Workflow coordinates human or system tasks; the lifecycle model defines the controlled state progression of the object itself."
+  },
+  {
+    "id": 632,
+    "domain": "Access Control, Teams, and Security",
+    "topic": "Team Roles and Context Access",
+    "difficulty": "medium",
+    "objective": "Diagnose team-role gaps before broadening ACLs",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Team Roles and Context Access",
+    "misconceptionTag": "acl_expansion_is_first_fix",
+    "releaseVersion": "2026.04-scenario1",
+    "question": "A design lead cannot see expected objects in a product context, and an administrator immediately proposes granting broader access to Everyone. What should be checked first?",
+    "options": [
+      "Whether the user is assigned to the correct team role and the intended access model is being applied",
+      "Whether the vault path is readable on the file server",
+      "Whether the object has a Java API customization attached",
+      "Whether the product was created from a library template"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Security issues should first be diagnosed against the intended team-role and ACL model. Granting broader access prematurely often masks configuration mistakes and weakens governance."
+  },
+  {
+    "id": 633,
+    "domain": "Access Control, Teams, and Security",
+    "topic": "Access Control Diagnosis",
+    "difficulty": "hard",
+    "objective": "Recognize access debugging as a targeted analysis problem rather than a blanket permission change",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Access Control Diagnosis",
+    "misconceptionTag": "temporary_broad_access_is_safe_fix",
+    "releaseVersion": "2026.04-scenario1",
+    "question": "Users intermittently lose the ability to modify released objects. One admin suggests adding modify rights broadly so work can continue. What is the stronger PLM response?",
+    "options": [
+      "Analyze state-based and role-based access behavior first, because released-state governance may be working as designed",
+      "Grant modify to all product members and remove it later",
+      "Move the objects to a new folder because folders override lifecycle restrictions",
+      "Delete the release workflow to restore edit rights"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Released-state edit restrictions are often intentional. Access diagnosis should validate lifecycle, state, and role logic before broadening permissions and undermining control."
+  },
+  {
+    "id": 634,
+    "domain": "Change and Release Management",
+    "topic": "Change Requests and Notices",
+    "difficulty": "medium",
+    "objective": "Differentiate problem capture from implementation authorization in change objects",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Change Requests and Notices",
+    "misconceptionTag": "change_request_executes_change",
+    "releaseVersion": "2026.04-scenario1",
+    "question": "A team logs field failures and immediately starts changing released objects under the same record. Later nobody can tell where evaluation ended and implementation approval began. Which modeling mistake is most likely?",
+    "options": [
+      "They treated the initial problem record as the full implementation vehicle instead of separating request and evaluation from executable change control",
+      "They used too many lifecycle states on the part",
+      "They should have created a baseline instead of a change object",
+      "They should have moved the objects into a library before editing"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Problem capture and implementation control serve different purposes. Mixing them obscures evaluation, approval, and execution history."
+  },
+  {
+    "id": 635,
+    "domain": "Change and Release Management",
+    "topic": "Promotion Requests and Release Paths",
+    "difficulty": "medium",
+    "objective": "Recognize promotion requests as release-path governance rather than general change execution",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Promotion Requests and Release Paths",
+    "misconceptionTag": "promotion_request_replaces_change_governance",
+    "releaseVersion": "2026.04-scenario1",
+    "question": "A product team uses promotion requests for every engineering change because 'they already move objects forward.' What risk does this create?",
+    "options": [
+      "Promotion requests can replace all formal change control without downside",
+      "Release movement may occur without the richer evaluation, implementation, and traceability model expected from formal change control",
+      "Promotion requests are only allowed on CAD documents",
+      "Objects in promotion requests cannot enter released states"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Promotion requests help manage release progression, but they do not inherently replace the broader governance and traceability of formal change management."
+  },
+  {
+    "id": 636,
+    "domain": "Configuration Management and Product Structures",
+    "topic": "Configuration Specifications",
+    "difficulty": "hard",
+    "objective": "Use configuration specifications to control the intended view of structure data",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Configuration Specifications",
+    "misconceptionTag": "latest_view_is_always_correct",
+    "releaseVersion": "2026.04-scenario1",
+    "question": "Manufacturing reports keep showing unexpected child revisions because users open structures with generic latest views. What is the cleaner control point?",
+    "options": [
+      "Require appropriate configuration specifications that match the intended business view of the structure",
+      "Tell users to memorize the correct revision numbers manually",
+      "Move every child part to the same folder as its parent",
+      "Replace versions with one-time copies"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Configuration specifications are used to define which structure revisions and versions are intended for a business process. Generic latest views can expose the wrong content."
+  },
+  {
+    "id": 637,
+    "domain": "Configuration Management and Product Structures",
+    "topic": "Baselines and Snapshot Control",
+    "difficulty": "medium",
+    "objective": "Recognize baselines as controlled snapshots rather than live structure views",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Baselines and Snapshot Control",
+    "misconceptionTag": "baseline_updates_with_structure",
+    "releaseVersion": "2026.04-scenario1",
+    "question": "A program manager expects a previously approved baseline to reflect every structure edit made after release. Why is that expectation flawed?",
+    "options": [
+      "Baselines are controlled snapshots and do not behave like live evolving structures",
+      "Baselines can only contain top-level assemblies",
+      "Released structures cannot have baselines",
+      "Baselines are used only for CAD visualization"
+    ],
+    "correctAnswer": 0,
+    "explanation": "A baseline captures content at a point in time for traceability and comparison. It is not intended to automatically track later changes as though it were a live structure view."
+  },
+  {
+    "id": 638,
+    "domain": "CAD Data Management and Visualization",
+    "topic": "Workspaces and Commonspace Control",
+    "difficulty": "medium",
+    "objective": "Differentiate workspace activity from commonspace-controlled content release",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Workspaces and Commonspace Control",
+    "misconceptionTag": "workspace_content_is_commonspace_release",
+    "releaseVersion": "2026.04-scenario1",
+    "question": "A new engineer says, 'I uploaded the file to my workspace, so the product team can use it now.' What important distinction is missing?",
+    "options": [
+      "Workspace activity is personal working content management and does not by itself mean governed commonspace release",
+      "Workspaces are only for system administrators",
+      "Uploaded files automatically become released commonspace objects",
+      "Commonspace is only for documents, not CAD content"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Workspace operations support in-progress personal or team working states. Governed commonspace content visibility and release require the appropriate Windchill-managed processes."
+  },
+  {
+    "id": 639,
+    "domain": "CAD Data Management and Visualization",
+    "topic": "Visualization and Publishing",
+    "difficulty": "medium",
+    "objective": "Recognize visualization publishing as representation management rather than native-authoring replacement",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Visualization and Publishing",
+    "misconceptionTag": "publishing_replaces_native_authoring",
+    "releaseVersion": "2026.04-scenario1",
+    "question": "Executives want browser-based viewing of product structures and drawings, then conclude that native CAD tools are no longer needed. Which response is most accurate?",
+    "options": [
+      "Visualization supports review and consumption, but it does not replace native authoring and engineering control of source content",
+      "Publishing converts every model into an editable browser-native design",
+      "WVS exists only to improve search indexing",
+      "Viewables should be treated as the primary authoring source"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Visualization and publishing create consumable representations for review and communication. They do not replace native authoring tools or the management of source engineering content."
+  },
+  {
+    "id": 640,
+    "domain": "System Administration, Utilities, and Monitoring",
+    "topic": "Administrative Utilities and Queues",
+    "difficulty": "hard",
+    "objective": "Use queue analysis before assuming generic infrastructure failure",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Administrative Utilities and Queues",
+    "misconceptionTag": "all_background_failures_are_network",
+    "releaseVersion": "2026.04-scenario1",
+    "question": "Publishing jobs are backing up and users conclude the whole platform is unstable. What should an administrator inspect first to make that diagnosis credible?",
+    "options": [
+      "Queue health and background-processing state related to the affected service",
+      "Every ACL in every product context",
+      "Only the browser cache on user machines",
+      "Folder templates in all libraries"
+    ],
+    "correctAnswer": 0,
+    "explanation": "When background work is backing up, the first disciplined step is to inspect the related queue and processing health rather than generalizing immediately to total platform instability."
+  },
+  {
+    "id": 641,
+    "domain": "Vaulting, Replication, and Data Maintenance",
+    "topic": "Replication and Distribution",
+    "difficulty": "hard",
+    "objective": "Separate replication strategy from ordinary access or folder issues",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Replication and Distribution",
+    "misconceptionTag": "replication_is_folder_problem",
+    "releaseVersion": "2026.04-scenario1",
+    "question": "A remote site experiences slow file retrieval, and a local admin starts redesigning folder structures. Why is that likely the wrong first lever?",
+    "options": [
+      "Remote file-distribution performance is more directly tied to vaulting and replication design than to folder hierarchy alone",
+      "Folder structures control all network routes to content",
+      "Replication applies only to metadata, not files",
+      "Windchill never supports distributed content strategies"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Folder hierarchy and distributed file movement solve different problems. Slow remote file retrieval points first to vaulting and replication strategy, not generic folder redesign."
+  },
+  {
+    "id": 642,
+    "domain": "Navigate and Role-Based Consumption",
+    "topic": "Navigate Architecture",
+    "difficulty": "medium",
+    "objective": "Recognize role-based consumption as distinct from authoring administration",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Navigate Architecture",
+    "misconceptionTag": "navigate_equals_full_authoring_ui",
+    "releaseVersion": "2026.04-scenario1",
+    "question": "A business stakeholder wants broader, role-based product access for downstream users and assumes everyone must be trained on full Windchill authoring interfaces. Which idea is being missed?",
+    "options": [
+      "Role-based consumption experiences can be designed differently from full authoring and administrative experiences",
+      "Only CAD users can consume product data",
+      "Navigate is required for all team-role assignments",
+      "Role-based apps replace access control"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Role-based consumption is about making the right information available to downstream personas without assuming they need the full authoring interface used by engineering administrators."
+  },
+  {
+    "id": 643,
+    "domain": "Architecture, Installation, and Integration",
+    "topic": "Core Architecture and Services",
+    "difficulty": "medium",
+    "objective": "Distinguish platform service architecture concerns from business configuration concerns",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Core Architecture and Services",
+    "misconceptionTag": "architecture_issue_solved_by_preferences",
+    "releaseVersion": "2026.04-scenario1",
+    "question": "A solution architect sees repeated platform-level service instability and proposes fixing it with product-context preference changes. Why is that weak reasoning?",
+    "options": [
+      "Business preferences cannot substitute for diagnosis of underlying platform service architecture or runtime behavior",
+      "Preferences automatically restart failed services",
+      "Platform issues can only be solved by changing team roles",
+      "Service architecture applies only to Navigate deployments"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Preferences tune business behavior, but they do not replace investigation of core platform-service configuration, deployment, or runtime issues."
+  },
+  {
+    "id": 644,
+    "domain": "PLM Strategy and Foundations",
+    "topic": "PLM Value and Digital Thread",
+    "difficulty": "medium",
+    "objective": "Connect fragmented-tool pain to PLM value articulation",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "PLM Value and Digital Thread",
+    "misconceptionTag": "plm_value_is_only_storage",
+    "releaseVersion": "2026.04-scenario1",
+    "question": "Executives say, 'We already store files somewhere, so why invest in PLM?' Which answer best reframes the issue in manual-aligned terms?",
+    "options": [
+      "PLM is not just storage; it governs connected product data, process traceability, and controlled collaboration across the lifecycle",
+      "PLM matters only if the company uses multiple CAD tools",
+      "PLM is mainly a vaulting product with optional metadata",
+      "PLM is useful only after release, not during development"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The value of PLM is not basic file storage. It lies in controlled, connected product information and lifecycle governance across teams and processes."
+  },
+  {
+    "id": 645,
+    "domain": "PLM Strategy and Foundations",
+    "topic": "Implementation Strategy and Legacy Data",
+    "difficulty": "hard",
+    "objective": "Evaluate phased adoption over uncontrolled migration breadth",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Implementation Strategy and Legacy Data",
+    "misconceptionTag": "migrate_everything_first",
+    "releaseVersion": "2026.04-scenario1",
+    "question": "An implementation sponsor demands that all legacy files, structures, and historical records be migrated before any user adopts the new process. What strategic risk does that create?",
+    "options": [
+      "It can delay adoption and overwhelm the program before governed business value is proven in staged scope",
+      "Legacy data can never be migrated to Windchill",
+      "Migration must happen after every product context is archived",
+      "Historical records prevent lifecycle templates from working"
+    ],
+    "correctAnswer": 0,
+    "explanation": "A staged implementation approach often reduces risk and proves value sooner. Migrating every historical artifact first can create excessive scope and delay meaningful adoption."
+  },
+  {
+    "id": 646,
+    "domain": "Contexts, Preferences, and Business Administration",
+    "topic": "Preferences and Profiles",
+    "difficulty": "medium",
+    "objective": "Distinguish preference policy from team-role security",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Preferences and Profiles",
+    "misconceptionTag": "preferences_control_permissions",
+    "releaseVersion": "2026.04-scenario1",
+    "question": "Users ask for a preference change because they cannot modify objects. The request is approved, but nothing changes. Which assumption was wrong?",
+    "options": [
+      "Preferences are not a substitute for the actual access-control and role model governing permissions",
+      "Preferences can modify only vault content",
+      "Preferences are available only in libraries",
+      "Preferences always require a restart to take effect"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Preferences influence behavior and defaults, but they do not replace the permission model defined by roles, ACLs, and state-based governance."
+  },
+  {
+    "id": 647,
+    "domain": "Lifecycle, Workflow, and Object Initialization",
+    "topic": "Workflow Routing and Roles",
+    "difficulty": "hard",
+    "objective": "Align workflow routing with maintained role ownership instead of named individuals",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Workflow Routing and Roles",
+    "misconceptionTag": "workflow_to_named_persons_scales",
+    "releaseVersion": "2026.04-scenario1",
+    "question": "A workflow was designed with named approvers hardcoded into the process. The process becomes brittle whenever the organization changes. What would have made the design more sustainable?",
+    "options": [
+      "Routing through maintained roles or team assignments rather than hardcoded individuals",
+      "Removing approvers from the workflow completely",
+      "Assigning every task to the site administrator",
+      "Replacing workflow with a promotion request"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Workflow durability improves when routing is tied to maintained role ownership rather than specific named individuals who may change over time."
+  },
+  {
+    "id": 648,
+    "domain": "Change and Release Management",
+    "topic": "Change Governance and Review",
+    "difficulty": "hard",
+    "objective": "Separate change governance discipline from simple task completion",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Change Governance and Review",
+    "misconceptionTag": "completed_tasks_mean_controlled_change",
+    "releaseVersion": "2026.04-scenario1",
+    "question": "A team says its change process is healthy because workflow tasks are always completed on time. Yet audits show weak traceability and inconsistent affected and resulting object decisions. What is the strongest diagnosis?",
+    "options": [
+      "Task completion alone does not prove sound change governance if the managed relationships and decisions are weak",
+      "Workflow timing automatically guarantees engineering quality",
+      "Affected and resulting objects matter only in manufacturing contexts",
+      "Traceability problems are caused primarily by folder hierarchy"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Fast task completion is not the same as disciplined change governance. The change model still requires accurate evaluation, traceability, and controlled implementation decisions."
+  },
+  {
+    "id": 649,
+    "domain": "Configuration Management and Product Structures",
+    "topic": "Occurrences and Effectivity",
+    "difficulty": "hard",
+    "objective": "Recognize effectivity and occurrence controls as required when structure applicability varies",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Occurrences and Effectivity",
+    "misconceptionTag": "single_bom_without_applicability_is_enough",
+    "releaseVersion": "2026.04-scenario1",
+    "question": "A global product structure must support regional and serial applicability, but the team tries to manage all differences through notes in part descriptions. What capability is being underused?",
+    "options": [
+      "Effectivity and occurrence-oriented structure controls for managed applicability",
+      "Context templates for BOM variant resolution",
+      "Promotion requests for regional structure branching",
+      "Queue monitoring for serial rule evaluation"
+    ],
+    "correctAnswer": 0,
+    "explanation": "When structure applicability varies by region, serial, or other conditions, managed configuration controls such as effectivity and occurrences are stronger than free-text conventions."
+  },
+  {
+    "id": 650,
+    "domain": "CAD Data Management and Visualization",
+    "topic": "CAD Documents and Authoring Context",
+    "difficulty": "medium",
+    "objective": "Differentiate source CAD control from derivative document handling",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "CAD Documents and Authoring Context",
+    "misconceptionTag": "viewable_is_primary_source",
+    "releaseVersion": "2026.04-scenario1",
+    "question": "A downstream team wants to annotate a viewable and treat it as the new engineering source because it is easier to access than the native model. What principle is being violated?",
+    "options": [
+      "Derivative viewables support consumption, but controlled source engineering content remains authoritative",
+      "Viewables always replace native models after release",
+      "Annotations automatically become CAD master data",
+      "Only site admins may open viewables"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Viewables are valuable for review and downstream access, but they are not the authoritative replacement for governed native engineering source content."
+  },
+  {
+    "id": 651,
+    "domain": "System Administration, Utilities, and Monitoring",
+    "topic": "Client Access and Web Tier",
+    "difficulty": "medium",
+    "objective": "Separate browser and client symptoms from broader platform conclusions",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Client Access and Web Tier",
+    "misconceptionTag": "single_ui_error_means_platform_down",
+    "releaseVersion": "2026.04-scenario1",
+    "question": "A subset of users reports a browser access issue and management concludes the whole PLM platform is unavailable. What is the stronger technical posture?",
+    "options": [
+      "Differentiate client or web-tier symptoms from total platform failure before escalating the incident scope",
+      "Assume all queues are also failing",
+      "Delete cached viewables to restore browser access",
+      "Change every team role to Administrator during the outage"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Client-facing symptoms can arise in narrower layers such as the web tier or browser interaction path. Incident scope should be diagnosed before assuming total platform failure."
+  },
+  {
+    "id": 652,
+    "domain": "Vaulting, Replication, and Data Maintenance",
+    "topic": "Backup and Rehost",
+    "difficulty": "hard",
+    "objective": "Recognize backup and rehost as controlled administrative operations, not informal file copies",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Backup and Rehost",
+    "misconceptionTag": "copy_server_dirs_equals_rehost",
+    "releaseVersion": "2026.04-scenario1",
+    "question": "A local IT team suggests rehosting Windchill by copying application folders to a new server over a weekend. Why is that proposal risky?",
+    "options": [
+      "Rehost and recovery operations require disciplined handling of the full managed environment, not just ad hoc folder copying",
+      "Windchill can never be moved to another host",
+      "Rehosting affects only vaults, not metadata or services",
+      "Folder copies automatically preserve all service identities"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Rehosting is a controlled platform operation involving more than application directories. Informal copies risk inconsistency across services, metadata, and managed content."
+  },
+  {
+    "id": 653,
+    "domain": "Navigate and Role-Based Consumption",
+    "topic": "Navigate Security and Administration",
+    "difficulty": "medium",
+    "objective": "Keep consumption access aligned to governed source permissions",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Navigate Security and Administration",
+    "misconceptionTag": "navigate_can_ignore_source_security",
+    "releaseVersion": "2026.04-scenario1",
+    "question": "A stakeholder asks whether a role-based downstream app can simply expose more data than Windchill users are permitted to access in the source system. What should the architect emphasize?",
+    "options": [
+      "Consumption experiences should still align with governed access and controlled information exposure",
+      "Downstream role-based apps are exempt from source permissions",
+      "Navigate security depends only on browser identity",
+      "Role-based apps must expose all data if a team template exists"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Role-based consumption should not bypass governed source access logic. Information exposure still needs to respect the intended security model."
+  },
+  {
+    "id": 654,
+    "domain": "Architecture, Installation, and Integration",
+    "topic": "Enterprise Integration and Authentication",
+    "difficulty": "hard",
+    "objective": "Distinguish identity and authentication integration issues from ordinary context administration",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Enterprise Integration and Authentication",
+    "misconceptionTag": "login_issue_fixed_by_product_role_change",
+    "releaseVersion": "2026.04-scenario1",
+    "question": "Users cannot authenticate consistently after an enterprise identity change, and a product admin starts adjusting context roles. Why is that troubleshooting path weak?",
+    "options": [
+      "Authentication and enterprise identity integration issues should be resolved at the appropriate architecture and integration layer, not by changing business-context roles",
+      "Context roles directly repair enterprise login flows",
+      "Identity issues are caused by missing baselines",
+      "Only CAD workspaces influence authentication"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Product roles govern access after identity is established. Authentication and enterprise integration issues belong to the identity and platform integration layers."
+  },
+  {
+    "id": 655,
+    "domain": "PLM Strategy and Foundations",
+    "topic": "Business Analysis and Configuration Planning",
+    "difficulty": "hard",
+    "objective": "Use business analysis to prevent premature solution locking",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Business Analysis and Configuration Planning",
+    "misconceptionTag": "configure_before_process_analysis",
+    "releaseVersion": "2026.04-scenario1",
+    "question": "A project starts by copying settings from another customer before documenting the target business process. Weeks later, the team keeps undoing its own decisions. What early discipline was skipped?",
+    "options": [
+      "Business analysis and configuration planning should have framed the target process and control model before copying settings",
+      "Only vault replication planning matters at project start",
+      "Workflow can replace process analysis if tasks are approved",
+      "The project should begin by hardcoding user accounts"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Configuration should follow business analysis, not replace it. Borrowing settings without understanding the target process creates rework and unstable design choices."
+  },
+  {
+    "id": 656,
+    "domain": "Contexts, Preferences, and Business Administration",
+    "topic": "Library Context Strategy",
+    "difficulty": "medium",
+    "objective": "Distinguish reusable library content from product-specific execution content",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Library Context Strategy",
+    "misconceptionTag": "everything_belongs_in_product",
+    "releaseVersion": "2026.04-scenario1",
+    "question": "Reusable reference documents and standards are being copied into every product so each team can manage its own version. What more sustainable context strategy is being missed?",
+    "options": [
+      "Use a library context for reusable controlled reference content rather than duplicating it into every product",
+      "Move all reusable content into user workspaces",
+      "Store standards as promotion requests",
+      "Use effectivity to duplicate reference documents"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Libraries are intended for reusable managed content that should be shared across multiple downstream contexts without uncontrolled duplication."
+  },
+  {
+    "id": 657,
+    "domain": "Lifecycle, Workflow, and Object Initialization",
+    "topic": "Versioning and Revision Rules",
+    "difficulty": "hard",
+    "objective": "Separate revision logic from informal naming conventions",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Versioning and Revision Rules",
+    "misconceptionTag": "file_name_controls_revision_policy",
+    "releaseVersion": "2026.04-scenario1",
+    "question": "Engineers use suffixes in object names to indicate 'major changes' because they do not trust the managed revision model. What is the core governance problem?",
+    "options": [
+      "They are bypassing controlled version and revision behavior with informal naming conventions",
+      "Windchill cannot manage revisions for controlled objects",
+      "Revision labels should always be stored only in folders",
+      "Major changes should never create a new revision"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Revision governance should be handled through the managed version and revision model, not improvised naming patterns that undermine traceability."
+  },
+  {
+    "id": 658,
+    "domain": "Change and Release Management",
+    "topic": "Issue Intake and Variance Control",
+    "difficulty": "medium",
+    "objective": "Distinguish issue capture from full engineering implementation",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Issue Intake and Variance Control",
+    "misconceptionTag": "issue_record_is_same_as_release_control",
+    "releaseVersion": "2026.04-scenario1",
+    "question": "Service teams raise field issues, but engineering later cannot tell which records were just problem intake and which ones drove approved implementation. What should the process emphasize more clearly?",
+    "options": [
+      "A cleaner separation between issue capture or variance reporting and later formal change execution records",
+      "Removing issue records entirely",
+      "Using only baselines for service feedback",
+      "Routing every issue directly to vault administration"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Issue intake and formal change execution are related but distinct. Clear separation improves traceability and governance."
+  },
+  {
+    "id": 659,
+    "domain": "Configuration Management and Product Structures",
+    "topic": "Structure Navigation and Views",
+    "difficulty": "medium",
+    "objective": "Recognize structure-view confusion as a configuration problem, not necessarily a data-loss problem",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Structure Navigation and Views",
+    "misconceptionTag": "missing_child_means_deleted",
+    "releaseVersion": "2026.04-scenario1",
+    "question": "A user opens a structure and says a child is 'gone.' Another user opens a different view and can see it. What is the most likely explanation?",
+    "options": [
+      "The users are likely looking at different structure or configuration views rather than true data loss",
+      "The child exists only in the vault and not in Windchill",
+      "Commonspace randomly hides components per user",
+      "Released children cannot appear in any structure view"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Differences in structure view or configuration specification can explain why one user sees a component while another does not, without implying that the data was deleted."
+  },
+  {
+    "id": 660,
+    "domain": "CAD Data Management and Visualization",
+    "topic": "Workspace Upload and Check-In",
+    "difficulty": "hard",
+    "objective": "Differentiate file transfer activity from governed object update",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Workspace Upload and Check-In",
+    "misconceptionTag": "upload_equals_governed_update",
+    "releaseVersion": "2026.04-scenario1",
+    "question": "An engineer uploads updated CAD content and assumes the managed commonspace object is now officially updated for the whole enterprise. What subtle but important distinction must be made?",
+    "options": [
+      "File transfer into a working context is not the same as completing the governed managed-object update path",
+      "Uploading always releases the model automatically",
+      "Commonspace objects cannot be updated from workspace activity",
+      "Only documents can be checked in, not CAD content"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Managed updates require the appropriate controlled Windchill operations. Moving files into a working context is not identical to governed commonspace completion."
+  },
+  {
+    "id": 661,
+    "domain": "System Administration, Utilities, and Monitoring",
+    "topic": "Monitoring and Troubleshooting Posture",
+    "difficulty": "medium",
+    "objective": "Prefer targeted diagnosis over broad restarts as the first response",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Monitoring and Troubleshooting Posture",
+    "misconceptionTag": "restart_everything_first",
+    "releaseVersion": "2026.04-scenario1",
+    "question": "A support team sees one service symptom and wants to restart every Windchill component immediately. Why is that not a mature first response?",
+    "options": [
+      "Targeted diagnosis preserves evidence and helps isolate the failing layer instead of masking the cause with broad disruption",
+      "Windchill components cannot be restarted at all",
+      "Only user browsers should ever be restarted",
+      "Broad restarts automatically repair access-control errors"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Indiscriminate restarts can destroy useful evidence and introduce unnecessary disruption. Mature troubleshooting starts by isolating the failing layer and collecting relevant signals."
+  },
+  {
+    "id": 662,
+    "domain": "Vaulting, Replication, and Data Maintenance",
+    "topic": "Data Maintenance Planning",
+    "difficulty": "medium",
+    "objective": "Treat maintenance tasks as governed platform operations rather than incidental cleanup",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Data Maintenance Planning",
+    "misconceptionTag": "delete_files_to_clean_platform",
+    "releaseVersion": "2026.04-scenario1",
+    "question": "Storage usage is growing, and someone suggests deleting old content directly from the file system because 'the metadata will still exist.' Why is this unsafe?",
+    "options": [
+      "Managed platform content requires governed maintenance handling; direct file-system deletion can break managed consistency",
+      "Windchill stores no files on disk",
+      "File-system deletion only affects viewables",
+      "Metadata automatically recreates deleted files"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Managed content cannot be treated like disposable shared-drive files. Direct deletions outside governed maintenance procedures risk platform inconsistency and broken references."
+  },
+  {
+    "id": 663,
+    "domain": "Navigate and Role-Based Consumption",
+    "topic": "Role-Based Delivery Decisions",
+    "difficulty": "hard",
+    "objective": "Match information delivery to persona needs without collapsing governance",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Role-Based Delivery Decisions",
+    "misconceptionTag": "same_ui_for_every_persona",
+    "releaseVersion": "2026.04-scenario1",
+    "question": "A transformation team insists that engineering, manufacturing, quality, and field service should all use the exact same authoring-centric interface for consistency. What weakness does that approach create?",
+    "options": [
+      "It ignores persona-specific information needs and can reduce adoption where role-based consumption views would be more appropriate",
+      "It guarantees better access control",
+      "It eliminates the need for product structures",
+      "It removes the need for business administration"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Different personas often need different levels of depth and interaction. Treating all users as authoring users can increase friction and reduce meaningful adoption."
+  },
+  {
+    "id": 664,
+    "domain": "Architecture, Installation, and Integration",
+    "topic": "Core Architecture and Services",
+    "difficulty": "medium",
+    "objective": "Distinguish platform-tier diagnosis from business configuration troubleshooting",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Core Architecture and Services",
+    "misconceptionTag": "ui_symptom_means_business_config_issue",
+    "releaseVersion": "2026.04-scenario1",
+    "question": "A team reports repeated service-response failures from multiple contexts, and a business administrator starts changing product preferences. Which concern is being underestimated?",
+    "options": [
+      "The issue may belong to the platform service layer, where architecture and runtime diagnosis are needed before business-configuration changes",
+      "Product preferences automatically repair service-tier instability",
+      "Business administrators control all core service dependencies",
+      "Context templates determine platform runtime health"
+    ],
+    "correctAnswer": 0,
+    "explanation": "When failures cut across contexts, the problem may sit in the platform service layer rather than in business-level configuration. Architecture diagnosis should come before preference tuning."
+  },
+  {
+    "id": 665,
+    "domain": "PLM Strategy and Foundations",
+    "topic": "Digital Continuity and Traceability",
+    "difficulty": "hard",
+    "objective": "Explain why disconnected process records weaken digital continuity",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Digital Continuity and Traceability",
+    "misconceptionTag": "traceability_can_live_in_email",
+    "releaseVersion": "2026.04-scenario1",
+    "question": "An organization keeps design approvals in email, change rationale in spreadsheets, and product data in PLM. The team claims it still has end-to-end traceability. What is the strongest challenge to that claim?",
+    "options": [
+      "Digital continuity weakens when key lifecycle decisions are fragmented outside the governed system of record",
+      "Email automatically becomes part of the product structure",
+      "Traceability matters only after manufacturing release",
+      "Spreadsheets are better for change history than managed systems"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Traceability depends on governed linkage between product data, decisions, and process artifacts. Fragmenting those elements across unmanaged tools weakens that continuity."
+  },
+  {
+    "id": 666,
+    "domain": "Contexts, Preferences, and Business Administration",
+    "topic": "Shared Context Governance",
+    "difficulty": "hard",
+    "objective": "Prevent local-context convenience from eroding enterprise consistency",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Shared Context Governance",
+    "misconceptionTag": "local_override_is_always_better",
+    "releaseVersion": "2026.04-scenario1",
+    "question": "Each product manager wants to localize every configuration rule because it feels faster. Over time, enterprise reporting and administration become inconsistent. What should governance have protected more strongly?",
+    "options": [
+      "Which settings truly require local variation versus which ones should remain standardized for enterprise consistency",
+      "Whether vault replication is disabled",
+      "Whether users prefer the same browser theme",
+      "Whether baselines are visible in Navigate"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Not every local request should become local configuration. Governance should preserve which elements must remain standardized to support maintainability and enterprise consistency."
+  },
+  {
+    "id": 667,
+    "domain": "Data Model, Types, and Attributes",
+    "topic": "Attribute and Type Services",
+    "difficulty": "hard",
+    "objective": "Recognize downstream cost when type and attribute modeling ignores reporting and reuse",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Attribute and Type Services",
+    "misconceptionTag": "attribute_decisions_are_local_only",
+    "releaseVersion": "2026.04-scenario1",
+    "question": "A team adds near-duplicate attributes across multiple types because each department wants its own wording. Later, cross-domain reporting becomes difficult. What should have been considered earlier?",
+    "options": [
+      "Whether a governed reusable attribute model would support enterprise reporting and consistency better than local duplication",
+      "Whether folders can rename attributes automatically",
+      "Whether lifecycles can merge attributes after release",
+      "Whether workspaces should hold attribute definitions"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Attribute modeling decisions affect reporting, reuse, and long-term governance. Duplicating similar attributes for local wording convenience often creates enterprise inconsistency."
+  },
+  {
+    "id": 668,
+    "domain": "Lifecycle, Workflow, and Object Initialization",
+    "topic": "Defaulting and Identity Rules",
+    "difficulty": "medium",
+    "objective": "Identify poor initialization design through repeated manual correction",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Defaulting and Identity Rules",
+    "misconceptionTag": "manual_fix_after_create_is_normal",
+    "releaseVersion": "2026.04-scenario1",
+    "question": "Users repeatedly create objects and then manually fix numbering, lifecycle, and folder assignment. What does that pattern usually indicate?",
+    "options": [
+      "The initialization and defaulting design is weak and should be handled more cleanly at object creation time",
+      "Users should be forced to rename objects manually",
+      "Folders should be eliminated from the system",
+      "Lifecycle templates should be disabled"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Repeated manual correction after create is a strong signal that object initialization behavior is not being designed cleanly enough at the start of the process."
+  },
+  {
+    "id": 669,
+    "domain": "Access Control, Teams, and Security",
+    "topic": "Role Modeling and Governance",
+    "difficulty": "medium",
+    "objective": "Use role design to reduce one-off security exceptions",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Role Modeling and Governance",
+    "misconceptionTag": "exception_permissions_scale",
+    "releaseVersion": "2026.04-scenario1",
+    "question": "An administrator keeps granting one-off exceptions for individual users because the current role model rarely fits real responsibilities. What deeper design problem does that suggest?",
+    "options": [
+      "The team-role and access model may not reflect actual business responsibilities well enough",
+      "Windchill cannot support role-based access",
+      "Exceptions should replace roles entirely",
+      "Access control should be moved into folder names"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Frequent one-off exceptions often indicate the designed role and permission model does not fit actual operating responsibilities and should be improved."
+  },
+  {
+    "id": 670,
+    "domain": "Change and Release Management",
+    "topic": "Change Execution and Resulting Objects",
+    "difficulty": "hard",
+    "objective": "Preserve traceable linkage between planned change and actual resulting updates",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Change Execution and Resulting Objects",
+    "misconceptionTag": "resulting_objects_optional",
+    "releaseVersion": "2026.04-scenario1",
+    "question": "A board approves engineering changes, but the implementation team updates objects without consistently linking them as resulting content. What audit weakness does that create?",
+    "options": [
+      "It becomes difficult to prove which managed objects actually implemented the approved change",
+      "The objects can no longer enter released state",
+      "Only promotion requests can hold implementation links",
+      "Affected objects automatically become resulting objects"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Resulting-object linkage is part of traceable change execution. Without it, approved intent and implemented content are harder to reconcile."
+  },
+  {
+    "id": 671,
+    "domain": "Configuration Management and Product Structures",
+    "topic": "Variant Decision Discipline",
+    "difficulty": "hard",
+    "objective": "Challenge uncontrolled variant proliferation in structures",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Variant Decision Discipline",
+    "misconceptionTag": "copy_structure_for_every_variant",
+    "releaseVersion": "2026.04-scenario1",
+    "question": "A team duplicates entire structures for every market variant because it feels simpler than managed configuration logic. What long-term downside is most likely?",
+    "options": [
+      "Variant duplication increases maintenance and weakens controlled reuse across related structures",
+      "Duplicated structures always improve traceability",
+      "Variants cannot be represented in Windchill structures",
+      "Copied structures automatically inherit effectivity"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Blind structure duplication creates maintenance overhead and weakens controlled reuse. Managed configuration decisions are often preferable when variant logic must remain traceable."
+  },
+  {
+    "id": 672,
+    "domain": "CAD Data Management and Visualization",
+    "topic": "Publishing Failure Diagnosis",
+    "difficulty": "hard",
+    "objective": "Distinguish publishing pipeline issues from authoring-data absence",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Publishing Failure Diagnosis",
+    "misconceptionTag": "no_viewable_means_no_source",
+    "releaseVersion": "2026.04-scenario1",
+    "question": "A stakeholder cannot see a viewable and immediately concludes the CAD source object does not exist. What is the more disciplined interpretation?",
+    "options": [
+      "Representation generation may have failed or not completed even if the managed source object exists",
+      "Viewables always exist before the source object is stored",
+      "Missing viewables prove the object was deleted from commonspace",
+      "Only documents can publish representations"
+    ],
+    "correctAnswer": 0,
+    "explanation": "A missing representation does not automatically mean the source object is absent. Publishing state and source-object existence are related but distinct diagnostics."
+  },
+  {
+    "id": 673,
+    "domain": "System Administration, Utilities, and Monitoring",
+    "topic": "Administrative Separation of Duties",
+    "difficulty": "medium",
+    "objective": "Use role separation to reduce operational risk",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Administrative Separation of Duties",
+    "misconceptionTag": "one_admin_should_do_everything",
+    "releaseVersion": "2026.04-scenario1",
+    "question": "One administrator performs every platform, business, and security change because it seems efficient. Over time, accountability and troubleshooting degrade. What governance principle is being ignored?",
+    "options": [
+      "Separation of administrative responsibilities improves control, clarity, and auditability",
+      "Only one person may safely administer Windchill",
+      "Multiple admins always cause data loss",
+      "Queues replace administrative responsibility"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Separating responsibilities across appropriate administrative roles improves accountability, reduces risk, and makes troubleshooting more coherent."
+  },
+  {
+    "id": 674,
+    "domain": "Vaulting, Replication, and Data Maintenance",
+    "topic": "Distributed Site Planning",
+    "difficulty": "hard",
+    "objective": "Plan distributed-site behavior deliberately instead of treating it as a pure network issue",
+    "sourceManual": "Windchill Advanced Configuration course manual.pdf",
+    "sourceSection": "Distributed Site Planning",
+    "misconceptionTag": "global_latency_is_only_bandwidth",
+    "releaseVersion": "2026.04-scenario1",
+    "question": "A global rollout blames all remote performance pain on bandwidth alone, even though content distribution strategy was never designed. What planning gap is most likely contributing?",
+    "options": [
+      "Distributed-site and replication strategy was underdesigned for the expected usage model",
+      "Product contexts must be eliminated for remote users",
+      "Only browser themes affect international performance",
+      "Remote users should work only from viewables"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Remote performance depends on more than raw bandwidth. Distributed-site planning and replication strategy must be designed to fit the global usage model."
+  },
+  {
+    "id": 675,
+    "domain": "Navigate and Role-Based Consumption",
+    "topic": "Consumption vs Governance Balance",
+    "difficulty": "hard",
+    "objective": "Balance easy consumption with controlled source governance",
+    "sourceManual": "Windchill Technical Essentials course manual.pdf",
+    "sourceSection": "Consumption vs Governance Balance",
+    "misconceptionTag": "downstream_ease_should_override_control",
+    "releaseVersion": "2026.04-scenario1",
+    "question": "A downstream leader wants every controlled engineering restriction removed because it slows consumption. What is the better architect response?",
+    "options": [
+      "Improve role-based access to the right information without removing the governance that protects authoritative source control",
+      "Turn all released objects back to in-work for easier access",
+      "Replace change control with informal document sharing",
+      "Remove team roles so all users see the same content"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The right design goal is easier consumption of the right information, not elimination of source-governance controls that protect authoritative engineering data."
+  }
+]

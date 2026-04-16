@@ -27,6 +27,29 @@ export default function AuditLogTab() {
     (!entityFilter || log.entityType === entityFilter),
   );
 
+  const summarizeDetails = (log: AuditLogEntry): string[] => {
+    const details = log.details ?? {};
+    if (log.entityType === 'question_overrides') {
+      return [
+        details.questionId ? `Question #${details.questionId}` : null,
+        details.status ? `status: ${details.status}` : null,
+      ].filter((entry): entry is string => Boolean(entry));
+    }
+    if (log.entityType === 'exam_presets') {
+      return [
+        typeof details.name === 'string' ? details.name : null,
+        typeof details.showOnHome === 'boolean' ? (details.showOnHome ? 'public' : 'hidden') : null,
+      ].filter((entry): entry is string => Boolean(entry));
+    }
+    if (log.entityType === 'exam_sessions') {
+      return [
+        typeof details.name === 'string' ? details.name : null,
+        typeof details.presetId === 'string' ? `preset: ${details.presetId}` : null,
+      ].filter((entry): entry is string => Boolean(entry));
+    }
+    return [];
+  };
+
   return (
     <div className="bg-white border border-zinc-100 rounded-2xl shadow-sm overflow-hidden">
       <div className="px-5 py-4 bg-zinc-50 border-b border-zinc-100">
@@ -87,6 +110,15 @@ export default function AuditLogTab() {
                       timeStyle: 'short',
                     })}
                   </p>
+                  {summarizeDetails(log).length > 0 && (
+                    <div className="mb-2 flex flex-wrap gap-1.5">
+                      {summarizeDetails(log).map((entry) => (
+                        <span key={entry} className="text-[10px] font-medium bg-zinc-100 text-zinc-600 px-2 py-0.5 rounded-full">
+                          {entry}
+                        </span>
+                      ))}
+                    </div>
+                  )}
                   {log.details && Object.keys(log.details).length > 0 && (
                     <pre className="whitespace-pre-wrap break-words rounded-xl border border-zinc-100 bg-zinc-50 px-4 py-3 text-[11px] text-zinc-600">
                       {JSON.stringify(log.details, null, 2)}

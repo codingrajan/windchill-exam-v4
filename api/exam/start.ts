@@ -94,19 +94,23 @@ export default async function handler(req: ApiRequestLike, res: ApiResponseLike)
 
     const participantRef = await adminDb.collection('session_participants').add(participantPayload);
 
-    await adminDb.collection('audit_logs').add({
-      action: 'session_updated',
-      entityType: 'session_participants',
-      entityId: participantRef.id,
-      actorEmail: candidateEmail || 'candidate',
-      createdAt: new Date().toISOString(),
-      details: {
-        sessionId,
-        candidateName,
-        retakeNumber: completedAttempts + 1,
-        event: 'candidate_session_started',
-      },
-    });
+    try {
+      await adminDb.collection('audit_logs').add({
+        action: 'session_updated',
+        entityType: 'session_participants',
+        entityId: participantRef.id,
+        actorEmail: candidateEmail || 'candidate',
+        createdAt: new Date().toISOString(),
+        details: {
+          sessionId,
+          candidateName,
+          retakeNumber: completedAttempts + 1,
+          event: 'candidate_session_started',
+        },
+      });
+    } catch (auditError) {
+      console.error('start exam audit log error', auditError);
+    }
 
     res.status(200).json({
       ok: true,

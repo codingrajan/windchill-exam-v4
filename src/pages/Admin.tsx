@@ -11,8 +11,9 @@ import AnalyticsTab from '../components/admin/AnalyticsTab';
 import CohortCompareTab from '../components/admin/CohortCompareTab';
 import AuditLogTab from '../components/admin/AuditLogTab';
 import ContentIntelligenceTab from '../components/admin/ContentIntelligenceTab';
+import QuestionBankTab from '../components/admin/QuestionBankTab';
 
-type ActiveTab = 'reports' | 'presets' | 'sessions' | 'live' | 'analytics' | 'compare' | 'audit' | 'content';
+type ActiveTab = 'reports' | 'presets' | 'sessions' | 'live' | 'analytics' | 'compare' | 'audit' | 'content' | 'questions';
 const ADMIN_TAB_KEY = 'windchill:admin:tab';
 
 const TABS = [
@@ -22,6 +23,7 @@ const TABS = [
   { key: 'analytics', label: 'Analytics' },
   { key: 'compare', label: 'Cohort Compare' },
   { key: 'content', label: 'Content Intel' },
+  { key: 'questions', label: 'Question Bank' },
   { key: 'audit', label: 'Audit Trail' },
 ] as const;
 
@@ -31,7 +33,7 @@ export default function Admin() {
   const [tab, setTab] = useState<ActiveTab>(() => {
     try {
       const stored = window.localStorage.getItem(ADMIN_TAB_KEY) as ActiveTab | null;
-      return stored && ['reports', 'presets', 'sessions', 'analytics', 'compare', 'audit', 'content'].includes(stored) ? stored : 'reports';
+      return stored && ['reports', 'presets', 'sessions', 'analytics', 'compare', 'audit', 'content', 'questions'].includes(stored) ? stored : 'reports';
     } catch {
       return 'reports';
     }
@@ -143,6 +145,7 @@ export default function Admin() {
     analytics: <AnalyticsTab />,
     compare: <CohortCompareTab />,
     content: <ContentIntelligenceTab />,
+    questions: <QuestionBankTab />,
     audit: <AuditLogTab />,
   };
 

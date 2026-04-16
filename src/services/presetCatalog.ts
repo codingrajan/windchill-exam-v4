@@ -37,18 +37,13 @@ export async function syncBuiltInPresetsToFirestore(
   builtInPresets: Preset[],
   firestorePresets: Preset[],
 ): Promise<PresetSyncResult> {
-  const firestoreById = new Map(firestorePresets.map((preset) => [preset.id, preset]));
+  const existingIds = new Set(firestorePresets.map((preset) => preset.id));
   const syncedIds: string[] = [];
   const failedIds: string[] = [];
 
   for (const preset of builtInPresets) {
+    if (existingIds.has(preset.id)) continue;
     try {
-      const existing = firestoreById.get(preset.id);
-      const isSame =
-        existing
-        && JSON.stringify({ ...existing, updatedAt: preset.updatedAt })
-          === JSON.stringify({ ...preset, updatedAt: preset.updatedAt });
-      if (isSame) continue;
       const { id, ...payload } = preset;
       await upsertPreset(payload, id);
       syncedIds.push(id);

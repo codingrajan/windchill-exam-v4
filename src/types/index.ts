@@ -25,6 +25,33 @@ export interface Question {
   options: string[];
   correctAnswer: AnswerValue;
   explanation: string;
+  status?: 'active' | 'skipped' | 'deleted';
+  isOverride?: boolean;
+  baseQuestionId?: number;
+}
+
+export interface QuestionAdminOverride {
+  id: string;
+  questionId: number;
+  status?: 'active' | 'skipped' | 'deleted';
+  domain?: string;
+  objective?: string;
+  sourceManual?: string;
+  sourceSection?: string;
+  misconceptionTag?: string;
+  releaseVersion?: string;
+  topic?: string;
+  difficulty?: Difficulty;
+  type?: QuestionKind;
+  question?: string;
+  codeSnippet?: string;
+  options?: string[];
+  correctAnswer?: AnswerValue;
+  explanation?: string;
+  createdAt?: string;
+  createdBy?: string;
+  updatedAt?: string;
+  updatedBy?: string;
 }
 
 export interface QuestionResult {

@@ -21,6 +21,7 @@ export default function PresetsTab() {
   const [presetName, setPresetName] = useState('');
   const [targetCount, setTargetCount] = useState(25);
   const [selected, setSelected] = useState<Set<number>>(new Set());
+  const [showOnHome, setShowOnHome] = useState(true);
 
   const [search, setSearch] = useState('');
   const [topic, setTopic] = useState('');
@@ -71,6 +72,7 @@ export default function PresetsTab() {
     setPresetName('');
     setTargetCount(25);
     setSelected(new Set());
+    setShowOnHome(true);
     setMessage('');
   };
 
@@ -79,6 +81,7 @@ export default function PresetsTab() {
     setPresetName(preset.name);
     setTargetCount(preset.targetCount);
     setSelected(new Set(preset.questions));
+    setShowOnHome(preset.showOnHome !== false);
     setMessage('');
   };
 
@@ -101,7 +104,24 @@ export default function PresetsTab() {
     if (!presetName.trim() || selected.size !== targetCount) return;
     setSaving(true); setMessage('');
     try {
-      const payload = { name: presetName.trim(), questions: [...selected], targetCount, updatedAt: new Date().toISOString() };
+      const currentPreset = activeView?.kind === 'edit' ? activeView.preset : null;
+      const payload = {
+        ...(currentPreset ? {
+          timeLimitMinutes: currentPreset.timeLimitMinutes,
+          examTrack: currentPreset.examTrack,
+          difficultyProfile: currentPreset.difficultyProfile,
+          difficultyLabel: currentPreset.difficultyLabel,
+          multiSelectRatio: currentPreset.multiSelectRatio,
+          isBuiltIn: currentPreset.isBuiltIn,
+          assessmentType: currentPreset.assessmentType,
+          roleFocus: currentPreset.roleFocus,
+        } : {}),
+        name: presetName.trim(),
+        questions: [...selected],
+        targetCount,
+        showOnHome,
+        updatedAt: new Date().toISOString(),
+      };
       if (activeView?.kind === 'edit') {
         const id = activeView.preset.id;
         const updated = await upsertPreset(payload, id);
@@ -221,6 +241,13 @@ export default function PresetsTab() {
                   className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-3 py-2.5 text-sm text-zinc-800 font-medium outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 transition-all"
                 />
               </div>
+              <label className="flex items-center justify-between gap-3 rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 cursor-pointer">
+                <div>
+                  <div className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500">Public Visibility</div>
+                  <div className="text-[11px] text-zinc-400">{showOnHome ? 'Visible on home page preset library' : 'Hidden from public home page'}</div>
+                </div>
+                <LiteCheckbox checked={showOnHome} onChange={() => setShowOnHome((prev) => !prev)} />
+              </label>
               <div className={`rounded-xl px-4 py-3 border text-center ${selected.size === targetCount ? 'bg-emerald-50 border-emerald-100' : 'bg-zinc-50 border-zinc-100'}`}>
                 <span className={`text-sm font-bold ${selected.size === targetCount ? 'text-emerald-600' : 'text-zinc-500'}`}>{selected.size} / {targetCount} selected</span>
                 {selected.size !== targetCount && <p className="text-[11px] text-zinc-400 mt-0.5">Select exactly {targetCount} questions from the pool</p>}

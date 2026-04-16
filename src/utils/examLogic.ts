@@ -5,9 +5,11 @@ import type {
   ExamTrack,
   EvaluationSummary,
   Question,
+  QuestionAdminOverride,
   TopicStat,
 } from '../types/index';
 import { TRACK_PROFILES } from '../constants/examStrategy';
+import { applyQuestionOverrides, fetchQuestionOverrides } from '../services/questionCatalog';
 
 export const QUESTION_POOL_FILES = [
   '/data/windchill_mock_test_1.json',
@@ -19,6 +21,7 @@ export const QUESTION_POOL_FILES = [
   '/data/windchill_mock_test_7.json',
   '/data/windchill_mock_test_8.json',
   '/data/windchill_mock_test_9.json',
+  '/data/windchill_mock_test_10.json',
 ] as const;
 
 const EMPTY_TOPIC = 'Unclassified';
@@ -109,7 +112,7 @@ export const shuffle = <T>(items: readonly T[]): T[] => {
   return copy;
 };
 
-export const loadQuestionPool = async (): Promise<Question[]> => {
+export const loadQuestionPool = async (options: { includeSkipped?: boolean } = {}): Promise<Question[]> => {
   const payloads = await Promise.all(
     QUESTION_POOL_FILES.map(async (file) => {
       try {
@@ -130,7 +133,15 @@ export const loadQuestionPool = async (): Promise<Question[]> => {
     byId.set(normalized.id, normalized);
   }
 
-  return [...byId.values()].sort((left, right) => left.id - right.id);
+  const baseQuestions = [...byId.values()].sort((left, right) => left.id - right.id);
+  let overrides: QuestionAdminOverride[] = [];
+  try {
+    overrides = await fetchQuestionOverrides();
+  } catch (error) {
+    console.error('Question override fetch failed, using static bank only:', error);
+  }
+
+  return applyQuestionOverrides(baseQuestions, overrides, options);
 };
 
 const allocateCounts = (targetCount: number, track: ExamTrack) => {
@@ -199,6 +210,66 @@ export const buildRandomExam = (
   }
 
   return shuffle(selectedQuestions).slice(0, targetCount);
+};
+
+const questionTypeKey = (question: Question): 'single' | 'multiple' =>
+  isMultiAnswerQuestion(question) ? 'multiple' : 'single';
+
+export const findReplacementQuestion = (
+  pool: Question[],
+  usedIds: Set<number>,
+  missingId: number,
+): Question | null => {
+  const activePool = pool.filter((question) => (question.status ?? 'active') === 'active');
+  const original =
+    pool.find((question) => question.id === missingId)
+    ?? activePool.find((question) => question.id === missingId);
+
+  const candidates = activePool.filter((question) => {
+    if (usedIds.has(question.id)) return false;
+    if (!original) return true;
+    return (
+      question.topic === original.topic
+      && question.difficulty === original.difficulty
+      && questionTypeKey(question) === questionTypeKey(original)
+    );
+  });
+  if (candidates[0]) return shuffle(candidates)[0];
+
+  const domainCandidates = activePool.filter((question) => {
+    if (usedIds.has(question.id) || !original) return false;
+    return question.domain === original.domain && question.difficulty === original.difficulty;
+  });
+  if (domainCandidates[0]) return shuffle(domainCandidates)[0];
+
+  const difficultyCandidates = activePool.filter((question) => {
+    if (usedIds.has(question.id) || !original) return false;
+    return question.difficulty === original.difficulty;
+  });
+  if (difficultyCandidates[0]) return shuffle(difficultyCandidates)[0];
+
+  const fallback = activePool.find((question) => !usedIds.has(question.id));
+  return fallback ?? null;
+};
+
+export const resolvePresetQuestionSet = (
+  pool: Question[],
+  presetQuestionIds: number[],
+): Question[] => {
+  const activePool = pool.filter((question) => (question.status ?? 'active') === 'active');
+  const byId = new Map(activePool.map((question) => [question.id, question]));
+  const selected: Question[] = [];
+  const usedIds = new Set<number>();
+
+  for (const id of presetQuestionIds) {
+    const direct = byId.get(id);
+    const resolved = direct ?? findReplacementQuestion(pool, usedIds, id);
+    if (!resolved || usedIds.has(resolved.id)) continue;
+    selected.push(resolved);
+    usedIds.add(resolved.id);
+  }
+
+  return shuffle(selected);
 };
 
 export const buildRemediationExam = (

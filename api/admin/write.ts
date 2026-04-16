@@ -5,6 +5,7 @@ import { readJson, requireAdmin, sendMethodNotAllowed } from '../_lib/http';
 type AdminWriteAction =
   | 'preset_upsert'
   | 'preset_delete'
+  | 'question_upsert'
   | 'session_create'
   | 'session_patch'
   | 'session_delete'
@@ -73,6 +74,41 @@ export default async function handler(req: ApiRequestLike, res: ApiResponseLike)
         await adminDb.collection('exam_presets').doc(id).delete();
         await logAdminAction(email, 'preset_deleted', 'exam_presets', id, { name });
         res.status(200).json({ ok: true });
+        return;
+      }
+
+      case 'question_upsert': {
+        const { id, ...data } = payload.data;
+        const questionId = Number(data.questionId);
+        if (!Number.isInteger(questionId)) {
+          res.status(400).json({ error: 'Invalid question override payload.' });
+          return;
+        }
+
+        const timestamp = new Date().toISOString();
+        const overridePayload = {
+          ...data,
+          questionId,
+          updatedAt: timestamp,
+          updatedBy: email,
+        };
+
+        if (typeof id === 'string' && id) {
+          await adminDb.collection('question_overrides').doc(id).set({ ...overridePayload, id }, { merge: true });
+          await logAdminAction(email, 'question_updated', 'question_overrides', id, { questionId, status: data.status ?? null });
+          res.status(200).json({ ok: true, questionOverride: { ...overridePayload, id } });
+          return;
+        }
+
+        const ref = await adminDb.collection('question_overrides').add({
+          ...overridePayload,
+          createdAt: timestamp,
+          createdBy: email,
+        });
+        const questionOverride = { ...overridePayload, createdAt: timestamp, createdBy: email, id: ref.id };
+        await adminDb.collection('question_overrides').doc(ref.id).set(questionOverride, { merge: true });
+        await logAdminAction(email, 'question_updated', 'question_overrides', ref.id, { questionId, status: data.status ?? null });
+        res.status(200).json({ ok: true, questionOverride });
         return;
       }
 

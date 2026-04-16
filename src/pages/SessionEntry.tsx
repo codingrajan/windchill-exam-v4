@@ -193,7 +193,7 @@ export default function SessionEntry() {
       });
     } catch (startError) {
       console.error('Session start error:', startError);
-      setError('Could not start the session. Please try again.');
+      setError(startError instanceof Error ? startError.message : 'Could not start the session. Please try again.');
       setStarting(false);
     }
   };

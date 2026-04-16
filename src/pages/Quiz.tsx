@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import type { AnswerMap, ExamConfig, Question } from '../types/index';
 import { getTrackProfile } from '../utils/examInsights';
-import { buildRandomExam, getQuestionDomain, isQuestionAnswered, loadQuestionPool, shuffle } from '../utils/examLogic';
+import { buildRandomExam, getQuestionDomain, isQuestionAnswered, loadQuestionPool, resolvePresetQuestionSet } from '../utils/examLogic';
 import { useContentProtection } from '../hooks/useContentProtection';
 import QuestionPrompt from '../components/shared/QuestionPrompt';
 
@@ -100,8 +100,7 @@ export default function Quiz() {
       const rawPool = await loadQuestionPool();
       let finalSet: Question[] = [];
       if ((config.mode === 'preset' || config.mode === 'remediation') && Array.isArray(config.presetQuestionIds)) {
-        const presetIds = new Set<number>(config.presetQuestionIds);
-        finalSet = shuffle(rawPool.filter((q) => presetIds.has(q.id)));
+        finalSet = resolvePresetQuestionSet(rawPool, config.presetQuestionIds);
       } else {
         finalSet = buildRandomExam(rawPool, config.targetCount, { track: config.track });
       }

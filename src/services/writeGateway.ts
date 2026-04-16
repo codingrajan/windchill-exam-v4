@@ -12,7 +12,7 @@ import {
 } from 'firebase/firestore';
 import { auth, db } from './firebase';
 import { assertAdminEmail, getCurrentActorEmail, getStoredAdminSession } from './authz';
-import type { ExamResult, ExamSession, Preset } from '../types/index';
+import type { ExamResult, ExamSession, Preset, QuestionAdminOverride } from '../types/index';
 
 type AuditAction =
   | 'result_submitted'
@@ -23,11 +23,13 @@ type AuditAction =
   | 'preset_deleted'
   | 'session_created'
   | 'session_updated'
-  | 'session_deleted';
+  | 'session_deleted'
+  | 'question_updated'
+  | 'question_status_changed';
 
 interface AuditEntry {
   action: AuditAction;
-  entityType: 'exam_results' | 'exam_presets' | 'exam_sessions' | 'session_participants';
+  entityType: 'exam_results' | 'exam_presets' | 'exam_sessions' | 'session_participants' | 'question_overrides';
   entityId?: string;
   details?: Record<string, unknown>;
 }
@@ -495,6 +497,76 @@ export async function deleteSpecificResultsByIds(ids: string[]): Promise<number>
     details: { deletedCount: uniqueIds.length, ids: uniqueIds },
   });
   return uniqueIds.length;
+}
+
+export async function upsertQuestionOverride(
+  payload: Omit<QuestionAdminOverride, 'id' | 'updatedAt' | 'updatedBy' | 'createdAt' | 'createdBy'>,
+  existingId?: string,
+): Promise<QuestionAdminOverride> {
+  const actorEmail = getCurrentActorEmail();
+  const nextPayload = {
+    ...payload,
+    updatedAt: new Date().toISOString(),
+    updatedBy: actorEmail,
+  };
+
+  if (useServerWrites) {
+    const response = await postJson<{ ok: true; questionOverride: QuestionAdminOverride }>(
+      '/api/admin/write',
+      { action: 'question_upsert', data: { ...nextPayload, ...(existingId ? { id: existingId } : {}) } },
+      { admin: true },
+    );
+    return response.questionOverride;
+  }
+
+  requireAdmin();
+
+  if (existingId) {
+    await setDoc(doc(db, 'question_overrides', existingId), { ...nextPayload, id: existingId }, { merge: true });
+    await logAuditSafely({
+      action: 'question_updated',
+      entityType: 'question_overrides',
+      entityId: existingId,
+      details: { questionId: payload.questionId, status: payload.status ?? null },
+    });
+    return { ...nextPayload, id: existingId };
+  }
+
+  const ref = await addDoc(collection(db, 'question_overrides'), {
+    ...nextPayload,
+    createdAt: nextPayload.updatedAt,
+    createdBy: actorEmail,
+  });
+  const created = { ...nextPayload, createdAt: nextPayload.updatedAt, createdBy: actorEmail, id: ref.id };
+  await setDoc(doc(db, 'question_overrides', ref.id), created, { merge: true });
+  await logAuditSafely({
+    action: 'question_updated',
+    entityType: 'question_overrides',
+    entityId: ref.id,
+    details: { questionId: payload.questionId, status: payload.status ?? null },
+  });
+  return created;
+}
+
+export async function setQuestionStatus(
+  questionId: number,
+  status: 'active' | 'skipped' | 'deleted',
+  existingOverride?: QuestionAdminOverride | null,
+): Promise<QuestionAdminOverride> {
+  const payload: Omit<QuestionAdminOverride, 'id' | 'updatedAt' | 'updatedBy' | 'createdAt' | 'createdBy'> = {
+    ...(existingOverride ?? {}),
+    questionId,
+    status,
+  };
+
+  const saved = await upsertQuestionOverride(payload, existingOverride?.id);
+  await logAuditSafely({
+    action: 'question_status_changed',
+    entityType: 'question_overrides',
+    entityId: saved.id,
+    details: { questionId, status },
+  });
+  return saved;
 }
 interface CandidateMatch {
   id: string;
