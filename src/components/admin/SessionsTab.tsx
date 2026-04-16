@@ -185,23 +185,36 @@ export default function SessionsTab() {
 
       Object.entries(nextParticipants).forEach(([sessionId, participants]) => {
         const sessionResults = nextResults[sessionId] ?? [];
+        const unclaimedResults = [...sessionResults].sort((left, right) => right.examDate.localeCompare(left.examDate));
         const resultsByParticipantId = new Map(
           sessionResults
             .filter((result) => result.participantId)
             .map((result) => [result.participantId as string, result]),
         );
 
-        participants.forEach((participant) => {
+        participants
+          .sort((left, right) => right.startedAt.localeCompare(left.startedAt))
+          .forEach((participant) => {
           const matchedResult =
             (participant.id ? resultsByParticipantId.get(participant.id) : undefined)
-            ?? sessionResults.find((result) => {
-              const sameEmail =
-                participant.candidateEmail
-                && result.candidateEmail
-                && participant.candidateEmail.trim().toLowerCase() === result.candidateEmail.trim().toLowerCase();
-              const sameName = participant.candidateName.trim().toLowerCase() === result.examineeName.trim().toLowerCase();
-              return sameEmail || sameName;
-            });
+            ?? (() => {
+              const resultIndex = unclaimedResults.findIndex((result) => {
+                if (new Date(result.examDate).getTime() < new Date(participant.startedAt).getTime()) {
+                  return false;
+                }
+
+                const sameEmail =
+                  participant.candidateEmail
+                  && result.candidateEmail
+                  && participant.candidateEmail.trim().toLowerCase() === result.candidateEmail.trim().toLowerCase();
+                const sameName = participant.candidateName.trim().toLowerCase() === result.examineeName.trim().toLowerCase();
+                return sameEmail || sameName;
+              });
+
+              if (resultIndex === -1) return undefined;
+              const [claimed] = unclaimedResults.splice(resultIndex, 1);
+              return claimed;
+            })();
 
           if (!matchedResult) return;
 

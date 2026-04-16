@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { addDoc, collection, doc, getDoc } from 'firebase/firestore';
 import { db } from '../services/firebase';
 import { startSessionAttempt } from '../services/writeGateway';
-import type { ExamSession, Preset } from '../types/index';
+import type { ExamConfig, ExamSession, Preset } from '../types/index';
 import { isValidEmail, normalizeEmail } from '../utils/email';
 
 type PageState = 'loading' | 'ready' | 'invalid' | 'expired' | 'inactive' | 'not_open';
@@ -24,6 +24,7 @@ const ERROR_MESSAGES: Record<'invalid' | 'inactive' | 'expired' | 'not_open', { 
 };
 
 const useServerWrites = import.meta.env.VITE_ENABLE_SERVER_WRITES === 'true';
+const ACTIVE_SESSION_KEY = 'wc_exam_session';
 
 function getTimeLabel(count: number, timeLimitMinutes?: number) {
   if (timeLimitMinutes) return `${timeLimitMinutes} min`;
@@ -47,6 +48,17 @@ function formatSessionDateTime(value?: string) {
     dateStyle: 'long',
     timeStyle: 'short',
   });
+}
+
+function getStoredActiveSessionConfig(): ExamConfig | null {
+  try {
+    const raw = window.localStorage.getItem(ACTIVE_SESSION_KEY) ?? window.sessionStorage.getItem(ACTIVE_SESSION_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as { config?: ExamConfig };
+    return parsed.config?.sessionId ? parsed.config : null;
+  } catch {
+    return null;
+  }
 }
 
 export default function SessionEntry() {
@@ -138,6 +150,19 @@ export default function SessionEntry() {
       const normalized = session.allowedCandidates.map((name) => name.trim().toLowerCase());
       if (!normalized.includes(candidateName.trim().toLowerCase())) {
         setError('You are not registered for this session. Contact your administrator.');
+        return;
+      }
+    }
+
+    const activeSession = getStoredActiveSessionConfig();
+    if (activeSession?.sessionId === session.id) {
+      const sameEmail =
+        normalizedEmail
+        && activeSession.candidateEmail
+        && normalizedEmail === activeSession.candidateEmail.trim().toLowerCase();
+      const sameName = activeSession.examineeName.trim().toLowerCase() === candidateName.trim().toLowerCase();
+      if (sameEmail || sameName) {
+        navigate('/quiz');
         return;
       }
     }
