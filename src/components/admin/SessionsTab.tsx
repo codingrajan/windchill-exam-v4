@@ -262,8 +262,12 @@ export default function SessionsTab() {
   useEffect(() => {
     void fetchSessions();
     void loadPresets(true);
+  }, [fetchSessions, loadPresets]);
+
+  useEffect(() => {
+    if (sessions.length === 0 || presets.length === 0) return;
     void fetchSessionActivity();
-  }, [fetchSessionActivity, fetchSessions, loadPresets]);
+  }, [fetchSessionActivity, presets.length, sessions.length]);
 
   const handleCreate = async (event: FormEvent) => {
     event.preventDefault();
